@@ -1,0 +1,26 @@
+#blocTitre{
+    background-color: red;
+    height: 100px;
+    position: relative;
+    border: black solid 1px;
+    text-align: center;
+}
+
+#blocProbleme{
+    position: absolute;
+    width: 250px;
+    background-color: yellow;
+    border: black solid 1px;
+    height: 500px;
+    padding-left: 30px;
+}
+
+.blocResultats{
+    position: relative;
+    background-color: green;
+    left: 250px;
+    width: 1300px;
+    border: black solid 1px;
+    height: 500px;
+    padding-left: 30px;
+}

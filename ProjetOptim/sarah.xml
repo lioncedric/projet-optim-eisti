@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<listeProblemes>
+    <probleme>
+        <titre>Mon probleme</titre>
+        <description>Entrer votre description du problème</description>
+        <objectif type="Maximiser">
+            <variable coeff="12"/>
+        </objectif>
+        <contrainte type="Infériorité">
+            <variable coeff="1"/>
+            <constante valeur="45"/>
+        </contrainte>
+    </probleme>
+    <probleme>
+        <titre>Mon probleme12</titre>
+        <description>Entrer votre description du problème</description>
+        <objectif type="Minimiser">
+            <variable coeff="1"/>
+            <variable coeff="2"/>
+        </objectif>
+        <contrainte type="Supériorité">
+            <variable coeff="1"/>
+            <variable coeff="5"/>
+            <constante valeur="4578"/>
+        </contrainte>
+        <contrainte type="Egalité">
+            <variable coeff="4"/>
+            <variable coeff="4"/>
+            <constante valeur="0"/>
+        </contrainte>
+        <contrainte type="Egalité">
+            <variable coeff="7"/>
+            <variable coeff="8"/>
+            <constante valeur="5"/>
+        </contrainte>
+    </probleme>
+</listeProblemes>

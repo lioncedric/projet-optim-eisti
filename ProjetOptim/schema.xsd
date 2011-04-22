@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified">
+    <xs:element name="listeProblemes">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element  name="probleme" maxOccurs="unbounded" >
+                    <xs:complexType>
+                        <xs:sequence>
+                            <xs:element  name="titre" type="xs:anyType" />
+                            <xs:element  name="description" type="xs:anyType" />
+                            <xs:element  name="objectif" type="tObjectif" maxOccurs="unbounded" />
+                            <xs:element  name="contrainte" type="tContrainte" minOccurs="0"  maxOccurs="unbounded" />
+                        </xs:sequence>
+                    </xs:complexType>
+                </xs:element>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+ 
+    <xs:complexType name="tObjectif">
+        <xs:sequence >
+            <xs:element  name="variable" maxOccurs="unbounded" >
+                <xs:complexType>
+                    <xs:attribute name="coeff" use="required" type="xs:double"/>
+                </xs:complexType>
+            </xs:element>
+        </xs:sequence>
+        <xs:attribute name="type" use="required" >
+            <xs:simpleType>
+                <xs:restriction base="xs:string">
+                    <xs:enumeration value="Minimiser"/>
+                    <xs:enumeration value="Maximiser"/>
+                </xs:restriction>
+            </xs:simpleType>
+        </xs:attribute>
+
+    </xs:complexType>
+
+    <xs:complexType name="tContrainte">
+        <xs:sequence >
+            <xs:element  name="variable" maxOccurs="unbounded" >
+                <xs:complexType>
+                    <xs:attribute name="coeff" use="required" type="xs:double"/>
+                </xs:complexType>
+            </xs:element>
+            <xs:element  name="constante" >
+                <xs:complexType>
+                    <xs:attribute name="valeur" use="required" type="xs:double"/>
+                </xs:complexType>
+            </xs:element>
+        </xs:sequence>
+        <xs:attribute name="type" use="required" >
+            <xs:simpleType>
+                <xs:restriction base="xs:string">
+                    <xs:enumeration value="Egalité"/>
+                    <xs:enumeration value="Infériorité"/>
+                    <xs:enumeration value="Supériorité"/>
+                </xs:restriction>
+            </xs:simpleType>
+        </xs:attribute>
+    </xs:complexType>
+</xs:schema>

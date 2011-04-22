@@ -1,0 +1,309 @@
+/**
+ * 
+ */
+package fr.eisti.OptimEisti.View;
+
+import java.awt.event.KeyEvent;
+import javax.swing.JFrame;
+import javax.swing.JMenu;
+import javax.swing.JMenuBar;
+import javax.swing.JMenuItem;
+import javax.swing.JTabbedPane;
+import javax.swing.KeyStroke;
+
+import fr.eisti.OptimEisti.Controler.FenetreSaisieListener;
+import java.awt.BorderLayout;
+import java.awt.Color;
+import java.awt.Dimension;
+import javax.swing.JPanel;
+import javax.swing.JSeparator;
+
+import javax.swing.JSplitPane;
+import javax.swing.SwingConstants;
+
+/**
+ * @author Administrator
+ *
+ */
+public class Fenetre extends JFrame {
+
+    //Declaration des variables pour le menubar
+    private static final long serialVersionUID = 1L;
+    private JMenuBar menuBar = new JMenuBar();
+    private JMenu fichier = new JMenu("Fichier");
+    private JMenu edition = new JMenu("Edition");
+    private JMenu affichage = new JMenu("Affichage");
+    private JMenu aide = new JMenu("Aide");
+    private JMenu importT = new JMenu("Importer");
+    private JMenu exportT = new JMenu("Exporter");
+    private JMenuItem sauvegarder = new JMenuItem("Sauvegarder");
+    private JMenuItem recharger = new JMenuItem("Recharger");
+    private JMenuItem quitter = new JMenuItem("Quitter");
+    private JMenuItem deconnexion = new JMenuItem("Se déconnecter");
+    private JMenuItem aideItem = new JMenuItem("Aide");
+    private JMenuItem aPropos = new JMenuItem("a Propos");
+    private JMenuItem importXml = new JMenuItem("Importer des problèmes XML");
+    private JMenuItem exportScilab = new JMenuItem("Exporter le problème vers Scilab");
+    private JMenuItem exportExcel = new JMenuItem("Exporter le problème vers Excel");
+    private JMenuItem preferences = new JMenuItem("Preferences");
+    private JMenuItem rechercher = new JMenuItem("Rechercher");
+    private JMenuItem pleinEcran = new JMenuItem("Plein écran");
+    private JMenuItem petitEcran = new JMenuItem("Mettre en petite taille");
+    private JMenuItem profil = new JMenuItem("Gérer votre profil");
+    //declaration des variables pour le panel de gauche
+    private JSplitPane splitPane;
+    private PanelProblemesUtilisateur gauche;
+    private JTabbedPane droite;
+    private PanelProfil panProfil;
+    private JPanel panGauche;
+
+    /**
+     * Constructeur
+     */
+    public Fenetre() {
+        initFenetre();
+
+        traitementMenuItem();
+
+    }
+
+    private void initFenetre() {
+        this.setTitle("Fenêtre de saisie du problème");
+        this.setSize(960, 620);          //on redimenssione la fenetre en cours
+        this.setMinimumSize(new Dimension(775, 500));
+        this.setLocationRelativeTo(null);//on centre la fenetre a l'ecran
+        //this.setResizable(false);        //on demande a ce que la fenetre ne puisse pas etre redimentionnee
+        this.setDefaultCloseOperation(DISPOSE_ON_CLOSE); //permet de fermer correctement la fenetre
+        this.addComponentListener(new FenetreSaisieListener(this));
+        this.panGauche=new JPanel();
+        this.panGauche.setLayout(new BorderLayout());
+        this.panProfil=new PanelProfil();
+        gauche = new PanelProblemesUtilisateur();
+        this.panGauche.add(this.panProfil,BorderLayout.NORTH);
+        this.panGauche.add(this.gauche,BorderLayout.CENTER);
+        droite = new JTabbedPane();
+        splitPane = new JSplitPane(JSplitPane.HORIZONTAL_SPLIT, panGauche, droite);
+        gauche.setMinimumSize(new Dimension(180, this.getHeight()));
+        droite.setMinimumSize(new Dimension(700, this.getHeight()));
+        splitPane.setOneTouchExpandable(false);
+        splitPane.setDividerSize(4);//definit la taille de la zone de separation entre les deux composants
+        splitPane.setContinuousLayout(true);
+        setContentPane(splitPane);
+    }
+
+    public void appliquerChangementSplitPane() {
+        if (this.getWidth() < 960) {
+            System.out.println("largeur: " + this.getWidth() + " - hauteur: " + this.getHeight());
+            droite.setMinimumSize(new Dimension(this.getWidth() * 7 / 10, this.getHeight()));
+        } else if (this.getWidth() < 1260) {
+            System.out.println("largeur: " + this.getWidth() + " - hauteur: " + this.getHeight());
+            droite.setMinimumSize(new Dimension(this.getWidth() * 15 / 20, this.getHeight()));
+        } else {
+            System.out.println("largeur: " + this.getWidth() + " - hauteur: " + this.getHeight());
+            droite.setMinimumSize(new Dimension(this.getWidth() * 8 / 10, this.getHeight()));
+        }
+    }
+
+    /**
+     * Methode d'initialisation de la fenetre
+     */
+    private void traitementMenuItem() {
+        //les raccourcis clavier deja pris : ctrl+s, ctrl+d, ctrl+q, ctrl+f, ctrl+l, ctrl+r
+        //on initialise nos menus
+        fichier.setMnemonic('F');//faire alt+f pour voir le menu derouler
+        edition.setMnemonic('E');
+        affichage.setMnemonic('A');
+        aide.setMnemonic('H');
+        
+        sauvegarder.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_S, KeyEvent.CTRL_MASK));//ctrl + s
+        this.fichier.add(sauvegarder);
+        this.fichier.add(recharger);
+
+        this.fichier.addSeparator();
+        this.fichier.add(importT);
+        this.fichier.add(exportT);
+        this.fichier.addSeparator();
+        this.fichier.add(deconnexion);
+        this.deconnexion.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_D, KeyEvent.CTRL_MASK));//ctrl + d
+        this.fichier.add(quitter);
+        this.quitter.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_Q, KeyEvent.CTRL_MASK));//ctrl + q
+        
+        this.edition.add(rechercher);
+        this.rechercher.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_F, KeyEvent.CTRL_MASK));//ctrl + f
+        this.edition.add(profil);
+        this.edition.add(preferences);
+        
+        this.affichage.add(pleinEcran);
+        this.pleinEcran.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_L, KeyEvent.CTRL_MASK));//ctrl + l
+        this.affichage.add(petitEcran);
+        this.petitEcran.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_R, KeyEvent.CTRL_MASK));//ctrl + r
+        
+        this.aide.add(aideItem);
+        this.aide.addSeparator();
+        this.aide.add(aPropos);
+        this.importT.add(importXml);
+        this.exportT.add(exportScilab);
+        this.exportT.add(exportExcel);
+
+        this.menuBar.add(fichier);
+        this.menuBar.add(edition);
+        this.menuBar.add(affichage);
+        this.menuBar.add(aide);
+
+        this.setJMenuBar(menuBar);
+
+        importXml.addActionListener(new FenetreSaisieListener(this));
+        exportExcel.addActionListener(new FenetreSaisieListener(this));
+        sauvegarder.addActionListener(new FenetreSaisieListener(this));
+        recharger.addActionListener(new FenetreSaisieListener(this));
+        deconnexion.addActionListener(new FenetreSaisieListener(this));
+        quitter.addActionListener(new FenetreSaisieListener(this));
+        pleinEcran.addActionListener(new FenetreSaisieListener(this));
+        petitEcran.addActionListener(new FenetreSaisieListener(this));
+    }
+
+    public JTabbedPane getDroite() {
+        return droite;
+    }
+
+    public void setDroite(JTabbedPane droite) {
+        this.droite = droite;
+    }
+
+    public PanelProblemesUtilisateur getGauche() {
+        return gauche;
+    }
+
+    public void setGauche(PanelProblemesUtilisateur gauche) {
+        this.gauche = gauche;
+    }
+
+    public JMenuItem getaPropos() {
+        return aPropos;
+    }
+
+    public void setaPropos(JMenuItem aPropos) {
+        this.aPropos = aPropos;
+    }
+
+    public JMenu getAide() {
+        return aide;
+    }
+
+    public void setAide(JMenu aide) {
+        this.aide = aide;
+    }
+
+    public JMenuItem getAideItem() {
+        return aideItem;
+    }
+
+    public void setAideItem(JMenuItem aideItem) {
+        this.aideItem = aideItem;
+    }
+
+    public JMenuItem getDeconnexion() {
+        return deconnexion;
+    }
+
+    public void setDeconnexion(JMenuItem deconnexion) {
+        this.deconnexion = deconnexion;
+    }
+
+    public JMenuItem getExportExcel() {
+        return exportExcel;
+    }
+
+    public void setExportExcel(JMenuItem exportExcel) {
+        this.exportExcel = exportExcel;
+    }
+
+    public JMenuItem getExportScilab() {
+        return exportScilab;
+    }
+
+    public void setExportScilab(JMenuItem exportScilab) {
+        this.exportScilab = exportScilab;
+    }
+
+    public JMenu getExportT() {
+        return exportT;
+    }
+
+    public void setExportT(JMenu exportT) {
+        this.exportT = exportT;
+    }
+
+    public JMenu getFichier() {
+        return fichier;
+    }
+
+    public void setFichier(JMenu fichier) {
+        this.fichier = fichier;
+    }
+
+    public JMenu getImportT() {
+        return importT;
+    }
+
+    public void setImportT(JMenu importT) {
+        this.importT = importT;
+    }
+
+    public JMenuItem getImportXml() {
+        return importXml;
+    }
+
+    public void setImportXml(JMenuItem importXml) {
+        this.importXml = importXml;
+    }
+
+    public void setMenuBar(JMenuBar menuBar) {
+        this.menuBar = menuBar;
+    }
+
+    public JMenuItem getQuitter() {
+        return quitter;
+    }
+
+    public void setQuitter(JMenuItem quitter) {
+        this.quitter = quitter;
+    }
+
+    public JMenuItem getRecharger() {
+        return recharger;
+    }
+
+    public void setRecharger(JMenuItem recharger) {
+        this.recharger = recharger;
+    }
+
+    public JMenuItem getSauvegarder() {
+        return sauvegarder;
+    }
+
+    public void setSauvegarder(JMenuItem sauvegarder) {
+        this.sauvegarder = sauvegarder;
+    }
+
+    public JSplitPane getSplitPane() {
+        return splitPane;
+    }
+
+    public void setSplitPane(JSplitPane splitPane) {
+        this.splitPane = splitPane;
+    }
+
+    public JMenuItem getPetitEcran() {
+        return petitEcran;
+    }
+
+    public JMenuItem getPleinEcran() {
+        return pleinEcran;
+    }
+
+    public PanelProfil getPanProfil() {
+        return panProfil;
+    }
+    
+}

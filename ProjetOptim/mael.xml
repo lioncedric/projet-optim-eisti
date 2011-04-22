@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+
+<?xml-stylesheet type="text/xsl" href="resultats.xsl"?>
+
+<listeProblemes>
+    
+
+    <probleme>
+        <titre>Probleme du sujet OptimEisti</titre>
+        <description>Entrer votre description du problème</description>
+        <objectif type="Maximiser">
+            <variable coeff="3"/>
+            <variable coeff="5"/>
+        </objectif>
+        <contrainte type="Infériorité">
+            <variable coeff="1"/>
+            <variable coeff="0"/>
+            <constante valeur="4"/>
+        </contrainte>
+        <contrainte type="Infériorité">
+            <variable coeff="0"/>
+            <variable coeff="2"/>
+            <constante valeur="12"/>
+        </contrainte>
+        <contrainte type="Infériorité">
+            <variable coeff="3"/>
+            <variable coeff="2"/>
+            <constante valeur="18"/>
+        </contrainte>
+        <contrainte type="Supériorité">
+            <variable coeff="1"/>
+            <variable coeff="0"/>
+            <constante valeur="0"/>
+        </contrainte>
+        <contrainte type="Supériorité">
+            <variable coeff="0"/>
+            <variable coeff="1"/>
+            <constante valeur="0"/>
+        </contrainte>
+    </probleme>
+
+
+    <probleme>
+        <titre>probleme a 3 var decisions</titre>
+        <description>Entrer votre description du problème</description>
+        <objectif type="Maximiser">
+            <variable coeff="1"/>
+            <variable coeff="5"/>
+            <variable coeff="3"/>
+        </objectif>
+        <contrainte type="Supériorité">
+            <variable coeff="1"/>
+            <variable coeff="0"/>
+            <variable coeff="0"/>
+            <constante valeur="0"/>
+        </contrainte>
+        <contrainte type="Supériorité">
+            <variable coeff="0"/>
+            <variable coeff="1"/>
+            <variable coeff="0"/>
+            <constante valeur="0"/>
+        </contrainte>
+        <contrainte type="Supériorité">
+            <variable coeff="0"/>
+            <variable coeff="0"/>
+            <variable coeff="1"/>
+            <constante valeur="5"/>
+        </contrainte>
+        <contrainte type="Infériorité">
+            <variable coeff="1"/>
+            <variable coeff="5"/>
+            <variable coeff="3"/>
+            <constante valeur="2"/>
+        </contrainte>
+    </probleme>
+<probleme>
+<titre>Mon probleme</titre>
+<description>Entrer votre description du problème</description>
+<objectif type="Maximiser">
+<variable coeff="5.0"/>
+<variable coeff="5.0"/>
+
+</objectif>
+<contrainte type="Infériorité">
+<variable coeff="5.0"/>
+<variable coeff="50.0"/>
+<constante valeur="5.0"/>
+</contrainte>
+</probleme>
+</listeProblemes>
