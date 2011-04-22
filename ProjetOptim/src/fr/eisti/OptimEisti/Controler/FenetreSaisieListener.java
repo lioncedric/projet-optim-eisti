@@ -122,10 +122,10 @@ public class FenetreSaisieListener implements ChangeListener, ActionListener, Co
         } else if (e.getSource() == this.fenetre.getExportExcel()) {
             //On récupère le numéro
             int numero = this.fenetre.getGauche().getList().getSelectedIndex();
-            BddProbleme.exporterExcel(BddProbleme.getProbleme(numero));
+            BddProbleme.exporterExcel(BddProbleme.getProbleme(numero),"test");
+             BddProbleme.exporterScilab(BddProbleme.getProbleme(numero),"test");
             //on ouvre un dialogue
-            JOptionPane jop = new JOptionPane();
-            jop.showMessageDialog(null, "Export vers Excel réussi!", "Information", JOptionPane.INFORMATION_MESSAGE);
+            JOptionPane.showMessageDialog(null, "Export vers Excel réussi!", "Information", JOptionPane.INFORMATION_MESSAGE);
         } else if (e.getSource() == this.fenetre.getSauvegarder()) {
             BddProbleme.save(BDDUtilisateur.getNomUtilisateur());
         } else if (e.getSource() == this.fenetre.getRecharger()) {

@@ -33,7 +33,7 @@ public class BddProbleme {
      * @param nomUtilisateur le nom de l'utilisateur
      */
     public static void load(String nomUtilisateur) throws IOException {
-        File fichier = new File("bdd/"+nomUtilisateur + ".xml");
+        File fichier = new File("bdd/" + nomUtilisateur + ".xml");
         if (fichier.exists()) {
             bdd = Utilitaire.parseXmlDom(fichier);
         } else {
@@ -61,7 +61,7 @@ public class BddProbleme {
      * @param nomUtilisateur le nom de l'utilisateur
      */
     public static void save(String nomUtilisateur) {
-        Utilitaire.transformerXml(bdd,"bdd/"+nomUtilisateur + ".xml");
+        Utilitaire.transformerXml(bdd, "bdd/" + nomUtilisateur + ".xml");
     }
 
     /**
@@ -182,10 +182,74 @@ public class BddProbleme {
     }
 
     /**
-     * fonction qui permet d'exporter un probleme sur excel
-     * @param p
+     * fonction qui permet d'exporter un probleme sur Scilab
+     * @param p probleme d'entrée
+     * @param nom fichier de sortie
      */
-    public static void exporterExcel(Probleme p) {
+    public static void exporterScilab(Probleme p, String nom) {
+
+        double[][] probleme = p.formaliserProbleme();
+        int lignes = probleme.length;
+        int colonnes = probleme[0].length;
+        String c = "c=[";
+        String Z1 = "Z1=[";
+        String b = "b=[";
+        String A = "A=[";
+        for (int i = 0; i < colonnes - lignes; i++) {
+            c = c + probleme[lignes - 1][i];
+            Z1 = Z1 + 0;
+            if (i == colonnes - lignes - 1) {
+                c = c + "]";
+                Z1 = Z1 + "]";
+            } else {
+                c = c + ";";
+                Z1 = Z1 + ";";
+            }
+        }
+        for (int i = 0; i < lignes - 1; i++) {
+            b = b + probleme[i][colonnes - 1];
+            if (i == lignes - 2) {
+                b = b + "]";
+            } else {
+                b = b + ";";
+            }
+        }
+        for (int i = 0; i < lignes - 1; i++) {
+            for (int j = 0; j < colonnes - lignes; j++) {
+                A = A + probleme[i][j];
+                if (j == colonnes - lignes - 1) {
+                    A = A + ";";
+                } else {
+                    A = A + ",";
+                }
+            }
+        }
+        A = A + "]";
+        System.out.println(lignes + "--" + colonnes);
+        FileWriter fw = null;
+        try {
+            fw = new FileWriter(nom + ".sci", true);
+            BufferedWriter sortie = new BufferedWriter(fw);
+
+            sortie.write("Programmation lineaire: " + p.getTitre() + "\n");
+            sortie.write(c);
+            sortie.write(b);
+            sortie.write(A);
+            sortie.write("Zu=[]");
+            sortie.write("Z1=[]");
+             sortie.write("[Zopt,lag,CA]=linpro(c,A,b,Z1,Zu)");
+            sortie.close();
+        } catch (IOException ex) {
+        }
+
+    }
+
+    /**
+     * fonction qui permet d'exporter un probleme sur excel
+     * @param p probleme d'entrée
+     * @param nom fichier de sortie
+     */
+    public static void exporterExcel(Probleme p, String nom) {
         // Déclaration et initialisation de variables
         int nbVariablesDecision = 0;//longueur de la liste de variables
         int j = 0;//compteur
@@ -194,14 +258,14 @@ public class BddProbleme {
         int cpt = 0;//un compteur
         String temp = "=";//un string ou on stocke la formule excel
 
-        File file = new File(p.getTitre() + ".csv");
+        File file = new File(nom + ".csv");
 
         if (file.exists()) {
             file.delete();
         }
         try {
             //Déclaration et initialisation de flux et variables
-            FileWriter fw = new FileWriter(p.getTitre() + ".csv", true);
+            FileWriter fw = new FileWriter(nom + ".csv", true);
             BufferedWriter output = new BufferedWriter(fw);
 
             ArrayList<Double> coeff = p.getCoeffVariables();//liste des coefficients du problème
