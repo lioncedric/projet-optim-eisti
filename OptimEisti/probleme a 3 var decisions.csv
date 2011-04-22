@@ -1,0 +1,12 @@
+Programmation lineaire: probleme a 3 var decisions
+
+
+;x1;x2;x3;
+;0;0;0;
+F0;1,0;5,0;3,0;=B6*B5+C6*C5+D6*D5
+
+contraintes;1,0;0,0;0,0;=B8*B5+C8*C5+D8*D5;>=;0
+;0,0;1,0;0,0;=B9*B5+C9*C5+D9*D5;>=;0
+;0,0;0,0;1,0;=B10*B5+C10*C5+D10*D5;>=;5
+;1,0;5,0;3,0;=B11*B5+C11*C5+D11*D5;<=;2
+;
