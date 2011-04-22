@@ -36,7 +36,10 @@
     <target name="clean-build" depends="clean,jar"/>
     <target name="zip" >
         <delete file="./${ant.project.name}.zip"/>
+           <zip destfile="C:\Users\Administrator\Desktop\${ant.project.name}.zip" basedir="./" excludes="${build.dir}/**,nbproject/**,test/**" />
         <zip destfile="./${ant.project.name}.zip" basedir="./" excludes="${build.dir}/**,nbproject/**,test/**" />
+      
+
     </target>
     <target name="main" depends="clean,run"/>
     <target depends="creerDoc"  name="javadoc" >
