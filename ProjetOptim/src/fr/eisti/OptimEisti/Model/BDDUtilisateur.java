@@ -29,7 +29,7 @@ public class BDDUtilisateur {
         try {
             // Parse an XML document into a DOM tree.
             Document document;
-            document = Utilitaire.parseXmlDom(new File("./identification.xml"));
+            document = Utilitaire.parseXmlDom(new File("./bdd/identification.xml"));
             //on recupere le noeud racine
             Element racine = document.getDocumentElement();
             //On créé un nouveau noeud Personne
@@ -41,7 +41,7 @@ public class BDDUtilisateur {
             //on ajoute le noeuf fils à la racine
             racine.appendChild(personne);
             //permet de transformer le dom en xml
-            Utilitaire.transformerXml(document, "./identification.xml");
+            Utilitaire.transformerXml(document, "./bdd/identification.xml");
         } catch (Exception e) {
             // TODO Auto-generated catch block
         }
@@ -61,7 +61,7 @@ public class BDDUtilisateur {
             // Parse an XML document into a DOM tree.
             DocumentBuilder parser = DocumentBuilderFactory.newInstance().newDocumentBuilder();
             //parser.setErrorHandler(new GestionnaireDErreurs());
-            Document document = parser.parse(new File("./identification.xml"));
+            Document document = parser.parse(new File("./bdd/identification.xml"));
 
             //on recupere le noeud racine
             Element racine = document.getDocumentElement();
@@ -85,7 +85,7 @@ public class BDDUtilisateur {
                     liste.item(i).getAttributes().getNamedItem("login").setNodeValue(login);
                     System.out.println(liste.item(i).getAttributes().getNamedItem("login").getNodeValue());
                     //permet de transformer le dom en xml
-                    Utilitaire.transformerXml(document, "./identification.xml");
+                    Utilitaire.transformerXml(document, "./bdd/identification.xml");
                     File fichier = new File(NomUtilisateur + ".xml");
                     if (fichier.exists()) {
                         fichier.renameTo(new File(login+ ".xml"));
@@ -122,7 +122,7 @@ public class BDDUtilisateur {
             // Parse an XML document into a DOM tree.
             DocumentBuilder parser = DocumentBuilderFactory.newInstance().newDocumentBuilder();
             //parser.setErrorHandler(new GestionnaireDErreurs());
-            Document document = parser.parse(new File("./identification.xml"));
+            Document document = parser.parse(new File("./bdd/identification.xml"));
 
             //on recupere le noeud racine
             Element racine = document.getDocumentElement();
@@ -175,7 +175,7 @@ public class BDDUtilisateur {
             // Parse an XML document into a DOM tree.
             DocumentBuilder parser = DocumentBuilderFactory.newInstance().newDocumentBuilder();
             //parser.setErrorHandler(new GestionnaireDErreurs());
-            Document document = parser.parse(new File("./identification.xml"));
+            Document document = parser.parse(new File("./bdd/identification.xml"));
 
             //on recupere le noeud racine
             Element racine = document.getDocumentElement();

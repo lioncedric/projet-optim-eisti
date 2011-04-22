@@ -33,9 +33,9 @@ public class BddProbleme {
      * @param nomUtilisateur le nom de l'utilisateur
      */
     public static void load(String nomUtilisateur) throws IOException {
-        File fichier = new File(nomUtilisateur + ".xml");
+        File fichier = new File("bdd/"+nomUtilisateur + ".xml");
         if (fichier.exists()) {
-            bdd = Utilitaire.parseXmlDom(new File(nomUtilisateur + ".xml"));
+            bdd = Utilitaire.parseXmlDom(fichier);
         } else {
             try {
                 // Création d'un nouveau DOM
@@ -61,7 +61,7 @@ public class BddProbleme {
      * @param nomUtilisateur le nom de l'utilisateur
      */
     public static void save(String nomUtilisateur) {
-        Utilitaire.transformerXml(bdd, nomUtilisateur + ".xml");
+        Utilitaire.transformerXml(bdd,"bdd/"+nomUtilisateur + ".xml");
     }
 
     /**
@@ -80,7 +80,7 @@ public class BddProbleme {
      * @param nom le fichier a importer
      */
     public static void importerProbleme(File nom) {
-        Schema schema = Utilitaire.loadSchema("schema.xsd");
+        Schema schema = Utilitaire.loadSchema("bdd/schema.xsd");
         Document document = Utilitaire.parseXmlDom(nom);
         if (document != null & Utilitaire.validateXml(schema, document)) {
             NodeList liste = document.getDocumentElement().getElementsByTagName("probleme");
