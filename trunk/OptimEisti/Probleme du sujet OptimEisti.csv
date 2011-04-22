@@ -1,0 +1,13 @@
+Programmation lineaire: Probleme du sujet OptimEisti
+
+
+;x1;x2;
+;0;0;
+F0;3,0;5,0;=B6*B5+C6*C5
+
+contraintes;1,0;0,0;=B8*B5+C8*C5;Infériorité;4
+;0,0;2,0;=B9*B5+C9*C5;Infériorité;12
+;3,0;2,0;=B10*B5+C10*C5;Infériorité;18
+;1,0;0,0;=B11*B5+C11*C5;Supériorité;0
+;0,0;1,0;=B12*B5+C12*C5;Supériorité;0
+;
