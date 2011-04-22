@@ -197,7 +197,7 @@ public class BddProbleme {
         String A = "A=[";
         for (int i = 0; i < colonnes - lignes; i++) {
             c = c + probleme[lignes - 1][i];
-            Z1 = Z1 + 0;
+            Z1 = Z1 + "0";
             if (i == colonnes - lignes - 1) {
                 c = c + "]";
                 Z1 = Z1 + "]";
@@ -217,27 +217,29 @@ public class BddProbleme {
         for (int i = 0; i < lignes - 1; i++) {
             for (int j = 0; j < colonnes - lignes; j++) {
                 A = A + probleme[i][j];
-                if (j == colonnes - lignes - 1) {
-                    A = A + ";";
-                } else {
-                    A = A + ",";
+                if (i < lignes - 2 || j < colonnes - lignes - 1) {
+                    if (j == colonnes - lignes - 1) {
+                        A = A + ";";
+                    } else {
+                        A = A + ",";
+                    }
                 }
             }
         }
         A = A + "]";
-        System.out.println(lignes + "--" + colonnes);
         FileWriter fw = null;
         try {
-            fw = new FileWriter(nom + ".sci", true);
+   
+            fw = new FileWriter(nom + ".sci", false);
             BufferedWriter sortie = new BufferedWriter(fw);
 
-            sortie.write("Programmation lineaire: " + p.getTitre() + "\n");
-            sortie.write(c);
-            sortie.write(b);
-            sortie.write(A);
-            sortie.write("Zu=[]");
-            sortie.write("Z1=[]");
-             sortie.write("[Zopt,lag,CA]=linpro(c,A,b,Z1,Zu)");
+            sortie.write("//Programmation lineaire: " + p.getTitre() + "\n");
+            sortie.write(c + ";\n");
+            sortie.write(b + ";\n");
+            sortie.write(A + ";\n");
+            sortie.write("Zu=[]" + ";\n");
+            sortie.write(Z1 + ";\n");
+            sortie.write("[Zopt,lag,CA]=linpro(c,A,b,Z1,Zu)" + ";\n");
             sortie.close();
         } catch (IOException ex) {
         }
