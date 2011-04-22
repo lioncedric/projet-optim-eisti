@@ -3,7 +3,7 @@ package fr.eisti.OptimEisti.Controler;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.*;
-import fr.eisti.OptimEisti.Model.ModelTab;
+import fr.eisti.OptimEisti.View.contraintes.ModelTab;
 
 /**
  * Classe permettant de gerer l'ajout d'une ligne dans le tableau

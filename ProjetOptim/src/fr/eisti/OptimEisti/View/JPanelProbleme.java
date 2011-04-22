@@ -4,6 +4,7 @@
  */
 package fr.eisti.OptimEisti.View;
 
+import fr.eisti.OptimEisti.View.contraintes.Tableau;
 import fr.eisti.OptimEisti.Controler.FenetreSaisieListener;
 import java.awt.FlowLayout;
 import java.awt.GridLayout;

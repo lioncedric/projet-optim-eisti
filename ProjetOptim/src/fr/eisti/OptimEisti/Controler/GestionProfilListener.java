@@ -6,10 +6,8 @@ package fr.eisti.OptimEisti.Controler;
 
 import fr.eisti.OptimEisti.Main;
 import fr.eisti.OptimEisti.Model.BDDUtilisateur;
-import fr.eisti.OptimEisti.View.FenetrePreferences;
-import fr.eisti.OptimEisti.View.GestionProfil;
-import fr.eisti.OptimEisti.View.JPanelFondNormal;
-import fr.eisti.OptimEisti.View.PanelProfil;
+import fr.eisti.OptimEisti.View.Compte.GestionProfil;
+import fr.eisti.OptimEisti.View.Compte.JPanelFondNormal;
 import java.awt.Image;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
@@ -20,7 +18,6 @@ import java.util.logging.Logger;
 import javax.imageio.ImageIO;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
-import javax.swing.text.View;
 
 /**
  *

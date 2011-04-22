@@ -3,7 +3,7 @@
  * and open the template in the editor.
  */
 
-package fr.eisti.OptimEisti.View;
+package fr.eisti.OptimEisti.View.Compte;
 
 import fr.eisti.OptimEisti.Controler.FileChooserListener;
 import fr.eisti.OptimEisti.Model.BDDUtilisateur;

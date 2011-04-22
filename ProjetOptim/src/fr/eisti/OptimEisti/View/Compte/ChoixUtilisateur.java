@@ -1,7 +1,7 @@
 /**
  * 
  */
-package fr.eisti.OptimEisti.View;
+package fr.eisti.OptimEisti.View.Compte;
 
 import java.awt.Graphics;
 import java.awt.Image;
@@ -15,6 +15,7 @@ import javax.swing.JDialog;
 import javax.swing.JPanel;
 
 import fr.eisti.OptimEisti.Main;
+import fr.eisti.OptimEisti.View.Fenetre;
 
 
 /**

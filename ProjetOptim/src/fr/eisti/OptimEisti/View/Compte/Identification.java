@@ -1,7 +1,7 @@
 /**
  * 
  */
-package fr.eisti.OptimEisti.View;
+package fr.eisti.OptimEisti.View.Compte;
 
 import java.awt.Image;
 import java.io.File;

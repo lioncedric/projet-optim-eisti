@@ -7,7 +7,7 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 
 import fr.eisti.OptimEisti.Model.BDDUtilisateur;
-import fr.eisti.OptimEisti.View.CreerCompte;
+import fr.eisti.OptimEisti.View.Compte.CreerCompte;
 import java.awt.Image;
 import java.io.File;
 import java.io.IOException;

@@ -1,6 +1,6 @@
 package fr.eisti.OptimEisti.Controler;
 
-import fr.eisti.OptimEisti.Model.ModelTab;
+import fr.eisti.OptimEisti.View.contraintes.ModelTab;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.JButton;

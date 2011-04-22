@@ -1,4 +1,4 @@
-package fr.eisti.OptimEisti.View;
+package fr.eisti.OptimEisti.View.contraintes;
 
 import javax.swing.*;
 import javax.swing.*;

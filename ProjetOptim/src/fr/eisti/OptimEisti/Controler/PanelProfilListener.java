@@ -5,7 +5,7 @@
 
 package fr.eisti.OptimEisti.Controler;
 
-import fr.eisti.OptimEisti.View.GestionProfil;
+import fr.eisti.OptimEisti.View.Compte.GestionProfil;
 import fr.eisti.OptimEisti.View.PanelProfil;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;

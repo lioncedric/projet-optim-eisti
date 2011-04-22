@@ -1,4 +1,4 @@
-package fr.eisti.OptimEisti.View;
+package fr.eisti.OptimEisti.View.contraintes;
 
 import java.awt.Component;
 import javax.swing.ImageIcon;

@@ -1,4 +1,4 @@
-package fr.eisti.OptimEisti.View;
+package fr.eisti.OptimEisti.View.Compte;
 
 import java.awt.Graphics;
 import java.awt.Image;

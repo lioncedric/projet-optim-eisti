@@ -1,7 +1,7 @@
 /**
  * Classe qui permet l'affichage visuel de la fentre de creation de compte
  */
-package fr.eisti.OptimEisti.View;
+package fr.eisti.OptimEisti.View.Compte;
 
 import fr.eisti.OptimEisti.Controler.CreerCompteListener;
 import java.awt.Image;

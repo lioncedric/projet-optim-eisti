@@ -1,4 +1,4 @@
-package fr.eisti.OptimEisti.Model;
+package fr.eisti.OptimEisti.View.contraintes;
 
 import javax.swing.table.AbstractTableModel;
 

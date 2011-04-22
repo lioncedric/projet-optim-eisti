@@ -9,7 +9,7 @@ import fr.eisti.OptimEisti.Main;
 import fr.eisti.OptimEisti.Model.BddProbleme;
 import fr.eisti.OptimEisti.Model.Probleme;
 import fr.eisti.OptimEisti.Model.Solution;
-import fr.eisti.OptimEisti.View.ButtonTabComponent;
+import fr.eisti.OptimEisti.View.contraintes.ButtonTabComponent;
 import fr.eisti.OptimEisti.View.JPanelProbleme;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;

@@ -7,7 +7,7 @@ package fr.eisti.OptimEisti;
  * @author Administrator
  *
  */
-import fr.eisti.OptimEisti.View.Accueil;
+import fr.eisti.OptimEisti.View.Compte.Accueil;
 import fr.eisti.OptimEisti.View.Fenetre;
 
 public class Main {

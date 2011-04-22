@@ -4,8 +4,8 @@
  */
 package fr.eisti.OptimEisti.Controler;
 
-import fr.eisti.OptimEisti.View.JPanelFondCreerCompte;
-import fr.eisti.OptimEisti.View.JPanelFondGestionProfil;
+import fr.eisti.OptimEisti.View.Compte.JPanelFondCreerCompte;
+import fr.eisti.OptimEisti.View.Compte.JPanelFondGestionProfil;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;

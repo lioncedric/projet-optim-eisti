@@ -7,6 +7,7 @@ package fr.eisti.OptimEisti.View;
 import fr.eisti.OptimEisti.Controler.PanelProfilListener;
 import fr.eisti.OptimEisti.Model.BDDUtilisateur;
 import fr.eisti.OptimEisti.Model.BddProbleme;
+import fr.eisti.OptimEisti.View.Compte.JPanelFondNormal;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;

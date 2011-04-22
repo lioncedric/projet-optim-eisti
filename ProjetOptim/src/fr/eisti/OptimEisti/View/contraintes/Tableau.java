@@ -1,6 +1,5 @@
-package fr.eisti.OptimEisti.View;
+package fr.eisti.OptimEisti.View.contraintes;
 
-import fr.eisti.OptimEisti.Model.ModelTab;
 import fr.eisti.OptimEisti.Controler.ButtonEditor;
 import java.awt.BorderLayout;
 import javax.swing.*;

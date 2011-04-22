@@ -1,8 +1,10 @@
 /**
  * Classe qui constitue la premiere fenetre affichee a l'ecran (la page d'accueil)
  */
-package fr.eisti.OptimEisti.View;
+package fr.eisti.OptimEisti.View.Compte;
 
+import fr.eisti.OptimEisti.View.Compte.Identification;
+import fr.eisti.OptimEisti.View.Compte.CreerCompte;
 import java.awt.Image;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;

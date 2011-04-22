@@ -12,7 +12,7 @@ import javax.swing.JOptionPane;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 
-import fr.eisti.OptimEisti.View.Identification;
+import fr.eisti.OptimEisti.View.Compte.Identification;
 import fr.eisti.OptimEisti.Model.BDDUtilisateur;
 import fr.eisti.OptimEisti.View.Fenetre;
 import java.awt.event.KeyEvent;

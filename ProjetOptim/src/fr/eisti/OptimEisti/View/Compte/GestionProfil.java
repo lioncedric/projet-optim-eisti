@@ -3,7 +3,7 @@
  * and open the template in the editor.
  */
 
-package fr.eisti.OptimEisti.View;
+package fr.eisti.OptimEisti.View.Compte;
 
 import fr.eisti.OptimEisti.Controler.GestionProfilListener;
 import java.awt.Image;
