@@ -1,10 +1,16 @@
-la fonction enregistrer marche pas on sait pas vraiment cde qu'on enregistre, tous les onglet, le probleme selectionné ... --> a revoir
-quand appuie sur bouton ouvrir reactiver l'onglet si deja ouvert
-changer le nom de l'ongle si le titre change
-fonction supprimer  a l'air de marcher a verifier
-ouvrir a l'air de marcher a verifier
-le slider a été desactivé!! ->> listener a reactiver et je pense a chager de place(pour le momnent tout est commenté) (cadeau pour sarah ou meri)
-le nombre de problemes ne se met pas a jour --> meri
-le simplexe ne marche pour la minimisation
-bug si une contrainte a pas de membre gauche et une ingalité selectionne, on peu quand meme enregistrer
-beaucoup de warnigs dans le code !!!
+pour Jeudi [urgent]
+-   la fonction enregistrer marche pas on sait pas vraiment cde qu'on enregistre, tous les onglet, le probleme selectionné ... --> a revoir
+    supprimer le bouton enregistrer (on enregistre a chaque modifs)  mais on laisse tjs le fichier enregistrer
+-   quand appuie sur bouton ouvrir reactiver l'onglet si deja ouvert
+-   changer le nom de l'ongle si le titre change
+-   fonction supprimer  a l'air de marcher a verifier
+-   ouvrir a l'air de marcher a verifier
+-   le slider a été desactivé!! ->> listener a reactiver et je pense a chager de place(pour le momnent tout est commenté) (cadeau pour sarah ou meri)
+-   le nombre de problemes ne se met pas a jour 
+-   bug si une contrainte a pas de membre gauche et une ingalité selectionne, on peu quand meme enregistrer
+-   beaucoup de warnigs dans le code !!!
+
+export a changer de place : clic droit sur un probleme -> exporter(excel ou scilab)
+
+pour plutard
+-   le simplexe ne marche pour la minimisation
