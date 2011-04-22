@@ -19,6 +19,7 @@ public class BDDUtilisateur {
     private static String NomUtilisateur;
     private static String motDePasse;
     private static String image;
+     private static String chFichierIdentification="./bdd/identification.xml";
 
     /**
      * permet de créer un nouvel utilisateur
@@ -26,25 +27,22 @@ public class BDDUtilisateur {
      * @param mdp
      */
     public static void ajouterUtilisateur(String NomUtilisateur, String mdp, String imageSrc) {
-        try {
-            // Parse an XML document into a DOM tree.
-            Document document;
-            document = Utilitaire.parseXmlDom(new File("./bdd/identification.xml"));
-            //on recupere le noeud racine
-            Element racine = document.getDocumentElement();
-            //On créé un nouveau noeud Personne
-            Element personne = document.createElement("personne");
-            //on modifie ces attributs login et password
-            personne.setAttribute("login", NomUtilisateur);
-            personne.setAttribute("password", mdp);
-            personne.setAttribute("imagesrc", imageSrc);
-            //on ajoute le noeuf fils à la racine
-            racine.appendChild(personne);
-            //permet de transformer le dom en xml
-            Utilitaire.transformerXml(document, "./bdd/identification.xml");
-        } catch (Exception e) {
-            // TODO Auto-generated catch block
-        }
+
+        // Parse an XML document into a DOM tree.
+        Document document;
+        document = Utilitaire.parseXmlDom(new File(chFichierIdentification));
+        //on recupere le noeud racine
+        Element racine = document.getDocumentElement();
+        //On créé un nouveau noeud Personne
+        Element personne = document.createElement("personne");
+        //on modifie ces attributs login et password
+        personne.setAttribute("login", NomUtilisateur);
+        personne.setAttribute("password", mdp);
+        personne.setAttribute("imagesrc", imageSrc);
+        //on ajoute le noeuf fils à la racine
+        racine.appendChild(personne);
+        //permet de transformer le dom en xml
+        Utilitaire.transformerXml(document, chFichierIdentification);
     }
 
     /**
@@ -57,49 +55,42 @@ public class BDDUtilisateur {
         boolean trouve = false;
         String NomUtilisateurTmp = "";
         String pass = "";
-        try {
-            // Parse an XML document into a DOM tree.
-            DocumentBuilder parser = DocumentBuilderFactory.newInstance().newDocumentBuilder();
-            //parser.setErrorHandler(new GestionnaireDErreurs());
-            Document document = parser.parse(new File("./bdd/identification.xml"));
+        Document document = Utilitaire.parseXmlDom(new File(chFichierIdentification));
 
-            //on recupere le noeud racine
-            Element racine = document.getDocumentElement();
-            //on recupere tous les coefficients de la fonction objectif
-            NodeList liste = racine.getElementsByTagName("personne");
-            //Tant qu'on a pas parcouru toute la liste de noeud
-            while (i < liste.getLength() && !trouve) {
-                //on récupère le nom d'utilisateur du noeud en question
-                NomUtilisateurTmp = liste.item(i).getAttributes().getNamedItem("login").getNodeValue();
-                //ainsi que le mot de passe
-                pass = liste.item(i).getAttributes().getNamedItem("password").getNodeValue();
-                //si il sont égaux au nom d'utilisateur et mot de passe en paramètre alors
-                System.out.println("Courou1");
-                if (NomUtilisateurTmp.equals(NomUtilisateur) && pass.equals(motDePasse)) {
-                    trouve = true;
-                    System.out.println("Courou2");
-                    liste.item(i).getAttributes().getNamedItem("imagesrc").setNodeValue(imageSrc);
+        //on recupere le noeud racine
+        Element racine = document.getDocumentElement();
+        //on recupere tous les coefficients de la fonction objectif
+        NodeList liste = racine.getElementsByTagName("personne");
+        //Tant qu'on a pas parcouru toute la liste de noeud
+        while (i < liste.getLength() && !trouve) {
+            //on récupère le nom d'utilisateur du noeud en question
+            NomUtilisateurTmp = liste.item(i).getAttributes().getNamedItem("login").getNodeValue();
+            //ainsi que le mot de passe
+            pass = liste.item(i).getAttributes().getNamedItem("password").getNodeValue();
+            //si il sont égaux au nom d'utilisateur et mot de passe en paramètre alors
+            System.out.println("Courou1");
+            if (NomUtilisateurTmp.equals(NomUtilisateur) && pass.equals(motDePasse)) {
+                trouve = true;
+                System.out.println("Courou2");
+                liste.item(i).getAttributes().getNamedItem("imagesrc").setNodeValue(imageSrc);
 
-                    liste.item(i).getAttributes().getNamedItem("password").setNodeValue(mdp);
-                    System.out.println(liste.item(i).getAttributes().getNamedItem("password").getNodeValue());
-                    liste.item(i).getAttributes().getNamedItem("login").setNodeValue(login);
-                    System.out.println(liste.item(i).getAttributes().getNamedItem("login").getNodeValue());
-                    //permet de transformer le dom en xml
-                    Utilitaire.transformerXml(document, "./bdd/identification.xml");
-                    File fichier = new File(NomUtilisateur + ".xml");
-                    if (fichier.exists()) {
-                        fichier.renameTo(new File(login+ ".xml"));
-                    }
+                liste.item(i).getAttributes().getNamedItem("password").setNodeValue(mdp);
+                System.out.println(liste.item(i).getAttributes().getNamedItem("password").getNodeValue());
+                liste.item(i).getAttributes().getNamedItem("login").setNodeValue(login);
+                System.out.println(liste.item(i).getAttributes().getNamedItem("login").getNodeValue());
+                //permet de transformer le dom en xml
+                Utilitaire.transformerXml(document, chFichierIdentification);
+                File fichier = new File("bdd/"+NomUtilisateur + ".xml");
+                if (fichier.exists()) {
+                    fichier.renameTo(new File("bdd/"+login + ".xml"));
                 }
-                //incrémentation du i
-                i++;
             }
-
-
-        } catch (IOException ex) {
-        } catch (ParserConfigurationException ex) {
-        } catch (SAXException ex) {
+            //incrémentation du i
+            i++;
         }
+
+
+
     }
 
     /**
@@ -116,42 +107,33 @@ public class BDDUtilisateur {
         String NomUtilisateurTmp = "";
         String pass = "";
         int i = 0;
+        Document document = Utilitaire.parseXmlDom(new File(chFichierIdentification));
 
-        try {
-
-            // Parse an XML document into a DOM tree.
-            DocumentBuilder parser = DocumentBuilderFactory.newInstance().newDocumentBuilder();
-            //parser.setErrorHandler(new GestionnaireDErreurs());
-            Document document = parser.parse(new File("./bdd/identification.xml"));
-
-            //on recupere le noeud racine
-            Element racine = document.getDocumentElement();
-            //on recupere tous les coefficients de la fonction objectif
-            NodeList liste = racine.getElementsByTagName("personne");
-            //Tant qu'on a pas parcouru toute la liste de noeud
-            while (i < liste.getLength()) {
-                //on récupère le nom d'utilisateur du noeud en question
-                NomUtilisateurTmp = liste.item(i).getAttributes().getNamedItem("login").getNodeValue();
-                //ainsi que le mot de passe
-                pass = liste.item(i).getAttributes().getNamedItem("password").getNodeValue();
-                //si il sont égaux au nom d'utilisateur et mot de passe en paramètre alors
-                if (NomUtilisateurTmp.equals(login) && pass.equals(mdp)) {
-                    //existe est vrai car le compte existe
-                    existe = true;
-                    //on modifie le nom d'utilisateur avec le login
-                    NomUtilisateur = login;
-                    motDePasse = mdp;
-                    image = liste.item(i).getAttributes().getNamedItem("imagesrc").getNodeValue();
-                }
-                //incrémentation du i
-                i++;
+        //on recupere le noeud racine
+        Element racine = document.getDocumentElement();
+        //on recupere tous les coefficients de la fonction objectif
+        NodeList liste = racine.getElementsByTagName("personne");
+        //Tant qu'on a pas parcouru toute la liste de noeud
+        while (i < liste.getLength()) {
+            //on récupère le nom d'utilisateur du noeud en question
+            NomUtilisateurTmp = liste.item(i).getAttributes().getNamedItem("login").getNodeValue();
+            //ainsi que le mot de passe
+            pass = liste.item(i).getAttributes().getNamedItem("password").getNodeValue();
+            //si il sont égaux au nom d'utilisateur et mot de passe en paramètre alors
+            if (NomUtilisateurTmp.equals(login) && pass.equals(mdp)) {
+                //existe est vrai car le compte existe
+                existe = true;
+                //on modifie le nom d'utilisateur avec le login
+                NomUtilisateur = login;
+                motDePasse = mdp;
+                image = liste.item(i).getAttributes().getNamedItem("imagesrc").getNodeValue();
             }
-
-
-        } catch (IOException ex) {
-        } catch (ParserConfigurationException ex) {
-        } catch (SAXException ex) {
+            //incrémentation du i
+            i++;
         }
+
+
+
 
         //on retourne le bool�en
         return existe;
@@ -169,36 +151,26 @@ public class BDDUtilisateur {
         existe = false;
         String nom = "";
         int i = 0;
+        Document document = Utilitaire.parseXmlDom(new File(chFichierIdentification));
 
-        try {
-
-            // Parse an XML document into a DOM tree.
-            DocumentBuilder parser = DocumentBuilderFactory.newInstance().newDocumentBuilder();
-            //parser.setErrorHandler(new GestionnaireDErreurs());
-            Document document = parser.parse(new File("./bdd/identification.xml"));
-
-            //on recupere le noeud racine
-            Element racine = document.getDocumentElement();
-            //on recupere tous les coefficients de la fonction objectif
-            NodeList liste = racine.getElementsByTagName("personne");
-            //Tant qu'on a pas parcouru toute la liste de noeud
-            while (i < liste.getLength()) {
-                //on récupère le nom d'utilisateur du noeud en question
-                nom = liste.item(i).getAttributes().getNamedItem("login").getNodeValue();
-                //si le nom d'utilisateur est égal à celui en paramètre alors
-                if (nom.equals(login)) {
-                    //existe est vrai car le compte existe déjà
-                    existe = true;
-                }
-                //incrémentation du i
-                i++;
+        //on recupere le noeud racine
+        Element racine = document.getDocumentElement();
+        //on recupere tous les coefficients de la fonction objectif
+        NodeList liste = racine.getElementsByTagName("personne");
+        //Tant qu'on a pas parcouru toute la liste de noeud
+        while (i < liste.getLength()) {
+            //on récupère le nom d'utilisateur du noeud en question
+            nom = liste.item(i).getAttributes().getNamedItem("login").getNodeValue();
+            //si le nom d'utilisateur est égal à celui en paramètre alors
+            if (nom.equals(login)) {
+                //existe est vrai car le compte existe déjà
+                existe = true;
             }
-
-
-        } catch (IOException ioe) {
-        } catch (ParserConfigurationException pce) {
-        } catch (SAXException saxe) {
+            //incrémentation du i
+            i++;
         }
+
+
 
         //on retourne le booléen
         return existe;

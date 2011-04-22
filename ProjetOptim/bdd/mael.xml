@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<listeProblemes>
+<probleme>
+<titre>Mon probleme</titre>
+<description>Entrer votre description du problème</description>
+<objectif type="Maximiser">
+<variable coeff="20.0"/>
+</objectif>
+<contrainte type="Infériorité">
+<variable coeff="0.0"/>
+<constante valeur="0.0"/>
+</contrainte>
+</probleme>
+</listeProblemes>
