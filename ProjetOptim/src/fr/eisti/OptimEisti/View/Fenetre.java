@@ -13,13 +13,10 @@ import javax.swing.KeyStroke;
 
 import fr.eisti.OptimEisti.Controler.FenetreSaisieListener;
 import java.awt.BorderLayout;
-import java.awt.Color;
 import java.awt.Dimension;
 import javax.swing.JPanel;
-import javax.swing.JSeparator;
 
 import javax.swing.JSplitPane;
-import javax.swing.SwingConstants;
 
 /**
  * @author Administrator
