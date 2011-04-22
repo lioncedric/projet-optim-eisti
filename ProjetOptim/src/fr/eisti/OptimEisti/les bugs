@@ -7,3 +7,4 @@ le slider a été desactivé!! ->> listener a reactiver et je pense a chager de 
 le nombre de problemes ne se met pas a jour --> meri
 le simplexe ne marche pour la minimisation
 bug si une contrainte a pas de membre gauche et une ingalité selectionne, on peu quand meme enregistrer
+beaucoup de warnigs dans le code !!!

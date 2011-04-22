@@ -2,12 +2,8 @@ package fr.eisti.OptimEisti.Model;
 
 import java.io.*;
 
-import javax.xml.parsers.DocumentBuilder;
-import javax.xml.parsers.DocumentBuilderFactory;
-import javax.xml.parsers.ParserConfigurationException;
 
 import org.w3c.dom.*;
-import org.xml.sax.SAXException;
 
 /**
  * classe qui permet à l'utilisateur de s'authifier correctement
