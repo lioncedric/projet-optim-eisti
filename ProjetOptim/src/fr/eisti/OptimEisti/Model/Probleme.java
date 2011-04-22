@@ -1,8 +1,7 @@
 package fr.eisti.OptimEisti.Model;
 
-import java.util.ArrayList;
-import fr.eisti.OptimEisti.View.Fenetre;
 import fr.eisti.OptimEisti.View.JPanelProbleme;
+import java.util.ArrayList;
 import javax.swing.JTextField;
 
 /**
@@ -32,7 +31,7 @@ public class Probleme {
     public final void renseignerProbleme(JPanelProbleme fenetre) {
         this.titre = fenetre.getJtfTitre().getText();
         this.description = fenetre.getTextfield().getText();
-          this.coeffVariables.clear();
+        this.coeffVariables.clear();
         if (fenetre.getMaximiser().isSelected()) {
             this.objectif = "Maximiser";
         } else if (fenetre.getMinimiser().isSelected()) {
@@ -55,7 +54,7 @@ public class Probleme {
         //appel de la fonction recuperant le nombre de variables imaginaires
         nbVariablesImg = combienVariablesImg();
         //on peut a present declarer la taille de la matrice
-        matrice = new double[this.contraintes.size() + 1][this.coeffVariables.size() + nbVariablesImg + 1];
+        matrice = new double[nbVariablesImg + 1][this.coeffVariables.size() + nbVariablesImg + 1];
         //on initialise la matrice avec des zeros
         initMatrice(matrice, nbVariablesImg);
         //on rempli la matrice avec les differentes donnees du probleme a resoudre (variables, contraintes)
@@ -127,35 +126,49 @@ public class Probleme {
      */
     public void remplirMatrice(double[][] matrice, int nb) {
         //pour autant qu'il y a de contraintes (on va remplir toutes les lignes de la matrice sauf la derniere
-
-        for (int i = 0; i < nb; i++) {
+        int cpt = 0;
+        for (int i = 0; i < this.contraintes.size(); i++) {
             //pour toutes les colonnes de la matrice
-            int cpt = 0;
+
             for (int j = 0; j < this.coeffVariables.size(); j++) {
                 //on remplit la matrice avec les coefficients de chacune des contraintes du probleme
                 if (this.contraintes.get(i).getInegalite().equals("Infériorité")) {
-                    matrice[i][cpt] = this.contraintes.get(i).getCoeffVariables().get(j);
-                } else if (this.contraintes.get(i).getInegalite().equals("superiorité")) {
-                    matrice[i][cpt] = -this.contraintes.get(i).getCoeffVariables().get(j);
+
+                    matrice[cpt][j] = this.contraintes.get(i).getCoeffVariables().get(j);
+                } else if (this.contraintes.get(i).getInegalite().equals("Supériorité")) {
+                    matrice[cpt][j] = -this.contraintes.get(i).getCoeffVariables().get(j);
+
                 } else {
-                    matrice[i][cpt] = this.contraintes.get(i).getCoeffVariables().get(j);
-                    cpt++;
-                    matrice[i][cpt] = -this.contraintes.get(i).getCoeffVariables().get(j);
+                    matrice[cpt][j] = this.contraintes.get(i).getCoeffVariables().get(j);
+                    matrice[cpt + 1][j] = -this.contraintes.get(i).getCoeffVariables().get(j);
                 }
-                cpt++;
+
 
             }
             //on remplit la matrice avec des 1 en les decalant a chaque iteration d'une case de plus.
-            matrice[i][cpt + i] = 1;
+            matrice[cpt][cpt + this.coeffVariables.size()] = 1;
             //on remplit la derniere colonne de la matrice avec les bi, qui sont les constantes de chaque contrainte
-            matrice[i][this.coeffVariables.size() + nb] = this.contraintes.get(i).getConstante();
-        }
-        //pour chaque colonne de la derniere ligne
-        for (int j = 0; j < this.coeffVariables.size(); j++) {
-            //on ajoute les coefficients de la fonction a maximiser
-            matrice[this.contraintes.size()][j] = this.coeffVariables.get(j);
+            matrice[cpt][this.coeffVariables.size() + nb] = this.contraintes.get(i).getConstante();
+
+            if (this.contraintes.get(i).getInegalite().equals("Egalité")) {
+                cpt++;
+                matrice[cpt][cpt + this.coeffVariables.size()] = 1;
+                //on remplit la derniere colonne de la matrice avec les bi, qui sont les constantes de chaque contrainte
+                matrice[cpt][this.coeffVariables.size() + nb] = this.contraintes.get(i).getConstante();
+            }
+            cpt++;
+
         }
 
+        //pour chaque colonne de la derniere ligne
+        for (int j = 0; j < this.coeffVariables.size(); j++) {
+            if (this.objectif.equals("Minimiser")) {
+                matrice[nb][j] = -this.coeffVariables.get(j);
+            } else {
+                //on ajoute les coefficients de la fonction a maximiser
+                matrice[nb][j] = this.coeffVariables.get(j);
+            }
+        }
 
     }
 
@@ -237,3 +250,4 @@ public class Probleme {
         this.numero = numero;
     }
 }
+
