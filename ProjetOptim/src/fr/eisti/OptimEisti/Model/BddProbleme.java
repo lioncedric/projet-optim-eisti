@@ -97,6 +97,23 @@ public class BddProbleme {
     }
 
     /**
+     * Fonction qui renvoie le numero du probleme ayant pour titre la chaine passe en parametre
+     * @param nomProbleme
+     * @return Renvoi le numero du probleme dans la liste ou -1 si le probleme n'existe pas
+     */
+    public static int rechercheProbleme(String nomProbleme) {
+        int num = -1;
+        NodeList liste = bdd.getDocumentElement().getElementsByTagName("titre");
+        for (int i = 0; i < liste.getLength(); i++) {
+                String lowerNom = liste.item(i).getChildNodes().item(0).getNodeValue();
+                if (lowerNom.equalsIgnoreCase(nomProbleme)) {
+                    num = i;
+                }
+        }
+        return num;
+    }
+
+    /**
      * ajouter un probleme
      * @param p le probleme a ajouter
      */
@@ -229,7 +246,7 @@ public class BddProbleme {
         A = A + "]";
         FileWriter fw = null;
         try {
-   
+
             fw = new FileWriter(nom + ".sci", false);
             BufferedWriter sortie = new BufferedWriter(fw);
 

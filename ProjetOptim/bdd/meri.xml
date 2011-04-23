@@ -1,99 +1,106 @@
 <?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
 <listeProblemes>
 
-<probleme>
-<titre>Mon probleme7</titre>
-<description>Entrer votre description du problème7</description>
-<objectif type="Maximiser">
-<variable coeff="1"/>
-<variable coeff="2"/>
-<variable coeff="3"/>
-<variable coeff="4"/>
-</objectif>
-<contrainte type="Supériorité">
-<variable coeff="4"/>
-<variable coeff="9"/>
-<variable coeff="9"/>
-<variable coeff="8"/>
-<constante valeur="0"/>
-</contrainte>
-<contrainte type="Infériorité">
-<variable coeff="1"/>
-<variable coeff="2"/>
-<variable coeff="3"/>
-<variable coeff="4"/>
-<constante valeur="5"/>
-</contrainte>
-</probleme>
-<probleme>
-<titre>Testmumu</titre>
-<description>Probleme a deux variables</description>
-<objectif type="Maximiser">
-<variable coeff="1"/>
-<variable coeff="2"/>
-</objectif>
-<contrainte type="Infériorité">
-<variable coeff="-3"/>
-<variable coeff="2"/>
-<constante valeur="2"/>
-</contrainte>
-<contrainte type="Infériorité">
-<variable coeff="-1"/>
-<variable coeff="2"/>
-<constante valeur="4"/>
-</contrainte>
-<contrainte type="Infériorité">
-<variable coeff="1"/>
-<variable coeff="1"/>
-<constante valeur="5"/>
-</contrainte>
-</probleme>
-<probleme>
-<titre>Testmumu3</titre>
-<description>Un deuxieme ...</description>
-<objectif type="Maximiser">
-<variable coeff="10"/>
-<variable coeff="20"/>
-</objectif>
-<contrainte type="Infériorité">
-<variable coeff="2"/>
-<variable coeff="1"/>
-<constante valeur="30"/>
-</contrainte>
-<contrainte type="Infériorité">
-<variable coeff="1"/>
-<variable coeff="4"/>
-<constante valeur="64"/>
-</contrainte>
-<contrainte type="Infériorité">
-<variable coeff="5"/>
-<variable coeff="6"/>
-<constante valeur="110"/>
-</contrainte>
-</probleme>
+    <probleme>
+        <titre>Mon probleme7</titre>
+        <description>Entrer votre description du problème7</description>
+        <objectif type="Maximiser">
+            <variable coeff="1"/>
+            <variable coeff="2"/>
+            <variable coeff="3"/>
+            <variable coeff="4"/>
+        </objectif>
+        <contrainte type="Supériorité">
+            <variable coeff="4"/>
+            <variable coeff="9"/>
+            <variable coeff="9"/>
+            <variable coeff="8"/>
+            <constante valeur="0"/>
+        </contrainte>
+        <contrainte type="Infériorité">
+            <variable coeff="1"/>
+            <variable coeff="2"/>
+            <variable coeff="3"/>
+            <variable coeff="4"/>
+            <constante valeur="5"/>
+        </contrainte>
+    </probleme>
+    <probleme>
+        <titre>Testmumu</titre>
+        <description>Probleme a deux variables</description>
+        <objectif type="Maximiser">
+            <variable coeff="1"/>
+            <variable coeff="2"/>
+        </objectif>
+        <contrainte type="Infériorité">
+            <variable coeff="-3"/>
+            <variable coeff="2"/>
+            <constante valeur="2"/>
+        </contrainte>
+        <contrainte type="Infériorité">
+            <variable coeff="-1"/>
+            <variable coeff="2"/>
+            <constante valeur="4"/>
+        </contrainte>
+        <contrainte type="Infériorité">
+            <variable coeff="1"/>
+            <variable coeff="1"/>
+            <constante valeur="5"/>
+        </contrainte>
+    </probleme>
+    <probleme>
+        <titre>Testmumu3</titre>
+        <description>Un deuxieme ...</description>
+        <objectif type="Maximiser">
+            <variable coeff="10"/>
+            <variable coeff="20"/>
+        </objectif>
+        <contrainte type="Infériorité">
+            <variable coeff="2"/>
+            <variable coeff="1"/>
+            <constante valeur="30"/>
+        </contrainte>
+        <contrainte type="Infériorité">
+            <variable coeff="1"/>
+            <variable coeff="4"/>
+            <constante valeur="64"/>
+        </contrainte>
+        <contrainte type="Infériorité">
+            <variable coeff="5"/>
+            <variable coeff="6"/>
+            <constante valeur="110"/>
+        </contrainte>
+    </probleme>
 
 
+    <probleme>
+        <titre>Testmumu2</titre>
+        <description>Un autre ...</description>
+        <objectif type="Maximiser">
+            <variable coeff="1.0"/>
+            <variable coeff="0.5"/>
+        </objectif>
+        <contrainte type="Infériorité">
+            <variable coeff="1"/>
+            <variable coeff="1"/>
+            <constante valeur="4"/>
+        </contrainte>
+        <contrainte type="Infériorité">
+            <variable coeff="-3"/>
+            <variable coeff="1"/>
+            <constante valeur="3"/>
+        </contrainte>
+        <contrainte type="Infériorité">
+            <variable coeff="1"/>
+            <variable coeff="1"/>
+            <constante valeur="1"/>
+        </contrainte>
+    </probleme>
 <probleme>
-<titre>Testmumu2</titre>
-<description>Un autre ...</description>
+<titre>Mon probleme</titre>
+<description>Entrer votre description du problème</description>
 <objectif type="Maximiser">
 <variable coeff="1.0"/>
-<variable coeff="0.5"/>
 </objectif>
-<contrainte type="Infériorité">
-<variable coeff="1"/>
-<variable coeff="1"/>
-<constante valeur="4"/>
-</contrainte>
-<contrainte type="Infériorité">
-<variable coeff="-3"/>
-<variable coeff="1"/>
-<constante valeur="3"/>
-</contrainte>
-<contrainte type="Infériorité">
-<variable coeff="1"/>
-<variable coeff="1"/>
-<constante valeur="1"/>
-</contrainte>
 </probleme>
 </listeProblemes>

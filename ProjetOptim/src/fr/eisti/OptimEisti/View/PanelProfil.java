@@ -41,7 +41,7 @@ public class PanelProfil extends JPanel {
         initialiserVariables();
         ajoutImageFond();
         traitement();
-        mettreCouleur(Color.ORANGE);
+        mettreCouleur(Color.WHITE);
     }
 
     public void initialiserVariables() {
@@ -49,7 +49,7 @@ public class PanelProfil extends JPanel {
         this.panImage = new JPanel();
         this.panDroite = new JPanel();
         this.nomUtilisateur = new JLabel(BDDUtilisateur.getNomUtilisateur(), JLabel.CENTER);
-        this.nbProblemes = new JLabel(String.valueOf(BddProbleme.nombreProblemes()) + " problemes", JLabel.CENTER);
+        this.nbProblemes = new JLabel(String.valueOf(BddProbleme.nombreProblemes()) + " probleme(s)", JLabel.CENTER);
         this.panBouton = new JPanel();
         this.boutonProfil = new JButton("Gérer mon profil");
     }
@@ -58,8 +58,7 @@ public class PanelProfil extends JPanel {
         try {
             avatar = ImageIO.read(new File(BDDUtilisateur.getImage()));
         } catch (IOException e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
+            System.out.println("Erreur lors du chargement de l'image");
         }
         //on ajoute l'iamge au panel panFond
         panImage = new JPanelFondNormal(avatar);
@@ -97,6 +96,9 @@ public class PanelProfil extends JPanel {
         this.setBackground(couleur);
     }
 
+    public void miseAJour(){
+        this.nbProblemes.setText(String.valueOf(BddProbleme.nombreProblemes()) + " probleme(s)");
+    }
     public static JLabel getNomUtilisateur() {
         return nomUtilisateur;
     }
@@ -115,6 +117,14 @@ public class PanelProfil extends JPanel {
 
     public void setAvatar(Image avatar) {
         this.avatar = avatar;
+    }
+
+    public JLabel getNbProblemes() {
+        return nbProblemes;
+    }
+
+    public void setNbProblemes(JLabel nbProblemes) {
+        this.nbProblemes = nbProblemes;
     }
     
 }

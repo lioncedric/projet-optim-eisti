@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
 <identification>
-
-
-<personne imagesrc="D:\ProjetOptim\images\icon2.png" login="mael" password="mael"/>
+<personne imagesrc="C:\Users\Administrator\Desktop\oeil.jpg" login="meriadec" password="meriadec"/>
+<personne imagesrc="C:\Users\Administrator\Desktop\icon.png" login="meri" password="meri"/>
+<personne imagesrc="D:\My Documents\NetBeansProjects\ProjetFinal3\images\anonyme.jpg" login="mael" password="mael"/>
+<personne imagesrc="D:\My Documents\NetBeansProjects\ProjetFinal3\images\anonyme.jpg" login="ced" password="ced"/>
+<personne imagesrc="D:\My Documents\NetBeansProjects\ProjetFinal3\images\anonyme.jpg" login="sarah" password="sarah"/>
 </identification>

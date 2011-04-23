@@ -76,13 +76,15 @@ public class PanelProblemesUtilisateurListener implements ActionListener, MouseL
                 int reponse = JOptionPane.showConfirmDialog(null, message, "Suppression du probleme", JOptionPane.YES_NO_OPTION);
                 if (reponse == JOptionPane.YES_OPTION) {
                     SupprimerProbleme(numero);
+                    Main.fenetrePrincipale.getPanProfil().miseAJour();
                 }
 
             }
         } else if (e.getSource() == this.ppu.getBoutonSolution()) {
             Probleme p = ((JPanelProbleme) Main.fenetrePrincipale.getDroite().getSelectedComponent()).getProbleme();
-                 p.renseignerProbleme((JPanelProbleme) Main.fenetrePrincipale.getDroite().getSelectedComponent());
+            p.renseignerProbleme((JPanelProbleme) Main.fenetrePrincipale.getDroite().getSelectedComponent());
             Solution solution = new Solution(p.formaliserProbleme(), p.getCoeffVariables().size());
+
         } else if (e.getSource() == this.ppu.getBoutonEnregistrer()) {
             boolean titreOK;
             titreOK = !(((JPanelProbleme) Main.fenetrePrincipale.getDroite().getSelectedComponent()).getJtfTitre().getText().equals(""));
@@ -99,9 +101,8 @@ public class PanelProblemesUtilisateurListener implements ActionListener, MouseL
                 }
             }
             if (titreOK && descriptionOK && variablesOK) {
-               
                 Probleme p = ((JPanelProbleme) Main.fenetrePrincipale.getDroite().getSelectedComponent()).getProbleme();
-                 p.renseignerProbleme((JPanelProbleme) Main.fenetrePrincipale.getDroite().getSelectedComponent());
+                p.renseignerProbleme((JPanelProbleme) Main.fenetrePrincipale.getDroite().getSelectedComponent());
                 if (p.getNumero() < BddProbleme.nombreProblemes()) {
                     int numero = p.getNumero();
                     BddProbleme.supprimerProbleme(numero);
@@ -116,15 +117,18 @@ public class PanelProblemesUtilisateurListener implements ActionListener, MouseL
                 }
                 p.setNumero(BddProbleme.nombreProblemes());
                 BddProbleme.addProbleme(p);
+                int currentIndex = Main.fenetrePrincipale.getDroite().getSelectedIndex();
+                Main.fenetrePrincipale.getDroite().setTitleAt(currentIndex, p.getTitre());
+                Main.fenetrePrincipale.getPanProfil().miseAJour();
                 Main.fenetrePrincipale.getGauche().miseajour();
 
             } else {
                 JOptionPane.showMessageDialog(null, "Vous n'avez pas bien rempli tous les parametres", "Erreur", JOptionPane.ERROR_MESSAGE);
             }
         } else if (e.getSource() == this.ppu.getBoutonNew()) {
-
-            Main.fenetrePrincipale.getDroite().add("sans nom", new JPanelProbleme(BddProbleme.nombreProblemes()));
+            Main.fenetrePrincipale.getDroite().add("Sans nom", new JPanelProbleme(BddProbleme.nombreProblemes()));
             Main.fenetrePrincipale.getDroite().setTabComponentAt(Main.fenetrePrincipale.getDroite().getTabCount() - 1, new ButtonTabComponent(Main.fenetrePrincipale.getDroite()));
+            Main.fenetrePrincipale.getDroite().setSelectedIndex(Main.fenetrePrincipale.getDroite().getTabCount() - 1);
         }
     }
 
@@ -135,7 +139,6 @@ public class PanelProblemesUtilisateurListener implements ActionListener, MouseL
             boolean present = false;
             for (int i = 0; i < Main.fenetrePrincipale.getDroite().getTabCount(); i++) {
                 present = present || ((JPanelProbleme) Main.fenetrePrincipale.getDroite().getComponentAt(i)).getProbleme().getNumero() == numero;
-                System.out.println(((JPanelProbleme) Main.fenetrePrincipale.getDroite().getComponentAt(i)).getProbleme().getNumero());
             }
             if (!present) {
                 Probleme probleme;
@@ -143,7 +146,18 @@ public class PanelProblemesUtilisateurListener implements ActionListener, MouseL
                 probleme.setNumero(numero);
                 Main.fenetrePrincipale.getDroite().add(probleme.getTitre(), new JPanelProbleme(probleme));
                 Main.fenetrePrincipale.getDroite().setTabComponentAt(Main.fenetrePrincipale.getDroite().getTabCount() - 1, new ButtonTabComponent(Main.fenetrePrincipale.getDroite()));
-
+                Main.fenetrePrincipale.getDroite().setSelectedIndex(Main.fenetrePrincipale.getDroite().getTabCount() - 1);
+            } else {
+                boolean trouve = false;
+                int i = 0;
+                String s = new String((String) this.ppu.getList().getSelectedValue());
+                while (i < Main.fenetrePrincipale.getDroite().getTabCount() && !trouve) {
+                    if (Main.fenetrePrincipale.getDroite().getTitleAt(i).equals(s)) {
+                        trouve = true;
+                        Main.fenetrePrincipale.getDroite().setSelectedIndex(i);
+                    }
+                    i++;
+                }
             }
         }
     }

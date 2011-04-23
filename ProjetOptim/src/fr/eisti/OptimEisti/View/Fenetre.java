@@ -90,13 +90,10 @@ public class Fenetre extends JFrame {
 
     public void appliquerChangementSplitPane() {
         if (this.getWidth() < 960) {
-            System.out.println("largeur: " + this.getWidth() + " - hauteur: " + this.getHeight());
             droite.setMinimumSize(new Dimension(this.getWidth() * 7 / 10, this.getHeight()));
         } else if (this.getWidth() < 1260) {
-            System.out.println("largeur: " + this.getWidth() + " - hauteur: " + this.getHeight());
             droite.setMinimumSize(new Dimension(this.getWidth() * 15 / 20, this.getHeight()));
         } else {
-            System.out.println("largeur: " + this.getWidth() + " - hauteur: " + this.getHeight());
             droite.setMinimumSize(new Dimension(this.getWidth() * 8 / 10, this.getHeight()));
         }
     }
@@ -302,5 +299,4 @@ public class Fenetre extends JFrame {
     public PanelProfil getPanProfil() {
         return panProfil;
     }
-    
 }
