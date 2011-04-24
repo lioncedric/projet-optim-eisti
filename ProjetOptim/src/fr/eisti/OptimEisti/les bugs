@@ -1,6 +1,6 @@
 pour Jeudi [urgent]
 -   la fonction enregistrer marche mais on sait pas vraiment ce qu'on enregistre, tous les onglet, le probleme selectionné ... --> a revoir
-    supprimer le bouton enregistrer (on enregistre a chaque modifs)  mais on laisse tjs le fichier enregistrer
+    SUPPRIMER!! le bouton enregistrer (on enregistre a chaque modifs)  mais on laisse tjs le fichier enregistrer
 -   fonction supprimer  a l'air de marcher a verifier
 -   le slider a été desactivé!! ->> listener a reactiver et je pense a chager de place(pour le momnent tout est commenté) (cadeau pour sarah ou meri)
 -   bug si une contrainte a pas de membre gauche et une ingalité selectionne, on peut quand meme enregistrer
@@ -8,6 +8,7 @@ pour Jeudi [urgent]
 -   beaucoup ttrop de varibles en static
 -   Le nombre de problemes en haut a gauche ne change pas (je le remet!!!)!!!!!!!!!!!!
 -   La cretion d'un nouveau probleme peut faire bugger les indices des probs si on cree plus d'un nouveau probleme de suite
+-   le bouton trouver a mettre sur le panel de droite!!!
 --------------Vraiment Urgent[non résolu!]----------------------------------
 -   ENORME bug sur le panel d'identification : le clic pour valider ne marche pas, et il n'y a pas de croix pour annuler!!!!!!!
 ------------------------------------------------
