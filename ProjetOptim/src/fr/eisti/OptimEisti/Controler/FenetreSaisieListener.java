@@ -17,7 +17,6 @@ import fr.eisti.OptimEisti.View.Fenetre;
 import fr.eisti.OptimEisti.Main;
 import fr.eisti.OptimEisti.Model.Contrainte;
 import fr.eisti.OptimEisti.View.JPanelProbleme;
-import java.awt.GraphicsDevice;
 import java.awt.event.ComponentListener;
 import java.io.File;
 import java.util.ArrayList;
@@ -36,6 +35,11 @@ public class FenetreSaisieListener implements ChangeListener, ActionListener, Co
 
     public FenetreSaisieListener(Fenetre f1) {
         this.fenetre = f1;
+        a = new ArrayList();
+        contraintes = new ArrayList<Contrainte>();
+    }
+
+    public FenetreSaisieListener() {
         a = new ArrayList();
         contraintes = new ArrayList<Contrainte>();
     }
@@ -76,7 +80,8 @@ public class FenetreSaisieListener implements ChangeListener, ActionListener, Co
         this.contraintes = ((JPanelProbleme) Main.fenetrePrincipale.getDroite().getSelectedComponent()).getPanTableau().enregistrerContraintes();
         ((JPanelProbleme) Main.fenetrePrincipale.getDroite().getSelectedComponent()).raffraichitTabContrainte(this.contraintes);
         ((JPanelProbleme) Main.fenetrePrincipale.getDroite().getSelectedComponent()).getPanTableau().rempliTableau(this.contraintes);
-        ((JPanelProbleme) Main.fenetrePrincipale.getDroite().getSelectedComponent()).validate();
+        Main.fenetrePrincipale.validate();
+        Main.fenetrePrincipale.repaint();
     }
 
     @Override

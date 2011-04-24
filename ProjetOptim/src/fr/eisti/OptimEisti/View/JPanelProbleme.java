@@ -31,7 +31,7 @@ import java.util.ArrayList;
 
 /**
  *
- * @author Princess Sarah
+ * @author 
  */
 public class JPanelProbleme extends JPanel {
 
@@ -68,7 +68,10 @@ public class JPanelProbleme extends JPanel {
     //declaration des varables pour le panel de droite
     private PanelProblemesUtilisateur liste;
    // private ArrayList<Contrainte> contraintes;
+     private FenetreSaisieListener fsl;
+
  public JPanelProbleme(int numero) {
+        fsl = new FenetreSaisieListener();
         this.probleme = new Probleme();
         probleme.setNumero(numero);
         initialiserVariablesPanelGauche();
@@ -76,6 +79,7 @@ public class JPanelProbleme extends JPanel {
         raffraichitTabContrainte(probleme.getContraintes());
     }
     public JPanelProbleme(Probleme probleme) {
+        fsl = new FenetreSaisieListener();
         this.probleme = probleme;
         initialiserVariablesPanelGauche();
         traitementPanelGauche();
@@ -115,9 +119,9 @@ public class JPanelProbleme extends JPanel {
         //remplissage du tableau
         if (!this.probleme.getContraintes().isEmpty()) {
             panTableau = new Tableau(this.probleme.getContraintes().size(), this.probleme.getContraintes().get(0).getCoeffVariables().size());
-        //    fsl.setContraintes(this.probleme.getContraintes());
+            fsl.setContraintes(this.probleme.getContraintes());
             this.raffraichitTabContrainte(this.probleme.getContraintes());
-        //    fsl.setContraintes(this.probleme.getContraintes());
+            fsl.setContraintes(this.probleme.getContraintes());
             this.panTableau.rempliTableau(this.probleme.getContraintes());
         } else {
             this.raffraichitTabContrainte(this.probleme.getContraintes());
@@ -199,7 +203,7 @@ public class JPanelProbleme extends JPanel {
 
         pan3.setLayout(new BorderLayout());
         //pan3.setPreferredSize(new Dimension(200,200));
-//        this.raffraichitTabContrainte(fsl.getContraintes());
+        this.raffraichitTabContrainte(fsl.getContraintes());
 
 
         try {
@@ -246,7 +250,7 @@ public class JPanelProbleme extends JPanel {
 
         //---------------------------le slide--------------------------//
         slide = new JSlider(min, max, init);
-    //    slide.addChangeListener(fsl);
+        slide.addChangeListener(fsl);
         slide.setMinorTickSpacing(1);
         slide.setMajorTickSpacing(1);
         slide.setPaintTicks(true);
