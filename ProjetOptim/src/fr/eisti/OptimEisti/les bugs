@@ -6,7 +6,8 @@ pour Jeudi [urgent]
 -   bug si une contrainte a pas de membre gauche et une ingalité selectionne, on peut quand meme enregistrer
 -   beaucoup de warnigs dans le code !!!
 -   beaucoup ttrop de varibles en static
--   Le nombre de problemes de change pas (je le remet!!!)!!!!!!!!!!!!
+-   Le nombre de problemes en haut a gauche ne change pas (je le remet!!!)!!!!!!!!!!!!
+-   La cretion d'un nouveau probleme peut faire bugger les indices des probs si on cree plus d'un nouveau probleme de suite
 --------------Vraiment Urgent[non résolu!]----------------------------------
 -   ENORME bug sur le panel d'identification : le clic pour valider ne marche pas, et il n'y a pas de croix pour annuler!!!!!!!
 ------------------------------------------------
