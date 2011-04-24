@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<listeProblemes>
+<probleme>
+<titre>Probleme 2</titre>
+<description>Il sagit d'un probleme quelconque a résoudre</description>
+<objectif type="Minimiser">
+<variable coeff="5.0"/>
+<variable coeff="2.0"/>
+<variable coeff="3.0"/>
+<variable coeff="2.0"/>
+</objectif>
+<contrainte type="Infériorité">
+<variable coeff="1.0"/>
+<variable coeff="2.0"/>
+<variable coeff="0.0"/>
+<variable coeff="5.0"/>
+<constante valeur="50.0"/>
+</contrainte>
+<contrainte type="Infériorité">
+<variable coeff="11.0"/>
+<variable coeff="12.0"/>
+<variable coeff="10.0"/>
+<variable coeff="12.0"/>
+<constante valeur="22.0"/>
+</contrainte>
+</probleme>
+<probleme>
+<titre>Probleme 1</titre>
+<description>Il sagit d'un probleme quelconque a résoudre</description>
+<objectif type="Maximiser">
+<variable coeff="1.0"/>
+<variable coeff="2.0"/>
+<variable coeff="3.0"/>
+</objectif>
+<contrainte type="Infériorité">
+<variable coeff="11.0"/>
+<variable coeff="12.0"/>
+<variable coeff="31.0"/>
+<constante valeur="22.0"/>
+</contrainte>
+<contrainte type="Infériorité">
+<variable coeff="11.0"/>
+<variable coeff="12.0"/>
+<variable coeff="12.0"/>
+<constante valeur="22.0"/>
+</contrainte>
+</probleme>
+</listeProblemes>
