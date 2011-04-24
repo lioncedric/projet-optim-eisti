@@ -6,7 +6,6 @@ package fr.eisti.OptimEisti.View;
 
 import fr.eisti.OptimEisti.Controler.PanelRechercheProblemeListener;
 import fr.eisti.OptimEisti.Main;
-import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Image;

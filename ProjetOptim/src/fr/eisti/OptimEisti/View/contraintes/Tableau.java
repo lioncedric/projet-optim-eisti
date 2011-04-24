@@ -5,7 +5,6 @@ import java.awt.BorderLayout;
 import javax.swing.*;
 import javax.swing.table.TableColumn;
 import fr.eisti.OptimEisti.Model.Contrainte;
-import java.awt.Dimension;
 import java.util.ArrayList;
 
 public class Tableau extends JPanel{
@@ -165,6 +164,25 @@ public class Tableau extends JPanel{
                     }
                     this.table.setValueAt(contraintes.get(i).getConstante(), i, this.table.getColumnCount() - 2);
             }
+        }
+
+        public Boolean ligneRempli(){
+            //on initialise un booleen qui va nous permettre de savoir si la ligne et bien rempli avant d'en ajouter une autre
+            Boolean ligneRempli;
+            ligneRempli = false;
+            if(this.table.getRowCount()>0){
+                //on va parcourir la dernière ligne du tableau afin de savoir si elle est bien rempli
+                for(int i=0; i<nbVariable; i++){
+                    //on récupère la valeur de chaque cellule correspondant aux variables
+                    Object value = this.table.getValueAt(this.table.getRowCount()-1, i);
+                    double valueString = Double.parseDouble(value.toString());
+                    //on test si il y a au moins une cellule correspondant aux variables qui est différente de zéro et si le signe a bien été choisi
+                    ligneRempli = ligneRempli || (!(valueString == 0) && this.table.getValueAt(this.table.getRowCount()-1, this.table.getColumnCount()-3)!=null);
+                }
+            }else{
+                ligneRempli = true;
+            }
+            return ligneRempli;
         }
 
 

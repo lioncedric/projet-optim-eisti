@@ -156,7 +156,7 @@ public class JPanelProbleme extends JPanel {
         pan3.add(panNord, BorderLayout.NORTH);
         pan3.add(panTableau, BorderLayout.CENTER);
         ajouter = new JButton("Ajouter une ligne");
-        ajouter.addActionListener(new MoreListener(panTableau.getTable(), nbVariable));
+        ajouter.addActionListener(new MoreListener(panTableau, nbVariable));
         panEst.add(ajouter);
         pan3.add(panEst, BorderLayout.SOUTH);
     }

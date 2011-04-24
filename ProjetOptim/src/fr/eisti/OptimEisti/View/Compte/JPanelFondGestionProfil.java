@@ -69,6 +69,8 @@ public class JPanelFondGestionProfil extends JPanel{
     /**
      * Redefinition de la methode paintComponent
      */
+
+    @Override
     public void paintComponent(Graphics g) {
         //modification de la taille des composants
         this.lLogin.setBounds(100, 70, 120, 30);

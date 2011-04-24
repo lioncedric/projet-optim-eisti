@@ -47,6 +47,7 @@ public class JPanelFondIdentification extends JPanel {
     /**
      * Redefinition de la methode paintComponent
      */
+    @Override
     public void paintComponent(Graphics g) {
         this.lLogin.setBounds(90, 80, 120, 30);
         this.jtfNomUtilisateur.setBounds(220, 80, 130, 30);

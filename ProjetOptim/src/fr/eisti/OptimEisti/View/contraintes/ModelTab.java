@@ -69,6 +69,7 @@ public class ModelTab extends AbstractTableModel{
 	/**
 	* Retourne le titre de la colonne � l'indice sp�cif�
 	*/
+        @Override
 	public String getColumnName(int col) {
 	  return this.title[col];
 	}
@@ -127,7 +128,7 @@ public class ModelTab extends AbstractTableModel{
 		this.fireTableDataChanged();
 	}
 
-            
+        @Override
 	public boolean isCellEditable(int row, int col){
 		return true; 
 	}

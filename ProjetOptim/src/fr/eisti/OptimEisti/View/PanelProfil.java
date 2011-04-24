@@ -46,9 +46,9 @@ public class PanelProfil extends JPanel {
 
     public void initialiserVariables() {
         this.panHaut = new JPanel();
-        this.panImage = new JPanel();
+        PanelProfil.panImage = new JPanel();
         this.panDroite = new JPanel();
-        this.nomUtilisateur = new JLabel(BDDUtilisateur.getNomUtilisateur(), JLabel.CENTER);
+        PanelProfil.nomUtilisateur = new JLabel(BDDUtilisateur.getNomUtilisateur(), JLabel.CENTER);
         this.nbProblemes = new JLabel(String.valueOf(BddProbleme.nombreProblemes()) + " probleme(s)", JLabel.CENTER);
         this.panBouton = new JPanel();
         this.boutonProfil = new JButton("Gérer mon profil");
@@ -70,10 +70,10 @@ public class PanelProfil extends JPanel {
         this.panHaut.setLayout(new BorderLayout());
         this.panDroite.setLayout(new GridLayout(2, 1));
         this.panBouton.add(this.boutonProfil);
-        this.panDroite.add(this.nomUtilisateur);
+        this.panDroite.add(PanelProfil.nomUtilisateur);
         this.panDroite.add(this.nbProblemes);
-        this.panImage.setPreferredSize(new Dimension(avatar.getHeight(this), avatar.getHeight(this)));
-        this.panHaut.add(this.panImage, BorderLayout.WEST);
+        PanelProfil.panImage.setPreferredSize(new Dimension(avatar.getHeight(this), avatar.getHeight(this)));
+        this.panHaut.add(PanelProfil.panImage, BorderLayout.WEST);
         this.panHaut.add(this.panDroite, BorderLayout.CENTER);
         this.add(this.panHaut, BorderLayout.CENTER);
         this.add(this.panBouton, BorderLayout.SOUTH);
@@ -83,10 +83,10 @@ public class PanelProfil extends JPanel {
     public void modification(){
         this.panHaut.removeAll();
         this.panDroite.removeAll();
-        this.panDroite.add(this.nomUtilisateur);
+        this.panDroite.add(PanelProfil.nomUtilisateur);
         this.panDroite.add(this.nbProblemes);
-        this.panImage.setPreferredSize(new Dimension(avatar.getHeight(this), avatar.getHeight(this)));
-        this.panHaut.add(this.panImage, BorderLayout.WEST);
+        PanelProfil.panImage.setPreferredSize(new Dimension(avatar.getHeight(this), avatar.getHeight(this)));
+        this.panHaut.add(PanelProfil.panImage, BorderLayout.WEST);
         this.panHaut.add(this.panDroite, BorderLayout.CENTER);
     }
     public void mettreCouleur(Color couleur) {

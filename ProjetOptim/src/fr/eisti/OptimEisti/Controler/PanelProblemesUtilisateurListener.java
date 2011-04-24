@@ -90,6 +90,8 @@ public class PanelProblemesUtilisateurListener implements ActionListener, MouseL
             titreOK = !(((JPanelProbleme) Main.fenetrePrincipale.getDroite().getSelectedComponent()).getJtfTitre().getText().equals(""));
             boolean descriptionOK;
             descriptionOK = !(((JPanelProbleme) Main.fenetrePrincipale.getDroite().getSelectedComponent()).getTextfield().getText().equals(""));
+            boolean ligneRempli;
+            ligneRempli = ((JPanelProbleme) Main.fenetrePrincipale.getDroite().getSelectedComponent()).getPanTableau().ligneRempli();
             boolean variablesOK = true;
             for (int i = 0; i < ((JPanelProbleme) Main.fenetrePrincipale.getDroite().getSelectedComponent()).getSlide().getValue(); i++) {
                 JTextField jtf = (JTextField) (((JPanelProbleme) Main.fenetrePrincipale.getDroite().getSelectedComponent()).getPanDonnees().getComponent(3 * i + 1));
@@ -100,7 +102,7 @@ public class PanelProblemesUtilisateurListener implements ActionListener, MouseL
                     variablesOK = false;
                 }
             }
-            if (titreOK && descriptionOK && variablesOK) {
+            if (titreOK && descriptionOK && variablesOK && ligneRempli) {
                 Probleme p = ((JPanelProbleme) Main.fenetrePrincipale.getDroite().getSelectedComponent()).getProbleme();
                 p.renseignerProbleme((JPanelProbleme) Main.fenetrePrincipale.getDroite().getSelectedComponent());
                 if (p.getNumero() < BddProbleme.nombreProblemes()) {

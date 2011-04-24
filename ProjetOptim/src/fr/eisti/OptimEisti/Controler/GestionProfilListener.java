@@ -8,6 +8,7 @@ import fr.eisti.OptimEisti.Main;
 import fr.eisti.OptimEisti.Model.BDDUtilisateur;
 import fr.eisti.OptimEisti.View.Compte.GestionProfil;
 import fr.eisti.OptimEisti.View.Compte.JPanelFondNormal;
+import fr.eisti.OptimEisti.View.PanelProfil;
 import java.awt.Image;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
@@ -49,11 +50,11 @@ public class GestionProfilListener implements MouseListener {
                     this.maFenetre.getPanFond().getJtfMdp().getText(), this.maFenetre.getPanFond().getJtfAvatar().getText());
 
             BDDUtilisateur.setNomUtilisateur(this.maFenetre.getPanFond().getJtfNomUtilisateur().getText());
-            Main.fenetrePrincipale.getPanProfil().setNomUtilisateur(new JLabel(BDDUtilisateur.getNomUtilisateur(),JLabel.CENTER));
+            PanelProfil.setNomUtilisateur(new JLabel(BDDUtilisateur.getNomUtilisateur(),JLabel.CENTER));
             try {
                 Image newAvatar = ImageIO.read(new File(this.maFenetre.getPanFond().getJtfAvatar().getText()));
                 Main.fenetrePrincipale.getPanProfil().setAvatar(newAvatar);
-                Main.fenetrePrincipale.getPanProfil().setPanImage(new JPanelFondNormal(newAvatar));
+                PanelProfil.setPanImage(new JPanelFondNormal(newAvatar));
             } catch (IOException e) {
                 // TODO Auto-generated catch block
                 e.printStackTrace();
@@ -64,23 +65,20 @@ public class GestionProfilListener implements MouseListener {
             //on ferme la fenetre d'identification
             this.maFenetre.dispose();
             //on ouvre un dialogue
-            JOptionPane jop = new JOptionPane();
-            jop.showMessageDialog(null, "Modification réussie!", "Information", JOptionPane.INFORMATION_MESSAGE);
+            JOptionPane.showMessageDialog(null, "Modification réussie!", "Information", JOptionPane.INFORMATION_MESSAGE);
             this.maFenetre.dispose();
         } else if (!bonFormatImage()) {
             //la fenetre n'est pas au premier plan
             maFenetre.setAlwaysOnTop(false);
             //on ouvre un dialogue
-            JOptionPane jop = new JOptionPane();
-            jop.showMessageDialog(null, "Modification échouée! Vous n'avez pas selectionner une image valide.", "Erreur", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(null, "Modification échouée! Vous n'avez pas selectionner une image valide.", "Erreur", JOptionPane.ERROR_MESSAGE);
             //on remet la fenetre au premier plan
             maFenetre.setAlwaysOnTop(true);
         } else if (!bonneTailleImage()) {
             //la fenetre n'est pas au premier plan
             maFenetre.setAlwaysOnTop(false);
             //on ouvre un dialogue
-            JOptionPane jop = new JOptionPane();
-            jop.showMessageDialog(null, "Modification échouée! Votre image doit avoir une taille maximale de 80x80 px", "Erreur", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(null, "Modification échouée! Votre image doit avoir une taille maximale de 80x80 px", "Erreur", JOptionPane.ERROR_MESSAGE);
             //on remet la fenetre au premier plan
             maFenetre.setAlwaysOnTop(true);
         }//si au moins un des champs n'a pas été saisis
@@ -88,8 +86,7 @@ public class GestionProfilListener implements MouseListener {
             //la fenetre n'est pas au premier plan
             maFenetre.setAlwaysOnTop(false);
             //on ouvre un dialogue
-            JOptionPane jop = new JOptionPane();
-            jop.showMessageDialog(null, "Modification échouée! Vous n'avez pas rentré de données dans au moins un des champs.", "Erreur", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(null, "Modification échouée! Vous n'avez pas rentré de données dans au moins un des champs.", "Erreur", JOptionPane.ERROR_MESSAGE);
             //on remet la fenetre au premier plan
             maFenetre.setAlwaysOnTop(true);
         } //sinon si les champs saisie existe déjà dans la BDD
@@ -99,8 +96,7 @@ public class GestionProfilListener implements MouseListener {
             //on réinitialise tout
             this.maFenetre.getPanFond().raz();
             //on ouvre un dialogue
-            JOptionPane jop = new JOptionPane();
-            jop.showMessageDialog(null, "Modification échouée! Votre nom d'utilisateur est déjà utilisé!", "Erreur", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(null, "Modification échouée! Votre nom d'utilisateur est déjà utilisé!", "Erreur", JOptionPane.ERROR_MESSAGE);
             //on remet la fenetre au premier plan
             maFenetre.setAlwaysOnTop(true);
         } else if (!this.maFenetre.getPanFond().getJtfMdp().getText().equals(this.maFenetre.getPanFond().getJtfMdp2().getText())) {
@@ -109,8 +105,7 @@ public class GestionProfilListener implements MouseListener {
             //on réinitialise tout
             this.maFenetre.getPanFond().raz();
             //on ouvre un dialogue
-            JOptionPane jop = new JOptionPane();
-            jop.showMessageDialog(null, "Modification échouée! Vous n'avez pas saisi les mêmes mots de passe!", "Erreur", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(null, "Modification échouée! Vous n'avez pas saisi les mêmes mots de passe!", "Erreur", JOptionPane.ERROR_MESSAGE);
             //on remet la fenetre au premier plan
             maFenetre.setAlwaysOnTop(true);
         } //sinon si on a pas saisis tous les champs
@@ -120,8 +115,7 @@ public class GestionProfilListener implements MouseListener {
             //on réinitialise tout
             this.maFenetre.getPanFond().raz();
             //on ouvre un dialogue
-            JOptionPane jop = new JOptionPane();
-            jop.showMessageDialog(null, "Modification échouée! Vous n'avez pas saisis tous les champs!", "Erreur", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(null, "Modification échouée! Vous n'avez pas saisis tous les champs!", "Erreur", JOptionPane.ERROR_MESSAGE);
             //on remet la fenetre au premier plan
             maFenetre.setAlwaysOnTop(true);
         }

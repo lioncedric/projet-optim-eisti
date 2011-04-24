@@ -3,8 +3,6 @@
  */
 package fr.eisti.OptimEisti.View.Compte;
 
-import fr.eisti.OptimEisti.View.Compte.Identification;
-import fr.eisti.OptimEisti.View.Compte.CreerCompte;
 import java.awt.Image;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;

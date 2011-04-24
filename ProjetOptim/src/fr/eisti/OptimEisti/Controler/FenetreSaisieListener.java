@@ -88,27 +88,7 @@ public class FenetreSaisieListener implements ChangeListener, ActionListener, Co
     @SuppressWarnings("static-access")
     public void actionPerformed(ActionEvent e) {
 
-        /* if (e.getSource().toString().equals(this.fenetre.getBoutonContraintes().toString())) {
-        boolean titreOK;
-        titreOK = !(Main.fenetrePrincipale.getJtfTitre().getText().equals(""));
-        boolean descriptionOK;
-        descriptionOK = !(Main.fenetrePrincipale.getTextfield().getText().equals(""));
-        boolean variablesOK = true;
-        for (int i = 0; i < Main.fenetrePrincipale.getSlide().getValue(); i++) {
-        JTextField jtf = (JTextField) (Main.fenetrePrincipale.getPanDonnees().getComponent(3 * i + 1));
-        variablesOK = variablesOK && !(jtf.getText().equals("")) && !(jtf.getText().equals("0"));
-        try {
-        double valeur = Double.valueOf(jtf.getText());
-        } catch (NumberFormatException nfe) {
-        variablesOK = false;
-        }
-        }
-        if (titreOK && descriptionOK && variablesOK) {
-        
-        } else {
-        JOptionPane.showMessageDialog(null, "Vous n'avez pas bien rempli tous les parametres", "Erreur", JOptionPane.ERROR_MESSAGE);
-        }
-        } else */        if (e.getSource() == this.fenetre.getImportXml()) {
+     if (e.getSource() == this.fenetre.getImportXml()) {
             try {
                 JFileChooser fc = new JFileChooser();
                 int returnVal = fc.showOpenDialog(this.fenetre.getDroite());

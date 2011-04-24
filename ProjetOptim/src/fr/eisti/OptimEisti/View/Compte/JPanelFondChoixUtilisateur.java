@@ -31,6 +31,7 @@ public class JPanelFondChoixUtilisateur extends JPanel{
 	/**
 	 * Redefinition de la methode paintComponent
 	 */
+        @Override
 	public void paintComponent(Graphics g){
 		g.drawImage(image, 0, 0, this);
 	}
