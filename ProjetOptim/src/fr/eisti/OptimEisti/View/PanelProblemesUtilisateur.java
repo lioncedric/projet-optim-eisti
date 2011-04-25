@@ -22,7 +22,7 @@ public final class PanelProblemesUtilisateur extends JPanel {
     private JList list;
     private JScrollPane listScrollPane;
     private DefaultListModel listModel;
-    private JButton boutonEnregistrer;
+   
     private JButton boutonSolution;
     private JButton boutonNew;
     private JPanel panBoutons;
@@ -43,7 +43,7 @@ public final class PanelProblemesUtilisateur extends JPanel {
     public void initialiserVariables() {
         this.boutonNew = new JButton("Nouveau probleme");
         this.boutonSolution = new JButton("Trouver solution");
-        this.boutonEnregistrer = new JButton("Enregistrer");
+      
         this.panBoutons = new JPanel();
         this.panCentre = new JPanel();
         this.panRecherche = new PanelRechercheProbleme();
@@ -67,7 +67,7 @@ public final class PanelProblemesUtilisateur extends JPanel {
 
         this.boutonNew.addActionListener(new PanelProblemesUtilisateurListener(this));
         this.boutonSolution.addActionListener(new PanelProblemesUtilisateurListener(this));
-        this.boutonEnregistrer.addActionListener(new PanelProblemesUtilisateurListener(this));
+     
 
         this.panBoutons.setLayout(new GridLayout(3, 1));
         this.panCentre.setLayout(new BorderLayout());
@@ -79,7 +79,7 @@ public final class PanelProblemesUtilisateur extends JPanel {
         this.list.addMouseListener(new PanelProblemesUtilisateurListener(this));
         this.listScrollPane.setBorder(BorderFactory.createTitledBorder(null, "Mes problemes", 0, 0, new Font("Serif", Font.ITALIC, 14)));
         this.panBoutons.add(this.boutonNew);
-        this.panBoutons.add(this.boutonEnregistrer);
+       
         this.panBoutons.add(this.boutonSolution);
 
         this.panCentre.add(this.panRecherche, BorderLayout.NORTH);
@@ -134,9 +134,6 @@ public final class PanelProblemesUtilisateur extends JPanel {
         return boutonNew;
     }
 
-    public JButton getBoutonEnregistrer() {
-        return boutonEnregistrer;
-    }
 
     public JButton getBoutonSolution() {
         return boutonSolution;

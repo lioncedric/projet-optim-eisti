@@ -132,49 +132,7 @@ public class PanelProblemesUtilisateurListener implements ActionListener, MouseL
             //et on genere la solution par l'algorithme du simplexe
             Solution solution = new Solution(p.formaliserProbleme(), p.getCoeffVariables().size());
 
-        } else if (e.getSource() == this.ppu.getBoutonEnregistrer()) {
-            boolean titreOK;
-            titreOK = !(((JPanelProbleme) Main.fenetrePrincipale.getDroite().getSelectedComponent()).getJtfTitre().getText().equals(""));
-            boolean descriptionOK;
-            descriptionOK = !(((JPanelProbleme) Main.fenetrePrincipale.getDroite().getSelectedComponent()).getTextfield().getText().equals(""));
-            boolean ligneRempli;
-            ligneRempli = ((JPanelProbleme) Main.fenetrePrincipale.getDroite().getSelectedComponent()).getPanTableau().ligneRempli();
-            boolean variablesOK = true;
-            for (int i = 0; i < ((JPanelProbleme) Main.fenetrePrincipale.getDroite().getSelectedComponent()).getSlide().getValue(); i++) {
-                JTextField jtf = (JTextField) (((JPanelProbleme) Main.fenetrePrincipale.getDroite().getSelectedComponent()).getPanDonnees().getComponent(3 * i + 1));
-                variablesOK = variablesOK && !(jtf.getText().equals("")) && !(jtf.getText().equals("0"));
-                try {
-                    double valeur = Double.valueOf(jtf.getText());
-                } catch (NumberFormatException nfe) {
-                    variablesOK = false;
-                }
-            }
-            if (titreOK && descriptionOK && variablesOK && ligneRempli) {
-                Probleme p = ((JPanelProbleme) Main.fenetrePrincipale.getDroite().getSelectedComponent()).getProbleme();
-                p.renseignerProbleme((JPanelProbleme) Main.fenetrePrincipale.getDroite().getSelectedComponent());
-                if (p.getNumero() < BddProbleme.nombreProblemes()) {
-                    int numero = p.getNumero();
-                    BddProbleme.supprimerProbleme(numero);
-                    for (int i = 0; i < Main.fenetrePrincipale.getDroite().getTabCount(); i++) {
-                        int numProbeCours = ((JPanelProbleme) Main.fenetrePrincipale.getDroite().getComponentAt(i)).getProbleme().getNumero();
-                        if (numProbeCours > numero) {
-                            ((JPanelProbleme) Main.fenetrePrincipale.getDroite().getComponentAt(i)).getProbleme().setNumero(numProbeCours - 1);
-
-                        }
-
-                    }
-                }
-                p.setNumero(BddProbleme.nombreProblemes());
-                BddProbleme.addProbleme(p);
-                int currentIndex = Main.fenetrePrincipale.getDroite().getSelectedIndex();
-                Main.fenetrePrincipale.getDroite().setTitleAt(currentIndex, p.getTitre());
-                Main.fenetrePrincipale.getPanProfil().miseAJour();
-                Main.fenetrePrincipale.getGauche().miseajour();
-
-            } else {
-                JOptionPane.showMessageDialog(null, "Vous n'avez pas bien rempli tous les parametres", "Erreur", JOptionPane.ERROR_MESSAGE);
-            }
-        } //si l'action demandé est de créer un nouveau problème
+        }
         else if (e.getSource() == this.ppu.getBoutonNew()) {
             //on en crée un à la suite des autres et on lui attribue le titre "Sans nom"
             Main.fenetrePrincipale.getDroite().add("Sans nom", new JPanelProbleme(BddProbleme.nombreProblemes()));
