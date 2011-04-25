@@ -1,6 +1,7 @@
 package fr.eisti.OptimEisti.View.contraintes;
 
 import fr.eisti.OptimEisti.Controler.ButtonEditor;
+import fr.eisti.OptimEisti.Controler.SaveListener;
 import java.awt.BorderLayout;
 import javax.swing.*;
 import javax.swing.table.TableColumn;
@@ -20,6 +21,7 @@ public class Tableau extends JPanel{
          * @param nbVariable : nb de variable voulu
          */
 	public Tableau(int nbVariable){
+            this.addKeyListener(new SaveListener());
                 this.nbVariable = nbVariable;
 		//on initialise le titre et le contenu du tableau
                 title = new String[nbVariable+3];

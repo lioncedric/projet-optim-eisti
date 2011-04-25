@@ -52,9 +52,10 @@ public final class PanelProblemesUtilisateur extends JPanel {
      * Procédure permettant d'initialiser toutes les variables déclarées précédemment
      */
     public void initialiserVariables() {
+          this.listModel = new DefaultListModel();
         this.list = new JList(listModel);
         this.listScrollPane = new JScrollPane(list);
-        this.listModel = new DefaultListModel();
+      
         this.boutonEnregistrer = new JButton("Enregistrer");
         this.boutonSolution = new JButton("Trouver solution");
         this.boutonNew = new JButton("Nouveau probleme");
