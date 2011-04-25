@@ -83,7 +83,8 @@ public class JPanelProbleme extends JPanel {
         initialiserVariables();
         traitementPanel();
         raffraichitTabContrainte(probleme.getContraintes());
-
+        slide.addChangeListener(fsl);
+        slide.addChangeListener(new SaveListener());
 
 
     }
@@ -95,7 +96,8 @@ public class JPanelProbleme extends JPanel {
         initialiserVariables();
         traitementPanel();
         remplissage();
-       
+        slide.addChangeListener(fsl);
+        slide.addChangeListener(new SaveListener());
     }
 
     /**
@@ -280,6 +282,7 @@ public class JPanelProbleme extends JPanel {
         contrainteLayout.weighty = 0.3;
         this.add(pan3, contrainteLayout);
         this.validate();
+
     }
 
     private void initialiserVariables() {
@@ -312,8 +315,7 @@ public class JPanelProbleme extends JPanel {
         textfield.addKeyListener(new SaveListener());
         //---------------------------le slide--------------------------//
         slide = new JSlider(min, max, init);
-        slide.addChangeListener(fsl);
-        slide.addChangeListener(new SaveListener());
+
         slide.setMinorTickSpacing(1);
         slide.setMajorTickSpacing(1);
         slide.setPaintTicks(true);
