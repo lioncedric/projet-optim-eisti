@@ -92,7 +92,7 @@ public class JPanelProbleme extends JPanel {
      * initialise le proble aux valeurs rentrées par l'utilisateur
      * @param fenetre le fenetre contenant les informations du probleme
      */
-     public void enregisrer()  {
+     public void enregisrer(int indexTab)  {
             boolean titreOK;
             titreOK = !(this.getJtfTitre().getText().equals(""));
             boolean descriptionOK;
@@ -126,8 +126,8 @@ public class JPanelProbleme extends JPanel {
                 }
                 p.setNumero(BddProbleme.nombreProblemes());
                 BddProbleme.addProbleme(p);
-                int currentIndex = Main.fenetrePrincipale.getDroite().getSelectedIndex();
-                Main.fenetrePrincipale.getDroite().setTitleAt(currentIndex, p.getTitre());
+              
+                Main.fenetrePrincipale.getDroite().setTitleAt(indexTab, p.getTitre());
                 Main.fenetrePrincipale.getPanProfil().miseAJour();
                 Main.fenetrePrincipale.getGauche().miseajour();
 

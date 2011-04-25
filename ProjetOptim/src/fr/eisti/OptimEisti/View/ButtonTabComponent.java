@@ -49,14 +49,16 @@ public class ButtonTabComponent extends JPanel {
         setBorder(BorderFactory.createEmptyBorder(2, 0, 0, 0));
     }
 
-    private class SaveButton extends JButton implements ActionListener {
+    private class SaveButton extends JButton implements ActionListener, MouseListener {
 
         public SaveButton() {
-            super(new ImageIcon("images/icone_sauvegarde.png"));
+            super(new ImageIcon("images/icone_sauvegardeRed.png"));
+            setBorderPainted(false);
+           
             //int size = 17;
             //setPreferredSize(new Dimension(size, size));
             setMargin(new Insets(0, 0, 0, 0));
-            setToolTipText("save this tab");
+            setToolTipText("sauver le probleme");
             //Make the button looks the same for all Laf's
             setUI(new BasicButtonUI());
             //Make it transparent
@@ -64,6 +66,7 @@ public class ButtonTabComponent extends JPanel {
             //No need to be focusable
             setFocusable(false);
             //Close the proper tab by clicking the button
+            addMouseListener(this);
             addActionListener(this);
         }
 
@@ -71,9 +74,28 @@ public class ButtonTabComponent extends JPanel {
             int i = pane.indexOfTabComponent(ButtonTabComponent.this);
             if (i != -1) {
 
-
-                ((JPanelProbleme) pane.getComponentAt(i)).enregisrer();
+                ((JPanelProbleme) pane.getComponentAt(i)).enregisrer(i);
             }
+        }
+
+        public void mouseClicked(MouseEvent e) {
+
+        }
+
+        public void mousePressed(MouseEvent e) {
+
+        }
+
+        public void mouseReleased(MouseEvent e) {
+
+        }
+
+        public void mouseEntered(MouseEvent e) {
+            setIcon(new ImageIcon("images/icone_sauvegarde.png"));
+        }
+
+        public void mouseExited(MouseEvent e) {
+            setIcon(new ImageIcon("images/icone_sauvegardeRed.png"));
         }
     }
 
@@ -82,7 +104,7 @@ public class ButtonTabComponent extends JPanel {
         public TabButton() {
             int size = 17;
             setPreferredSize(new Dimension(size, size));
-            setToolTipText("close this tab");
+            setToolTipText("fermer l'onglet");
             //Make the button looks the same for all Laf's
             setUI(new BasicButtonUI());
             //Make it transparent
@@ -104,7 +126,6 @@ public class ButtonTabComponent extends JPanel {
             if (i != -1) {
                 pane.remove(i);
 
-                //  ((JPanelProbleme) pane.getComponentAt(i)).getProbleme();
             }
         }
 

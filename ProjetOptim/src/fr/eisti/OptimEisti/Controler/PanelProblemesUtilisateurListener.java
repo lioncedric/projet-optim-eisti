@@ -132,12 +132,19 @@ public class PanelProblemesUtilisateurListener implements ActionListener, MouseL
             //et on genere la solution par l'algorithme du simplexe
             Solution solution = new Solution(p.formaliserProbleme(), p.getCoeffVariables().size());
 
-        }
-        else if (e.getSource() == this.ppu.getBoutonNew()) {
-            //on en crée un à la suite des autres et on lui attribue le titre "Sans nom"
-            Main.fenetrePrincipale.getDroite().add("Sans nom", new JPanelProbleme(BddProbleme.nombreProblemes()));
-            Main.fenetrePrincipale.getDroite().setTabComponentAt(Main.fenetrePrincipale.getDroite().getTabCount() - 1, new ButtonTabComponent(Main.fenetrePrincipale.getDroite()));
-            Main.fenetrePrincipale.getDroite().setSelectedIndex(Main.fenetrePrincipale.getDroite().getTabCount() - 1);
+        } else if (e.getSource() == this.ppu.getBoutonNew()) {
+            boolean nouveau = false;
+            int i = 0;
+            while (i < Main.fenetrePrincipale.getDroite().getTabCount() && !nouveau) {
+                nouveau = Main.fenetrePrincipale.getDroite().getTitleAt(i).equals("Sans nom");
+                i++;
+            }
+            if (!nouveau) {
+                //on en crée un à la suite des autres et on lui attribue le titre "Sans nom"
+                Main.fenetrePrincipale.getDroite().add("Sans nom", new JPanelProbleme(BddProbleme.nombreProblemes()));
+                Main.fenetrePrincipale.getDroite().setTabComponentAt(Main.fenetrePrincipale.getDroite().getTabCount() - 1, new ButtonTabComponent(Main.fenetrePrincipale.getDroite()));
+                Main.fenetrePrincipale.getDroite().setSelectedIndex(Main.fenetrePrincipale.getDroite().getTabCount() - 1);
+            }
         }
     }
 
