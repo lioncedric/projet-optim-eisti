@@ -104,7 +104,7 @@ public class PanelProblemesUtilisateurListener implements ActionListener, MouseL
             if (numero != -1) {
                 try {
                     JFileChooser fc = new JFileChooser();
-                    fc.addChoosableFileFilter(new FiltreSimple("Fichier Excel", ".xls"));
+                    fc.addChoosableFileFilter(new FiltreSimple("Fichier Excel", ".csv"));
                     fc.addChoosableFileFilter(new FiltreSimple("Fichier Scilab", ".sci"));
                     fc.setAcceptAllFileFilterUsed(false);
                     int returnVal = fc.showSaveDialog(null);
@@ -112,8 +112,8 @@ public class PanelProblemesUtilisateurListener implements ActionListener, MouseL
                         String nom = fc.getSelectedFile().getAbsolutePath();
                         String type = fc.getFileFilter().getDescription();
                         if (type.equals("Fichier Excel")) {
-                            if (!nom.endsWith(".xls")) {
-                                nom = nom + ".xls";
+                            if (!nom.endsWith(".csv")) {
+                                nom = nom + ".csv";
                             }
                             BddProbleme.exporterExcel(BddProbleme.getProbleme(numero), nom);
                         } else if (type.equals("Fichier Scilab")) {
