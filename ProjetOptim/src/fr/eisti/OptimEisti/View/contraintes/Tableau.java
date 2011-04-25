@@ -46,6 +46,7 @@ public class Tableau extends JPanel{
                  * @param nbVariable : le nombre de variable comprise dans le tableau
                  */
         	public Tableau(int nbLigne,int nbVariable){
+                      this.nbVariable = nbVariable;
                     //si on appel le constructeur avec un nombre de ligne égale à zéro, on en met au moins une
                     if(nbLigne==0){
                         nbLigne=1;

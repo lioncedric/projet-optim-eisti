@@ -1,4 +1,4 @@
-package fr.eisti.OptimEisti.View.contraintes;
+package fr.eisti.OptimEisti.View;
 
 import javax.swing.*;
 import javax.swing.plaf.basic.BasicButtonUI;
@@ -11,6 +11,7 @@ import java.awt.event.*;
  * a JButton to close the tab it belongs to
  */
 public class ButtonTabComponent extends JPanel {
+
     private final JTabbedPane pane;
 
     public ButtonTabComponent(final JTabbedPane pane) {
@@ -21,9 +22,11 @@ public class ButtonTabComponent extends JPanel {
         }
         this.pane = pane;
         setOpaque(false);
-
+        SaveButton save = new SaveButton();
+        add(save);
         //make JLabel read titles from JTabbedPane
         JLabel label = new JLabel() {
+
             @Override
             public String getText() {
                 int i = pane.indexOfTabComponent(ButtonTabComponent.this);
@@ -34,9 +37,11 @@ public class ButtonTabComponent extends JPanel {
             }
         };
 
+      
+      
         add(label);
         //add more space between the label and the button
-        label.setBorder(BorderFactory.createEmptyBorder(0, 0, 0, 5));
+        label.setBorder(BorderFactory.createEmptyBorder(0, 5, 0, 5));
         //tab button
         JButton button = new TabButton();
         add(button);
@@ -44,7 +49,36 @@ public class ButtonTabComponent extends JPanel {
         setBorder(BorderFactory.createEmptyBorder(2, 0, 0, 0));
     }
 
+    private class SaveButton extends JButton implements ActionListener {
+
+        public SaveButton() {
+            super(new ImageIcon("images/icone_sauvegarde.png"));
+            //int size = 17;
+            //setPreferredSize(new Dimension(size, size));
+            setMargin(new Insets(0, 0, 0, 0));
+            setToolTipText("save this tab");
+            //Make the button looks the same for all Laf's
+            setUI(new BasicButtonUI());
+            //Make it transparent
+            setContentAreaFilled(false);
+            //No need to be focusable
+            setFocusable(false);
+            //Close the proper tab by clicking the button
+            addActionListener(this);
+        }
+
+        public void actionPerformed(ActionEvent e) {
+            int i = pane.indexOfTabComponent(ButtonTabComponent.this);
+            if (i != -1) {
+
+
+                ((JPanelProbleme) pane.getComponentAt(i)).enregisrer();
+            }
+        }
+    }
+
     private class TabButton extends JButton implements ActionListener {
+
         public TabButton() {
             int size = 17;
             setPreferredSize(new Dimension(size, size));
@@ -69,6 +103,8 @@ public class ButtonTabComponent extends JPanel {
             int i = pane.indexOfTabComponent(ButtonTabComponent.this);
             if (i != -1) {
                 pane.remove(i);
+
+                //  ((JPanelProbleme) pane.getComponentAt(i)).getProbleme();
             }
         }
 
@@ -97,7 +133,6 @@ public class ButtonTabComponent extends JPanel {
             g2.dispose();
         }
     }
-
     private final static MouseListener buttonMouseListener = new MouseAdapter() {
 
         @Override
@@ -119,4 +154,3 @@ public class ButtonTabComponent extends JPanel {
         }
     };
 }
-

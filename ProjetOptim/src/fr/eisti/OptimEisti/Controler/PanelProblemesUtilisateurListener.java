@@ -4,20 +4,17 @@ import fr.eisti.OptimEisti.View.PanelProblemesUtilisateur;
 import fr.eisti.OptimEisti.Main;
 import fr.eisti.OptimEisti.Model.*;
 import fr.eisti.OptimEisti.Model.Solution;
-import fr.eisti.OptimEisti.View.contraintes.ButtonTabComponent;
+import fr.eisti.OptimEisti.View.ButtonTabComponent;
 import fr.eisti.OptimEisti.View.JPanelProbleme;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
-import java.io.File;
 
 import javax.swing.JFileChooser;
 import javax.swing.JList;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
-import javax.swing.filechooser.FileFilter;
-import javax.swing.filechooser.FileNameExtensionFilter;
 
 /**
  * Classe qui écoute les actions du panel de problemes utilisateur

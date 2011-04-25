@@ -21,6 +21,8 @@ import javax.swing.JRadioButton;
 import javax.swing.JSlider;
 import javax.swing.JTextField;
 import fr.eisti.OptimEisti.Controler.MoreListener;
+import fr.eisti.OptimEisti.Main;
+import fr.eisti.OptimEisti.Model.BddProbleme;
 import fr.eisti.OptimEisti.Model.Contrainte;
 import fr.eisti.OptimEisti.Model.Probleme;
 import java.awt.BorderLayout;
@@ -28,6 +30,7 @@ import java.awt.Dimension;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.util.ArrayList;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -74,22 +77,64 @@ public class JPanelProbleme extends JPanel {
         fsl = new FenetreSaisieListener();
         this.probleme = new Probleme();
         probleme.setNumero(numero);
-        initialiserVariablesPanelGauche();
-        traitementPanelGauche();
+        initialiserVariables();
+        traitementPanel();
         raffraichitTabContrainte(probleme.getContraintes());
     }
     public JPanelProbleme(Probleme probleme) {
         fsl = new FenetreSaisieListener();
         this.probleme = probleme;
-        initialiserVariablesPanelGauche();
-        traitementPanelGauche();
+        initialiserVariables();
+        traitementPanel();
         remplissage();
     }
        /**
      * initialise le proble aux valeurs rentrées par l'utilisateur
      * @param fenetre le fenetre contenant les informations du probleme
      */
- 
+     public void enregisrer()  {
+            boolean titreOK;
+            titreOK = !(this.getJtfTitre().getText().equals(""));
+            boolean descriptionOK;
+            descriptionOK = !(this.getTextfield().getText().equals(""));
+            boolean ligneRempli;
+            ligneRempli = this.getPanTableau().ligneRempli();
+            boolean variablesOK = true;
+            for (int i = 0; i < this.getSlide().getValue(); i++) {
+                JTextField jtf = (JTextField) (this.getPanDonnees().getComponent(3 * i + 1));
+                variablesOK = variablesOK && !(jtf.getText().equals("")) && !(jtf.getText().equals("0"));
+                try {
+                    double valeur = Double.valueOf(jtf.getText());
+                } catch (NumberFormatException nfe) {
+                    variablesOK = false;
+                }
+            }
+            if (titreOK && descriptionOK && variablesOK && ligneRempli) {
+                Probleme p = this.getProbleme();
+                p.renseignerProbleme(this);
+                if (p.getNumero() < BddProbleme.nombreProblemes()) {
+                    int numero = p.getNumero();
+                    BddProbleme.supprimerProbleme(numero);
+                    for (int i = 0; i < Main.fenetrePrincipale.getDroite().getTabCount(); i++) {
+                        int numProbeCours = ((JPanelProbleme) Main.fenetrePrincipale.getDroite().getComponentAt(i)).getProbleme().getNumero();
+                        if (numProbeCours > numero) {
+                            ((JPanelProbleme) Main.fenetrePrincipale.getDroite().getComponentAt(i)).getProbleme().setNumero(numProbeCours - 1);
+
+                        }
+
+                    }
+                }
+                p.setNumero(BddProbleme.nombreProblemes());
+                BddProbleme.addProbleme(p);
+                int currentIndex = Main.fenetrePrincipale.getDroite().getSelectedIndex();
+                Main.fenetrePrincipale.getDroite().setTitleAt(currentIndex, p.getTitre());
+                Main.fenetrePrincipale.getPanProfil().miseAJour();
+                Main.fenetrePrincipale.getGauche().miseajour();
+
+            } else {
+                JOptionPane.showMessageDialog(null, "Vous n'avez pas bien rempli tous les parametres "+titreOK + descriptionOK + variablesOK + ligneRempli, "Erreur", JOptionPane.ERROR_MESSAGE);
+            }
+        }
     private void remplissage() {
         this.jtfTitre.setText(this.probleme.getTitre());
         this.textfield.setText(this.probleme.getDescription());
@@ -161,9 +206,8 @@ public class JPanelProbleme extends JPanel {
         pan3.add(panEst, BorderLayout.SOUTH);
     }
 
-    private void traitementPanelGauche() {
-        System.out.println("entrer dans tpg");
-        //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+    private void traitementPanel() {
+      
         pan2.setLayout(new GridLayout(7, 1, 0, 0));
         this.setLayout(new GridBagLayout());
         GridBagConstraints contrainteLayout = new GridBagConstraints();
@@ -224,7 +268,7 @@ public class JPanelProbleme extends JPanel {
         this.validate();
     }
 
-    private void initialiserVariablesPanelGauche() {
+    private void initialiserVariables() {
         pan2 = new JPanel();
         pan3 = new JPanel();
         panTitre = new JPanel();
@@ -233,8 +277,6 @@ public class JPanelProbleme extends JPanel {
         panDonnees = new JPanel();
         panEst = new JPanel();
         panNord = new JPanel();
-        panTableau = new Tableau(nbVariable);
-
         titre = new JLabel("Titre du probleme: ");
         description = new JLabel("Description du problème", JLabel.CENTER);
         variables = new JLabel("Nombre de variables");
@@ -354,13 +396,9 @@ public class JPanelProbleme extends JPanel {
         this.minimiser = minimiser;
     }
 
-    public int getNbVariable() {
-        return nbVariable;
-    }
+  
 
-    public void setNbVariable(int nbVariable) {
-        this.nbVariable = nbVariable;
-    }
+   
 
     public int getNumProbleme() {
         return numProbleme;
