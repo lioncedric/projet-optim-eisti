@@ -21,7 +21,7 @@ public class Tableau extends JPanel{
          * @param nbVariable : nb de variable voulu
          */
 	public Tableau(int nbVariable){
-            this.addKeyListener(new SaveListener());
+         
                 this.nbVariable = nbVariable;
 		//on initialise le titre et le contenu du tableau
                 title = new String[nbVariable+3];
@@ -86,7 +86,8 @@ public class Tableau extends JPanel{
                     ModelTab t = new ModelTab(data,title);
                     //on creer un tableau a partir de ce model
                     table = new JTable(t);
-
+                    table.addKeyListener(new SaveListener());
+                    table.addMouseListener(new SaveListener());
                     //on creer une JCombobox qui nous permettra de donner à l'utilisateur un choix restreint d'opérateur à choisir
                     JComboBox test = new JComboBox();
 

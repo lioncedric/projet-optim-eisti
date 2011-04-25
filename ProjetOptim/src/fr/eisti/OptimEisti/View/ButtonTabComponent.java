@@ -13,6 +13,11 @@ import java.awt.event.*;
 public class ButtonTabComponent extends JPanel {
 
     private final JTabbedPane pane;
+    SaveButton save;
+
+    public SaveButton getSave() {
+        return save;
+    }
 
     public ButtonTabComponent(final JTabbedPane pane) {
         //unset default FlowLayout' gaps
@@ -22,7 +27,7 @@ public class ButtonTabComponent extends JPanel {
         }
         this.pane = pane;
         setOpaque(false);
-        SaveButton save = new SaveButton();
+       save = new SaveButton();
         add(save);
         //make JLabel read titles from JTabbedPane
         JLabel label = new JLabel() {
@@ -49,7 +54,7 @@ public class ButtonTabComponent extends JPanel {
         setBorder(BorderFactory.createEmptyBorder(2, 0, 0, 0));
     }
 
-    private class SaveButton extends JButton implements ActionListener, MouseListener {
+    public class SaveButton extends JButton implements ActionListener, MouseListener {
 
         public SaveButton() {
             super(new ImageIcon("images/icone_sauvegardeRed.png"));

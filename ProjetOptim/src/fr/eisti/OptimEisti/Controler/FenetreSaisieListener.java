@@ -56,6 +56,7 @@ public class FenetreSaisieListener implements ChangeListener, ActionListener, Co
         for (int i = 0; i < source.getValue(); i++) {
             try {
                 JTextField jtf = (JTextField) (((JPanelProbleme) Main.fenetrePrincipale.getDroite().getSelectedComponent()).getPanDonnees().getComponent(3 * i + 1));
+               
                 a.add(jtf.getText());
             } catch (ArrayIndexOutOfBoundsException aioobe) {
             }
@@ -64,7 +65,10 @@ public class FenetreSaisieListener implements ChangeListener, ActionListener, Co
         ((JPanelProbleme) Main.fenetrePrincipale.getDroite().getSelectedComponent()).getPanDonnees().removeAll();
 
         ((JPanelProbleme) Main.fenetrePrincipale.getDroite().getSelectedComponent()).getPanDonnees().add(new JLabel("y="));
-        ((JPanelProbleme) Main.fenetrePrincipale.getDroite().getSelectedComponent()).getPanDonnees().add(new JTextField(3));
+         JTextField jtff = new JTextField(3);
+         
+        ((JPanelProbleme) Main.fenetrePrincipale.getDroite().getSelectedComponent()).getPanDonnees().add(jtff);
+          jtff.addKeyListener(new SaveListener());
         ((JPanelProbleme) Main.fenetrePrincipale.getDroite().getSelectedComponent()).getPanDonnees().add(new JLabel("x0"));
 
         for (int i = 1; i < source.getValue(); i++) {

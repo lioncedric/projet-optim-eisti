@@ -180,6 +180,7 @@ public class PanelProblemesUtilisateurListener implements ActionListener, MouseL
                     i++;
                 }
             }
+             SaveListener.estmodifié();
         }
     }
 
