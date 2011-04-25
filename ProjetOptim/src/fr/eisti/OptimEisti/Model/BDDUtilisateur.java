@@ -15,7 +15,7 @@ public class BDDUtilisateur {
     private static String NomUtilisateur;
     private static String motDePasse;
     private static String image;
-     private static String chFichierIdentification="./bdd/identification.xml";
+    private static String chFichierIdentification = "./bdd/identification.xml";
 
     /**
      * permet de créer un nouvel utilisateur
@@ -76,9 +76,9 @@ public class BDDUtilisateur {
                 System.out.println(liste.item(i).getAttributes().getNamedItem("login").getNodeValue());
                 //permet de transformer le dom en xml
                 Utilitaire.transformerXml(document, chFichierIdentification);
-                File fichier = new File("bdd/"+NomUtilisateur + ".xml");
+                File fichier = new File("bdd/" + NomUtilisateur + ".xml");
                 if (fichier.exists()) {
-                    fichier.renameTo(new File("bdd/"+login + ".xml"));
+                    fichier.renameTo(new File("bdd/" + login + ".xml"));
                 }
             }
             //incrémentation du i
@@ -121,17 +121,14 @@ public class BDDUtilisateur {
                 existe = true;
                 //on modifie le nom d'utilisateur avec le login
                 NomUtilisateur = login;
+                //on met à jour les variables de mot de passe et d'image avec les bonnes valeurs
                 motDePasse = mdp;
                 image = liste.item(i).getAttributes().getNamedItem("imagesrc").getNodeValue();
             }
             //incrémentation du i
             i++;
         }
-
-
-
-
-        //on retourne le bool�en
+        //on retourne le booléen
         return existe;
     }
 
@@ -165,9 +162,6 @@ public class BDDUtilisateur {
             //incrémentation du i
             i++;
         }
-
-
-
         //on retourne le booléen
         return existe;
     }

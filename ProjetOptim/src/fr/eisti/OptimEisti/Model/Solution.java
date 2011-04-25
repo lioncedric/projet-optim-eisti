@@ -4,25 +4,30 @@
 package fr.eisti.OptimEisti.Model;
 
 /**
- *
- * @author Administrator
+ * Classe qui permet de générer la solution à un problème d'optimisation mathématique
+ * @author Razavet Maël, Lion Cédric, Klelifa Sarah, Gallet Mériadec
+ * @version: 1.0
  */
 public class Solution {
 
-    //declarations des variables de classe
+    //declarations d'un tableau destiné à contenir la solution de notre probème
     double[] solution;
 
     /**
-     * Constructeur qui permet de creer la soluton d'un probleme
+     * Constructeur qui permet de creer la soluton d'un problème
+     * @param matrice
+     * @param nbVariables : nombre de variables imaginaires
+     * @param nbVariables 
      */
-    public Solution(double[][] matrice,int nbVariables) {
+    public Solution(double[][] matrice, int nbVariables) {
         //declaration du tableau destine a contenir la solution
         solution = new double[nbVariables + 1];//le nombre de variables + le maximum atteint par la fonction
         init(matrice);
     }
 
-        /**
+    /**
      * Procedure qui s'occupe du traitement a faire pour generer la solution au probleme en appelant les autres fonctions
+     * @param matrice 
      */
     public void init(double[][] matrice) {
         //booleen permettant de savoir si le probleme est resolu ou pas
@@ -36,7 +41,7 @@ public class Solution {
             //on appelle la focntion qui permet de faire la reduction pivot
             reductionPivot(matrice, tabCoordPivot);
             resolu = problemeResolu(matrice);
-            System.out.println("Le probleme est-il resolu ? "+resolu);
+            System.out.println("Le probleme est-il resolu ? " + resolu);
         }
         //on stocke les valeurs de la solution dans la variable adéquate
         exporterSolution(matrice, solution);
@@ -48,7 +53,6 @@ public class Solution {
     /**
      * Fonction qui retourne un tableau de 2 variables contenant le numero de la ligne et le numero de la colonne ou se trouve le pivot dans la matrice
      * @param matrice : matrice representant le probleme
-     * @param nb : nombre de variables imaginaires
      * @return tab : un tableau de 2 variables contenant le numero de la ligne et le numero de la colonne ou se trouve le pivot dans la matrice
      */
     public int[] chercherPivot(double[][] matrice) {
@@ -97,7 +101,6 @@ public class Solution {
     /**
      * Fonction qui dit si un probleme est resolu ou pas
      * @param matrice : matrice representant le probleme
-     * @param nb : nombre de variables imaginaires
      * @return resolu : un booleen selon si le probleme est resolu ou pas.
      */
     public boolean problemeResolu(double[][] matrice) {
@@ -119,7 +122,6 @@ public class Solution {
     /**
      * Procedure permettant de faire la reduction de la matrice par la methode du pivot dze Gauss
      * @param matrice : matrice representant le probleme
-     * @param nb : nombre de variables imaginaires
      * @param tab : le tableau contenant le numero de la ligne et le numero de la colonne ou se trouve le pivot dans la matrice
      */
     public void reductionPivot(double[][] matrice, int[] tab) {
@@ -149,7 +151,7 @@ public class Solution {
         }
         System.out.println("FIN etape 1");
         System.out.println("\n");
-        
+
         //pour chaque ligne de la matrice
         for (int i = 0; i < matrice.length; i++) {
             //si la ligne n'est pas celle contenant le pivot
@@ -180,7 +182,6 @@ public class Solution {
     /**
      * Procedure qui permet d'exporter la solution sous forme de tableau
      * @param matrice : matrice representant le probleme
-     * @param nb : nombre de variables imaginaires
      * @param tabSolutions : le tableau destine a contenir la solution
      */
     public void exporterSolution(double[][] matrice, double[] tabSolutions) {

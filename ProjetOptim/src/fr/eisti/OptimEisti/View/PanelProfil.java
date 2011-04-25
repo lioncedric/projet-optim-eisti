@@ -1,7 +1,3 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package fr.eisti.OptimEisti.View;
 
 import fr.eisti.OptimEisti.Controler.PanelProfilListener;
@@ -23,8 +19,9 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 /**
- *
- * @author Administrator
+ * Classe permettant de créer le panel de profil de l'utilisateur
+ * @author Razavet Maël, Lion Cédric, Klelifa Sarah, Gallet Mériadec
+ * @version: 1.0
  */
 public class PanelProfil extends JPanel {
 
@@ -46,9 +43,9 @@ public class PanelProfil extends JPanel {
 
     public void initialiserVariables() {
         this.panHaut = new JPanel();
-        PanelProfil.panImage = new JPanel();
+        this.panImage = new JPanel();
         this.panDroite = new JPanel();
-        PanelProfil.nomUtilisateur = new JLabel(BDDUtilisateur.getNomUtilisateur(), JLabel.CENTER);
+        this.nomUtilisateur = new JLabel(BDDUtilisateur.getNomUtilisateur(), JLabel.CENTER);
         this.nbProblemes = new JLabel(String.valueOf(BddProbleme.nombreProblemes()) + " probleme(s)", JLabel.CENTER);
         this.panBouton = new JPanel();
         this.boutonProfil = new JButton("Gérer mon profil");
@@ -77,7 +74,7 @@ public class PanelProfil extends JPanel {
         this.panHaut.add(this.panDroite, BorderLayout.CENTER);
         this.add(this.panHaut, BorderLayout.CENTER);
         this.add(this.panBouton, BorderLayout.SOUTH);
-        this.boutonProfil.addActionListener(new PanelProfilListener(this));
+        this.boutonProfil.addActionListener(new PanelProfilListener());
     }
 
     public void modification(){
@@ -89,6 +86,11 @@ public class PanelProfil extends JPanel {
         this.panHaut.add(PanelProfil.panImage, BorderLayout.WEST);
         this.panHaut.add(this.panDroite, BorderLayout.CENTER);
     }
+
+    /**
+     * Procédure permetant de mettre le fond du panel en couleur
+     * @param couleur : la couleur que l'on veut mettre en fond
+     */
     public void mettreCouleur(Color couleur) {
         this.panBouton.setOpaque(false);
         this.panDroite.setOpaque(false);
@@ -99,6 +101,8 @@ public class PanelProfil extends JPanel {
     public void miseAJour(){
         this.nbProblemes.setText(String.valueOf(BddProbleme.nombreProblemes()) + " probleme(s)");
     }
+    
+    
     public static JLabel getNomUtilisateur() {
         return nomUtilisateur;
     }

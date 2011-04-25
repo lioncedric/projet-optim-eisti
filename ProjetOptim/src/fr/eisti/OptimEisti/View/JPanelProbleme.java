@@ -304,227 +304,36 @@ public class JPanelProbleme extends JPanel {
         icon = null;
     }
 
-   
-
-    public JButton getAjouter() {
-        return ajouter;
-    }
-
-    public void setAjouter(JButton ajouter) {
-        this.ajouter = ajouter;
-    }
-
-    public ButtonGroup getBoutonsObjectif() {
-        return boutonsObjectif;
-    }
-
-    public void setBoutonsObjectif(ButtonGroup boutonsObjectif) {
-        this.boutonsObjectif = boutonsObjectif;
-    }
-
-   
-
-    public JLabel getDescription() {
-        return description;
-    }
-
-    public void setDescription(JLabel description) {
-        this.description = description;
-    }
-
-    public JLabel getDonnees() {
-        return donnees;
-    }
-
-    public void setDonnees(JLabel donnees) {
-        this.donnees = donnees;
-    }
-
-    public Image getFond() {
-        return fond;
-    }
-
-    public void setFond(Image fond) {
-        this.fond = fond;
-    }
-
-    public ImageIcon getIcon() {
-        return icon;
-    }
-
-    public void setIcon(ImageIcon icon) {
-        this.icon = icon;
-    }
-
-    public Image getItem() {
-        return item;
-    }
-
-    public void setItem(Image item) {
-        this.item = item;
-    }
-
-    public JTextField getJtfTitre() {
-        return jtfTitre;
-    }
-
-    public void setJtfTitre(JTextField jtfTitre) {
-        this.jtfTitre = jtfTitre;
-    }
-
-    public PanelProblemesUtilisateur getListe() {
-        return liste;
-    }
-
-    public void setListe(PanelProblemesUtilisateur liste) {
-        this.liste = liste;
-    }
-
-    public JRadioButton getMaximiser() {
-        return maximiser;
-    }
-
-    public void setMaximiser(JRadioButton maximiser) {
-        this.maximiser = maximiser;
-    }
-
-    public JRadioButton getMinimiser() {
-        return minimiser;
-    }
-
-    public void setMinimiser(JRadioButton minimiser) {
-        this.minimiser = minimiser;
-    }
-
-  
-
-   
-
-    public int getNumProbleme() {
-        return numProbleme;
-    }
-
-    public void setNumProbleme(int numProbleme) {
-        this.numProbleme = numProbleme;
-    }
-
-    public JLabel getObjectif() {
-        return objectif;
-    }
-
-    public void setObjectif(JLabel objectif) {
-        this.objectif = objectif;
-    }
-
-    public JPanel getPan2() {
-        return pan2;
-    }
-
-    public void setPan2(JPanel pan2) {
-        this.pan2 = pan2;
-    }
-
-    public JPanel getPan3() {
-        return pan3;
-    }
-
-    public void setPan3(JPanel pan3) {
-        this.pan3 = pan3;
-    }
-
     public JPanel getPanDonnees() {
         return panDonnees;
-    }
-
-    public void setPanDonnees(JPanel panDonnees) {
-        this.panDonnees = panDonnees;
-    }
-
-    public JPanel getPanEst() {
-        return panEst;
-    }
-
-    public void setPanEst(JPanel panEst) {
-        this.panEst = panEst;
-    }
-
-    public JPanel getPanNord() {
-        return panNord;
-    }
-
-    public void setPanNord(JPanel panNord) {
-        this.panNord = panNord;
-    }
-
-    public JPanel getPanObjectif() {
-        return panObjectif;
-    }
-
-    public void setPanObjectif(JPanel panObjectif) {
-        this.panObjectif = panObjectif;
     }
 
     public Tableau getPanTableau() {
         return panTableau;
     }
 
-    public void setPanTableau(Tableau panTableau) {
-        this.panTableau = panTableau;
-    }
-
-    public JPanel getPanTitre() {
-        return panTitre;
-    }
-
-    public void setPanTitre(JPanel panTitre) {
-        this.panTitre = panTitre;
-    }
-
-    public JPanel getPanVariables() {
-        return panVariables;
-    }
-
-    public void setPanVariables(JPanel panVariables) {
-        this.panVariables = panVariables;
+    public JTextField getJtfTitre() {
+        return jtfTitre;
     }
 
     public Probleme getProbleme() {
         return probleme;
     }
 
-    public void setProbleme(Probleme probleme) {
-        this.probleme = probleme;
-    }
-
     public JSlider getSlide() {
         return slide;
-    }
-
-    public void setSlide(JSlider slide) {
-        this.slide = slide;
     }
 
     public JTextField getTextfield() {
         return textfield;
     }
 
-    public void setTextfield(JTextField textfield) {
-        this.textfield = textfield;
+    public JRadioButton getMaximiser() {
+        return maximiser;
     }
 
-    public JLabel getTitre() {
-        return titre;
+    public JRadioButton getMinimiser() {
+        return minimiser;
     }
 
-    public void setTitre(JLabel titre) {
-        this.titre = titre;
-    }
-
-    public JLabel getVariables() {
-        return variables;
-    }
-
-    public void setVariables(JLabel variables) {
-        this.variables = variables;
-    }
 }

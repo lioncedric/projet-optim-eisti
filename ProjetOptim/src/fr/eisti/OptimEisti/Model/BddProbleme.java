@@ -14,7 +14,7 @@ import javax.xml.validation.Schema;
 
 /**
  * classe relative a un document de type xml chargé en memoire
- * @author Razavet Maël, Lion Cédric, Klelifa Sarah, Gallet Meriadec
+ * @author Razavet Maël, Lion Cédric, Klelifa Sarah, Gallet Mériadec
  */
 public class BddProbleme {
 
@@ -97,19 +97,26 @@ public class BddProbleme {
     }
 
     /**
-     * Fonction qui renvoie le numero du probleme ayant pour titre la chaine passe en parametre
+     * Fonction qui renvoie le numero du problème ayant pour titre la chaine passée en paramètre
      * @param nomProbleme
-     * @return Renvoi le numero du probleme dans la liste ou -1 si le probleme n'existe pas
+     * @return Renvoi le numero du probleme dans la liste ou -1 si le problème n'existe pas
      */
     public static int rechercheProbleme(String nomProbleme) {
+        //declaration et initialisation de l'indice que l'on va retourner
         int num = -1;
+        //on selectionne dans l'arbre xml les éléments 'titre'
         NodeList liste = bdd.getDocumentElement().getElementsByTagName("titre");
+        //pour chacun de ces noeuds
         for (int i = 0; i < liste.getLength(); i++) {
-                String lowerNom = liste.item(i).getChildNodes().item(0).getNodeValue();
-                if (lowerNom.equalsIgnoreCase(nomProbleme)) {
-                    num = i;
-                }
+            //on récupère la valeur du titre
+            String lowerNom = liste.item(i).getChildNodes().item(0).getNodeValue();
+            //si le titre du problème correspond au problème recherché
+            if (lowerNom.equalsIgnoreCase(nomProbleme)) {
+                //on stocke dans la variable le numéro du problème ayant ce titre
+                num = i;
+            }
         }
+        //on finit par retourner la valeur
         return num;
     }
 
@@ -247,7 +254,7 @@ public class BddProbleme {
         FileWriter fw = null;
         try {
 
-            fw = new FileWriter(nom , false);
+            fw = new FileWriter(nom, false);
             BufferedWriter sortie = new BufferedWriter(fw);
 
             sortie.write("//Programmation lineaire: " + p.getTitre() + "\n");
@@ -279,7 +286,7 @@ public class BddProbleme {
 
         try {
             //Déclaration et initialisation de flux et variables
-            FileWriter fw = new FileWriter(nom , false);
+            FileWriter fw = new FileWriter(nom, false);
             BufferedWriter output = new BufferedWriter(fw);
 
             ArrayList<Double> coeff = p.getCoeffVariables();//liste des coefficients du problème

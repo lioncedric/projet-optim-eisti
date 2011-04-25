@@ -5,11 +5,13 @@ import java.util.ArrayList;
 import javax.swing.JTextField;
 
 /**
- * classe relative a probleme
- * @author Razavet Maël, Lion Cédric, Klelifa Sarah, Gallet Meriadec
+ * Classe relative à un problème
+ * @author Razavet Maël, Lion Cédric, Klelifa Sarah, Gallet Mériadec
+ * @version: 1.0
  */
 public class Probleme {
 
+    //déclaration des variables nécessaires pour remplir un problème
     private int numero;
     private String description = "";
     private String titre = "";
@@ -17,34 +19,50 @@ public class Probleme {
     private ArrayList<Double> coeffVariables = new ArrayList<Double>();
     private ArrayList<Contrainte> contraintes = new ArrayList<Contrainte>();
 
+    /**
+     * Constructeur vide
+     */
     public Probleme() {
     }
 
+    /**
+     * Constructeur permettant de créer un problème à l'aide des informations contenues dans la fenêtre passée en paramètre
+     * @param pFenetre 
+     */
     public Probleme(JPanelProbleme pFenetre) {
         renseignerProbleme(pFenetre);
     }
 
     /**
-     * initialise le proble aux valeurs rentrées par l'utilisateur
+     * initialise le problème aux valeurs rentrées par l'utilisateur
      * @param fenetre le fenetre contenant les informations du probleme
      */
     public final void renseignerProbleme(JPanelProbleme fenetre) {
+        //récupération du titre du problème
         this.titre = fenetre.getJtfTitre().getText();
+        //récupération de la description du problème
         this.description = fenetre.getTextfield().getText();
         this.coeffVariables.clear();
+        //récupération de l'objectif du problème
         if (fenetre.getMaximiser().isSelected()) {
             this.objectif = "Maximiser";
         } else if (fenetre.getMinimiser().isSelected()) {
             this.objectif = "Minimiser";
         } else {
         }
+        //récupération des valeurs des variables du problème
         for (int i = 0; i < fenetre.getSlide().getValue(); i++) {
             JTextField jtf = (JTextField) (fenetre.getPanDonnees().getComponent(3 * i + 1));
             this.coeffVariables.add(Double.valueOf(jtf.getText()));
         }
+        //récupération des contraintes du problème
         this.setContraintes(fenetre.getPanTableau().enregistrerContraintes());
     }
 
+    /**
+     * Fonction qui retourne le problème sous forme de matrice pour l'utilisation de la méthode de résolution du simplexe
+     * @return matrice : la matrice correspondante au problème
+     */
     public double[][] formaliserProbleme() {
         //declaration de la matrice representant le probleme pour l'algo du simplexe
         double[][] matrice;
@@ -55,11 +73,13 @@ public class Probleme {
         nbVariablesImg = combienVariablesImg();
         //on peut a present declarer la taille de la matrice
         matrice = new double[nbVariablesImg + 1][this.coeffVariables.size() + nbVariablesImg + 1];
-        //on initialise la matrice avec des zeros
+        //on initialise la matrice avec des zéros
         initMatrice(matrice, nbVariablesImg);
-        //on rempli la matrice avec les differentes donnees du probleme a resoudre (variables, contraintes)
+        //on rempli la matrice avec les différentes données du problème à résoudre (variables, contraintes)
         remplirMatrice(matrice, nbVariablesImg);
         afficherMatrice(matrice, nbVariablesImg);
+
+        //on retourne la matrice
         return matrice;
     }
 
@@ -85,7 +105,7 @@ public class Probleme {
     }
 
     /**
-     * Procedure permettant d'initialiser une matrice avec des 0
+     * Procédure permettant d'initialiser une matrice avec des 0
      * @param matrice : matrice representant le probleme
      * @param nb : nombre de variables imaginaires
      */
@@ -101,8 +121,8 @@ public class Probleme {
     }
 
     /**
-     * Procedure qui remplit la matrice avec tous les elements d'un probleme
-     * @param matrice : matrice representant le probleme
+     * Procédure qui remplit la matrice avec tous les éléments d'un problème
+     * @param matrice : matrice représentant le problème
      * @param nb : nombre de variables imaginaires
      */
     public void afficherMatrice(double[][] matrice, int nb) {
@@ -172,82 +192,51 @@ public class Probleme {
 
     }
 
-    /**
-     * @return the description
-     */
-    public String getDescription() {
-        return description;
-    }
-
-    /**
-     * @param description the description to set
-     */
-    public void setDescription(String description) {
-        this.description = description;
-    }
-
-    /**
-     * @return the titre
-     */
-    public String getTitre() {
-        return titre;
-    }
-
-    /**
-     * @param titre the titre to set
-     */
-    public void setTitre(String titre) {
-        this.titre = titre;
-    }
-
-    /**
-     * @return the objectif
-     */
-    public String getObjectif() {
-        return objectif;
-    }
-
-    /**
-     * @param objectif the objectif to set
-     */
-    public void setObjectif(String objectif) {
-        this.objectif = objectif;
-    }
-
-    /**
-     * @return the coeffVariables
-     */
     public ArrayList<Double> getCoeffVariables() {
         return coeffVariables;
     }
 
-    /**
-     * @param coeffVariables the coeffVariables to set
-     */
-    public void setCoeffVariables(ArrayList<Double> coeffVariables) {
-        this.coeffVariables = coeffVariables;
-    }
-
-    /**
-     * @return the contraintes
-     */
     public ArrayList<Contrainte> getContraintes() {
         return contraintes;
     }
 
-    /**
-     * @param contraintes the contraintes to set
-     */
-    public void setContraintes(ArrayList<Contrainte> contraintes) {
-        this.contraintes = contraintes;
+    public String getDescription() {
+        return description;
     }
 
     public int getNumero() {
         return numero;
     }
 
+    public String getObjectif() {
+        return objectif;
+    }
+
+    public String getTitre() {
+        return titre;
+    }
+
     public void setNumero(int numero) {
         this.numero = numero;
     }
-}
 
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public void setObjectif(String objectif) {
+        this.objectif = objectif;
+    }
+
+    public void setTitre(String titre) {
+        this.titre = titre;
+    }
+
+    public void setCoeffVariables(ArrayList<Double> coeffVariables) {
+        this.coeffVariables = coeffVariables;
+    }
+
+    public void setContraintes(ArrayList<Contrainte> contraintes) {
+        this.contraintes = contraintes;
+    }
+}

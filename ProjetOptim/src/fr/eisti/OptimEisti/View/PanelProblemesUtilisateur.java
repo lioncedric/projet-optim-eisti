@@ -15,80 +15,103 @@ import javax.swing.JPanel;
 import javax.swing.JPopupMenu;
 import javax.swing.JScrollPane;
 import javax.swing.ListSelectionModel;
-import javax.swing.event.ListSelectionEvent;
 
+/**
+ * Classe permettant de créer le panel utilisateur contenant tous ces problèmes ainsi que le panel de recherche et les boutons d'actions
+ * @author Razavet Maël, Lion Cédric, Klelifa Sarah, Gallet Mériadec
+ * @version: 1.0
+ */
 public final class PanelProblemesUtilisateur extends JPanel {
 
-    private JList list;
-    private JScrollPane listScrollPane;
-    private DefaultListModel listModel;
-   
-    private JButton boutonSolution;
-    private JButton boutonNew;
-    private JPanel panBoutons;
-    private JPanel panCentre;
-    private PanelRechercheProbleme panRecherche;
-    private JPopupMenu jpopup;
-    private JMenuItem jMenuItemOuvrir;
-    private JMenuItem jMenuItemExporter;
-    private JMenuItem jMenuItemSuppr;
+    private JList list;                         //declaration de la liste que l'on voit visuellement
+    private JScrollPane listScrollPane;         //declaration d'un jscrollpane destiné à contenir notre liste
+    private DefaultListModel listModel;         //declaration d'une listeModel qui est la liste abstraite que va contenir notre liste visuelle
+    private JButton boutonEnregistrer;          //declaration du bouton permettant l'enregistrement
+    private JButton boutonSolution;             //declaration du bouton permettant de générer la solution
+    private JButton boutonNew;                  //declaration du bouton permettant de créer un nouveau problème
+    private JPanel panBoutons;                  //declaration du panel qui va contenir tous les boutons
+    private JPanel panCentre;                   //declaration du panel qui correspond au centre
+    private PanelRechercheProbleme panRecherche;//declaration du panel permettant la recherche
+    private JPopupMenu jpopup;                  //declaration du jpopupmenu permettant l'affichage du menu déroulant après un clic droit sur un problème de la liste
+    private JMenuItem jMenuItemOuvrir;          //declaration d'un item ouvrir de la liste du jmenupup
+    private JMenuItem jMenuItemExporter;        //declaration d'un item exporter de la liste du jmenupup
+    private JMenuItem jMenuItemSuppr;           //declaration d'un item supprimer de la liste du jmenupup
 
+    /**
+     * Constructeur permettant de créer le panel utilisateur
+     */
     public PanelProblemesUtilisateur() {
         super(new BorderLayout());
         initialiserVariables();
+        layoutListenersEtAutres();
         traitement();
         mettreCouleur(Color.WHITE);
     }
 
+    /**
+     * Procédure permettant d'initialiser toutes les variables déclarées précédemment
+     */
     public void initialiserVariables() {
-        this.boutonNew = new JButton("Nouveau probleme");
+        this.list = new JList(listModel);
+        this.listScrollPane = new JScrollPane(list);
+        this.listModel = new DefaultListModel();
+        this.boutonEnregistrer = new JButton("Enregistrer");
         this.boutonSolution = new JButton("Trouver solution");
-      
+        this.boutonNew = new JButton("Nouveau probleme");
         this.panBoutons = new JPanel();
         this.panCentre = new JPanel();
         this.panRecherche = new PanelRechercheProbleme();
-        this.listModel = new DefaultListModel();
-        this.list = new JList(listModel);
-        this.listScrollPane = new JScrollPane(list);
-
-
         this.jpopup = new JPopupMenu();
         this.jMenuItemOuvrir = new JMenuItem("Ouvrir");
-        jMenuItemOuvrir.addActionListener(new PanelProblemesUtilisateurListener(this));
-        this.jMenuItemSuppr = new JMenuItem("Supprimer");
-        jMenuItemSuppr.addActionListener(new PanelProblemesUtilisateurListener(this));
         this.jMenuItemExporter = new JMenuItem("Exporter");
-        jMenuItemExporter.addActionListener(new PanelProblemesUtilisateurListener(this));
-        this.jpopup.add(this.jMenuItemOuvrir);
-        this.jpopup.add(this.jMenuItemSuppr);
-         this.jpopup.add(this.jMenuItemExporter);
+        this.jMenuItemSuppr = new JMenuItem("Supprimer");
 
-        this.panBoutons.setBorder(BorderFactory.createTitledBorder(null, "Actions possibles", 0, 0, new Font("Serif", Font.ITALIC, 14)));
+    }
 
+    /**
+     * Procédure qui ajoute les listeners sur les composants
+     */
+    public void layoutListenersEtAutres() {
+        this.jMenuItemOuvrir.addActionListener(new PanelProblemesUtilisateurListener(this));
+        this.jMenuItemSuppr.addActionListener(new PanelProblemesUtilisateurListener(this));
+        this.jMenuItemExporter.addActionListener(new PanelProblemesUtilisateurListener(this));
         this.boutonNew.addActionListener(new PanelProblemesUtilisateurListener(this));
         this.boutonSolution.addActionListener(new PanelProblemesUtilisateurListener(this));
      
+        this.list.addMouseListener(new PanelProblemesUtilisateurListener(this));
 
+        this.list.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
         this.panBoutons.setLayout(new GridLayout(3, 1));
         this.panCentre.setLayout(new BorderLayout());
+
+        this.panBoutons.setBorder(BorderFactory.createTitledBorder(null, "Actions possibles", 0, 0, new Font("Serif", Font.ITALIC, 14)));
+        this.listScrollPane.setBorder(BorderFactory.createTitledBorder(null, "Mes problemes", 0, 0, new Font("Serif", Font.ITALIC, 14)));
     }
 
+    /**
+     * Procédure permettant de faire tous les traitements nécessaires
+     */
     public void traitement() {
-        this.list.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+        this.jpopup.add(this.jMenuItemOuvrir);
+        this.jpopup.add(this.jMenuItemSuppr);
+        this.jpopup.add(this.jMenuItemExporter);
+
         this.list.setSelectedIndex(0);
-        this.list.addMouseListener(new PanelProblemesUtilisateurListener(this));
-        this.listScrollPane.setBorder(BorderFactory.createTitledBorder(null, "Mes problemes", 0, 0, new Font("Serif", Font.ITALIC, 14)));
         this.panBoutons.add(this.boutonNew);
        
         this.panBoutons.add(this.boutonSolution);
-
         this.panCentre.add(this.panRecherche, BorderLayout.NORTH);
         this.panCentre.add(this.listScrollPane, BorderLayout.CENTER);
+
         this.add(panCentre, BorderLayout.CENTER);
         this.add(panBoutons, BorderLayout.PAGE_END);
         miseajour();
     }
 
+    /**
+     * Procédure permetant de mettre le fond du panel en couleur
+     * @param couleur : la couleur que l'on veut mettre en fond
+     */
     public void mettreCouleur(Color couleur) {
         this.panCentre.setOpaque(false);
         this.listScrollPane.setOpaque(false);
@@ -97,31 +120,29 @@ public final class PanelProblemesUtilisateur extends JPanel {
         this.list.setBackground(new Color(209, 238, 238));
     }
 
+    /**
+     * Fonction qui renvoie un booleen pour dire si le nom du problème passé en paramètre existe déjà dans la liste ou pas
+     * @param name
+     * @return le booleen correspondant
+     */
     protected boolean alreadyInList(String name) {
-        return listModel.contains(name);
+        return this.listModel.contains(name);
     }
 
-    public void valueChanged(ListSelectionEvent e) {
-        /* int numero = ((JList) e.getSource()).getSelectedIndex();
-        if (numero != -1) {
-        Probleme probleme;
-        probleme = BddProbleme.getProbleme(numero);
-        Main.fenetrePrincipale.raz();
-        Main.fenetrePrincipale.traitementPanelGauche();
-        Main.fenetrePrincipale.remplissage(probleme);
-        Main.fenetrePrincipale.setNumProbleme(numero);
-        }*/
-    }
-
+    /**
+     * Procédure miseajour qui raffraichit la liste des problèmes de l'utilisateur
+     */
     public void miseajour() {
-        listModel.removeAllElements();
-
+        //on commence par supprimer tous les éléments
+        this.listModel.removeAllElements();
+        //puis on ajoute un à un tous les problèmes
         for (int i = 0; i < BddProbleme.nombreProblemes(); i++) {
-            listModel.addElement(BddProbleme.getProbleme(i).getTitre());
+            this.listModel.addElement(BddProbleme.getProbleme(i).getTitre());
         }
 
     }
 
+    //LES GETTERS AND SETTERS
     public JList getList() {
         return list;
     }
@@ -146,7 +167,8 @@ public final class PanelProblemesUtilisateur extends JPanel {
     public JMenuItem getjMenuItemSuppr() {
         return jMenuItemSuppr;
     }
-      public JMenuItem getjMenuItemExporter() {
+
+    public JMenuItem getjMenuItemExporter() {
         return jMenuItemExporter;
     }
 
@@ -157,5 +179,4 @@ public final class PanelProblemesUtilisateur extends JPanel {
     public PanelRechercheProbleme getPanRecherche() {
         return panRecherche;
     }
-
 }
