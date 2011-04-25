@@ -19,9 +19,11 @@ public class Probleme {
     private ArrayList<Double> coeffVariables = new ArrayList<Double>();
     private ArrayList<Contrainte> contraintes = new ArrayList<Contrainte>();
 
-    /**
-     * Constructeur vide
-     */
+    @Override
+    public String toString() {
+        return "Probleme{" + "numero=" + numero + "description=" + description + "titre=" + titre + "objectif=" + objectif + "coeffVariables=" + coeffVariables + "contraintes=" + contraintes + '}';
+    }
+
     public Probleme() {
     }
 

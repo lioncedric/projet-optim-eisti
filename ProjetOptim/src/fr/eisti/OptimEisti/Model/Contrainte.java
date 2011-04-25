@@ -11,6 +11,11 @@ public class Contrainte {
     private ArrayList<Double> coeffVariables;
     private String inegalite;
     private double constante;
+
+    @Override
+    public String toString() {
+        return "Contrainte{" + "coeffVariables=" + coeffVariables + "inegalite=" + inegalite + "constante=" + constante + '}';
+    }
     
     /**
      * 
