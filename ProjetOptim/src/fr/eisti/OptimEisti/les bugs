@@ -1,12 +1,9 @@
 pour Jeudi oui tout ca pour jeudi work work work ! ! ![urgent]
--   [option] faire une fonction qui regarde qui un probleme a ete modifié, peut s'averer tres utile pour la sauvegarde
--   fonction supprimer  a l'air de marcher a verifier
 -   beaucoup trop de varibles en static
 -   La creation d'un nouveau probleme peut faire bugger les indices des probs si on cree plus d'un nouveau probleme de suite ===MOI===
 -   le bouton trouver solution a desactiver
 -   bug ouverture probleme avec le slider
 -   bug excel et scilab
--   on ne peut plus ajouter une lignz
 --------------Vraiment Urgent[non résolu!]----------------------------------
 -   ENORME bug sur le panel d'identification : le clic pour valider ne marche pas, et il n'y a pas de croix pour annuler!!!!!!!
 ------------------------------------------------
@@ -16,4 +13,4 @@ pour Jeudi oui tout ca pour jeudi work work work ! ! ![urgent]
 pour plutard
 -   le simplexe ne marche pour la minimisation
 -   le bouton trouver solution a mettre sur le panel de droite!!!
-
+-   faire une fonction qui regarde qui un probleme a ete modifié, peut s'averer tres utile pour la sauvegarde
