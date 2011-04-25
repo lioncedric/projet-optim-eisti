@@ -1,7 +1,3 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package fr.eisti.OptimEisti.Controler;
 
 import fr.eisti.OptimEisti.View.PanelProblemesUtilisateur;
@@ -24,13 +20,19 @@ import javax.swing.filechooser.FileFilter;
 import javax.swing.filechooser.FileNameExtensionFilter;
 
 /**
- *
- * @author Administrator
+ * Classe qui écoute les actions du panel de problemes utilisateur
+ * @author Razavet Maël, Lion Cédric, Klelifa Sarah, Gallet Mériadec
+ * @version 1.0
  */
 public class PanelProblemesUtilisateurListener implements ActionListener, MouseListener {
 
+    //declaration d'un objet ayant le même type que celui du panel depuis lequel l'action a été créée
     PanelProblemesUtilisateur ppu;
 
+    /**
+     * Constructeur permettant d'initialiser notre variable
+     * @param pPpu 
+     */
     public PanelProblemesUtilisateurListener(PanelProblemesUtilisateur pPpu) {
         this.ppu = pPpu;
     }
@@ -67,19 +69,33 @@ public class PanelProblemesUtilisateurListener implements ActionListener, MouseL
         Main.fenetrePrincipale.getGauche().miseajour();
     }
 
+    /**
+     * Redéfinition de la méthode actionPerformed de l'interface ActionListener
+     * @param e 
+     */
     @Override
     public void actionPerformed(ActionEvent e) {
+        //si l'action qui a été déclenchée est ouvrir
         if (e.getSource() == this.ppu.getjMenuItemOuvrir()) {
+            //on appelle la fonction ouvrir
             ouvrir();
-        } else if (e.getSource() == this.ppu.getjMenuItemSuppr()) {
+        } //si l'action est supprimer
+        else if (e.getSource() == this.ppu.getjMenuItemSuppr()) {
+            //on recupere le numero de l'item qui a été sélectionné dans la liste
             int numero = ((JList) this.ppu.getList()).getSelectedIndex();
+            //si il y en a vraiment un de sélectionné
             if (numero != -1) {
+                //on recupere le probleme en question
                 Probleme probleme;
                 probleme = BddProbleme.getProbleme(numero);
+                //on vérifie que l'utilisateur ne s'est pas trompé
                 String message = "Etes vous sur de vouloir supprimer le probleme '" + probleme.getTitre();
                 int reponse = JOptionPane.showConfirmDialog(null, message, "Suppression du probleme", JOptionPane.YES_NO_OPTION);
+                //si il veut vraiment supprimer le probleme...
                 if (reponse == JOptionPane.YES_OPTION) {
+                    //on le fait...
                     SupprimerProbleme(numero);
+                    //et on met à jour le panel de profil qui compte le nombre de problemes de l'utilisateur
                     Main.fenetrePrincipale.getPanProfil().miseAJour();
                 }
 
@@ -116,6 +132,7 @@ public class PanelProblemesUtilisateurListener implements ActionListener, MouseL
         } else if (e.getSource() == this.ppu.getBoutonSolution()) {
             Probleme p = ((JPanelProbleme) Main.fenetrePrincipale.getDroite().getSelectedComponent()).getProbleme();
             p.renseignerProbleme((JPanelProbleme) Main.fenetrePrincipale.getDroite().getSelectedComponent());
+            //et on genere la solution par l'algorithme du simplexe
             Solution solution = new Solution(p.formaliserProbleme(), p.getCoeffVariables().size());
 
         } else if (e.getSource() == this.ppu.getBoutonEnregistrer()) {
@@ -160,17 +177,24 @@ public class PanelProblemesUtilisateurListener implements ActionListener, MouseL
             } else {
                 JOptionPane.showMessageDialog(null, "Vous n'avez pas bien rempli tous les parametres", "Erreur", JOptionPane.ERROR_MESSAGE);
             }
-        } else if (e.getSource() == this.ppu.getBoutonNew()) {
+        } //si l'action demandé est de créer un nouveau problème
+        else if (e.getSource() == this.ppu.getBoutonNew()) {
+            //on en crée un à la suite des autres et on lui attribue le titre "Sans nom"
             Main.fenetrePrincipale.getDroite().add("Sans nom", new JPanelProbleme(BddProbleme.nombreProblemes()));
             Main.fenetrePrincipale.getDroite().setTabComponentAt(Main.fenetrePrincipale.getDroite().getTabCount() - 1, new ButtonTabComponent(Main.fenetrePrincipale.getDroite()));
             Main.fenetrePrincipale.getDroite().setSelectedIndex(Main.fenetrePrincipale.getDroite().getTabCount() - 1);
         }
     }
 
+    /**
+     * Procedure qui permet d'ouvrir un onglet et qui modifie la partie droite de la fenêtre en conséquence
+     */
     public void ouvrir() {
+        //on récupère le numéro du problème sélectrionné dans la liste
         int numero = ((JList) this.ppu.getList()).getSelectedIndex();
-        if (numero >= 0) {
 
+        //si il y en a un de sélectionné
+        if (numero >= 0) {
             boolean present = false;
             for (int i = 0; i < Main.fenetrePrincipale.getDroite().getTabCount(); i++) {
                 present = present || ((JPanelProbleme) Main.fenetrePrincipale.getDroite().getComponentAt(i)).getProbleme().getNumero() == numero;
@@ -197,14 +221,21 @@ public class PanelProblemesUtilisateurListener implements ActionListener, MouseL
         }
     }
 
+    /**
+     * Redéfinition de la fonction mouseClicked de l'interface MouseListener
+     * @param e 
+     */
     @Override
     public void mouseClicked(MouseEvent e) {
-        //JList theList = (JList) e.getSource();
+        //si l'utilisateur a fait un double clic gauche
         if (e.getClickCount() == 2 && e.getButton() == MouseEvent.BUTTON1) {
-            //int index = theList.locationToIndex(e.getPoint());
+            //on ouvre le probleme
             ouvrir();
-        } else if (e.getButton() == MouseEvent.BUTTON3) {
+        } //si il fait un clic droit
+        else if (e.getButton() == MouseEvent.BUTTON3) {
+            //on affiche le menu déroulant avec les diférentes actions qui le composent
             this.ppu.getJpopup().show(e.getComponent(), e.getX(), e.getY());
+            //et on sélecionne la ligne correspondant à l'endroit où il a fait le clic droit
             this.ppu.getList().setSelectedIndex(this.ppu.getList().locationToIndex(e.getPoint()));
         }
     }

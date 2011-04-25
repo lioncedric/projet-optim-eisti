@@ -18,13 +18,12 @@ import fr.eisti.OptimEisti.View.Fenetre;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
-
 /**
  * Listener qui écoute le bouton connexion de la fenetre identification
- * @author Razavet Maël, Klelifa Sarah, Gallet Meriadec, Lion C�dric
+ * @author Razavet Maël, Lion Cédric, Klelifa Sarah, Gallet Mériadec
  * @version: 1.0
  */
-public class ConnexionControler implements MouseListener,KeyListener {
+public class ConnexionControler implements MouseListener, KeyListener {
 
     //Déclaration et initialisation de panel et de composants
     private JTextField tLogin = new JTextField();
@@ -57,7 +56,7 @@ public class ConnexionControler implements MouseListener,KeyListener {
             //ChoixUtilisateur fenChoix;
             BddProbleme.load(login);
             //Instanciation de la fenetre principale
-            Main.fenetrePrincipale =new Fenetre();
+            Main.fenetrePrincipale = new Fenetre();
             Main.fenetrePrincipale.setVisible(true);
             this.maFenetre.dispose();
             Main.getAccueil().dispose();
@@ -83,6 +82,10 @@ public class ConnexionControler implements MouseListener,KeyListener {
         }
     }
 
+    /**
+     * Redéfinition de la méthode mouseClicked de l'interface MouseListener
+     * @param e 
+     */
     @Override
     public void mouseClicked(MouseEvent e) {
         //Si on a cliqué sur le bouton connexion
@@ -98,30 +101,31 @@ public class ConnexionControler implements MouseListener,KeyListener {
 
     @Override
     public void mouseEntered(MouseEvent e) {
-        // TODO Auto-generated method stub
     }
 
     @Override
     public void mouseExited(MouseEvent e) {
-        // TODO Auto-generated method stub
     }
 
     @Override
     public void mousePressed(MouseEvent e) {
-        // TODO Auto-generated method stub
     }
 
     @Override
     public void mouseReleased(MouseEvent e) {
-        // TODO Auto-generated method stub
     }
 
+    @Override
     public void keyTyped(KeyEvent e) {
     }
 
+    /**
+     * Redéfinition de la méthode keyPressed de l'interface KeyListener
+     * @param e 
+     */
     public void keyPressed(KeyEvent e) {
         //on gere le cas ou il appuie sur la touche ENTRER
-        if(e.getKeyCode()==KeyEvent.VK_ENTER){
+        if (e.getKeyCode() == KeyEvent.VK_ENTER) {
             try {
                 //Appel de la fonction seConnecter
                 seConnecter(this.tLogin, this.tPassword, this.maFenetre);
@@ -131,6 +135,7 @@ public class ConnexionControler implements MouseListener,KeyListener {
         }
     }
 
+    @Override
     public void keyReleased(KeyEvent e) {
     }
 }

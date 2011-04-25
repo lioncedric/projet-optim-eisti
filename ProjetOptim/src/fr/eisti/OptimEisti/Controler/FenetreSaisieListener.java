@@ -24,8 +24,9 @@ import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 
 /**
- * @author Administrator
- *
+ * Classe qui écoute les actions qui ont lieu sur la fenêtre principale
+ * @author Razavet Maël, Lion Cédric, Klelifa Sarah, Gallet Mériadec
+ * @version 1.0
  */
 public class FenetreSaisieListener implements ChangeListener, ActionListener, ComponentListener {
 
@@ -88,13 +89,12 @@ public class FenetreSaisieListener implements ChangeListener, ActionListener, Co
     @SuppressWarnings("static-access")
     public void actionPerformed(ActionEvent e) {
 
-     if (e.getSource() == this.fenetre.getImportXml()) {
+        if (e.getSource() == this.fenetre.getImportXml()) {
             try {
                 JFileChooser fc = new JFileChooser();
                 int returnVal = fc.showOpenDialog(this.fenetre.getDroite());
                 if (returnVal == JFileChooser.APPROVE_OPTION) {
                     File file = fc.getSelectedFile();
-                    //  BddProbleme.importerProbleme(file);
                     BddProbleme.importerProbleme(file);
                 }
             } catch (Exception ex) {
@@ -104,8 +104,6 @@ public class FenetreSaisieListener implements ChangeListener, ActionListener, Co
             this.fenetre.dispose();
         } else if (e.getSource() == this.fenetre.getQuitter()) {
             System.exit(0);
-       
-          
         } else if (e.getSource() == this.fenetre.getSauvegarder()) {
             BddProbleme.save(BDDUtilisateur.getNomUtilisateur());
         } else if (e.getSource() == this.fenetre.getRecharger()) {
@@ -116,12 +114,15 @@ public class FenetreSaisieListener implements ChangeListener, ActionListener, Co
                 Main.fenetrePrincipale.repaint();
             } catch (IOException ex) {
             }
-        }
-        else if(e.getSource() == this.fenetre.getPetitEcran()){
+        } //si l'utilisateur veut mettre la fenêtre en taille minimale
+        else if (e.getSource() == this.fenetre.getPetitEcran()) {
+            //on applique le changement
             this.fenetre.setSize(this.fenetre.getMinimumSize());
+            //et on la recentre à l'écran
             this.fenetre.setLocationRelativeTo(null);
-        }
-        else if(e.getSource() == this.fenetre.getPleinEcran()){
+        } //si l'utilisateur veut mettre la fenêtre en plein écran
+        else if (e.getSource() == this.fenetre.getPleinEcran()) {
+            //on passe tout simplement en mode 'Plein Ecran' en maximisant hauteur et largeur
             this.fenetre.setExtendedState(this.fenetre.MAXIMIZED_BOTH);
         }
     }
@@ -134,9 +135,14 @@ public class FenetreSaisieListener implements ChangeListener, ActionListener, Co
         this.contraintes = contraintes;
     }
 
+    /**
+     * Redéfinition de la méthode componentResized de l'interface ComponentListener
+     * @param e 
+     */
     @Override
     public void componentResized(ComponentEvent e) {
-            this.fenetre.appliquerChangementSplitPane();
+        //on redefinit la taille du slitPane pour ne pas qu'il soit ni trop petit ni trop grand
+        this.fenetre.appliquerChangementSplitPane();
     }
 
     @Override

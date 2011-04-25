@@ -14,12 +14,13 @@ import java.io.IOException;
 import javax.imageio.ImageIO;
 
 /**
- * classe qui écoute le bouton ok de la classe CreerCompte.java
- * @author Razavet Maël, Lion Cédric, Klelifa Sarah, Gallet Meriadec
+ * Classe qui écoute le bouton ok de la classe CreerCompte.java
+ * @author Razavet Maël, Lion Cédric, Klelifa Sarah, Gallet Mériadec
+ * @version 1.0
  */
 public class CreerCompteListener implements MouseListener {
 
-    //Déclaration
+    //Déclaration d'une fenêtre de type CreerCompte
     private CreerCompte maFenetre;
 
     /**
@@ -37,7 +38,8 @@ public class CreerCompteListener implements MouseListener {
      * permet de rajouter une personne dans le identification.xml
      */
     public void creerCompte() {
-        if (bonFormatImage() && bonneTailleImage()) {
+        //si l'image a la bonne extension (bonFormat) et la bonne taille et que le reste est bien rempli, alors on peut creer le compte
+        if (bonFormatImage() && bonneTailleImage() && nomEtMdpCorrects()) {
             //opération sur le dom
             BDDUtilisateur.ajouterUtilisateur(this.maFenetre.getPanFond().getJtfNomUtilisateur().getText(), this.maFenetre.getPanFond().getJtfMdp().getText(), this.maFenetre.getPanFond().getJtfAvatar().getText());
             //on ferme la fenetre d'identification
@@ -46,7 +48,8 @@ public class CreerCompteListener implements MouseListener {
             JOptionPane jop = new JOptionPane();
             jop.showMessageDialog(null, "Création réussie!", "Information", JOptionPane.INFORMATION_MESSAGE);
             this.maFenetre.dispose();
-        } else if (!bonFormatImage()) {
+        } //si l'image n'a pas le bon format
+        else if (!bonFormatImage()) {
             //la fenetre n'est pas au premier plan
             maFenetre.setAlwaysOnTop(false);
             //on ouvre un dialogue
@@ -54,7 +57,8 @@ public class CreerCompteListener implements MouseListener {
             jop.showMessageDialog(null, "Création échouée! Vous n'avez pas selectionner une image valide.", "Erreur", JOptionPane.ERROR_MESSAGE);
             //on remet la fenetre au premier plan
             maFenetre.setAlwaysOnTop(true);
-        } else if (!bonneTailleImage()) {
+        } //si l'image n'a pas une taille correcte
+        else if (!bonneTailleImage()) {
             //la fenetre n'est pas au premier plan
             maFenetre.setAlwaysOnTop(false);
             //on ouvre un dialogue
@@ -71,7 +75,7 @@ public class CreerCompteListener implements MouseListener {
             jop.showMessageDialog(null, "Création échouée! Vous n'avez pas rentré de données dans au moins un des champs.", "Erreur", JOptionPane.ERROR_MESSAGE);
             //on remet la fenetre au premier plan
             maFenetre.setAlwaysOnTop(true);
-        } //sinon si les champs saisie existe déjà dans la BDD
+        } //sinon si le nom d'utilisateur existe déjà dans la BDD
         else if (BDDUtilisateur.existeUtilisateur(this.maFenetre.getPanFond().getJtfNomUtilisateur().getText())) {
             //la fenetre n'est pas au premier plan
             maFenetre.setAlwaysOnTop(false);
@@ -82,7 +86,8 @@ public class CreerCompteListener implements MouseListener {
             jop.showMessageDialog(null, "Création échouée! Votre nom d'utilisateur est déjà utilisé!", "Erreur", JOptionPane.ERROR_MESSAGE);
             //on remet la fenetre au premier plan
             maFenetre.setAlwaysOnTop(true);
-        } else if (!this.maFenetre.getPanFond().getJtfMdp().getText().equals(this.maFenetre.getPanFond().getJtfMdp2().getText())) {
+        } //sinon si l'utilisateur n'a pas saisi deux fois le même mot de passe
+        else if (!this.maFenetre.getPanFond().getJtfMdp().getText().equals(this.maFenetre.getPanFond().getJtfMdp2().getText())) {
             //la fenetre n'est pas au premier plan
             maFenetre.setAlwaysOnTop(false);
             //on réinitialise tout
@@ -92,7 +97,7 @@ public class CreerCompteListener implements MouseListener {
             jop.showMessageDialog(null, "Création échouée! Vous n'avez pas saisi les mêmes mots de passe!", "Erreur", JOptionPane.ERROR_MESSAGE);
             //on remet la fenetre au premier plan
             maFenetre.setAlwaysOnTop(true);
-        } //sinon si on a pas saisis tous les champs
+        } //sinon si on a pas saisi tous les champs
         else {
             //la fenetre n'est pas au premier plan
             maFenetre.setAlwaysOnTop(false);
@@ -100,27 +105,50 @@ public class CreerCompteListener implements MouseListener {
             this.maFenetre.getPanFond().raz();
             //on ouvre un dialogue
             JOptionPane jop = new JOptionPane();
-            jop.showMessageDialog(null, "Création échouée! Vous n'avez pas saisis tous les champs!", "Erreur", JOptionPane.ERROR_MESSAGE);
+            jop.showMessageDialog(null, "Création échouée! Vous n'avez pas saisi tous les champs!", "Erreur", JOptionPane.ERROR_MESSAGE);
             //on remet la fenetre au premier plan
             maFenetre.setAlwaysOnTop(true);
         }
     }
 
-    public boolean bonFormatImage() {
-        String nameFile = this.maFenetre.getPanFond().getJtfAvatar().getText();
-        boolean avatarOK = (nameFile != null)
-                && (nameFile.toLowerCase().endsWith(".jpg") || nameFile.toLowerCase().endsWith(".jpeg")
-                || nameFile.toLowerCase().endsWith(".gif") || nameFile.toLowerCase().endsWith(".png"));
-        return avatarOK;
+    /**
+     * Fonction qui permet de savoir si l'utilisateur a bien rempli son nom et son mot de passe
+     * @return un booleen qui permet de savoir si les champs sont bien remplis
+     */
+    public boolean nomEtMdpCorrects() {
+        //on verifie que les champs sont OK
+        return !this.maFenetre.getPanFond().getJtfNomUtilisateur().getText().isEmpty()
+                && !this.maFenetre.getPanFond().getJtfMdp().getText().isEmpty()
+                && this.maFenetre.getPanFond().getJtfMdp().getText().equals(this.maFenetre.getPanFond().getJtfMdp2().getText());
     }
 
-    public boolean bonneTailleImage() {
+    /**
+     * Fonction qui permet de savoir si une image a un format valide
+     * @return un booleen qui permet de savoir si l'image est valide
+     */
+    public boolean bonFormatImage() {
+        //on recupere l'adresse de l'image
         String nameFile = this.maFenetre.getPanFond().getJtfAvatar().getText();
-        
+        return (nameFile != null)
+                && (nameFile.toLowerCase().endsWith(".jpg") || nameFile.toLowerCase().endsWith(".jpeg")
+                || nameFile.toLowerCase().endsWith(".gif") || nameFile.toLowerCase().endsWith(".png"));
+    }
+
+    /**
+     * Fonction qui permet de savoir si une image a une taille valide
+     * @return un booleen qui permet de savoir si l'image est valide
+     */
+    public boolean bonneTailleImage() {
+        //on recupere l'adresse de l'image
+        String nameFile = this.maFenetre.getPanFond().getJtfAvatar().getText();
+
         try {
+            //on lit l'image afin d'accéder a ses propriétés
             Image avatar = ImageIO.read(new File(nameFile));
+            //on recupere sa hauteur et sa largeur
             int hauteur = avatar.getHeight(maFenetre);
             int largeur = avatar.getWidth(maFenetre);
+            //on retourne le booleen correspondant
             return hauteur <= 80 && largeur <= 80;
         } catch (IOException ex) {
             Logger.getLogger(CreerCompteListener.class.getName()).log(Level.SEVERE, null, ex);
@@ -128,6 +156,10 @@ public class CreerCompteListener implements MouseListener {
         }
     }
 
+    /**
+     * Redéfinition de la méthode mouseClicked de l'interface MouseListener
+     * @param e 
+     */
     @Override
     public void mouseClicked(MouseEvent e) {
         //Si l'utilisateur a cliqué sur le bouton valider
@@ -143,21 +175,17 @@ public class CreerCompteListener implements MouseListener {
 
     @Override
     public void mouseEntered(MouseEvent e) {
-        // TODO Auto-generated method stub
     }
 
     @Override
     public void mouseExited(MouseEvent e) {
-        // TODO Auto-generated method stub
     }
 
     @Override
     public void mousePressed(MouseEvent e) {
-        // TODO Auto-generated method stub
     }
 
     @Override
     public void mouseReleased(MouseEvent e) {
-        // TODO Auto-generated method stub
     }
 }
