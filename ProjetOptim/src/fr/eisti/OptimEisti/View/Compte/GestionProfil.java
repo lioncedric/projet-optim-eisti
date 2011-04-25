@@ -1,8 +1,3 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
-
 package fr.eisti.OptimEisti.View.Compte;
 
 import fr.eisti.OptimEisti.Controler.GestionProfilListener;
@@ -13,33 +8,35 @@ import javax.imageio.ImageIO;
 import javax.swing.JDialog;
 
 /**
- *
- * @author Administrator
+ * Classe permettant de gérer le profil de l'utilisateur et de le modifier si besoin
+ * @author Razavet Maël, Lion Cédric, Klelifa Sarah, Gallet Mériadec
+ * @version: 1.0
  */
-public class GestionProfil extends JDialog{
+public class GestionProfil extends JDialog {
+    
     //déclaration des attributs
-    private static final long serialVersionUID = 1L;
     private Image fond;
     private JPanelFondGestionProfil panFond;
 
-    //Constructeur par défaut
+    /**
+     * Constructeur permettant de créer le jdialog
+     */
     public GestionProfil() {
-        //Appel de la méthode qui initialise les variables
-        initialiserVariables();
-        //Méthode qui ajoute une image de fond
+        init();
         ajoutImageFond();
-        //Méthode qui ajoute le panel sur la fenêtre
         traitement();
     }
 
-    public void initialiserVariables() {
-        //Ajout d'un titre
+    /**
+     * Initialise la fenêtre
+     */
+    public void init() {
         this.setTitle("Gestion de votre profil");
-        this.setSize(450, 300);          //on redimenssione la fenetre en cours
-        this.setLocationRelativeTo(null);//on centre la fenetre a l'ecran
-        this.setResizable(false);        //on demande a ce que la fenetre ne puisse pas etre redimentionnee
+        this.setSize(450, 300);                 //on redimenssione la fenetre en cours
+        this.setLocationRelativeTo(null);       //on centre la fenetre a l'ecran
+        this.setResizable(false);               //on demande a ce que la fenetre ne puisse pas etre redimentionnee
         this.setDefaultCloseOperation(DISPOSE_ON_CLOSE); //permet de fermer correctement la fenetre
-        this.setModal(true);       //on desactive tout le reste
+        this.setModal(true);                    //on desactive tout le reste
     }
 
     /**
@@ -50,14 +47,13 @@ public class GestionProfil extends JDialog{
     }
 
     /**
-     * Permet d'ajouter une image de fond sur la jdialog
+     * Permet d'ajouter une image de fond sur le jdialog
      */
     public void ajoutImageFond() {
         try {
             //lecture de l'image
             fond = ImageIO.read(new File("images/creerCompte.png"));
         } catch (IOException e) {
-            // TODO Auto-generated catch block
             e.printStackTrace();
         }
         //instanciation d'un panel
@@ -69,6 +65,4 @@ public class GestionProfil extends JDialog{
     public JPanelFondGestionProfil getPanFond() {
         return panFond;
     }
-    
-    
 }

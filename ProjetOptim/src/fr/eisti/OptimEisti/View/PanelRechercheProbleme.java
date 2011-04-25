@@ -1,7 +1,3 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package fr.eisti.OptimEisti.View;
 
 import fr.eisti.OptimEisti.Controler.PanelRechercheProblemeListener;
@@ -16,24 +12,35 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 
 /**
- *
- * @author Administrator
+ * Classe permettant de créer le panel de profil de l'utilisateur
+ * @author Razavet Maël, Lion Cédric, Klelifa Sarah, Gallet Mériadec
+ * @version: 1.0
  */
 public class PanelRechercheProbleme extends JPanel {
 
+    //déclaration des variables nécessaires
     private JTextField jtfRecherche;
     private Image loupe;
 
+    /**
+     * Constructeur permettant de créer le panel de recherche
+     */
     public PanelRechercheProbleme() {
         initialiserVariables();
         recupererImage();
         traitement();
     }
 
+    /**
+     * Procédure permettant d'initialiser toutes les variables déclarées précédemment
+     */
     public void initialiserVariables() {
         this.jtfRecherche = new JTextField("Rechercher ...");
     }
 
+    /**
+     * Procédure permettant d'initialiser notre variables de type Image
+     */
     public void recupererImage() {
         try {
             this.loupe = ImageIO.read(new File("images/loupe.png"));
@@ -42,10 +49,14 @@ public class PanelRechercheProbleme extends JPanel {
         }
     }
 
+        /**
+     * Procédure permettant de faire tous les traitements nécessaires
+     */
     public void traitement() {
         this.setPreferredSize(new Dimension(100,25));
         this.setLayout(null);
         this.add(this.jtfRecherche);
+        //on spécifie deux listeners à la zone de recherche
         this.jtfRecherche.addKeyListener(new PanelRechercheProblemeListener(this));
         this.jtfRecherche.addMouseListener(new PanelRechercheProblemeListener(this));
     }
@@ -63,6 +74,4 @@ public class PanelRechercheProbleme extends JPanel {
     public JTextField getJtfRecherche() {
         return jtfRecherche;
     }
-    
-    
 }

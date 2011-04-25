@@ -25,15 +25,18 @@ import javax.swing.JPanel;
  */
 public class PanelProfil extends JPanel {
 
-    private JPanel panHaut;
-    public static JPanel panImage;
-    private Image avatar;
-    private JPanel panDroite;
-    public static JLabel nomUtilisateur;
-    private JLabel nbProblemes;
-    private JPanel panBouton;
-    private JButton boutonProfil;
+    private JPanel panHaut;             //declaration du panel du haut (image + panDroite)
+    public static JPanel panImage;      //declaration du panel destiné à contenir uniquement l'image
+    private JPanel panDroite;           //declaration du panel de droite (nom + nbProblemes)
+    public static JLabel nomUtilisateur;//declaration du nom
+    private JLabel nbProblemes;         //declaration du nombre de problèmes
+    private JPanel panBouton;           //declaratin du panel contenant le seul bouton
+    private JButton boutonProfil;       //declaration du bouton permettant de modifier son profil
+    private Image avatar;               //declaration d'une image
 
+    /**
+     * Constructeur permettant de créer le panel profil de l'utilisateur
+     */
     public PanelProfil() {
         initialiserVariables();
         ajoutImageFond();
@@ -41,6 +44,9 @@ public class PanelProfil extends JPanel {
         mettreCouleur(Color.WHITE);
     }
 
+    /**
+     * Procédure permettant d'initialiser toutes les variables déclarées précédemment
+     */
     public void initialiserVariables() {
         this.panHaut = new JPanel();
         this.panImage = new JPanel();
@@ -51,38 +57,54 @@ public class PanelProfil extends JPanel {
         this.boutonProfil = new JButton("Gérer mon profil");
     }
 
+    /**
+     * Procédure permettant d'ajouter une image de fond à un panel
+     */
     public void ajoutImageFond() {
         try {
             avatar = ImageIO.read(new File(BDDUtilisateur.getImage()));
         } catch (IOException e) {
             System.out.println("Erreur lors du chargement de l'image");
         }
-        //on ajoute l'iamge au panel panFond
+        //on ajoute l'image au panel panImage
         panImage = new JPanelFondNormal(avatar);
     }
 
+    /**
+     * Procédure permettant de faire tous les traitements nécessaires
+     */
     public void traitement() {
         this.setLayout(new BorderLayout());
-        this.setBorder(BorderFactory.createTitledBorder(null, "Mon profil", 0, 0, new Font("Serif", Font.ITALIC, 14)));
         this.panHaut.setLayout(new BorderLayout());
+        this.setBorder(BorderFactory.createTitledBorder(null, "Mon profil", 0, 0, new Font("Serif", Font.ITALIC, 14)));
+        this.boutonProfil.addActionListener(new PanelProfilListener());
+
+        //on adapte la hauteur du panel à la hauteur de l'image
+        PanelProfil.panImage.setPreferredSize(new Dimension(avatar.getHeight(this), avatar.getHeight(this)));
+
         this.panDroite.setLayout(new GridLayout(2, 1));
         this.panBouton.add(this.boutonProfil);
         this.panDroite.add(PanelProfil.nomUtilisateur);
         this.panDroite.add(this.nbProblemes);
-        PanelProfil.panImage.setPreferredSize(new Dimension(avatar.getHeight(this), avatar.getHeight(this)));
         this.panHaut.add(PanelProfil.panImage, BorderLayout.WEST);
         this.panHaut.add(this.panDroite, BorderLayout.CENTER);
         this.add(this.panHaut, BorderLayout.CENTER);
         this.add(this.panBouton, BorderLayout.SOUTH);
-        this.boutonProfil.addActionListener(new PanelProfilListener());
     }
 
-    public void modification(){
+    /**
+     * Procédure permettant de modifier l'image personnelle ainsi que le nom lors de la gestion du profil
+     */
+    public void modification() {
+        //on commence par supprimer tout
         this.panHaut.removeAll();
         this.panDroite.removeAll();
+        //on remet le nom et le nombre de problemes
         this.panDroite.add(PanelProfil.nomUtilisateur);
         this.panDroite.add(this.nbProblemes);
+        //on réadapte la taille du panel à celle de l'image
         PanelProfil.panImage.setPreferredSize(new Dimension(avatar.getHeight(this), avatar.getHeight(this)));
+        //on réajoute le tout
         this.panHaut.add(PanelProfil.panImage, BorderLayout.WEST);
         this.panHaut.add(this.panDroite, BorderLayout.CENTER);
     }
@@ -98,11 +120,13 @@ public class PanelProfil extends JPanel {
         this.setBackground(couleur);
     }
 
-    public void miseAJour(){
+    /**
+     * Procédure qui met à jour le nombre de problèmes d'un utilisateur
+     */
+    public void miseAJour() {
         this.nbProblemes.setText(String.valueOf(BddProbleme.nombreProblemes()) + " probleme(s)");
     }
-    
-    
+
     public static JLabel getNomUtilisateur() {
         return nomUtilisateur;
     }
@@ -130,5 +154,4 @@ public class PanelProfil extends JPanel {
     public void setNbProblemes(JLabel nbProblemes) {
         this.nbProblemes = nbProblemes;
     }
-    
 }
