@@ -104,13 +104,8 @@ public class FenetreSaisieListener implements ChangeListener, ActionListener, Co
             this.fenetre.dispose();
         } else if (e.getSource() == this.fenetre.getQuitter()) {
             System.exit(0);
-        } else if (e.getSource() == this.fenetre.getExportExcel()) {
-            //On récupère le numéro
-            int numero = this.fenetre.getGauche().getList().getSelectedIndex();
-            BddProbleme.exporterExcel(BddProbleme.getProbleme(numero),"test");
-             BddProbleme.exporterScilab(BddProbleme.getProbleme(numero),"test");
-            //on ouvre un dialogue
-            JOptionPane.showMessageDialog(null, "Export vers Excel réussi!", "Information", JOptionPane.INFORMATION_MESSAGE);
+       
+          
         } else if (e.getSource() == this.fenetre.getSauvegarder()) {
             BddProbleme.save(BDDUtilisateur.getNomUtilisateur());
         } else if (e.getSource() == this.fenetre.getRecharger()) {

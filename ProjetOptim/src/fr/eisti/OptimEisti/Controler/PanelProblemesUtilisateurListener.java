@@ -6,8 +6,7 @@ package fr.eisti.OptimEisti.Controler;
 
 import fr.eisti.OptimEisti.View.PanelProblemesUtilisateur;
 import fr.eisti.OptimEisti.Main;
-import fr.eisti.OptimEisti.Model.BddProbleme;
-import fr.eisti.OptimEisti.Model.Probleme;
+import fr.eisti.OptimEisti.Model.*;
 import fr.eisti.OptimEisti.Model.Solution;
 import fr.eisti.OptimEisti.View.contraintes.ButtonTabComponent;
 import fr.eisti.OptimEisti.View.JPanelProbleme;
@@ -15,9 +14,14 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.io.File;
+
+import javax.swing.JFileChooser;
 import javax.swing.JList;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
+import javax.swing.filechooser.FileFilter;
+import javax.swing.filechooser.FileNameExtensionFilter;
 
 /**
  *
@@ -79,6 +83,35 @@ public class PanelProblemesUtilisateurListener implements ActionListener, MouseL
                     Main.fenetrePrincipale.getPanProfil().miseAJour();
                 }
 
+            }
+        } else if (e.getSource() == this.ppu.getjMenuItemExporter()) {
+
+            //On récupère le numéro
+            int numero = ((JList) this.ppu.getList()).getSelectedIndex();
+            if (numero != -1) {
+                try {
+                    JFileChooser fc = new JFileChooser();
+                    fc.addChoosableFileFilter(new FiltreSimple("Fichier Excel", ".xls"));
+                    fc.addChoosableFileFilter(new FiltreSimple("Fichier Scilab", ".sci"));
+                    fc.setAcceptAllFileFilterUsed(false);
+                    int returnVal = fc.showSaveDialog(null);
+                    if (returnVal == JFileChooser.APPROVE_OPTION) {
+                        String nom = fc.getSelectedFile().getAbsolutePath();
+                        String type = fc.getFileFilter().getDescription();
+                        if (type.equals("Fichier Excel")) {
+                            if (!nom.endsWith(".xls")) {
+                                nom = nom + ".xls";
+                            }
+                            BddProbleme.exporterExcel(BddProbleme.getProbleme(numero), nom);
+                        } else if (type.equals("Fichier Scilab")) {
+                            if (!nom.endsWith(".sci")) {
+                                nom = nom + ".sci";
+                            }
+                            BddProbleme.exporterScilab(BddProbleme.getProbleme(numero), nom);
+                        }
+                    }
+                } catch (Exception ex) {
+                }
             }
         } else if (e.getSource() == this.ppu.getBoutonSolution()) {
             Probleme p = ((JPanelProbleme) Main.fenetrePrincipale.getDroite().getSelectedComponent()).getProbleme();

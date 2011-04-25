@@ -29,8 +29,9 @@ public final class PanelProblemesUtilisateur extends JPanel {
     private JPanel panCentre;
     private PanelRechercheProbleme panRecherche;
     private JPopupMenu jpopup;
-    JMenuItem jMenuItemOuvrir;
-    JMenuItem jMenuItemSuppr;
+    private JMenuItem jMenuItemOuvrir;
+    private JMenuItem jMenuItemExporter;
+    private JMenuItem jMenuItemSuppr;
 
     public PanelProblemesUtilisateur() {
         super(new BorderLayout());
@@ -56,8 +57,11 @@ public final class PanelProblemesUtilisateur extends JPanel {
         jMenuItemOuvrir.addActionListener(new PanelProblemesUtilisateurListener(this));
         this.jMenuItemSuppr = new JMenuItem("Supprimer");
         jMenuItemSuppr.addActionListener(new PanelProblemesUtilisateurListener(this));
+        this.jMenuItemExporter = new JMenuItem("Exporter");
+        jMenuItemExporter.addActionListener(new PanelProblemesUtilisateurListener(this));
         this.jpopup.add(this.jMenuItemOuvrir);
         this.jpopup.add(this.jMenuItemSuppr);
+         this.jpopup.add(this.jMenuItemExporter);
 
         this.panBoutons.setBorder(BorderFactory.createTitledBorder(null, "Actions possibles", 0, 0, new Font("Serif", Font.ITALIC, 14)));
 
@@ -145,6 +149,9 @@ public final class PanelProblemesUtilisateur extends JPanel {
     public JMenuItem getjMenuItemSuppr() {
         return jMenuItemSuppr;
     }
+      public JMenuItem getjMenuItemExporter() {
+        return jMenuItemExporter;
+    }
 
     public JPopupMenu getJpopup() {
         return jpopup;
@@ -153,4 +160,5 @@ public final class PanelProblemesUtilisateur extends JPanel {
     public PanelRechercheProbleme getPanRecherche() {
         return panRecherche;
     }
+
 }

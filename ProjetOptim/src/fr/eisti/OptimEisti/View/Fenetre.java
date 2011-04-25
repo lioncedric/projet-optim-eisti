@@ -32,7 +32,7 @@ public class Fenetre extends JFrame {
     private JMenu affichage = new JMenu("Affichage");
     private JMenu aide = new JMenu("Aide");
     private JMenu importT = new JMenu("Importer");
-    private JMenu exportT = new JMenu("Exporter");
+  
     private JMenuItem sauvegarder = new JMenuItem("Sauvegarder");
     private JMenuItem recharger = new JMenuItem("Recharger");
     private JMenuItem quitter = new JMenuItem("Quitter");
@@ -40,8 +40,6 @@ public class Fenetre extends JFrame {
     private JMenuItem aideItem = new JMenuItem("Aide");
     private JMenuItem aPropos = new JMenuItem("a Propos");
     private JMenuItem importXml = new JMenuItem("Importer des problèmes XML");
-    private JMenuItem exportScilab = new JMenuItem("Exporter le problème vers Scilab");
-    private JMenuItem exportExcel = new JMenuItem("Exporter le problème vers Excel");
     private JMenuItem preferences = new JMenuItem("Preferences");
     private JMenuItem rechercher = new JMenuItem("Rechercher");
     private JMenuItem pleinEcran = new JMenuItem("Plein écran");
@@ -115,7 +113,7 @@ public class Fenetre extends JFrame {
 
         this.fichier.addSeparator();
         this.fichier.add(importT);
-        this.fichier.add(exportT);
+       
         this.fichier.addSeparator();
         this.fichier.add(deconnexion);
         this.deconnexion.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_D, KeyEvent.CTRL_MASK));//ctrl + d
@@ -136,8 +134,7 @@ public class Fenetre extends JFrame {
         this.aide.addSeparator();
         this.aide.add(aPropos);
         this.importT.add(importXml);
-        this.exportT.add(exportScilab);
-        this.exportT.add(exportExcel);
+       
 
         this.menuBar.add(fichier);
         this.menuBar.add(edition);
@@ -147,7 +144,6 @@ public class Fenetre extends JFrame {
         this.setJMenuBar(menuBar);
 
         importXml.addActionListener(new FenetreSaisieListener(this));
-        exportExcel.addActionListener(new FenetreSaisieListener(this));
         sauvegarder.addActionListener(new FenetreSaisieListener(this));
         recharger.addActionListener(new FenetreSaisieListener(this));
         deconnexion.addActionListener(new FenetreSaisieListener(this));
@@ -204,31 +200,7 @@ public class Fenetre extends JFrame {
         this.deconnexion = deconnexion;
     }
 
-    public JMenuItem getExportExcel() {
-        return exportExcel;
-    }
-
-    public void setExportExcel(JMenuItem exportExcel) {
-        this.exportExcel = exportExcel;
-    }
-
-    public JMenuItem getExportScilab() {
-        return exportScilab;
-    }
-
-    public void setExportScilab(JMenuItem exportScilab) {
-        this.exportScilab = exportScilab;
-    }
-
-    public JMenu getExportT() {
-        return exportT;
-    }
-
-    public void setExportT(JMenu exportT) {
-        this.exportT = exportT;
-    }
-
-    public JMenu getFichier() {
+     public JMenu getFichier() {
         return fichier;
     }
 

@@ -247,7 +247,7 @@ public class BddProbleme {
         FileWriter fw = null;
         try {
 
-            fw = new FileWriter(nom + ".sci", false);
+            fw = new FileWriter(nom , false);
             BufferedWriter sortie = new BufferedWriter(fw);
 
             sortie.write("//Programmation lineaire: " + p.getTitre() + "\n");
@@ -277,14 +277,9 @@ public class BddProbleme {
         int cpt = 0;//un compteur
         String temp = "=";//un string ou on stocke la formule excel
 
-        File file = new File(nom + ".csv");
-
-        if (file.exists()) {
-            file.delete();
-        }
         try {
             //Déclaration et initialisation de flux et variables
-            FileWriter fw = new FileWriter(nom + ".csv", true);
+            FileWriter fw = new FileWriter(nom , false);
             BufferedWriter output = new BufferedWriter(fw);
 
             ArrayList<Double> coeff = p.getCoeffVariables();//liste des coefficients du problème
