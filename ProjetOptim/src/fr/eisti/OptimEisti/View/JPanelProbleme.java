@@ -144,7 +144,7 @@ public class JPanelProbleme extends JPanel {
             Main.fenetrePrincipale.getGauche().miseajour();
 
         } else {
-            JOptionPane.showMessageDialog(null, "Vous n'avez pas bien rempli tous les parametres " + titreOK + descriptionOK + variablesOK + ligneRempli, "Erreur", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(null, "Vous n'avez pas bien rempli tous les parametres ", "Erreur", JOptionPane.ERROR_MESSAGE);
         }
     }
 
