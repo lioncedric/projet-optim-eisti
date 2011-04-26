@@ -58,6 +58,7 @@ public final class PanelProblemesUtilisateur extends JPanel {
       
         this.boutonEnregistrer = new JButton("Enregistrer");
         this.boutonSolution = new JButton("Trouver solution");
+        this.boutonSolution.setEnabled(false);
         this.boutonNew = new JButton("Nouveau probleme");
         this.panBoutons = new JPanel();
         this.panCentre = new JPanel();
@@ -82,7 +83,7 @@ public final class PanelProblemesUtilisateur extends JPanel {
         this.list.addMouseListener(new PanelProblemesUtilisateurListener(this));
 
         this.list.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
-        this.panBoutons.setLayout(new GridLayout(3, 1));
+        this.panBoutons.setLayout(new GridLayout(2, 1));
         this.panCentre.setLayout(new BorderLayout());
 
         this.panBoutons.setBorder(BorderFactory.createTitledBorder(null, "Actions possibles", 0, 0, new Font("Serif", Font.ITALIC, 14)));

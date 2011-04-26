@@ -13,10 +13,15 @@ import javax.swing.KeyStroke;
 
 import fr.eisti.OptimEisti.Controler.FenetreSaisieListener;
 import java.awt.BorderLayout;
+import java.awt.Color;
 import java.awt.Dimension;
+import javax.swing.BorderFactory;
 import javax.swing.JPanel;
 
 import javax.swing.JSplitPane;
+import javax.swing.SwingUtilities;
+import javax.swing.UIManager;
+import javax.swing.border.BevelBorder;
 
 /**
  * @author Administrator
@@ -32,7 +37,6 @@ public class Fenetre extends JFrame {
     private JMenu affichage = new JMenu("Affichage");
     private JMenu aide = new JMenu("Aide");
     private JMenu importT = new JMenu("Importer");
-  
     private JMenuItem sauvegarder = new JMenuItem("Sauvegarder");
     private JMenuItem recharger = new JMenuItem("Recharger");
     private JMenuItem quitter = new JMenuItem("Quitter");
@@ -70,19 +74,25 @@ public class Fenetre extends JFrame {
         //this.setResizable(false);        //on demande a ce que la fenetre ne puisse pas etre redimentionnee
         this.setDefaultCloseOperation(DISPOSE_ON_CLOSE); //permet de fermer correctement la fenetre
         this.addComponentListener(new FenetreSaisieListener(this));
-        this.panGauche=new JPanel();
+        this.panGauche = new JPanel();
         this.panGauche.setLayout(new BorderLayout());
-        this.panProfil=new PanelProfil();
+        this.panProfil = new PanelProfil();
         gauche = new PanelProblemesUtilisateur();
-        this.panGauche.add(this.panProfil,BorderLayout.NORTH);
-        this.panGauche.add(this.gauche,BorderLayout.CENTER);
+        this.panGauche.add(this.panProfil, BorderLayout.NORTH);
+        this.panGauche.add(this.gauche, BorderLayout.CENTER);
         droite = new JTabbedPane();
+      
+
+        droite.setBackground(Color.WHITE);
+        UIManager.put("TabbedPane.selected", Color.ORANGE);
+        SwingUtilities.updateComponentTreeUI(droite);
         splitPane = new JSplitPane(JSplitPane.HORIZONTAL_SPLIT, panGauche, droite);
         gauche.setMinimumSize(new Dimension(180, this.getHeight()));
         droite.setMinimumSize(new Dimension(700, this.getHeight()));
         splitPane.setOneTouchExpandable(false);
         splitPane.setDividerSize(4);//definit la taille de la zone de separation entre les deux composants
         splitPane.setContinuousLayout(true);
+         splitPane.setBackground(Color.DARK_GRAY);
         setContentPane(splitPane);
     }
 
@@ -106,35 +116,35 @@ public class Fenetre extends JFrame {
         edition.setMnemonic('E');
         affichage.setMnemonic('A');
         aide.setMnemonic('H');
-        
+
         sauvegarder.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_S, KeyEvent.CTRL_MASK));//ctrl + s
         this.fichier.add(sauvegarder);
         this.fichier.add(recharger);
 
         this.fichier.addSeparator();
         this.fichier.add(importT);
-       
+
         this.fichier.addSeparator();
         this.fichier.add(deconnexion);
         this.deconnexion.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_D, KeyEvent.CTRL_MASK));//ctrl + d
         this.fichier.add(quitter);
         this.quitter.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_Q, KeyEvent.CTRL_MASK));//ctrl + q
-        
+
         this.edition.add(rechercher);
         this.rechercher.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_F, KeyEvent.CTRL_MASK));//ctrl + f
         this.edition.add(profil);
         this.edition.add(preferences);
-        
+
         this.affichage.add(pleinEcran);
         this.pleinEcran.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_L, KeyEvent.CTRL_MASK));//ctrl + l
         this.affichage.add(petitEcran);
         this.petitEcran.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_R, KeyEvent.CTRL_MASK));//ctrl + r
-        
+
         this.aide.add(aideItem);
         this.aide.addSeparator();
         this.aide.add(aPropos);
         this.importT.add(importXml);
-       
+
 
         this.menuBar.add(fichier);
         this.menuBar.add(edition);
@@ -200,7 +210,7 @@ public class Fenetre extends JFrame {
         this.deconnexion = deconnexion;
     }
 
-     public JMenu getFichier() {
+    public JMenu getFichier() {
         return fichier;
     }
 
