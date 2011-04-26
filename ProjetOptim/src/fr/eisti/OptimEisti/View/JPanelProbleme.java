@@ -7,7 +7,7 @@ package fr.eisti.OptimEisti.View;
 import fr.eisti.OptimEisti.View.contraintes.Tableau;
 import fr.eisti.OptimEisti.Controler.FenetreSaisieListener;
 import java.awt.FlowLayout;
-import java.awt.GridLayout;
+import java.awt.Graphics;
 import java.awt.Image;
 import java.io.File;
 import java.io.IOException;
@@ -26,13 +26,14 @@ import fr.eisti.OptimEisti.Main;
 import fr.eisti.OptimEisti.Model.BddProbleme;
 import fr.eisti.OptimEisti.Model.Contrainte;
 import fr.eisti.OptimEisti.Model.Probleme;
-import java.awt.BorderLayout;
-import java.awt.Dimension;
-import java.awt.GridBagConstraints;
-import java.awt.GridBagLayout;
-import java.awt.event.MouseListener;
+import java.awt.Color;
+import java.awt.GradientPaint;
+import java.awt.Graphics2D;
 import java.util.ArrayList;
+import javax.swing.BorderFactory;
 import javax.swing.JOptionPane;
+import javax.swing.JTextArea;
+import javax.swing.border.BevelBorder;
 
 /**
  *
@@ -40,24 +41,18 @@ import javax.swing.JOptionPane;
  */
 public class JPanelProbleme extends JPanel {
 
-    private JPanel pan2;
-    private JPanel pan3;
-    private JPanel panTitre;
-    private JPanel panVariables;
-    private JPanel panObjectif;
     private JPanel panDonnees;
-    private JPanel panEst;
-    private JPanel panNord;
     private JLabel titre;
     private JLabel description;
     private JLabel variables;
     private JLabel objectif;
     private JLabel donnees;
+    private JLabel contraintes;
     private ButtonGroup boutonsObjectif;
     private JRadioButton maximiser;
     private JRadioButton minimiser;
     private JButton ajouter;
-    private JTextField textfield;
+    private JTextArea textfield;
     private JTextField jtfTitre;
     static final int min = 1;
     static final int max = 10;
@@ -203,65 +198,103 @@ public class JPanelProbleme extends JPanel {
     }
 
     public void raffraichitTabContrainte(ArrayList<Contrainte> contraintes) {
-        pan3.removeAll();
-        this.panNord.removeAll();
-        this.panEst.removeAll();
+        if (panTableau != null) {
+            this.remove(ajouter);
+            this.remove(panTableau);
+        }
         nbVariable = this.slide.getValue();
         if (contraintes.isEmpty()) {
             panTableau = new Tableau(nbVariable);
         } else {
             panTableau = new Tableau(contraintes.size(), nbVariable);
         }
-        panNord.add(new JLabel("Gestion des contraintes"));
-        panNord.setPreferredSize(new Dimension(100, 50));
-        pan3.add(panNord, BorderLayout.NORTH);
-        pan3.add(panTableau, BorderLayout.CENTER);
+
         ajouter = new JButton("Ajouter une ligne");
         ajouter.addActionListener(new MoreListener(panTableau, nbVariable));
-        panEst.add(ajouter);
-        pan3.add(panEst, BorderLayout.SOUTH);
+
+        this.add(panTableau);
+        panTableau.setBorder(BorderFactory.createBevelBorder(BevelBorder.RAISED));
+        this.add(ajouter);
+        ajouter.setBorder(BorderFactory.createBevelBorder(BevelBorder.RAISED));
+        ajouter.setBackground(new Color(0, 0, 0, 50));
+        ajouter.setForeground(new Color(255, 255, 255));
+
+
+    }
+
+    @Override
+    public void paintComponent(Graphics g) {
+        super.paintComponent(g);
+        Graphics2D g2d = (Graphics2D) g;
+        g2d.setPaint(new GradientPaint(0, 0, Color.ORANGE, 0, this.getHeight(), Color.RED, true));
+        g2d.fillRect(0, 0, this.getWidth(), this.getHeight());
+        titre.setBounds(this.getWidth() * 10 / 100, this.getHeight() * 3 / 100, this.getWidth() * 15 / 100, this.getHeight() * 15 / 100);
+        jtfTitre.setBounds(this.getWidth() * 42 / 100, this.getHeight() * 5 / 100, this.getWidth() * 30 / 100, this.getHeight() * 8 / 100);
+
+        description.setBounds(this.getWidth() * 10 / 100, this.getHeight() * 15 / 100, this.getWidth() * 15 / 100, this.getHeight() * 15 / 100);
+        textfield.setBounds(this.getWidth() * 42 / 100, this.getHeight() * 15 / 100, this.getWidth() * 50 / 100, this.getHeight() * 20 / 100);
+
+        donnees.setBounds(this.getWidth() * 10 / 100, this.getHeight() * 38 / 100, this.getWidth() * 20 / 100, this.getHeight() * 15 / 100);
+        maximiser.setBounds(this.getWidth() * 42 / 100, this.getHeight() * 40 / 100, this.getWidth() * 20 / 100, this.getHeight() * 10 / 100);
+        minimiser.setBounds(this.getWidth() * 65 / 100, this.getHeight() * 40 / 100, this.getWidth() * 20 / 100, this.getHeight() * 10 / 100);
+        slide.setBounds(this.getWidth() * 42 / 100, this.getHeight() * 50 / 100, this.getWidth() * 40 / 100, this.getHeight() * 10 / 100);
+        variables.setBounds(this.getWidth() * 10 / 100, this.getHeight() * 48 / 100, this.getWidth() * 40 / 100, this.getHeight() * 15 / 100);
+        panDonnees.setBounds(this.getWidth() * 25 / 100, this.getHeight() * 60 / 100, this.getWidth() * 75 / 100, this.getHeight() * 10 / 100);
+        objectif.setBounds(this.getWidth() * 10 / 100, this.getHeight() * 58 / 100, this.getWidth() * 15 / 100, this.getHeight() * 15 / 100);
+        contraintes.setBounds(this.getWidth() * 10 / 100, this.getHeight() * 68 / 100, this.getWidth() * 30 / 100, this.getHeight() * 10 / 100);
+        panTableau.setBounds(this.getWidth() * 5 / 100, this.getHeight() * 78 / 100, this.getWidth() * 90 / 100, this.getHeight() * 20 / 100);
+        ajouter.setBounds(this.getWidth() * 42 / 100, this.getHeight() * 70 / 100, this.getWidth() * 40 / 100, this.getHeight() * 5 / 100);
+        this.updateUI();
     }
 
     private void traitementPanel() {
 
-        pan2.setLayout(new GridLayout(7, 1, 0, 0));
-        this.setLayout(new GridBagLayout());
-        GridBagConstraints contrainteLayout = new GridBagConstraints();
-        contrainteLayout.fill = GridBagConstraints.BOTH;
-        contrainteLayout.gridx = 0;
-        contrainteLayout.gridy = 0;
-        contrainteLayout.weighty = 0.7;
-        contrainteLayout.weightx = 1;
+        this.setLayout(null);
+
+
 
         //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-        panTitre.add(titre);
-        panTitre.add(jtfTitre);
+
 
         boutonsObjectif.add(maximiser);
         boutonsObjectif.add(minimiser);
         maximiser.setSelected(true);
 
-        panObjectif.add(objectif);
-        panObjectif.add(maximiser);
-        panObjectif.add(minimiser);
 
-        panVariables.setLayout(new FlowLayout(1, 100, 0));
-        panVariables.add(variables);
-        panVariables.add(slide);
 
+        panDonnees.setLayout(new FlowLayout(FlowLayout.CENTER));
         panDonnees.add(new JLabel("y="));
         panDonnees.add(new JTextField(3));
         panDonnees.add(new JLabel("x0"));
 
-        pan2.add(panTitre);
-        pan2.add(description);
-        pan2.add(textfield);
-        pan2.add(panVariables);
-        pan2.add(panObjectif);
-        pan2.add(donnees);
-        pan2.add(panDonnees);
+        this.add(titre);
+        titre.setForeground(new Color(255, 255, 255));
+        this.add(jtfTitre);
+        jtfTitre.setHorizontalAlignment(JTextField.CENTER);
+        jtfTitre.setBackground(new Color(0, 0, 0, 50));
+        jtfTitre.setBorder(BorderFactory.createBevelBorder(BevelBorder.RAISED));
+        this.add(description);
+        description.setForeground(new Color(255, 255, 255));
+        textfield.setBackground(new Color(0, 0, 0, 50));
+        textfield.setBorder(BorderFactory.createBevelBorder(BevelBorder.RAISED));
+        this.add(textfield);
+        this.add(slide);
+        slide.setBackground(new Color(0, 0, 0, 0));
+        this.add(variables);
+        variables.setForeground(new Color(255, 255, 255));
+        this.add(objectif);
+        objectif.setForeground(new Color(255, 255, 255));
+        this.add(maximiser);
+        maximiser.setBackground(new Color(0, 0, 0, 0));
+        this.add(minimiser);
+        minimiser.setBackground(new Color(0, 0, 0, 0));
+        this.add(donnees);
+        donnees.setForeground(new Color(255, 255, 255));
+        this.add(panDonnees);
+        panDonnees.setBackground(new Color(0, 0, 0, 0));
+        this.add(contraintes);
 
-        pan3.setLayout(new BorderLayout());
+
         //pan3.setPreferredSize(new Dimension(200,200));
         this.raffraichitTabContrainte(fsl.getContraintes());
 
@@ -275,32 +308,21 @@ public class JPanelProbleme extends JPanel {
 
         icon = new ImageIcon(item);
 
-        this.add(pan2, contrainteLayout);
-        contrainteLayout.gridx = 0;
-        contrainteLayout.gridy = 1;
-
-        contrainteLayout.weighty = 0.3;
-        this.add(pan3, contrainteLayout);
         this.validate();
 
     }
 
     private void initialiserVariables() {
-        pan2 = new JPanel();
-        pan3 = new JPanel();
-        panTitre = new JPanel();
 
-        panVariables = new JPanel();
-        panObjectif = new JPanel();
         panDonnees = new JPanel();
-        panEst = new JPanel();
-        panNord = new JPanel();
-        titre = new JLabel("Titre du probleme: ");
-        description = new JLabel("Description du problème", JLabel.CENTER);
 
-        variables = new JLabel("Nombre de variables");
-        objectif = new JLabel("Fonction objectif");
-        donnees = new JLabel("Remplir les données", JLabel.CENTER);
+        titre = new JLabel("Titre du probleme : ");
+        description = new JLabel("Description : ");
+        donnees = new JLabel("Optimisation :");
+        variables = new JLabel("Nombre de variables : ");
+        objectif = new JLabel("Fonction objectif :");
+        contraintes = new JLabel("Liste des contraintes :");
+        contraintes.setForeground(new Color(255, 255, 255));
 
         boutonsObjectif = new ButtonGroup();
 
@@ -311,7 +333,7 @@ public class JPanelProbleme extends JPanel {
 
         jtfTitre = new JTextField("Mon probleme", 30);
         jtfTitre.addKeyListener(new SaveListener());
-        textfield = new JTextField("Entrer votre description du problème");
+        textfield = new JTextArea("Entrer votre description du problème");
         textfield.addKeyListener(new SaveListener());
         //---------------------------le slide--------------------------//
         slide = new JSlider(min, max, init);
@@ -431,22 +453,6 @@ public class JPanelProbleme extends JPanel {
         this.objectif = objectif;
     }
 
-    public JPanel getPan2() {
-        return pan2;
-    }
-
-    public void setPan2(JPanel pan2) {
-        this.pan2 = pan2;
-    }
-
-    public JPanel getPan3() {
-        return pan3;
-    }
-
-    public void setPan3(JPanel pan3) {
-        this.pan3 = pan3;
-    }
-
     public JPanel getPanDonnees() {
         return panDonnees;
     }
@@ -455,52 +461,12 @@ public class JPanelProbleme extends JPanel {
         this.panDonnees = panDonnees;
     }
 
-    public JPanel getPanEst() {
-        return panEst;
-    }
-
-    public void setPanEst(JPanel panEst) {
-        this.panEst = panEst;
-    }
-
-    public JPanel getPanNord() {
-        return panNord;
-    }
-
-    public void setPanNord(JPanel panNord) {
-        this.panNord = panNord;
-    }
-
-    public JPanel getPanObjectif() {
-        return panObjectif;
-    }
-
-    public void setPanObjectif(JPanel panObjectif) {
-        this.panObjectif = panObjectif;
-    }
-
     public Tableau getPanTableau() {
         return panTableau;
     }
 
     public void setPanTableau(Tableau panTableau) {
         this.panTableau = panTableau;
-    }
-
-    public JPanel getPanTitre() {
-        return panTitre;
-    }
-
-    public void setPanTitre(JPanel panTitre) {
-        this.panTitre = panTitre;
-    }
-
-    public JPanel getPanVariables() {
-        return panVariables;
-    }
-
-    public void setPanVariables(JPanel panVariables) {
-        this.panVariables = panVariables;
     }
 
     public Probleme getProbleme() {
@@ -519,11 +485,11 @@ public class JPanelProbleme extends JPanel {
         this.slide = slide;
     }
 
-    public JTextField getTextfield() {
+    public JTextArea getTextfield() {
         return textfield;
     }
 
-    public void setTextfield(JTextField textfield) {
+    public void setTextfield(JTextArea textfield) {
         this.textfield = textfield;
     }
 

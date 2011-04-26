@@ -6,6 +6,7 @@ import java.awt.BorderLayout;
 import javax.swing.*;
 import javax.swing.table.TableColumn;
 import fr.eisti.OptimEisti.Model.Contrainte;
+import java.awt.Color;
 import java.util.ArrayList;
 
 public class Tableau extends JPanel{
@@ -86,6 +87,7 @@ public class Tableau extends JPanel{
                     ModelTab t = new ModelTab(data,title);
                     //on creer un tableau a partir de ce model
                     table = new JTable(t);
+                    
                     table.addKeyListener(new SaveListener());
                     table.addMouseListener(new SaveListener());
                     //on creer une JCombobox qui nous permettra de donner à l'utilisateur un choix restreint d'opérateur à choisir
@@ -112,7 +114,9 @@ public class Tableau extends JPanel{
                     supprimerLigne.setCellRenderer(chbr);
                     supprimerLigne.setCellEditor(new ButtonEditor(new JCheckBox()));
                     supprimerLigne.setMaxWidth(10);
-                    this.add(new JScrollPane(table),BorderLayout.CENTER);
+                    JScrollPane js=new JScrollPane(table);
+                   
+                    this.add(js,BorderLayout.CENTER);
                 }
 
         public JTable getTable(){
