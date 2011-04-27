@@ -239,8 +239,8 @@ public class PanelProbleme extends JPanel {
         Graphics2D g2d = (Graphics2D) g;
         g2d.setPaint(new GradientPaint(0, 0, couleur1, 0, this.getHeight(), couleur2, true));
         g2d.fillRect(0, 0, this.getWidth(), this.getHeight());
-        titre.setBounds(this.getWidth() * 10 / 100, this.getHeight() * 3 / 100, this.getWidth() * 15 / 100, this.getHeight() * 15 / 100);
-        jtfTitre.setBounds(this.getWidth() * 42 / 100, this.getHeight() * 5 / 100, this.getWidth() * 30 / 100, this.getHeight() * 8 / 100);
+        titre.setBounds(this.getWidth() * 10 / 100, this.getHeight() * 6 / 100, this.getWidth() * 30 / 100, this.getHeight() * 6 / 100);
+        jtfTitre.setBounds(this.getWidth() * 42 / 100, this.getHeight() * 6 / 100, this.getWidth() * 30 / 100, this.getHeight() * 6 / 100);
 
         description.setBounds(this.getWidth() * 10 / 100, this.getHeight() * 15 / 100, this.getWidth() * 15 / 100, this.getHeight() * 15 / 100);
         textfield.setBounds(this.getWidth() * 42 / 100, this.getHeight() * 15 / 100, this.getWidth() * 50 / 100, this.getHeight() * 20 / 100);
@@ -251,7 +251,7 @@ public class PanelProbleme extends JPanel {
         slide.setBounds(this.getWidth() * 42 / 100, this.getHeight() * 50 / 100, this.getWidth() * 40 / 100, this.getHeight() * 10 / 100);
         variables.setBounds(this.getWidth() * 10 / 100, this.getHeight() * 48 / 100, this.getWidth() * 40 / 100, this.getHeight() * 15 / 100);
         panDonnees.setBounds(this.getWidth() * 25 / 100, this.getHeight() * 60 / 100, this.getWidth() * 75 / 100, this.getHeight() * 10 / 100);
-        objectif.setBounds(this.getWidth() * 10 / 100, this.getHeight() * 58 / 100, this.getWidth() * 15 / 100, this.getHeight() * 15 / 100);
+        objectif.setBounds(this.getWidth() * 10 / 100, this.getHeight() * 58 / 100, this.getWidth() * 20 / 100, this.getHeight() * 15 / 100);
         contraintes.setBounds(this.getWidth() * 10 / 100, this.getHeight() * 68 / 100, this.getWidth() * 30 / 100, this.getHeight() * 10 / 100);
         panTableau.setBounds(this.getWidth() * 5 / 100, this.getHeight() * 78 / 100, this.getWidth() * 90 / 100, this.getHeight() * 20 / 100);
         ajouter.setBounds(this.getWidth() * 42 / 100, this.getHeight() * 70 / 100, this.getWidth() * 40 / 100, this.getHeight() * 5 / 100);

@@ -70,7 +70,7 @@ public class Fenetre extends JFrame {
     private void initFenetre() {
         this.setTitle("Fenêtre de saisie du problème");
         this.setSize(960, 620);          //on redimenssione la fenetre en cours
-        this.setMinimumSize(new Dimension(775, 500));
+        this.setMinimumSize(new Dimension(900, 600));
         this.setLocationRelativeTo(null);//on centre la fenetre a l'ecran
         //this.setResizable(false);        //on demande a ce que la fenetre ne puisse pas etre redimentionnee
         this.setDefaultCloseOperation(DISPOSE_ON_CLOSE); //permet de fermer correctement la fenetre

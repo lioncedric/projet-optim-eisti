@@ -35,8 +35,17 @@ public class CreerCompteListener implements MouseListener {
      * permet de rajouter une personne dans le identification.xml
      */
     public void creerCompte() {
-        //si l'image a la bonne extension (bonFormat) et la bonne taille et que le reste est bien rempli, alors on peut creer le compte
-        if (bonFormatImage() && bonneTailleImage() && nomEtMdpCorrects()) {
+        //si le nom d'utilisateur existe déjà dans la BDD
+        if (BDDUtilisateur.existeUtilisateur(this.maFenetre.getPanFond().getJtfNomUtilisateur().getText())) {
+            //la fenetre n'est pas au premier plan
+            maFenetre.setAlwaysOnTop(false);
+            //on ouvre un dialogue
+            JOptionPane jop = new JOptionPane();
+            jop.showMessageDialog(null, "Création échouée! Votre nom d'utilisateur est déjà utilisé!", "Erreur", JOptionPane.ERROR_MESSAGE);
+            //on remet la fenetre au premier plan
+            maFenetre.setAlwaysOnTop(true);
+        }//si l'image a la bonne extension (bonFormat) et la bonne taille et que le reste est bien rempli, alors on peut creer le compte
+        else if (bonFormatImage() && bonneTailleImage() && nomEtMdpCorrects()) {
             //opération sur le dom
             BDDUtilisateur.ajouterUtilisateur(this.maFenetre.getPanFond().getJtfNomUtilisateur().getText(), this.maFenetre.getPanFond().getJtfMdp().getText(), this.maFenetre.getPanFond().getJtfAvatar().getText());
             //on ferme la fenetre d'identification
@@ -49,7 +58,8 @@ public class CreerCompteListener implements MouseListener {
             //la fenetre n'est pas au premier plan
             maFenetre.setAlwaysOnTop(false);
             //on ouvre un dialogue
-            JOptionPane.showMessageDialog(null, "Création échouée! Vous n'avez pas selectionner une image valide.", "Erreur", JOptionPane.ERROR_MESSAGE);
+            JOptionPane jop = new JOptionPane();
+            jop.showMessageDialog(null, "Création échouée! Vous n'avez pas selectionné une image valide.", "Erreur", JOptionPane.ERROR_MESSAGE);
             //on remet la fenetre au premier plan
             maFenetre.setAlwaysOnTop(true);
         } //si l'image n'a pas une taille correcte
@@ -68,22 +78,10 @@ public class CreerCompteListener implements MouseListener {
             JOptionPane.showMessageDialog(null, "Création échouée! Vous n'avez pas rentré de données dans au moins un des champs.", "Erreur", JOptionPane.ERROR_MESSAGE);
             //on remet la fenetre au premier plan
             maFenetre.setAlwaysOnTop(true);
-        } //sinon si le nom d'utilisateur existe déjà dans la BDD
-        else if (BDDUtilisateur.existeUtilisateur(this.maFenetre.getPanFond().getJtfNomUtilisateur().getText())) {
-            //la fenetre n'est pas au premier plan
-            maFenetre.setAlwaysOnTop(false);
-            //on réinitialise tout
-            this.maFenetre.getPanFond().raz();
-            //on ouvre un dialogue
-            JOptionPane.showMessageDialog(null, "Création échouée! Votre nom d'utilisateur est déjà utilisé!", "Erreur", JOptionPane.ERROR_MESSAGE);
-            //on remet la fenetre au premier plan
-            maFenetre.setAlwaysOnTop(true);
         } //sinon si l'utilisateur n'a pas saisi deux fois le même mot de passe
         else if (!this.maFenetre.getPanFond().getJtfMdp().getText().equals(this.maFenetre.getPanFond().getJtfMdp2().getText())) {
             //la fenetre n'est pas au premier plan
             maFenetre.setAlwaysOnTop(false);
-            //on réinitialise tout
-            this.maFenetre.getPanFond().raz();
             //on ouvre un dialogue
             JOptionPane.showMessageDialog(null, "Création échouée! Vous n'avez pas saisi les mêmes mots de passe!", "Erreur", JOptionPane.ERROR_MESSAGE);
             //on remet la fenetre au premier plan
@@ -92,8 +90,6 @@ public class CreerCompteListener implements MouseListener {
         else {
             //la fenetre n'est pas au premier plan
             maFenetre.setAlwaysOnTop(false);
-            //on réinitialise tout
-            this.maFenetre.getPanFond().raz();
             //on ouvre un dialogue
             JOptionPane.showMessageDialog(null, "Création échouée! Vous n'avez pas saisi tous les champs!", "Erreur", JOptionPane.ERROR_MESSAGE);
             //on remet la fenetre au premier plan
