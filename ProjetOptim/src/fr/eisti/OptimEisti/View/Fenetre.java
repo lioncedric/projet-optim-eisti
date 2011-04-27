@@ -85,7 +85,7 @@ public class Fenetre extends JFrame {
       
 
         droite.setBackground(Color.WHITE);
-        UIManager.put("TabbedPane.selected", Color.ORANGE);
+        UIManager.put("TabbedPane.selected", new Color(209, 238, 238));
         SwingUtilities.updateComponentTreeUI(droite);
         splitPane = new JSplitPane(JSplitPane.HORIZONTAL_SPLIT, panGauche, droite);
         gauche.setMinimumSize(new Dimension(180, this.getHeight()));

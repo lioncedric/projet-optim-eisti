@@ -69,6 +69,10 @@ public class JPanelProbleme extends JPanel {
     private PanelProblemesUtilisateur liste;
     // private ArrayList<Contrainte> contraintes;
     private FenetreSaisieListener fsl;
+    
+    //Les couleurs pour le dégradé
+    private Color couleur1;
+    private Color couleur2;
 
     public JPanelProbleme(int numero) {
         super();
@@ -77,11 +81,10 @@ public class JPanelProbleme extends JPanel {
         probleme.setNumero(numero);
         initialiserVariables();
         traitementPanel();
+        mettreFond();
         raffraichitTabContrainte(probleme.getContraintes());
         slide.addChangeListener(fsl);
         slide.addChangeListener(new SaveListener());
-
-
     }
 
     public JPanelProbleme(Probleme probleme) {
@@ -91,10 +94,20 @@ public class JPanelProbleme extends JPanel {
         initialiserVariables();
         traitementPanel();
         remplissage();
+        mettreFond();
         slide.addChangeListener(fsl);
         slide.addChangeListener(new SaveListener());
     }
 
+    public void mettreFond(){
+        this.couleur1=Color.WHITE;
+        this.couleur2=new Color(209, 238, 238);
+    }
+    public void modifierFond(Color c1, Color c2){
+        this.couleur1=c1;
+        this.couleur2=c2;
+    }
+    
     /**
      * initialise le proble aux valeurs rentrées par l'utilisateur
      * @param fenetre le fenetre contenant les informations du probleme
@@ -218,15 +231,13 @@ public class JPanelProbleme extends JPanel {
         ajouter.setBorder(BorderFactory.createBevelBorder(BevelBorder.RAISED));
         ajouter.setBackground(new Color(0, 0, 0, 50));
         ajouter.setForeground(new Color(255, 255, 255));
-
-
     }
 
     @Override
     public void paintComponent(Graphics g) {
         super.paintComponent(g);
         Graphics2D g2d = (Graphics2D) g;
-        g2d.setPaint(new GradientPaint(0, 0, Color.ORANGE, 0, this.getHeight(), Color.RED, true));
+        g2d.setPaint(new GradientPaint(0, 0, couleur1, 0, this.getHeight(), couleur2, true));
         g2d.fillRect(0, 0, this.getWidth(), this.getHeight());
         titre.setBounds(this.getWidth() * 10 / 100, this.getHeight() * 3 / 100, this.getWidth() * 15 / 100, this.getHeight() * 15 / 100);
         jtfTitre.setBounds(this.getWidth() * 42 / 100, this.getHeight() * 5 / 100, this.getWidth() * 30 / 100, this.getHeight() * 8 / 100);
@@ -268,28 +279,28 @@ public class JPanelProbleme extends JPanel {
         panDonnees.add(new JLabel("x0"));
 
         this.add(titre);
-        titre.setForeground(new Color(255, 255, 255));
+        titre.setForeground(new Color(0, 0, 0));
         this.add(jtfTitre);
         jtfTitre.setHorizontalAlignment(JTextField.CENTER);
         jtfTitre.setBackground(new Color(0, 0, 0, 50));
         jtfTitre.setBorder(BorderFactory.createBevelBorder(BevelBorder.RAISED));
         this.add(description);
-        description.setForeground(new Color(255, 255, 255));
+        description.setForeground(new Color(0, 0, 0));
         textfield.setBackground(new Color(0, 0, 0, 50));
         textfield.setBorder(BorderFactory.createBevelBorder(BevelBorder.RAISED));
         this.add(textfield);
         this.add(slide);
         slide.setBackground(new Color(0, 0, 0, 0));
         this.add(variables);
-        variables.setForeground(new Color(255, 255, 255));
+        variables.setForeground(new Color(0, 0, 0));
         this.add(objectif);
-        objectif.setForeground(new Color(255, 255, 255));
+        objectif.setForeground(new Color(0, 0, 0));
         this.add(maximiser);
         maximiser.setBackground(new Color(0, 0, 0, 0));
         this.add(minimiser);
         minimiser.setBackground(new Color(0, 0, 0, 0));
         this.add(donnees);
-        donnees.setForeground(new Color(255, 255, 255));
+        donnees.setForeground(new Color(0, 0, 0));
         this.add(panDonnees);
         panDonnees.setBackground(new Color(0, 0, 0, 0));
         this.add(contraintes);
@@ -309,7 +320,6 @@ public class JPanelProbleme extends JPanel {
         icon = new ImageIcon(item);
 
         this.validate();
-
     }
 
     private void initialiserVariables() {

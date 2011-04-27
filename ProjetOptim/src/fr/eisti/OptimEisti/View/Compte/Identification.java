@@ -39,7 +39,6 @@ public class Identification extends JDialog {
         this.setResizable(false);               //on demande a ce que la fenetre ne puisse pas etre redimentionnee
         this.setDefaultCloseOperation(DISPOSE_ON_CLOSE); //permet de fermer correctement la fenetre
         this.setModal(true);                    //on desactive tout le reste
-        this.setUndecorated(true);
     }
 
     /**
