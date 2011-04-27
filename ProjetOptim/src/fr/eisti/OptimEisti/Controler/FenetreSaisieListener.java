@@ -128,6 +128,9 @@ public class FenetreSaisieListener implements ChangeListener, ActionListener, Co
         else if (e.getSource() == this.fenetre.getPleinEcran()) {
             //on passe tout simplement en mode 'Plein Ecran' en maximisant hauteur et largeur
             this.fenetre.setExtendedState(this.fenetre.MAXIMIZED_BOTH);
+        } else if (e.getSource() == this.fenetre.getAffResHtml()) {
+            //ouvrir la page html
+            
         }
     }
 

@@ -15,3 +15,6 @@ pour plutard
 -   le bouton trouver solution a mettre sur le panel de droite!!!
 -   faire une fonction qui regarde qui un probleme a ete modifié, peut s'averer tres utile pour la sauvegarde
 -   bouton(s) sauvegarder a modifier
+
+XSLT:
+-ajouter un attribut name="le nom dutilisateur" dans le fichier xml

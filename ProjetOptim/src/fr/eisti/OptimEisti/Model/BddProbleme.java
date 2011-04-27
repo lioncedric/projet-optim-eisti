@@ -48,6 +48,7 @@ public class BddProbleme {
                 bdd.setXmlStandalone(true);
                 // Création de l'arborescence du DOM
                 Element racine = bdd.createElement("listeProblemes");
+                racine.setAttribute("utilisateur", nomUtilisateur);
                 bdd.appendChild(racine);
             } catch (ParserConfigurationException ex) {
                 Logger.getLogger(BddProbleme.class.getName()).log(Level.SEVERE, null, ex);

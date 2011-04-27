@@ -67,7 +67,6 @@ public final class PanelProblemesUtilisateur extends JPanel {
         this.jMenuItemOuvrir = new JMenuItem("Ouvrir");
         this.jMenuItemExporter = new JMenuItem("Exporter");
         this.jMenuItemSuppr = new JMenuItem("Supprimer");
-
     }
 
     /**
@@ -173,6 +172,7 @@ public final class PanelProblemesUtilisateur extends JPanel {
     public JMenuItem getjMenuItemExporter() {
         return jMenuItemExporter;
     }
+
 
     public JPopupMenu getJpopup() {
         return jpopup;

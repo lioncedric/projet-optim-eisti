@@ -49,6 +49,7 @@ public class Fenetre extends JFrame {
     private JMenuItem pleinEcran = new JMenuItem("Plein écran");
     private JMenuItem petitEcran = new JMenuItem("Mettre en petite taille");
     private JMenuItem profil = new JMenuItem("Gérer votre profil");
+    private JMenuItem affResHtml = new JMenuItem("Générer une page HTML");
     //declaration des variables pour le panel de gauche
     private JSplitPane splitPane;
     private PanelProblemesUtilisateur gauche;
@@ -110,7 +111,7 @@ public class Fenetre extends JFrame {
      * Methode d'initialisation de la fenetre
      */
     private void traitementMenuItem() {
-        //les raccourcis clavier deja pris : ctrl+s, ctrl+d, ctrl+q, ctrl+f, ctrl+l, ctrl+r
+        //les raccourcis clavier deja pris : ctrl+s, ctrl+d, ctrl+q, ctrl+f, ctrl+l, ctrl+r, ctrl+h
         //on initialise nos menus
         fichier.setMnemonic('F');//faire alt+f pour voir le menu derouler
         edition.setMnemonic('E');
@@ -139,6 +140,8 @@ public class Fenetre extends JFrame {
         this.pleinEcran.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_L, KeyEvent.CTRL_MASK));//ctrl + l
         this.affichage.add(petitEcran);
         this.petitEcran.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_R, KeyEvent.CTRL_MASK));//ctrl + r
+        this.affichage.add(affResHtml);
+        this.affResHtml.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_H, KeyEvent.CTRL_MASK));//ctrl + h
 
         this.aide.add(aideItem);
         this.aide.addSeparator();
@@ -160,6 +163,7 @@ public class Fenetre extends JFrame {
         quitter.addActionListener(new FenetreSaisieListener(this));
         pleinEcran.addActionListener(new FenetreSaisieListener(this));
         petitEcran.addActionListener(new FenetreSaisieListener(this));
+        affResHtml.addActionListener(new FenetreSaisieListener(this));
     }
 
     public JTabbedPane getDroite() {
@@ -281,4 +285,9 @@ public class Fenetre extends JFrame {
     public PanelProfil getPanProfil() {
         return panProfil;
     }
+
+    public JMenuItem getAffResHtml() {
+        return affResHtml;
+    }
+
 }
