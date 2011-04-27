@@ -332,7 +332,7 @@ public class JPanelProbleme extends JPanel {
         variables = new JLabel("Nombre de variables : ");
         objectif = new JLabel("Fonction objectif :");
         contraintes = new JLabel("Liste des contraintes :");
-        contraintes.setForeground(new Color(255, 255, 255));
+        contraintes.setForeground(new Color(0, 0, 0));
 
         boutonsObjectif = new ButtonGroup();
 
