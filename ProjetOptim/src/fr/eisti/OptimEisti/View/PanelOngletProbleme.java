@@ -11,7 +11,7 @@ import javax.swing.border.BevelBorder;
  * Contains a JLabel to show the text and
  * a JButton to close the tab it belongs to
  */
-public class ButtonTabComponent extends JPanel {
+public class PanelOngletProbleme extends JPanel {
 
     private final JTabbedPane pane;
     SaveButton save;
@@ -20,7 +20,7 @@ public class ButtonTabComponent extends JPanel {
         return save;
     }
 
-    public ButtonTabComponent(final JTabbedPane pane) {
+    public PanelOngletProbleme(final JTabbedPane pane) {
         //unset default FlowLayout' gaps
         super(new FlowLayout(FlowLayout.LEFT, 0, 0));
        
@@ -36,7 +36,7 @@ public class ButtonTabComponent extends JPanel {
 
             @Override
             public String getText() {
-                int i = pane.indexOfTabComponent(ButtonTabComponent.this);
+                int i = pane.indexOfTabComponent(PanelOngletProbleme.this);
                 if (i != -1) {
                     return pane.getTitleAt(i);
                 }
@@ -78,7 +78,7 @@ public class ButtonTabComponent extends JPanel {
         }
 
         public void actionPerformed(ActionEvent e) {
-            int i = pane.indexOfTabComponent(ButtonTabComponent.this);
+            int i = pane.indexOfTabComponent(PanelOngletProbleme.this);
             if (i != -1) {
 
                 ((JPanelProbleme) pane.getComponentAt(i)).enregisrer(i);
@@ -129,7 +129,7 @@ public class ButtonTabComponent extends JPanel {
         }
 
         public void actionPerformed(ActionEvent e) {
-            int i = pane.indexOfTabComponent(ButtonTabComponent.this);
+            int i = pane.indexOfTabComponent(PanelOngletProbleme.this);
             if (i != -1) {
                 pane.remove(i);
 

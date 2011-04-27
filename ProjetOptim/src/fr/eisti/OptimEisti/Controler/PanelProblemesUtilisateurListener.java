@@ -4,7 +4,7 @@ import fr.eisti.OptimEisti.View.PanelProblemesUtilisateur;
 import fr.eisti.OptimEisti.Main;
 import fr.eisti.OptimEisti.Model.*;
 import fr.eisti.OptimEisti.Model.Solution;
-import fr.eisti.OptimEisti.View.ButtonTabComponent;
+import fr.eisti.OptimEisti.View.PanelOngletProbleme;
 import fr.eisti.OptimEisti.View.JPanelProbleme;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -142,7 +142,7 @@ public class PanelProblemesUtilisateurListener implements ActionListener, MouseL
             if (!nouveau) {
                 //on en crée un à la suite des autres et on lui attribue le titre "Sans nom"
                 Main.fenetrePrincipale.getDroite().add("Sans nom", new JPanelProbleme(BddProbleme.nombreProblemes()));
-                Main.fenetrePrincipale.getDroite().setTabComponentAt(Main.fenetrePrincipale.getDroite().getTabCount() - 1, new ButtonTabComponent(Main.fenetrePrincipale.getDroite()));
+                Main.fenetrePrincipale.getDroite().setTabComponentAt(Main.fenetrePrincipale.getDroite().getTabCount() - 1, new PanelOngletProbleme(Main.fenetrePrincipale.getDroite()));
                 Main.fenetrePrincipale.getDroite().setSelectedIndex(Main.fenetrePrincipale.getDroite().getTabCount() - 1);
             }
         }
@@ -166,7 +166,7 @@ public class PanelProblemesUtilisateurListener implements ActionListener, MouseL
                 probleme = BddProbleme.getProbleme(numero);
                 probleme.setNumero(numero);
                 Main.fenetrePrincipale.getDroite().add(probleme.getTitre(), new JPanelProbleme(probleme));
-                Main.fenetrePrincipale.getDroite().setTabComponentAt(Main.fenetrePrincipale.getDroite().getTabCount() - 1, new ButtonTabComponent(Main.fenetrePrincipale.getDroite()));
+                Main.fenetrePrincipale.getDroite().setTabComponentAt(Main.fenetrePrincipale.getDroite().getTabCount() - 1, new PanelOngletProbleme(Main.fenetrePrincipale.getDroite()));
                 Main.fenetrePrincipale.getDroite().setSelectedIndex(Main.fenetrePrincipale.getDroite().getTabCount() - 1);
             } else {
                 boolean trouve = false;

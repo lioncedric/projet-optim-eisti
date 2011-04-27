@@ -6,7 +6,7 @@ package fr.eisti.OptimEisti.Controler;
 
 import fr.eisti.OptimEisti.Main;
 import fr.eisti.OptimEisti.Model.Probleme;
-import fr.eisti.OptimEisti.View.ButtonTabComponent;
+import fr.eisti.OptimEisti.View.PanelOngletProbleme;
 import fr.eisti.OptimEisti.View.JPanelProbleme;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
@@ -63,13 +63,13 @@ public class SaveListener implements ChangeListener, KeyListener, MouseListener 
             }
             catch(Exception e){}
             if (jp.getProbleme().toString().equals(p.toString())) {
-                ((ButtonTabComponent) Main.fenetrePrincipale.getDroite().getTabComponentAt(i)).getSave().setEnabled(false);
+                ((PanelOngletProbleme) Main.fenetrePrincipale.getDroite().getTabComponentAt(i)).getSave().setEnabled(false);
 
            
 
 
             } else {
-                ((ButtonTabComponent) Main.fenetrePrincipale.getDroite().getTabComponentAt(i)).getSave().setEnabled(true);
+                ((PanelOngletProbleme) Main.fenetrePrincipale.getDroite().getTabComponentAt(i)).getSave().setEnabled(true);
 
           
 

@@ -7,13 +7,20 @@ package fr.eisti.OptimEisti.Model;
 
 import java.io.File;
 import javax.swing.filechooser.FileFilter;
-
+/**
+ * Classe pour ajouter des types de fichier(ici utilisée pour .csv et .sci)
+  * @author Razavet Maël, Lion Cédric, Klelifa Sarah, Gallet Meriadec
+ */
 
 public class FiltreSimple extends   FileFilter{
    //Description et extension acceptée par le filtre
    private String description;
    private String extension;
-   //Constructeur à partir de la description et de l'extension acceptée
+   /**
+    * Constructeur à partir de la description et de l'extension acceptée
+    * @param description
+    * @param extension
+    */
    public FiltreSimple(String description, String extension){
       if(description == null || extension ==null){
          throw new NullPointerException("La description (ou extension) ne peut être null.");
@@ -21,7 +28,11 @@ public class FiltreSimple extends   FileFilter{
       this.description = description;
       this.extension = extension;
    }
-   //Implémentation de FileFilter
+   /**
+    * regarde si un fichier valide un filtre
+    * @param file le fichier
+    * @return si le fichier est valide
+    */
    public boolean accept(File file){
       if(file.isDirectory()) {
          return true;
@@ -30,6 +41,10 @@ public class FiltreSimple extends   FileFilter{
 
       return nomFichier.endsWith(extension);
    }
+   /**
+    * Description du filtre
+    * @return le description
+    */
       public String getDescription(){
       return description;
    }

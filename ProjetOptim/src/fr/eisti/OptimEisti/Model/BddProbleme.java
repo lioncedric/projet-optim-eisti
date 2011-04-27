@@ -212,14 +212,18 @@ public class BddProbleme {
      * @param nom fichier de sortie
      */
     public static void exporterScilab(Probleme p, String nom) {
-
+        //on normalise le probleme sous forme de tableau
         double[][] probleme = p.formaliserProbleme();
+        //nombre de lignes du tableau
         int lignes = probleme.length;
+        //nombres de colonnes du tableau
         int colonnes = probleme[0].length;
+        //les variables a mettre dans scilab
         String c = "c=[";
         String Z1 = "Z1=[";
         String b = "b=[";
         String A = "A=[";
+        //remplissage des variables c et z1
         for (int i = 0; i < colonnes - lignes; i++) {
             c = c + probleme[lignes - 1][i];
             Z1 = Z1 + "0";
@@ -231,6 +235,7 @@ public class BddProbleme {
                 Z1 = Z1 + ";";
             }
         }
+        //remplisage de b
         for (int i = 0; i < lignes - 1; i++) {
             b = b + probleme[i][colonnes - 1];
             if (i == lignes - 2) {
@@ -239,6 +244,7 @@ public class BddProbleme {
                 b = b + ";";
             }
         }
+        //remplissage deA
         for (int i = 0; i < lignes - 1; i++) {
             for (int j = 0; j < colonnes - lignes; j++) {
                 A = A + probleme[i][j];
@@ -252,12 +258,13 @@ public class BddProbleme {
             }
         }
         A = A + "]";
+        //on cree le fichier resultat
         FileWriter fw = null;
         try {
-
+            //on valide le nouveau vichier et on ecrase s'il existe deja
             fw = new FileWriter(nom, false);
             BufferedWriter sortie = new BufferedWriter(fw);
-
+            //on ecrit dans le fichier
             sortie.write("//Programmation lineaire: " + p.getTitre() + "\n");
             sortie.write(c + ";\n");
             sortie.write(b + ";\n");
@@ -265,6 +272,7 @@ public class BddProbleme {
             sortie.write("Zu=[]" + ";\n");
             sortie.write(Z1 + ";\n");
             sortie.write("[Zopt,lag,CA]=linpro(c,A,b,Z1,Zu)" + ";\n");
+            //on ferme le buffer
             sortie.close();
         } catch (IOException ex) {
         }
