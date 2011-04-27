@@ -1,6 +1,5 @@
 package fr.eisti.optimEisti_RaLiGaKl.controler.problemes;
 
-import fr.eisti.optimEisti_RaLiGaKl.controler.problemes.SaveListener;
 import fr.eisti.optimEisti_RaLiGaKl.model.BDDUtilisateur;
 import fr.eisti.optimEisti_RaLiGaKl.model.BddProbleme;
 import java.awt.event.ActionEvent;
@@ -31,42 +30,53 @@ import javax.swing.JFileChooser;
 public class FenetreListener implements ChangeListener, ActionListener, ComponentListener {
 
     private Fenetre fenetre;
-    private ArrayList<String> a;
+    private ArrayList<String> valeursTextFields;
     private ArrayList<Contrainte> contraintes;
 
+    /**
+     * Constructeur du listener de la fenetre
+     * @param f1 : la fenetre où s'applique le listener
+     */
     public FenetreListener(Fenetre f1) {
         this.fenetre = f1;
-        a = new ArrayList();
+        valeursTextFields = new ArrayList();
         contraintes = new ArrayList<Contrainte>();
     }
 
+    /**
+     * Constructeur du listener de la fenetre sans parametre
+     */
     public FenetreListener() {
-        a = new ArrayList();
-        contraintes = new ArrayList<Contrainte>();
+       this(null);
     }
+
 
     @Override
     public void stateChanged(ChangeEvent e) {
-        //Des qu'on change le slider on grise l'onglet des contraintes afin d'obliger
-        //l'utilisateur à cliquer sur le bouton et à vérifier si tout les champs son bien rempli
-        a = new ArrayList();
+        //on initialise la liste des valeurs des textFields
+        valeursTextFields = new ArrayList();
+        //on initialise la liste des contraintes
         contraintes = new ArrayList<Contrainte>();
+        //on initialise le slider
         JSlider source = (JSlider) e.getSource();
 
+        //on stocke la valeur des textfield dans une liste pour pouvoir les récupérés si le slider change de valeur
         for (int i = 0; i < source.getValue(); i++) {
             try {
+                //on recupere chaque textefield de la fonction objectif
                 JTextField jtf = (JTextField) (((PanelProbleme) Main.fenetrePrincipale.getDroite().getSelectedComponent()).getPanDonnees().getComponent(3 * i + 1));
-               
-                a.add(jtf.getText());
+                //on ajoute la valeur du textfield correspondant à la liste
+                valeursTextFields.add(jtf.getText());
             } catch (ArrayIndexOutOfBoundsException aioobe) {
             }
         }
 
+         //on supprime tous les composants du panel contenant la fonction objectif avec tous les panels
         ((PanelProbleme) Main.fenetrePrincipale.getDroite().getSelectedComponent()).getPanDonnees().removeAll();
 
+        //on
         ((PanelProbleme) Main.fenetrePrincipale.getDroite().getSelectedComponent()).getPanDonnees().add(new JLabel("y="));
          JTextField jtff = new JTextField(3);
-         
         ((PanelProbleme) Main.fenetrePrincipale.getDroite().getSelectedComponent()).getPanDonnees().add(jtff);
           jtff.addKeyListener(new SaveListener());
         ((PanelProbleme) Main.fenetrePrincipale.getDroite().getSelectedComponent()).getPanDonnees().add(new JLabel("x0"));
@@ -77,8 +87,8 @@ public class FenetreListener implements ChangeListener, ActionListener, Componen
 
         for (int i = 0; i < source.getValue(); i++) {
             JTextField jtf = (JTextField) (((PanelProbleme) Main.fenetrePrincipale.getDroite().getSelectedComponent()).getPanDonnees().getComponent(3 * i + 1));
-            if (i < a.size()) {
-                jtf.setText(a.get(i));
+            if (i < valeursTextFields.size()) {
+                jtf.setText(valeursTextFields.get(i));
             }
         }
 
@@ -126,7 +136,7 @@ public class FenetreListener implements ChangeListener, ActionListener, Componen
         } //si l'utilisateur veut mettre la fenêtre en plein écran
         else if (e.getSource() == this.fenetre.getPleinEcran()) {
             //on passe tout simplement en mode 'Plein Ecran' en maximisant hauteur et largeur
-            this.fenetre.setExtendedState(this.fenetre.MAXIMIZED_BOTH);
+            this.fenetre.setExtendedState(Fenetre.MAXIMIZED_BOTH);
         } else if (e.getSource() == this.fenetre.getAffResHtml()) {
             //ouvrir la page html
             
