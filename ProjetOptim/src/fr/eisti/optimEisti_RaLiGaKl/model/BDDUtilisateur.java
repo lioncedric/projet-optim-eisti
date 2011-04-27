@@ -43,8 +43,9 @@ public class BDDUtilisateur {
 
     /**
      * permet de modifier nom, mot de passe et image d'un utilisateur ainsi que de reattribuer le fichier xml de ses problemes
-     * @param NomUtilisateur
-     * @param mdp
+     * @param login nom de l'utilisateur
+     * @param mdp mot de passe de l'utilisateur
+     *  @param imageSrc image le representant
      */
     public static void modifierUtilisateur(String login, String mdp, String imageSrc) {
         int i = 0;

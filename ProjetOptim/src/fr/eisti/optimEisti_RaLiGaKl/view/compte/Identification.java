@@ -12,7 +12,7 @@ import fr.eisti.optimEisti_RaLiGaKl.controler.compte.ConnexionControler;
 /**
  * Classe permettant de gérer l'identification d'un utilisateur
  * @author Razavet Maël, Lion Cédric, Klelifa Sarah, Gallet Mériadec
- * @version: 1.0
+
  */
 public class Identification extends JDialog {
 

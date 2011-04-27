@@ -36,8 +36,8 @@ import javax.swing.JTextArea;
 import javax.swing.border.BevelBorder;
 
 /**
- *
- * @author 
+ * Classe qui represente un probleme a l'ecran
+ * @author Razavet Maël, Lion Cédric, Klelifa Sarah, Gallet Mériadec
  */
 public class PanelProbleme extends JPanel {
 
@@ -109,8 +109,8 @@ public class PanelProbleme extends JPanel {
     }
     
     /**
-     * initialise le proble aux valeurs rentrées par l'utilisateur
-     * @param fenetre le fenetre contenant les informations du probleme
+     * sauvegarder le contenu de la fenetre dans un probleme
+     * @param indexTab le fenetre contenant les informations du probleme
      */
     public void enregisrer(int indexTab) {
         boolean titreOK;

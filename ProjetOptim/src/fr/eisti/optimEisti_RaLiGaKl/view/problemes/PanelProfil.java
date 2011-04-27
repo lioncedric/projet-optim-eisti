@@ -21,7 +21,6 @@ import javax.swing.JPanel;
 /**
  * Classe permettant de créer le panel de profil de l'utilisateur
  * @author Razavet Maël, Lion Cédric, Klelifa Sarah, Gallet Mériadec
- * @version: 1.0
  */
 public class PanelProfil extends JPanel {
 

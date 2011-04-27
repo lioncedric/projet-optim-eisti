@@ -8,7 +8,6 @@ import java.awt.event.MouseListener;
 /**
  * Classe qui écoute les actions de la souris sur la page d'accueil
  * @author Razavet Maël, Lion Cédric, Klelifa Sarah, Gallet Mériadec
- * @version: 1.0
  */
 public class AccueilListener implements MouseListener {
 

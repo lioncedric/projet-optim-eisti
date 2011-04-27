@@ -18,7 +18,6 @@ public class Tableau extends JPanel{
 
         /**
          * Constructeur d'un panel contenant un tableau
-         * @param f : fenetre qui contient le tableau
          * @param nbVariable : nb de variable voulu
          */
 	public Tableau(int nbVariable){
@@ -44,7 +43,6 @@ public class Tableau extends JPanel{
 	}
                 /**
                  * Constructeur d'un Panel contenant un Tableau
-                 * @param f : la fenetre contenant le panel
                  * @param nbLigne : le nombre de ligne que le tableau doit contenir
                  * @param nbVariable : le nombre de variable comprise dans le tableau
                  */
@@ -76,10 +74,9 @@ public class Tableau extends JPanel{
 
                 /**
                  * Fonction d'initialisation du tableau et du panel
-                 * @param f
-                 * @param data
-                 * @param title
-                 * @param nbVariable
+                 * @param data les donnees du tableau
+                 * @param title titre du tableau
+                 * @param nbVariable nombre de colonnes
                  */
                 public void init(Object[][] data, String[] title, int nbVariable){
                     this.setLayout(new BorderLayout(2,1));

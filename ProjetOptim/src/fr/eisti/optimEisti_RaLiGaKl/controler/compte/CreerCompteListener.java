@@ -24,11 +24,8 @@ public class CreerCompteListener implements MouseListener {
     private CreerCompte maFenetre;
 
     /**
-     * Constructeur initialisé
-     * @param nomUtilisateur
-     * @param mdp
-     * @param mdp2
-     * @param maFenetre
+     * Constructeur de listener du compte
+     * @param maFenetre la fenetre de creation de compte
      */
     public CreerCompteListener(CreerCompte maFenetre) {
         this.maFenetre = maFenetre;

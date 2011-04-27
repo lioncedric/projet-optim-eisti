@@ -14,7 +14,6 @@ import javax.swing.JTextField;
 /**
  * Classe permettant de créer le panel de profil de l'utilisateur
  * @author Razavet Maël, Lion Cédric, Klelifa Sarah, Gallet Mériadec
- * @version: 1.0
  */
 public class PanelRechercheProbleme extends JPanel {
 

@@ -11,7 +11,7 @@ import javax.swing.JFrame;
 /**
  * Classe qui constitue la premiere fenetre affichee a l'écran (la page d'accueil)
  * @author Razavet Maël, Lion Cédric, Klelifa Sarah, Gallet Mériadec
- * @version: 1.0
+
  */
 public class Accueil extends JFrame {
 

@@ -7,7 +7,6 @@ import javax.swing.JTextField;
 /**
  * Classe relative à un problème
  * @author Razavet Maël, Lion Cédric, Klelifa Sarah, Gallet Mériadec
- * @version: 1.0
  */
 public class Probleme {
 

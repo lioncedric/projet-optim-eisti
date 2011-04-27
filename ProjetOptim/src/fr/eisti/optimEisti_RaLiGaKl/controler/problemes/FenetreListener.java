@@ -22,7 +22,6 @@ import java.awt.event.ComponentListener;
 import java.io.File;
 import java.util.ArrayList;
 import javax.swing.JFileChooser;
-import javax.swing.JOptionPane;
 
 /**
  * Classe qui écoute les actions qui ont lieu sur la fenêtre principale
@@ -91,7 +90,6 @@ public class FenetreListener implements ChangeListener, ActionListener, Componen
     }
 
     @Override
-    @SuppressWarnings("static-access")
     public void actionPerformed(ActionEvent e) {
 
         if (e.getSource() == this.fenetre.getImportXml()) {

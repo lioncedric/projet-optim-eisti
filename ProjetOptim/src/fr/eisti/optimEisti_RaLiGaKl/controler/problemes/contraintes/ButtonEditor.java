@@ -17,8 +17,7 @@ public class ButtonEditor extends DefaultCellEditor {
 
 	/**
 	 * Constructeur avec une checkBox
-	 * @param checkBox
-	 * @param count
+	 * @param checkBox la checkbox a editer
 	 */
 	public ButtonEditor(JCheckBox checkBox) {
             //Par défaut, ce type d'objet travaille avec un JCheckBox

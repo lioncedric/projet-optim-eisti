@@ -6,7 +6,6 @@ package fr.eisti.optimEisti_RaLiGaKl.model;
 /**
  * Classe qui permet de générer la solution à un problème d'optimisation mathématique
  * @author Razavet Maël, Lion Cédric, Klelifa Sarah, Gallet Mériadec
- * @version: 1.0
  */
 public class Solution {
 
@@ -15,9 +14,8 @@ public class Solution {
 
     /**
      * Constructeur qui permet de creer la soluton d'un problème
-     * @param matrice
+     * @param matrice probleme normalisé sous forme de tableau
      * @param nbVariables : nombre de variables imaginaires
-     * @param nbVariables 
      */
     public Solution(double[][] matrice, int nbVariables) {
         //declaration du tableau destine a contenir la solution

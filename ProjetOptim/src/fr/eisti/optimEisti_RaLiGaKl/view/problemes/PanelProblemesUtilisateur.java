@@ -19,7 +19,6 @@ import javax.swing.ListSelectionModel;
 /**
  * Classe permettant de créer le panel utilisateur contenant tous ces problèmes ainsi que le panel de recherche et les boutons d'actions
  * @author Razavet Maël, Lion Cédric, Klelifa Sarah, Gallet Mériadec
- * @version: 1.0
  */
 public final class PanelProblemesUtilisateur extends JPanel {
 

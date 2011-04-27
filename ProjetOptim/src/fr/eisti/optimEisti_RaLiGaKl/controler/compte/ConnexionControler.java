@@ -21,7 +21,6 @@ import java.awt.event.KeyListener;
 /**
  * Listener qui écoute le bouton connexion de la fenetre identification
  * @author Razavet Maël, Lion Cédric, Klelifa Sarah, Gallet Mériadec
- * @version: 1.0
  */
 public class ConnexionControler implements MouseListener, KeyListener {
 

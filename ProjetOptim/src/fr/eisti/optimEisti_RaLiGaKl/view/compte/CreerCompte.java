@@ -11,7 +11,7 @@ import javax.swing.JDialog;
 /**
  * Classe qui permet de créer un nouveau compte d'utilisateur
  * @author Razavet Maël, Lion Cédric, Klelifa Sarah, Gallet Mériadec
- * @version: 1.0
+
  */
 public class CreerCompte extends JDialog {
 
