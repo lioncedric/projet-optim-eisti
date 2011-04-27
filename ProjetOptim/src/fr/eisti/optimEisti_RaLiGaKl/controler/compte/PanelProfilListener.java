@@ -1,7 +1,6 @@
 package fr.eisti.optimEisti_RaLiGaKl.controler.compte;
 
 import fr.eisti.optimEisti_RaLiGaKl.view.compte.GestionProfil;
-import fr.eisti.optimEisti_RaLiGaKl.view.problemes.PanelProfil;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 

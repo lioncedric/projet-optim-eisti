@@ -31,9 +31,9 @@ public class ConnexionControler implements MouseListener, KeyListener {
 
     /**
      * Constructeur du listener
-     * @param tLogin
-     * @param tPassword
-     * @param maFenetre
+     * @param tLogin : le login de l'utilisateur
+     * @param tPassword : le mot de passe de l'utilisateur
+     * @param maFenetre : La fenetre d'identification
      */
     public ConnexionControler(JTextField tLogin, JPasswordField tPassword, Identification maFenetre) {
         this.tLogin = tLogin;
@@ -41,6 +41,13 @@ public class ConnexionControler implements MouseListener, KeyListener {
         this.maFenetre = maFenetre;
     }
 
+    /**
+     * Fonction qui permet de vérifier et de confirmer la connexion d'un utilisateur
+     * @param tLogin : le login de l'utilisateur
+     * @param tPassword : le mot de passe de l'utilisateur
+     * @param maFenetre : la fenetre d'idetntification
+     * @throws IOException
+     */
     public void seConnecter(JTextField tLogin, JPasswordField tPassword, Identification maFenetre) throws IOException {
         //Declaration des variables
         String login;

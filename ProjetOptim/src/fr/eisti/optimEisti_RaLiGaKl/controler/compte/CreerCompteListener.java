@@ -42,16 +42,14 @@ public class CreerCompteListener implements MouseListener {
             //on ferme la fenetre d'identification
             this.maFenetre.dispose();
             //on ouvre un dialogue
-            JOptionPane jop = new JOptionPane();
-            jop.showMessageDialog(null, "Création réussie!", "Information", JOptionPane.INFORMATION_MESSAGE);
+            JOptionPane.showMessageDialog(null, "Création réussie!", "Information", JOptionPane.INFORMATION_MESSAGE);
             this.maFenetre.dispose();
         } //si l'image n'a pas le bon format
         else if (!bonFormatImage()) {
             //la fenetre n'est pas au premier plan
             maFenetre.setAlwaysOnTop(false);
             //on ouvre un dialogue
-            JOptionPane jop = new JOptionPane();
-            jop.showMessageDialog(null, "Création échouée! Vous n'avez pas selectionner une image valide.", "Erreur", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(null, "Création échouée! Vous n'avez pas selectionner une image valide.", "Erreur", JOptionPane.ERROR_MESSAGE);
             //on remet la fenetre au premier plan
             maFenetre.setAlwaysOnTop(true);
         } //si l'image n'a pas une taille correcte
@@ -59,8 +57,7 @@ public class CreerCompteListener implements MouseListener {
             //la fenetre n'est pas au premier plan
             maFenetre.setAlwaysOnTop(false);
             //on ouvre un dialogue
-            JOptionPane jop = new JOptionPane();
-            jop.showMessageDialog(null, "Création échouée! Votre image doit avoir une taille maximale de 80x80 px", "Erreur", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(null, "Création échouée! Votre image doit avoir une taille maximale de 80x80 px", "Erreur", JOptionPane.ERROR_MESSAGE);
             //on remet la fenetre au premier plan
             maFenetre.setAlwaysOnTop(true);
         }//si au moins un des champs n'a pas été saisis
@@ -68,8 +65,7 @@ public class CreerCompteListener implements MouseListener {
             //la fenetre n'est pas au premier plan
             maFenetre.setAlwaysOnTop(false);
             //on ouvre un dialogue
-            JOptionPane jop = new JOptionPane();
-            jop.showMessageDialog(null, "Création échouée! Vous n'avez pas rentré de données dans au moins un des champs.", "Erreur", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(null, "Création échouée! Vous n'avez pas rentré de données dans au moins un des champs.", "Erreur", JOptionPane.ERROR_MESSAGE);
             //on remet la fenetre au premier plan
             maFenetre.setAlwaysOnTop(true);
         } //sinon si le nom d'utilisateur existe déjà dans la BDD
@@ -79,8 +75,7 @@ public class CreerCompteListener implements MouseListener {
             //on réinitialise tout
             this.maFenetre.getPanFond().raz();
             //on ouvre un dialogue
-            JOptionPane jop = new JOptionPane();
-            jop.showMessageDialog(null, "Création échouée! Votre nom d'utilisateur est déjà utilisé!", "Erreur", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(null, "Création échouée! Votre nom d'utilisateur est déjà utilisé!", "Erreur", JOptionPane.ERROR_MESSAGE);
             //on remet la fenetre au premier plan
             maFenetre.setAlwaysOnTop(true);
         } //sinon si l'utilisateur n'a pas saisi deux fois le même mot de passe
@@ -90,8 +85,7 @@ public class CreerCompteListener implements MouseListener {
             //on réinitialise tout
             this.maFenetre.getPanFond().raz();
             //on ouvre un dialogue
-            JOptionPane jop = new JOptionPane();
-            jop.showMessageDialog(null, "Création échouée! Vous n'avez pas saisi les mêmes mots de passe!", "Erreur", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(null, "Création échouée! Vous n'avez pas saisi les mêmes mots de passe!", "Erreur", JOptionPane.ERROR_MESSAGE);
             //on remet la fenetre au premier plan
             maFenetre.setAlwaysOnTop(true);
         } //sinon si on a pas saisi tous les champs
@@ -101,8 +95,7 @@ public class CreerCompteListener implements MouseListener {
             //on réinitialise tout
             this.maFenetre.getPanFond().raz();
             //on ouvre un dialogue
-            JOptionPane jop = new JOptionPane();
-            jop.showMessageDialog(null, "Création échouée! Vous n'avez pas saisi tous les champs!", "Erreur", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(null, "Création échouée! Vous n'avez pas saisi tous les champs!", "Erreur", JOptionPane.ERROR_MESSAGE);
             //on remet la fenetre au premier plan
             maFenetre.setAlwaysOnTop(true);
         }
