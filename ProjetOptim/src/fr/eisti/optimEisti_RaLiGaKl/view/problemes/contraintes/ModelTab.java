@@ -59,6 +59,9 @@ public class ModelTab extends AbstractTableModel{
 	public void setValueAt(Object aValue, int rowIndex, int columnIndex) {
         try{
             this.data[rowIndex][columnIndex]=aValue;
+          if(aValue==null){
+               this.data[rowIndex][columnIndex]=0;
+          }
             //Ce qui permet une mise à jours complète du tableau
         }catch(Exception e){
         }
@@ -76,14 +79,9 @@ public class ModelTab extends AbstractTableModel{
 	
          @Override
 	public Class getColumnClass(int col){
-		//On retourne le type de la cellule � la colonne demand�e
+		//On retourne le type de la cellule de la colonne demandée
 		//On se moque de la ligne puisque les donn�es sur chaque ligne sont les m�mes
 		//On choisit donc la premi�re ligne
-                try{
-                    return this.data[0][col].getClass();
-                }catch(Exception e){
-                    this.data[0][col] = 0;
-                }
                  return this.data[0][col].getClass();
 	}
 

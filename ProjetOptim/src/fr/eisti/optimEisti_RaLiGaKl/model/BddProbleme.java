@@ -221,7 +221,7 @@ public class BddProbleme {
         //nombres de colonnes du tableau
         int colonnes = probleme[0].length;
         //les variables a mettre dans scilab
-        String c = "c=[";
+        String c = "c=-[";
         String Z1 = "Z1=[";
         String b = "b=[";
         String A = "A=[";
@@ -273,7 +273,7 @@ public class BddProbleme {
             sortie.write(A + ";\n");
             sortie.write("Zu=[]" + ";\n");
             sortie.write(Z1 + ";\n");
-            sortie.write("[Zopt,lag,CA]=linpro(c,A,b,Z1,Zu)" + ";\n");
+            sortie.write("[Zopt,lag,CA]=linpro(c,A,b,Z1,Zu)" + "\n");
             //on ferme le buffer
             sortie.close();
         } catch (IOException ex) {

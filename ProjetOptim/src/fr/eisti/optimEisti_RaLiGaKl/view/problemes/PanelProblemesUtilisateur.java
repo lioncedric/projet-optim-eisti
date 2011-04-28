@@ -55,7 +55,7 @@ public final class PanelProblemesUtilisateur extends JPanel {
         this.listScrollPane = new JScrollPane(list);
       
         this.boutonSolution = new JButton("Trouver solution");
-        this.boutonSolution.setEnabled(false);
+        //this.boutonSolution.setEnabled(false);
         this.boutonNew = new JButton("Nouveau probleme");
         this.panBoutons = new JPanel();
         this.panCentre = new JPanel();
