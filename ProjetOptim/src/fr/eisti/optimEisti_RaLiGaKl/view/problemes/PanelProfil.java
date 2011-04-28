@@ -79,8 +79,9 @@ public class PanelProfil extends JPanel {
         this.boutonProfil.addActionListener(new PanelProfilListener());
 
         //on adapte la hauteur du panel à la hauteur de l'image
-        PanelProfil.panImage.setPreferredSize(new Dimension(avatar.getHeight(this), avatar.getHeight(this)));
-
+        if (avatar != null) {
+            PanelProfil.panImage.setPreferredSize(new Dimension(avatar.getHeight(this), avatar.getHeight(this)));
+        }
         this.panDroite.setLayout(new GridLayout(2, 1));
         this.panBouton.add(this.boutonProfil);
         this.panDroite.add(PanelProfil.nomUtilisateur);
