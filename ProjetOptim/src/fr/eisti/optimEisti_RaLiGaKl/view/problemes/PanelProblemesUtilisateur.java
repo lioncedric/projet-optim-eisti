@@ -57,7 +57,7 @@ public final class PanelProblemesUtilisateur extends JPanel {
       
         this.boutonEnregistrer = new JButton("Enregistrer");
         this.boutonSolution = new JButton("Trouver solution");
-        this.boutonSolution.setEnabled(false);
+        //this.boutonSolution.setEnabled(false);
         this.boutonNew = new JButton("Nouveau probleme");
         this.panBoutons = new JPanel();
         this.panCentre = new JPanel();
