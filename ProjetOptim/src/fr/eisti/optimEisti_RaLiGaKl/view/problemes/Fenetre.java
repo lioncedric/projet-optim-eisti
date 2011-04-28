@@ -15,13 +15,11 @@ import fr.eisti.optimEisti_RaLiGaKl.controler.problemes.FenetreListener;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
-import javax.swing.BorderFactory;
 import javax.swing.JPanel;
 
 import javax.swing.JSplitPane;
 import javax.swing.SwingUtilities;
 import javax.swing.UIManager;
-import javax.swing.border.BevelBorder;
 
 /**
  * @author Administrator

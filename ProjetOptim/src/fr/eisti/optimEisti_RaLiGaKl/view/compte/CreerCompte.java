@@ -29,7 +29,7 @@ public class CreerCompte extends JDialog {
     /**
      * Initialise la fenêtre
      */
-    public void init() {
+    private void init() {
         this.setTitle("Creation de Compte");
         this.setSize(450, 300);                 //on redimenssione la fenetre en cours
         this.setLocationRelativeTo(null);       //on centre la fenetre a l'ecran
@@ -41,19 +41,19 @@ public class CreerCompte extends JDialog {
     /**
      * Ajoute le panel sur la fenêtre
      */
-    public void traitement() {
+    private void traitement() {
         this.setContentPane(panFond);
     }
 
     /**
      * Permet d'ajouter une image de fond sur le jdialog
      */
-    public void ajoutImageFond() {
+    private void ajoutImageFond() {
         try {
             //lecture de l'image
             fond = ImageIO.read(new File("images/creerCompte.png"));
         } catch (IOException e) {
-            e.printStackTrace();
+
         }
         //instanciation d'un panel
         panFond = new JPanelFondCreerCompte(fond);
