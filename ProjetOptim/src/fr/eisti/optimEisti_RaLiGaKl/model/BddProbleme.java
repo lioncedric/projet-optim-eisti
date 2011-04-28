@@ -74,6 +74,7 @@ public class BddProbleme {
         Element racine = bdd.getDocumentElement();
         NodeList liste = racine.getElementsByTagName("probleme");
         racine.removeChild(liste.item(num));
+        BddProbleme.save(BDDUtilisateur.getNomUtilisateur());
     }
 
     /**
@@ -95,6 +96,7 @@ public class BddProbleme {
         } else {
         }
         Main.fenetrePrincipale.getGauche().miseajour();
+        BddProbleme.save(BDDUtilisateur.getNomUtilisateur());
     }
 
     /**
@@ -412,7 +414,6 @@ public class BddProbleme {
             output.close();
 
         } catch (IOException ex) {
-          
         }
 
     }

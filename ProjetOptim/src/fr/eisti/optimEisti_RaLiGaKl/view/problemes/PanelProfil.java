@@ -48,9 +48,9 @@ public class PanelProfil extends JPanel {
      */
     public void initialiserVariables() {
         this.panHaut = new JPanel();
-        this.panImage = new JPanel();
+        panImage = new JPanel();
         this.panDroite = new JPanel();
-        this.nomUtilisateur = new JLabel(BDDUtilisateur.getNomUtilisateur(), JLabel.CENTER);
+        nomUtilisateur = new JLabel(BDDUtilisateur.getNomUtilisateur(), JLabel.CENTER);
         this.nbProblemes = new JLabel(String.valueOf(BddProbleme.nombreProblemes()) + " probleme(s)", JLabel.CENTER);
         this.panBouton = new JPanel();
         this.boutonProfil = new JButton("Gérer mon profil");

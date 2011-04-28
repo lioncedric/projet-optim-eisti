@@ -3,6 +3,7 @@
  */
 package fr.eisti.optimEisti_RaLiGaKl.view.problemes;
 
+import fr.eisti.optimEisti_RaLiGaKl.controler.compte.PanelProfilListener;
 import java.awt.event.KeyEvent;
 import javax.swing.JFrame;
 import javax.swing.JMenu;
@@ -79,7 +80,7 @@ public class Fenetre extends JFrame {
         this.panGauche.add(this.panProfil, BorderLayout.NORTH);
         this.panGauche.add(this.gauche, BorderLayout.CENTER);
         droite = new JTabbedPane();
-      
+
 
         droite.setBackground(Color.WHITE);
         UIManager.put("TabbedPane.selected", new Color(209, 238, 238));
@@ -90,7 +91,7 @@ public class Fenetre extends JFrame {
         splitPane.setOneTouchExpandable(false);
         splitPane.setDividerSize(4);//definit la taille de la zone de separation entre les deux composants
         splitPane.setContinuousLayout(true);
-         splitPane.setBackground(Color.DARK_GRAY);
+        splitPane.setBackground(Color.DARK_GRAY);
         setContentPane(splitPane);
     }
 
@@ -151,7 +152,7 @@ public class Fenetre extends JFrame {
         this.menuBar.add(aide);
 
         this.setJMenuBar(menuBar);
-
+        profil.addActionListener(new PanelProfilListener());
         importXml.addActionListener(new FenetreListener(this));
         recharger.addActionListener(new FenetreListener(this));
         deconnexion.addActionListener(new FenetreListener(this));
@@ -276,5 +277,4 @@ public class Fenetre extends JFrame {
     public JMenuItem getAffResHtml() {
         return affResHtml;
     }
-
 }

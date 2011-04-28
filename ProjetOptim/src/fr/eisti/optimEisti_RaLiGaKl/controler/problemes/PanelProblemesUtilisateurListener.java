@@ -63,6 +63,7 @@ public class PanelProblemesUtilisateurListener implements ActionListener, MouseL
 
             }
         }
+
         Main.fenetrePrincipale.repaint();
         Main.fenetrePrincipale.getGauche().miseajour();
     }

@@ -25,7 +25,6 @@ public final class PanelProblemesUtilisateur extends JPanel {
     private JList list;                         //declaration de la liste que l'on voit visuellement
     private JScrollPane listScrollPane;         //declaration d'un jscrollpane destiné à contenir notre liste
     private DefaultListModel listModel;         //declaration d'une listeModel qui est la liste abstraite que va contenir notre liste visuelle
-    private JButton boutonEnregistrer;          //declaration du bouton permettant l'enregistrement
     private JButton boutonSolution;             //declaration du bouton permettant de générer la solution
     private JButton boutonNew;                  //declaration du bouton permettant de créer un nouveau problème
     private JPanel panBoutons;                  //declaration du panel qui va contenir tous les boutons
@@ -55,9 +54,8 @@ public final class PanelProblemesUtilisateur extends JPanel {
         this.list = new JList(listModel);
         this.listScrollPane = new JScrollPane(list);
       
-        this.boutonEnregistrer = new JButton("Enregistrer");
         this.boutonSolution = new JButton("Trouver solution");
-        //this.boutonSolution.setEnabled(false);
+        this.boutonSolution.setEnabled(false);
         this.boutonNew = new JButton("Nouveau probleme");
         this.panBoutons = new JPanel();
         this.panCentre = new JPanel();
