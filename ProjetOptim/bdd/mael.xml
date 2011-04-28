@@ -101,4 +101,15 @@ Bref un vrai problème d'optimisation</description>
 <constante valeur="0.0"/>
 </contrainte>
 </probleme>
+<probleme>
+<titre>Mon probleme tres long et oui cest long   </titre>
+<description>Entrer votre description du problème</description>
+<objectif type="Maximiser">
+<variable coeff="1.0"/>
+</objectif>
+<contrainte type="Infériorité">
+<variable coeff="1.0"/>
+<constante valeur="10.0"/>
+</contrainte>
+</probleme>
 </listeProblemes>

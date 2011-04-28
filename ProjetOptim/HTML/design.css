@@ -1,41 +1,78 @@
+body {
+    min-width:640px;
+}
+#blocTitre, #blocProbleme, .blocResultats {
+    display:inline-block;
+}
+
 #blocTitre{
     background-color: red;
     height: 100px;
-    position: relative;
     border: black solid 1px;
     text-align: center;
+    width:100%;
+}
+
+#conteneur{
+    width: 100%;
+    float: left;
 }
 
 #blocProbleme{
-    position: absolute;
-    width: 30%;
+    float: left;
+    width: 350px;
     background-color: yellow;
     border: black solid 1px;
-    height: 500px;
+    min-height: 500px;
+    overflow: auto;
     padding-left: 30px;
 }
 
 .blocResultats{
-    position: relative;
+    float: right;
+    padding-left: 300px;
     background-color: green;
-    /*left: 30%;*/
-    float:right;
-    /*width: 65%;*/
+    width:1100px;
+    min-height: 500px;
     border: black solid 1px;
-    height: 500px;
     padding-left: 30px;
+    padding-right: 30px;
 }
 
-#description{
+
+legend{
     font-weight: bold;
     font-size: 20px;
     text-decoration: underline;
     font-family: "Arial Black", Arial, Verdana, serif;
-
 }
 
 fieldset{
     color:orange;
     border: 2px solid orange;
+    font-size: 20px;
+    text-align: center;
+}
+
+#fctObecjtive{
     font-size: 16px;
+    text-align: center;
+}
+
+#contraintes{
+    text-align: center;
+}
+
+#resultats{
+    font-weight: bold;
+    font-size: 20px;
+    text-decoration: underline;
+    font-family: "Arial Black", Arial, Verdana, serif;
+}
+
+#contraintesSpan{
+    font-weight: bold;
+    font-size: 20px;
+    text-decoration: underline;
+    font-family: "Arial Black", Arial, Verdana, serif;
 }
