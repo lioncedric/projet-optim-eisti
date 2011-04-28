@@ -24,8 +24,9 @@
 <constante valeur="22.0"/>
 </contrainte>
 </probleme>
+
 <probleme>
-<titre>Probleme 1</titre>
+<titre>Probleme </titre>
 <description>Il sagit d'un probleme quelconque a résoudre</description>
 <objectif type="Maximiser">
 <variable coeff="1.0"/>

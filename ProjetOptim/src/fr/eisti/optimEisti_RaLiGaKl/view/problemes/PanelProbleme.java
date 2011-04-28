@@ -23,6 +23,7 @@ import javax.swing.JTextField;
 import fr.eisti.optimEisti_RaLiGaKl.controler.problemes.contraintes.MoreListener;
 import fr.eisti.optimEisti_RaLiGaKl.controler.problemes.SaveListener;
 import fr.eisti.optimEisti_RaLiGaKl.Main;
+import fr.eisti.optimEisti_RaLiGaKl.model.BDDUtilisateur;
 import fr.eisti.optimEisti_RaLiGaKl.model.BddProbleme;
 import fr.eisti.optimEisti_RaLiGaKl.model.Contrainte;
 import fr.eisti.optimEisti_RaLiGaKl.model.Probleme;
@@ -124,7 +125,7 @@ public class PanelProbleme extends JPanel {
             JTextField jtf = (JTextField) (this.getPanDonnees().getComponent(3 * i + 1));
             variablesOK = variablesOK && !(jtf.getText().equals("")) && !(jtf.getText().equals("0"));
             try {
-                double valeur = Double.valueOf(jtf.getText());
+                Double.valueOf(jtf.getText());
             } catch (NumberFormatException nfe) {
                 variablesOK = false;
             }
@@ -147,7 +148,7 @@ public class PanelProbleme extends JPanel {
             }
             p.setNumero(BddProbleme.nombreProblemes());
             BddProbleme.addProbleme(p);
-
+            BddProbleme.save(BDDUtilisateur.getNomUtilisateur());
             Main.fenetrePrincipale.getDroite().setTitleAt(indexTab, p.getTitre());
             SaveListener.estmodifié();
             Main.fenetrePrincipale.getPanProfil().miseAJour();

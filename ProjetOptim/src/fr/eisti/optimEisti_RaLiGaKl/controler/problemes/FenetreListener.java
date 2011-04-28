@@ -120,8 +120,8 @@ public class FenetreListener implements ChangeListener, ActionListener, Componen
             this.fenetre.dispose();
         } else if (e.getSource() == this.fenetre.getQuitter()) {
             System.exit(0);
-        } else if (e.getSource() == this.fenetre.getSauvegarder()) {
-            BddProbleme.save(BDDUtilisateur.getNomUtilisateur());
+       
+          
         } else if (e.getSource() == this.fenetre.getAffResHtml()) {
             try {
                 Utilitaire.creerHTML("bdd/"+BDDUtilisateur.getNomUtilisateur() + ".xml", "HTML/resultats.xsl", "HTML/"+BDDUtilisateur.getNomUtilisateur() + ".html");

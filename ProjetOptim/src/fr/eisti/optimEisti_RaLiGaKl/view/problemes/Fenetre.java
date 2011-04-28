@@ -35,7 +35,6 @@ public class Fenetre extends JFrame {
     private JMenu affichage = new JMenu("Affichage");
     private JMenu aide = new JMenu("Aide");
     private JMenu importT = new JMenu("Importer");
-    private JMenuItem sauvegarder = new JMenuItem("Sauvegarder");
     private JMenuItem recharger = new JMenuItem("Recharger");
     private JMenuItem quitter = new JMenuItem("Quitter");
     private JMenuItem deconnexion = new JMenuItem("Se déconnecter");
@@ -116,8 +115,7 @@ public class Fenetre extends JFrame {
         affichage.setMnemonic('A');
         aide.setMnemonic('H');
 
-        sauvegarder.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_S, KeyEvent.CTRL_MASK));//ctrl + s
-        this.fichier.add(sauvegarder);
+
         this.fichier.add(recharger);
 
         this.fichier.addSeparator();
@@ -155,7 +153,6 @@ public class Fenetre extends JFrame {
         this.setJMenuBar(menuBar);
 
         importXml.addActionListener(new FenetreListener(this));
-        sauvegarder.addActionListener(new FenetreListener(this));
         recharger.addActionListener(new FenetreListener(this));
         deconnexion.addActionListener(new FenetreListener(this));
         quitter.addActionListener(new FenetreListener(this));
@@ -254,14 +251,6 @@ public class Fenetre extends JFrame {
 
     public void setRecharger(JMenuItem recharger) {
         this.recharger = recharger;
-    }
-
-    public JMenuItem getSauvegarder() {
-        return sauvegarder;
-    }
-
-    public void setSauvegarder(JMenuItem sauvegarder) {
-        this.sauvegarder = sauvegarder;
     }
 
     public JSplitPane getSplitPane() {
