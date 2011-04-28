@@ -6,6 +6,8 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.ComponentEvent;
 import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import javax.swing.JLabel;
 import javax.swing.JSlider;
@@ -16,6 +18,7 @@ import javax.swing.event.ChangeListener;
 import fr.eisti.optimEisti_RaLiGaKl.view.problemes.Fenetre;
 import fr.eisti.optimEisti_RaLiGaKl.Main;
 import fr.eisti.optimEisti_RaLiGaKl.model.Contrainte;
+import fr.eisti.optimEisti_RaLiGaKl.model.Utilitaire;
 import fr.eisti.optimEisti_RaLiGaKl.view.problemes.PanelProbleme;
 import java.awt.event.ComponentListener;
 import java.io.File;
@@ -119,7 +122,13 @@ public class FenetreListener implements ChangeListener, ActionListener, Componen
             System.exit(0);
         } else if (e.getSource() == this.fenetre.getSauvegarder()) {
             BddProbleme.save(BDDUtilisateur.getNomUtilisateur());
-        } else if (e.getSource() == this.fenetre.getRecharger()) {
+        } else if (e.getSource() == this.fenetre.getAffResHtml()) {
+            try {
+                Utilitaire.creerHTML("bdd/"+BDDUtilisateur.getNomUtilisateur() + ".xml", "HTML/resultats.xsl", "HTML/"+BDDUtilisateur.getNomUtilisateur() + ".html");
+            } catch (Exception ex) {
+                Logger.getLogger(FenetreListener.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }else if (e.getSource() == this.fenetre.getRecharger()) {
             try {
                 BddProbleme.load(BDDUtilisateur.getNomUtilisateur());
                 Main.fenetrePrincipale.getGauche().miseajour();

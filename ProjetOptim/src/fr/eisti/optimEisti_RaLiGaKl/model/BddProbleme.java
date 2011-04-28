@@ -303,7 +303,7 @@ public class BddProbleme {
 
             ArrayList<Contrainte> contraintes = p.getContraintes();//liste des contraintes du probleme
 
-            output.write("Programmation lineaire: " + p.getTitre() + "\n\n\n");
+            output.write(p.getTitre() + "\n\n\n");
             //On saute une ligne
             output.write(";");
             //calcul de la longueur de la liste de variables
