@@ -16,12 +16,15 @@ public class Probleme {
     private String titre = "";
     private String objectif = "";
     private ArrayList<Double> coeffVariables = new ArrayList<Double>();
+    private ArrayList<Double> resultat = new ArrayList<Double>();
     private ArrayList<Contrainte> contraintes = new ArrayList<Contrainte>();
 
     @Override
     public String toString() {
-        return "Probleme{ description=" + description + "titre=" + titre + "objectif=" + objectif + "coeffVariables=" + coeffVariables + "contraintes=" + contraintes + '}';
+        return "Probleme{description=" + description + "titre=" + titre + "objectif=" + objectif + "coeffVariables=" + coeffVariables + "resultat=" + resultat + "contraintes=" + contraintes + '}';
     }
+
+  
 
     public Probleme() {
     }
@@ -240,4 +243,9 @@ public class Probleme {
     public void setContraintes(ArrayList<Contrainte> contraintes) {
         this.contraintes = contraintes;
     }
+
+    public ArrayList<Double> getResultat() {
+        return resultat;
+    }
+
 }

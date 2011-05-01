@@ -8,17 +8,30 @@
                         <xs:sequence>
                             <xs:element  name="titre" type="xs:anyType" />
                             <xs:element  name="description" type="xs:anyType" />
-                            <xs:element  name="objectif" type="tObjectif" maxOccurs="unbounded" />
+                            <xs:element  name="objectif" type="tObjectif" />
                             <xs:element  name="contrainte" type="tContrainte" minOccurs="0"  maxOccurs="unbounded" />
+                            <xs:element  name="resultat" type="tResultat"  minOccurs="0"  maxOccurs="1" />
                         </xs:sequence>
                     </xs:complexType>
                 </xs:element>
             </xs:sequence>
-             <xs:attribute name="utilisateur" type="xs:string" />
+            <xs:attribute name="utilisateur" type="xs:string" />
         </xs:complexType>
 
     </xs:element>
- 
+
+
+
+    <xs:complexType name="tResultat">
+        <xs:sequence >
+            <xs:element  name="variable" maxOccurs="unbounded" >
+                <xs:complexType>
+                    <xs:attribute name="coeff" use="required" type="xs:double"/>
+                </xs:complexType>
+            </xs:element>
+        </xs:sequence>
+    </xs:complexType>
+
     <xs:complexType name="tObjectif">
         <xs:sequence >
             <xs:element  name="variable" maxOccurs="unbounded" >

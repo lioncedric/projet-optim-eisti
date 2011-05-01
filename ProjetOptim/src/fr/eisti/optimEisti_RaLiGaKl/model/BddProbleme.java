@@ -161,6 +161,15 @@ public class BddProbleme {
             contrainte.appendChild(constante);
             probleme.appendChild(contrainte);
         }
+        if (!p.getResultat().isEmpty()) {
+            Element resultat = bdd.createElement("resultat");
+            for (int i = 0; i < p.getResultat().size(); i++) {
+                Element variable = bdd.createElement("variable");
+                variable.setAttribute("coeff", "" + p.getResultat().get(i));
+                resultat.appendChild(variable);
+            }
+            probleme.appendChild(resultat);
+        }
         racine.appendChild(probleme);
     }
 
@@ -203,6 +212,13 @@ public class BddProbleme {
             } else {
 
                 return null;
+            }
+        }
+        NodeList ListeRes = NoeudProbleme.getElementsByTagName("resultat");
+        if (ListeRes.getLength() == 1) {
+            Element res = (Element) ListeRes.item(0);
+            for (int i = 0; i < nbvariables1; i++) {
+                probleme.getResultat().add(Double.parseDouble(res.getElementsByTagName("*").item(i).getAttributes().getNamedItem("coeff").getTextContent()));
             }
         }
         return probleme;
