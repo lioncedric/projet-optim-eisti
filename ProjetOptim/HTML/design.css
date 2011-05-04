@@ -11,6 +11,13 @@ body {
     border: black solid 1px;
     text-align: center;
     width:100%;
+    -moz-border-radius:10px;
+    -webkit-border-radius:10px;
+    margin-bottom: 10px;
+    -moz-box-shadow: 10px 10px 5px #656565;
+    -webkit-box-shadow: 10px 10px 5px #656565;
+    -o-box-shadow: 10px 10px 5px #656565;
+    box-shadow: 10px 10px 5px #656565;
 }
 
 #conteneur{
@@ -21,22 +28,32 @@ body {
 #blocProbleme{
     float: left;
     width: 350px;
+    position: absolute;
+    margin-top: 110px;
     background-color: yellow;
     border: black solid 1px;
-    min-height: 500px;
+    min-height: 450px;
     overflow: auto;
-    padding-left: 30px;
+    -moz-border-radius:10px;
+    -webkit-border-radius:10px;
+    -moz-box-shadow: 10px 10px 5px #656565;
+    -webkit-box-shadow: 10px 10px 5px #656565;
+    -o-box-shadow: 10px 10px 5px #656565;
+    box-shadow: 10px 10px 5px #656565;
 }
 
 .blocResultats{
     float: right;
-    padding-left: 300px;
     background-color: green;
-    width:1100px;
-    min-height: 500px;
+    width:1210px;
+    min-height: 560px;
     border: black solid 1px;
-    padding-left: 30px;
-    padding-right: 30px;
+    -moz-border-radius:10px;
+    -webkit-border-radius:10px;
+    -moz-box-shadow: 10px 10px 5px #656565;
+    -webkit-box-shadow: 10px 10px 5px #656565;
+    -o-box-shadow: 10px 10px 5px #656565;
+    box-shadow: 10px 10px 5px #656565;
 }
 
 
@@ -77,8 +94,64 @@ fieldset{
     font-family: "Arial Black", Arial, Verdana, serif;
 }
 
-#titre{
+#div_titre{
+    text-align: center;
     font-weight: bold;
     font-size: 30px;
+}
+
+#utilisateur{
+    margin-bottom: 10px;
+    background-color: #869492;
+    -moz-border-radius:10px 10px 0px 0px;
+    -webkit-border-radius:10px 10px 0px 0px;
+    padding-left: 10px;
+    text-align: center;
+    font-size: 20px;
+}
+
+#profil{
+    margin-bottom: 10px;
+    padding-left: 10px;
+}
+
+#conteneurProfil{
+    float: left;
+    min-height: 100px;
+    width: 350px;
+    -moz-border-radius:10px;
+    -webkit-border-radius:10px;
+    background-color: orange;
+    -moz-box-shadow: 10px 10px 5px #656565;
+    -webkit-box-shadow: 10px 10px 5px #656565;
+    -o-box-shadow: 10px 10px 5px #656565;
+    box-shadow: 10px 10px 5px #656565;
+}
+
+#titreProbleme{
+    margin-bottom: 10px;
+    background-color: #869492;
+    -moz-border-radius:10px 10px 0px 0px;
+    -webkit-border-radius:10px 10px 0px 0px;
+    padding-left: 10px;
+    text-align: center;
+    font-size: 20px;
+}
+
+#listeProblemes{
+    padding-left: 30px;
+}
+
+#titreBlocResultats{
+    margin-bottom: 10px;
+    background-color: #869492;
+    -moz-border-radius:10px 10px 0px 0px;
+    -webkit-border-radius:10px 10px 0px 0px;
+    padding-left: 10px;
+    text-align: center;
+    font-size: 20px;
+}
+
+#resultats{
     text-align: center;
 }

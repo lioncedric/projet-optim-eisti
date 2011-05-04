@@ -1,5 +1,7 @@
 //fonction qui initialise la page html
 function init(){
+    titreBlocProbleme=document.getElementById("titreBlocResultats");
+    titreBlocProbleme.style.display="none";
     //on récupère tous les elements de classname=lien
     elementsHref=document.getElementsByClassName('lien');
     //on recup tous les elements bloc de probleme res
@@ -16,6 +18,9 @@ function init(){
 
 //fonction qui affiche le bloc dont le lien correspond
 function afficheProbleme(obj){
+    element=document.getElementById("image");
+    titreBlocProbleme=document.getElementById("titreBlocResultats");
+    titreBlocProbleme.style.display="block";
     //on recupere l'id
     numero=obj.getAttribute("id");
     //on recupere tous les blocs res
@@ -26,6 +31,7 @@ function afficheProbleme(obj){
         if(elements[i].getAttribute("id")==numero){
             //on affiche son bloc
             elements[i].style.display="block";
+            element.style.display="none";
         }
         //sinon
         else{
