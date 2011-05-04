@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
 <identification>
-    
-<personne imagesrc="images\mickey.png" login="Sébastien" password="Sébastien"/>
+    <personne imagesrc="images\mickey.png" login="meri" password="meri"/>
+    <personne imagesrc="images\mickey.png" login="Sébastien" password="Sébastien"/>
 </identification>

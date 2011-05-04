@@ -3,6 +3,8 @@
  */
 package fr.eisti.optimEisti_RaLiGaKl.model;
 
+import com.sun.servicetag.SystemEnvironment;
+
 /**
  * Classe qui permet de générer la solution à un problème d'optimisation mathématique
  * @author Razavet Maël, Lion Cédric, Klelifa Sarah, Gallet Mériadec
@@ -30,6 +32,7 @@ public class Solution {
     public void init(double[][] matrice) {
         //booleen permettant de savoir si le probleme est resolu ou pas
         boolean resolu = false;
+        boolean noSolution = false;
 
         //on fait les operations de Gauss sur la matrice tant que le probleme n'est pas resolu
         while (!resolu) {
@@ -37,14 +40,23 @@ public class Solution {
             //on recupere ces coordonnees en appelant la fonction adequate
             tabCoordPivot = chercherPivot(matrice);
             //on appelle la focntion qui permet de faire la reduction pivot
-            reductionPivot(matrice, tabCoordPivot);
-            resolu = problemeResolu(matrice);
-            System.out.println("Le probleme est-il resolu ? " + resolu);
+            if (tabCoordPivot[0] != -50000 || tabCoordPivot[1] != -50000) {
+                reductionPivot(matrice, tabCoordPivot);
+                resolu = problemeResolu(matrice);
+                System.out.println("Le probleme est-il resolu ? " + resolu);
+            } else {
+                resolu = true;
+                noSolution = true;
+            }
         }
-        //on stocke les valeurs de la solution dans la variable adéquate
-        exporterSolution(matrice, solution);
-        for (int i = 0; i < this.solution.length; i++) {
-            System.out.println(this.solution[i]);
+        if (noSolution) {
+            System.out.println("Votre probleme n'admet pas de solution !");
+        } else {
+            //on stocke les valeurs de la solution dans la variable adéquate
+            exporterSolution(matrice, solution);
+            for (int i = 0; i < this.solution.length; i++) {
+                System.out.println(this.solution[i]);
+            }
         }
     }
 
@@ -83,9 +95,14 @@ public class Solution {
         //pour chaque ligne sauf la derniere (autrement dit, pour toutes les lignes de contraintes)
         for (i = 0; i < matrice.length - 1; i++) {
             //si la valeur du calcul est inferieure au min, on definit la nouvelle ligne contenant le pivot
-            if (matrice[i][ligneDuMax] > 0 && (matrice[i][matrice[0].length - 1] / matrice[i][ligneDuMax]) < valeurMin) {
-                valeurMin = matrice[i][matrice[0].length - 1] / matrice[i][ligneDuMax];
-                ligneDuMin = i;
+            if (matrice[i][ligneDuMax] > 0) {
+                if ((matrice[i][matrice[0].length - 1] / matrice[i][ligneDuMax]) < valeurMin) {
+                    valeurMin = matrice[i][matrice[0].length - 1] / matrice[i][ligneDuMax];
+                    ligneDuMin = i;
+                }
+            } else {
+                tab[0] = -50000;
+                tab[1] = -50000;
             }
         }
         //on stocke la ligne contenant le min et celle contenant le max dans le tableau
@@ -196,18 +213,46 @@ public class Solution {
             trouve = false;
             int i = 0;
             //on cherche la solution des Xi en regardant ou se trouve le 1 de la matrice identite
-            while (i < matrice.length - 1 && !trouve) {
-                //si sur cette ligne se trouve le 1 ...
-                if (matrice[i][j] == 1) {
-                    trouve = true;
-                    //on stocke la ligne
-                    ligne = i;
+            int nbreDeZero = 0;
+            while (i < matrice.length && !trouve) {
+                if (matrice[i][j] == 0) {
+                    nbreDeZero++;
+                } else {
                 }
-                //on incremente le numero de la ligne courante
                 i++;
             }
-            //on ajoute au tableau solution lavaleur qui se trouve sur la ligne trouvee et a la derniere colonne (coefficient bi ou i=ligne)
-            tabSolutions[j + 1] = matrice[ligne][matrice[0].length - 1];
+
+            i = 0;
+            if (nbreDeZero == matrice.length - 1) {
+                while (i < matrice.length && !trouve) {
+                    //si sur cette ligne se trouve le 1 ...
+                    if (matrice[i][j] == 1) {
+                        trouve = true;
+                        //on stocke la ligne
+                        ligne = i;
+                    } else {
+                    }
+                    //on incremente le numero de la ligne courante
+                    i++;
+                }
+                //on ajoute au tableau solution lavaleur qui se trouve sur la ligne trouvee et a la derniere colonne (coefficient bi ou i=ligne)
+                tabSolutions[j + 1] = matrice[ligne][matrice[0].length - 1];
+
+            } else {
+                while (i < matrice.length && !trouve) {
+                    //si sur cette ligne se trouve le 1 ...
+                    if (matrice[i][j] == 0) {
+                        trouve = true;
+                        //on stocke la ligne
+                        ligne = i;
+                    } else {
+                    }
+                    //on incremente le numero de la ligne courante
+                    i++;
+                }
+                //on ajoute au tableau solution lavaleur qui se trouve sur la ligne trouvee et a la derniere colonne (coefficient bi ou i=ligne)
+                tabSolutions[j + 1] = 0;
+            }
         }
     }
 }
