@@ -21,8 +21,15 @@ public class Probleme {
 
     @Override
     public String toString() {
-        return "Probleme{description=" + description + "titre=" + titre + "objectif=" + objectif + "coeffVariables=" + coeffVariables + "resultat=" + resultat + "contraintes=" + contraintes + '}';
+        return "Probleme{description=" + description + "titre=" + titre + "objectif=" + objectif + "coeffVariables=" + coeffVariables + "contraintes=" + contraintes + '}';
     }
+
+    @Override
+    public boolean equals(Object obj) {
+       return obj.toString().equals(this.toString());
+    }
+
+
 
   
 
