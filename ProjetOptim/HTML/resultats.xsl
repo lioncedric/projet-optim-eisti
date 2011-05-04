@@ -23,6 +23,8 @@
     <div class="blocResultats">
          <xsl:for-each select="listeProblemes/probleme">
              <div class="res" id="">
+                 <!-- affichage du nom du probleme-->
+                 <span id="titre"><xsl:value-of select="titre"/></span><br/>
                 <!-- affichage de la description-->
                 <div id="description">
                 <fieldset>
@@ -51,7 +53,7 @@
                  <br/><br/>
                  <!-- affichage des contraintes-->
                  <div id="contraintes">
-                     <span id="contraintesSpan">Contraintes</span>
+                     <span id="contraintesSpan">Contraintes:</span><br/><br/>
                  <xsl:for-each select="contrainte">
                      <xsl:for-each select="variable">
                          <xsl:choose>
@@ -87,15 +89,15 @@
                      </xsl:for-each>
                  </xsl:for-each>
                  </div>
+                 <!-- Affichage des résultats-->
+          <div id="resultats">
+               <span id="spanRes">Résultats:</span>
+          </div>
             </div>
          </xsl:for-each>
         </div>
     </div>
 
-    <!-- Affichage des résultats-->
-    <div id="resultats">
-        Résultats
-    </div>
     
   </body>
   </html>

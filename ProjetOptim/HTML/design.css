@@ -63,7 +63,7 @@ fieldset{
     text-align: center;
 }
 
-#resultats{
+#spanRes{
     font-weight: bold;
     font-size: 20px;
     text-decoration: underline;
@@ -75,4 +75,10 @@ fieldset{
     font-size: 20px;
     text-decoration: underline;
     font-family: "Arial Black", Arial, Verdana, serif;
+}
+
+#titre{
+    font-weight: bold;
+    font-size: 30px;
+    text-align: center;
 }
