@@ -20,7 +20,7 @@
             <variable coeff="10.0"/>
             <variable coeff="20.0"/>
         </objectif>
-        <contrainte type="Infériorité">
+        <contrainte type="Supériorité">
             <variable coeff="2.0"/>
             <variable coeff="1.0"/>
             <constante valeur="30.0"/>
