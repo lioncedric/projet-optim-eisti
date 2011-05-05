@@ -81,5 +81,9 @@
             <variable coeff="1.0"/>
             <constante valeur="5.0"/>
         </contrainte>
+        <resultat >
+            <variable coeff="1.0"/>
+            <variable coeff="2.0"/>
+        </resultat>
     </probleme>
 </listeProblemes>
