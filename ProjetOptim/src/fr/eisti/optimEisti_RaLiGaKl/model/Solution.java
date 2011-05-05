@@ -45,6 +45,7 @@ public class Solution {
                 resolu = problemeResolu(matrice);
                 System.out.println("Le probleme est-il resolu ? " + resolu);
             } else {
+                System.out.println("Coucou");
                 resolu = true;
                 noSolution = true;
             }
@@ -86,25 +87,31 @@ public class Solution {
                 ligneDuMax = j;
             }
         }
+        System.out.println(ligneDuMax);
 
         //on initialise le min a une valeur tres grande afin de trouver forcement une valeur plus petite
         double valeurMin = 1000000;//le million, le million, ...
         //on initialise la ligne du min a -1.
         int ligneDuMin = -1;
 
+        //tous les coefficients de la colonne de pivot sont ils negatifs
+        boolean bool = true;
+
         //pour chaque ligne sauf la derniere (autrement dit, pour toutes les lignes de contraintes)
         for (i = 0; i < matrice.length - 1; i++) {
+            System.out.println(matrice[i][ligneDuMax]);
             //si la valeur du calcul est inferieure au min, on definit la nouvelle ligne contenant le pivot
             if (matrice[i][ligneDuMax] > 0) {
                 if ((matrice[i][matrice[0].length - 1] / matrice[i][ligneDuMax]) < valeurMin) {
                     valeurMin = matrice[i][matrice[0].length - 1] / matrice[i][ligneDuMax];
                     ligneDuMin = i;
+                    bool = false;
                 }
-            } else {
-                ligneDuMin = -50000;
-                ligneDuMax = -50000;
-                break;
             }
+        }
+        if (bool) {
+            ligneDuMin = -50000;
+            ligneDuMax = -50000;
         }
 
         //on stocke la ligne contenant le min et celle contenant le max dans le tableau
