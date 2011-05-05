@@ -32,7 +32,7 @@ public class BddProbleme {
      * permet charger le fichier xml correspondant a l'utilisateur
      * @param nomUtilisateur le nom de l'utilisateur
      */
-    public static void load(String nomUtilisateur) throws IOException {
+    public static void load(String nomUtilisateur, String url) throws IOException {
         File fichier = new File("bdd/" + nomUtilisateur + ".xml");
         if (fichier.exists()) {
             bdd = Utilitaire.parseXmlDom(fichier);
@@ -49,6 +49,7 @@ public class BddProbleme {
                 // Création de l'arborescence du DOM
                 Element racine = bdd.createElement("listeProblemes");
                 racine.setAttribute("utilisateur", nomUtilisateur);
+                racine.setAttribute("url", url);
                 bdd.appendChild(racine);
             } catch (ParserConfigurationException ex) {
                 Logger.getLogger(BddProbleme.class.getName()).log(Level.SEVERE, null, ex);

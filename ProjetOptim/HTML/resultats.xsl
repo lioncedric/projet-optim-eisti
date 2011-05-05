@@ -22,7 +22,8 @@
                         Utilisateur
                     </div>
                     <div id="profil">
-                        <xsl:value-of select="listeProblemes/@utilisateur"/>
+                        <img src="../{listeProblemes/@url}"/>
+                        <span id="span_profil"><xsl:value-of select="listeProblemes/@utilisateur"/></span>
                     </div>
                     </div>
                     <!--affichage des problemes sous forme de menu-->
@@ -141,8 +142,16 @@
                                 </div><br/><br/>
                  <!-- Affichage des résultats-->
                                 <div id="resultats">
-                                    <span id="spanRes">Résultats:</span>
-                                    
+                                    <span id="spanRes">Résultats:</span><br/>
+                                        <xsl:for-each select="resultat">
+                                            F = <xsl:value-of select="@valeur"/><br/>
+                                                <xsl:for-each select="variable">
+                                                    <xsl:text>x</xsl:text>
+                                                    <xsl:number value="position()" format="1"/><xsl:text>=</xsl:text>
+                                                    <xsl:value-of select="@coeff"/>
+                                                    <br/>
+                                             </xsl:for-each>
+                                        </xsl:for-each>
                                 </div>
                             </div>
                         </xsl:for-each>

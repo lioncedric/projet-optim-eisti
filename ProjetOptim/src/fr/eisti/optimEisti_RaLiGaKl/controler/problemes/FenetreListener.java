@@ -130,7 +130,7 @@ public class FenetreListener implements ChangeListener, ActionListener, Componen
             }
         }else if (e.getSource() == this.fenetre.getRecharger()) {
             try {
-                BddProbleme.load(BDDUtilisateur.getNomUtilisateur());
+                BddProbleme.load(BDDUtilisateur.getNomUtilisateur(), BDDUtilisateur.getImage());
                 Main.fenetrePrincipale.getGauche().miseajour();
                 Main.fenetrePrincipale.getDroite().removeAll();
                 Main.fenetrePrincipale.repaint();

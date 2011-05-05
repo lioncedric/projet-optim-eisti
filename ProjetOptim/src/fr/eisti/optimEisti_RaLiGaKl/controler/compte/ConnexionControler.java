@@ -60,7 +60,7 @@ public class ConnexionControler implements MouseListener, KeyListener {
             //on ferme la fenetre d'identification
             maFenetre.dispose();
             //ChoixUtilisateur fenChoix;
-            BddProbleme.load(login);
+            BddProbleme.load(login, BDDUtilisateur.getImage());
             //Instanciation de la fenetre principale
             Main.fenetrePrincipale = new Fenetre();
             Main.fenetrePrincipale.setVisible(true);

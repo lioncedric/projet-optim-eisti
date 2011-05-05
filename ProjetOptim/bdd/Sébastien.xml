@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
-<listeProblemes utilisateur="Sébastien">
+<listeProblemes utilisateur="Sébastien" url="images\mickey.png">
 
 
     
@@ -81,7 +81,7 @@
             <variable coeff="1.0"/>
             <constante valeur="5.0"/>
         </contrainte>
-        <resultat >
+        <resultat valeur="6000">
             <variable coeff="1.0"/>
             <variable coeff="2.0"/>
         </resultat>
