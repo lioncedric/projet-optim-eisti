@@ -101,14 +101,15 @@ public class Solution {
                     ligneDuMin = i;
                 }
             } else {
-                tab[0] = -50000;
-                tab[1] = -50000;
+                ligneDuMin = -50000;
+                ligneDuMax = -50000;
+                break;
             }
         }
+
         //on stocke la ligne contenant le min et celle contenant le max dans le tableau
         tab[0] = ligneDuMin;
         tab[1] = ligneDuMax;
-        System.out.println("Le pivot est en [" + tab[0] + "][" + tab[1] + "] et a pour valeur" + matrice[tab[0]][tab[1]]);
         //on retourne le tableau
         return tab;
     }
