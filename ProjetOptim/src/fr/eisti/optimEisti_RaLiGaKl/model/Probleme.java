@@ -75,7 +75,10 @@ public class Probleme {
         //declaration de la matrice representant le probleme pour l'algo du simplexe
         double[][] matrice;
         double signe = 0;
+        Double M=600000.0;
+         ArrayList<Integer> listeM = new ArrayList<Integer>();
         ArrayList<Double>[] listeContrainte = new ArrayList[this.contraintes.size()];
+        double[] coefM = new double[this.contraintes.get(0).getCoeffVariables().size() + 1];
         for (int i = 0; i < this.contraintes.size(); i++) {
             listeContrainte[i] = new ArrayList<Double>();
             if (this.contraintes.get(i).getInegalite().equals("Supériorité")) {
@@ -92,6 +95,11 @@ public class Probleme {
                 }
                 if (-signe <= 0) {
                     listeContrainte[i].add(1.0);
+                     
+                    for (int z = 0; z < this.contraintes.get(i).getCoeffVariables().size(); z++) {
+                        coefM[z] += -this.contraintes.get(i).getCoeffVariables().get(z);
+                    }
+                    coefM[this.contraintes.get(i).getCoeffVariables().size()] += -this.contraintes.get(i).getConstante();
                 }
                 listeContrainte[i].add(-this.contraintes.get(i).getConstante());
             } else {
@@ -103,16 +111,25 @@ public class Probleme {
                 }
                 if (signe <= 0) {
                     listeContrainte[i].add(1.0);
+                   
+                    for (int z = 0; z < this.contraintes.get(i).getCoeffVariables().size(); z++) {
+                        coefM[z] += this.contraintes.get(i).getCoeffVariables().get(z);
+                    }
+                    coefM[this.contraintes.get(i).getCoeffVariables().size()] += this.contraintes.get(i).getConstante();
                 }
                 listeContrainte[i].add(this.contraintes.get(i).getConstante());
             }
+
+            System.out.println(listeContrainte[i].toString());
         }
         int colonnes = 0;
         for (int i = 0; i < this.contraintes.size(); i++) {
-            colonnes += listeContrainte[i].size() - this.coeffVariables.size();
+
+            colonnes += listeContrainte[i].size() - 1 - this.coeffVariables.size();
         }
-        matrice = new double[this.contraintes.size() + 1][colonnes];
+        matrice = new double[this.contraintes.size() + 1][this.coeffVariables.size() + 1 + colonnes];
         initMatrice(matrice);
+
         int decalage = 0;
         for (int i = 0; i < this.contraintes.size(); i++) {
             int temp = decalage;
@@ -123,18 +140,36 @@ public class Probleme {
                 } else {
                     matrice[i][j + temp] = listeContrainte[i].get(j);
                     decalage++;
+                    if(temp+2 == decalage || (temp+1 == decalage && this.contraintes.get(i).getInegalite().equals("Egalité")) ){
+                     listeM.add(temp+j);
+                }
                 }
             }
-              matrice[i][colonnes-1] = listeContrainte[i].get(listeContrainte[i].size()-1);
+            matrice[i][this.coeffVariables.size() + colonnes] = listeContrainte[i].get(listeContrainte[i].size() - 1);
         }
+        System.out.println(listeM);
         //pour chaque colonne de la derniere ligne
         for (int j = 0; j < this.coeffVariables.size(); j++) {
             if (this.objectif.equals("Minimiser")) {
-                matrice[this.contraintes.size()][j] = -this.coeffVariables.get(j);
+                matrice[this.contraintes.size()][j] = -(this.coeffVariables.get(j) - M*coefM[j]);
             } else {
                 //on ajoute les coefficients de la fonction a maximiser
-                matrice[this.contraintes.size()][j] = this.coeffVariables.get(j);
+                matrice[this.contraintes.size()][j] = this.coeffVariables.get(j) - M*coefM[j];
             }
+        }
+         for (int j = 0; j < listeM.size(); j++) {
+            if (this.objectif.equals("Minimiser")) {
+                matrice[this.contraintes.size()][listeM.get(j)] = -M;
+            } else {
+                //on ajoute les coefficients de la fonction a maximiser
+                matrice[this.contraintes.size()][listeM.get(j)] =M;
+            }
+        }
+        if (this.objectif.equals("Minimiser")) {
+            matrice[this.contraintes.size()][this.coeffVariables.size() + colonnes] = M*coefM[coefM.length - 1];
+        } else {
+            //on ajoute les coefficients de la fonction a maximiser
+            matrice[this.contraintes.size()][this.coeffVariables.size() + colonnes] = -M*coefM[coefM.length - 1];
         }
         afficherMatrice(matrice);
         //on rempli la matrice avec les différentes données du problème à résoudre (variables, contraintes)

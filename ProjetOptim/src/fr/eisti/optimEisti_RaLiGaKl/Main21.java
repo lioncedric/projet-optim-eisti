@@ -8,8 +8,6 @@ import fr.eisti.optimEisti_RaLiGaKl.model.BDDUtilisateur;
 import fr.eisti.optimEisti_RaLiGaKl.model.BddProbleme;
 import fr.eisti.optimEisti_RaLiGaKl.model.Probleme;
 import fr.eisti.optimEisti_RaLiGaKl.model.Solution;
-import fr.eisti.optimEisti_RaLiGaKl.view.compte.Accueil;
-import fr.eisti.optimEisti_RaLiGaKl.view.problemes.Fenetre;
 import java.io.IOException;
 
 /**
@@ -24,9 +22,10 @@ public class Main21 {
      * @param args
      */
     public static void main(String[] args) throws IOException {
-        BDDUtilisateur.existeCompte("Sébastien", "Sébastien");
+        BDDUtilisateur.existeCompte("meri", "meri");
         BddProbleme.load(BDDUtilisateur.getNomUtilisateur(), BDDUtilisateur.getImage());
-        Probleme p=BddProbleme.getProbleme(0);
-        p.formaliserProbleme();
+        Probleme p=BddProbleme.getProbleme(9);
+     //   p.formaliserProbleme();
+         Solution solution = new Solution(p.formaliserProbleme(), p.getCoeffVariables().size());
     }
 }

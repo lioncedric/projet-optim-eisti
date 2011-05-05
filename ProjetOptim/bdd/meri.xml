@@ -201,4 +201,27 @@
 <constante valeur="5.0"/>
 </contrainte>
 </probleme>
+<probleme>
+<titre>big</titre>
+<description>enorme</description>
+<objectif type="Minimiser">
+<variable coeff="200.0"/>
+<variable coeff="200.0"/>
+</objectif>
+<contrainte type="Supériorité">
+<variable coeff="1.0"/>
+<variable coeff="2.0"/>
+<constante valeur="80.0"/>
+</contrainte>
+<contrainte type="Supériorité">
+<variable coeff="3.0"/>
+<variable coeff="2.0"/>
+<constante valeur="160.0"/>
+</contrainte>
+<contrainte type="Supériorité">
+<variable coeff="5.0"/>
+<variable coeff="2.0"/>
+<constante valeur="200.0"/>
+</contrainte>
+</probleme>
 </listeProblemes>
