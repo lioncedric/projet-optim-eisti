@@ -1,29 +1,5 @@
-<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
-<listeProblemes utilisateur="meri" url="D:\My Documents\ProjetOptim\images\mickey.png">
-<probleme>
-<titre>Testmumu3</titre>
-<description>Un deuxieme ...</description>
-<objectif type="Maximiser">
-<variable coeff="10.0"/>
-<variable coeff="20.0"/>
-</objectif>
-<contrainte type="Infériorité">
-<variable coeff="2.0"/>
-<variable coeff="1.0"/>
-<constante valeur="30.0"/>
-</contrainte>
-<contrainte type="Infériorité">
-<variable coeff="1.0"/>
-<variable coeff="4.0"/>
-<constante valeur="64.0"/>
-</contrainte>
-<contrainte type="Infériorité">
-<variable coeff="5.0"/>
-<variable coeff="6.0"/>
-<constante valeur="110.0"/>
-</contrainte>
-</probleme>
-
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<listeProblemes url="D:\My Documents\ProjetOptim\images\loupe.png" utilisateur="test">
 <probleme>
 <titre>Testmumu</titre>
 <description>Probleme a deux variables</description>
@@ -222,6 +198,29 @@
 <variable coeff="5.0"/>
 <variable coeff="2.0"/>
 <constante valeur="200.0"/>
+</contrainte>
+</probleme>
+<probleme>
+<titre>Testmumu3</titre>
+<description>Un deuxieme ...a</description>
+<objectif type="Maximiser">
+<variable coeff="10.0"/>
+<variable coeff="20.0"/>
+</objectif>
+<contrainte type="Infériorité">
+<variable coeff="2.0"/>
+<variable coeff="1.0"/>
+<constante valeur="30.0"/>
+</contrainte>
+<contrainte type="Infériorité">
+<variable coeff="1.0"/>
+<variable coeff="4.0"/>
+<constante valeur="64.0"/>
+</contrainte>
+<contrainte type="Infériorité">
+<variable coeff="5.0"/>
+<variable coeff="6.0"/>
+<constante valeur="110.0"/>
 </contrainte>
 </probleme>
 </listeProblemes>

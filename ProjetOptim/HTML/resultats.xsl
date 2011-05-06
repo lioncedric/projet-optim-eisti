@@ -18,13 +18,15 @@
                 <div id="conteneur">
                     <!-- affichage du profil-->
                     <div id="conteneurProfil">
-                    <div id="utilisateur">
+                        <div id="utilisateur">
                         Utilisateur
-                    </div>
-                    <div id="profil">
-                        <img src="../{listeProblemes/@url}"/>
-                        <span id="span_profil"><xsl:value-of select="listeProblemes/@utilisateur"/></span>
-                    </div>
+                        </div>
+                        <div id="profil">
+                            <img src="../../../../../{listeProblemes/@url}"/>
+                            <span id="span_profil">
+                                <xsl:value-of select="listeProblemes/@utilisateur"/>
+                            </span>
+                        </div>
                     </div>
                     <!--affichage des problemes sous forme de menu-->
                     <div id="blocProbleme">
@@ -32,13 +34,13 @@
                             Problème
                         </div>
                         <div id="listeProblemes">
-                        <xsl:for-each select="listeProblemes/probleme">
-                            <li>
-                                <a href="#" id="" class="lien" onclick="afficheProbleme(this)">
-                                    <xsl:value-of select="titre"/>
-                                </a>
-                            </li>
-                        </xsl:for-each>
+                            <xsl:for-each select="listeProblemes/probleme">
+                                <li>
+                                    <a href="#" id="" class="lien" onclick="afficheProbleme(this)">
+                                        <xsl:value-of select="titre"/>
+                                    </a>
+                                </li>
+                            </xsl:for-each>
                         </div>
                     </div>
 
@@ -46,14 +48,14 @@
                     <!-- affichage du résultat cliqué et des résultats -->
                     <div class="blocResultats">
                         <div id="image">
-            Bienvenue sur le site OptimEisti
+                          Bienvenue sur le site OptimEisti
                         </div>
-                        <div id="titreBlocResultats">
-                            <xsl:value-of select="listeProblemes/probleme/titre"/>
-                        </div>
+                        
                         <xsl:for-each select="listeProblemes/probleme">
                             <div class="res" id="">
-                                
+                                <div id="titreBlocResultats">
+                                    <xsl:value-of select="titre"/>
+                                </div>
                 <!-- affichage de la description-->
                                 <div id="description">
                                     <fieldset>
@@ -64,7 +66,9 @@
                                 </div>
                                 <br/>
                 <!-- affichage de la fonction objective-->
-                                <div id="fctObecjtive"><span id="contraintesSpan">Fonction objective: </span><xsl:text>    </xsl:text>
+                                <div id="fctObecjtive">
+                                    <span id="contraintesSpan">Fonction objective: </span>
+                                    <xsl:text>    </xsl:text>
                                     <xsl:for-each select="objectif">
                                         <xsl:choose>
                                             <xsl:when test="@type='Minimiser'">
@@ -81,22 +85,69 @@
                                     </xsl:for-each>
                                     <xsl:for-each select="objectif/variable">
                                         <B>
-                                            <xsl:value-of select="@coeff"/>
-                                            <xsl:text>x</xsl:text>
-                                            <xsl:number value="position()" format="1"/>
+                                             <xsl:choose>
+                                                <xsl:when test="position() != 1">
+                                                    <xsl:if test="@coeff=1">
+                                                        <xsl:text> + </xsl:text>
+                                                        <xsl:text>x</xsl:text>
+                                                        <xsl:number value="position()" format="1"/>
+                                                    </xsl:if>
+                                                    <xsl:if test="@coeff=0">
+
+                                                    </xsl:if>
+                                                    <xsl:if test="@coeff!=1">
+                                                        <xsl:if test="substring(@coeff,1,1)='-'">
+                                                            <xsl:if test="@coeff=-1">
+                                                                <xsl:text> - </xsl:text>
+                                                                <xsl:text>x</xsl:text>
+                                                                <xsl:number value="position()" format="1"/>
+                                                            </xsl:if>
+                                                            <xsl:if test="@coeff!=-1">
+                                                                <xsl:text> - </xsl:text>
+                                                                <xsl:value-of select="substring(@coeff,2,string-length(@coeff))"/>
+                                                                <xsl:text>x</xsl:text>
+                                                                <xsl:number value="position()" format="1"/>
+                                                            </xsl:if>
+                                                        </xsl:if>
+                                                        <xsl:if test="substring(@coeff,1,1)!='-'">
+                                                            <xsl:text> + </xsl:text>
+                                                            <xsl:value-of select="@coeff"/>
+                                                            <xsl:text>x</xsl:text>
+                                                            <xsl:number value="position()" format="1"/>
+                                                        </xsl:if>
+                                                    </xsl:if>
+                                                </xsl:when>
+                                                <xsl:otherwise>
+                                                    <xsl:if test="@coeff=1">
+                                                        <xsl:text>x</xsl:text>
+                                                        <xsl:number value="position()" format="1"/>
+                                                    </xsl:if>
+                                                    <xsl:if test="@coeff=0">
+
+                                                    </xsl:if>
+                                                    <xsl:if test="@coeff!=1">
+                                                        <xsl:if test="@coeff=-1">
+                                                                <xsl:text> - </xsl:text>
+                                                                <xsl:text>x</xsl:text>
+                                                                <xsl:number value="position()" format="1"/>
+                                                            </xsl:if>
+                                                            <xsl:if test="@coeff!=-1">
+                                                                <xsl:value-of select="substring(@coeff,1,string-length(@coeff))"/>
+                                                                <xsl:text>x</xsl:text>
+                                                                <xsl:number value="position()" format="1"/>
+                                                            </xsl:if>
+                                                    </xsl:if>
+                                                </xsl:otherwise>
+                                            </xsl:choose>
                                         </B>
-                                        <xsl:if test="position()!=last()">
-                                            <B>
-                                                <xsl:text> + </xsl:text>
-                                            </B>
-                                        </xsl:if>
                                     </xsl:for-each>
                                 </div>
                                 <br/>
                                 <br/>
                  <!-- affichage des contraintes-->
                                 <div id="contraintes">
-                                    <span id="contraintesSpan">avec les contraintes:</span><br/>
+                                    <span id="contraintesSpan">avec les contraintes:</span>
+                                    <br/>
                                     
                                     <xsl:for-each select="contrainte">
                                         <xsl:for-each select="variable">
@@ -108,12 +159,50 @@
                                                         <xsl:number value="position()" format="1"/>
                                                     </xsl:if>
                                                     <xsl:if test="@coeff=0">
-
+                                                        
+                                                    </xsl:if>
+                                                    <xsl:if test="@coeff!=1">
+                                                        <xsl:if test="substring(@coeff,1,1)='-'">
+                                                            <xsl:if test="@coeff=-1">
+                                                                <xsl:text> - </xsl:text>
+                                                                <xsl:text>x</xsl:text>
+                                                                <xsl:number value="position()" format="1"/>
+                                                            </xsl:if>
+                                                            <xsl:if test="@coeff!=-1">
+                                                                <xsl:text> - </xsl:text>
+                                                                <xsl:value-of select="substring(@coeff,2,string-length(@coeff))"/>
+                                                                <xsl:text>x</xsl:text>
+                                                                <xsl:number value="position()" format="1"/>
+                                                            </xsl:if>
+                                                        </xsl:if>
+                                                        <xsl:if test="substring(@coeff,1,1)!='-'">
+                                                            <xsl:text> + </xsl:text>
+                                                            <xsl:value-of select="@coeff"/>
+                                                            <xsl:text>x</xsl:text>
+                                                            <xsl:number value="position()" format="1"/>
+                                                        </xsl:if>
                                                     </xsl:if>
                                                 </xsl:when>
                                                 <xsl:otherwise>
-                                                    <xsl:text>x</xsl:text>
-                                                    <xsl:number value="position()" format="1"/>
+                                                    <xsl:if test="@coeff=1">
+                                                        <xsl:text>x</xsl:text>
+                                                        <xsl:number value="position()" format="1"/>
+                                                    </xsl:if>
+                                                    <xsl:if test="@coeff=0">
+
+                                                    </xsl:if>
+                                                    <xsl:if test="@coeff!=1">
+                                                        <xsl:if test="@coeff=-1">
+                                                                <xsl:text> - </xsl:text>
+                                                                <xsl:text>x</xsl:text>
+                                                                <xsl:number value="position()" format="1"/>
+                                                            </xsl:if>
+                                                            <xsl:if test="@coeff!=-1">
+                                                                <xsl:value-of select="substring(@coeff,1,string-length(@coeff))"/>
+                                                                <xsl:text>x</xsl:text>
+                                                                <xsl:number value="position()" format="1"/>
+                                                            </xsl:if>
+                                                    </xsl:if>
                                                 </xsl:otherwise>
                                             </xsl:choose>
                                         </xsl:for-each>
@@ -139,19 +228,25 @@
                                             <br/>
                                         </xsl:for-each>
                                     </xsl:for-each>
-                                </div><br/><br/>
+                                </div>
+                                <br/>
+                                <br/>
                  <!-- Affichage des résultats-->
                                 <div id="resultats">
-                                    <span id="spanRes">Résultats:</span><br/>
-                                        <xsl:for-each select="resultat">
-                                            F = <xsl:value-of select="@valeur"/><br/>
-                                                <xsl:for-each select="variable">
-                                                    <xsl:text>x</xsl:text>
-                                                    <xsl:number value="position()" format="1"/><xsl:text>=</xsl:text>
-                                                    <xsl:value-of select="@coeff"/>
-                                                    <br/>
-                                             </xsl:for-each>
+                                    <xsl:for-each select="resultat">
+                                        <span id="spanRes">Résultats:</span>
+                                        <br/>
+                                            F = 
+                                        <xsl:value-of select="@valeur"/>
+                                        <br/>
+                                        <xsl:for-each select="variable">
+                                            <xsl:text>x</xsl:text>
+                                            <xsl:number value="position()" format="1"/>
+                                            <xsl:text>=</xsl:text>
+                                            <xsl:value-of select="@coeff"/>
+                                            <br/>
                                         </xsl:for-each>
+                                    </xsl:for-each>
                                 </div>
                             </div>
                         </xsl:for-each>

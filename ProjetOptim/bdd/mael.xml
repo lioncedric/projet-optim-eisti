@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
-<listeProblemes utilisateur="meri" url="D:\My Documents\ProjetOptim\images\mickey.png">
+<listeProblemes url="D:\My Documents\ProjetOptim\images\mickey.png" utilisateur="mael">
 <probleme>
 <titre>Testmumu3</titre>
 <description>Un deuxieme ...</description>
@@ -23,7 +23,6 @@
 <constante valeur="110.0"/>
 </contrainte>
 </probleme>
-
 <probleme>
 <titre>Testmumu</titre>
 <description>Probleme a deux variables</description>
@@ -47,29 +46,7 @@
 <constante valeur="5.0"/>
 </contrainte>
 </probleme>
-<probleme>
-<titre>Testmumu2</titre>
-<description>Un autre ...</description>
-<objectif type="Maximiser">
-<variable coeff="1.0"/>
-<variable coeff="0.5"/>
-</objectif>
-<contrainte type="Infériorité">
-<variable coeff="1.0"/>
-<variable coeff="1.0"/>
-<constante valeur="4.0"/>
-</contrainte>
-<contrainte type="Infériorité">
-<variable coeff="-3.0"/>
-<variable coeff="1.0"/>
-<constante valeur="3.0"/>
-</contrainte>
-<contrainte type="Infériorité">
-<variable coeff="1.0"/>
-<variable coeff="0.5"/>
-<constante valeur="1.0"/>
-</contrainte>
-</probleme>
+
 <probleme>
 <titre>Mon problemeActions</titre>
 <description>Entrer votre description du problème</description>
@@ -130,7 +107,7 @@
 <variable coeff="3.0"/>
 <variable coeff="0.0"/>
 <constante valeur="-4.0"/>
-</contrainte>
+</contrainte>   
 </probleme>
 <probleme>
 <titre>Testmumu3</titre>
@@ -222,6 +199,29 @@
 <variable coeff="5.0"/>
 <variable coeff="2.0"/>
 <constante valeur="200.0"/>
+</contrainte>
+</probleme>
+<probleme>
+<titre>Testmumu2</titre>
+<description>Un autre ...</description>
+<objectif type="Maximiser">
+<variable coeff="1.0"/>
+<variable coeff="0.5"/>
+</objectif>
+<contrainte type="Infériorité">
+<variable coeff="0.5"/>
+<variable coeff="1.0"/>
+<constante valeur="4.0"/>
+</contrainte>
+<contrainte type="Infériorité">
+<variable coeff="-3.0"/>
+<variable coeff="1.0"/>
+<constante valeur="3.0"/>
+</contrainte>
+<contrainte type="Infériorité">
+<variable coeff="1.0"/>
+<variable coeff="0.5"/>
+<constante valeur="1.0"/>
 </contrainte>
 </probleme>
 </listeProblemes>

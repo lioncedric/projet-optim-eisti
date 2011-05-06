@@ -2,4 +2,6 @@
 <identification>
     <personne imagesrc="images\mickey.png" login="meri" password="meri"/>
     <personne imagesrc="images\mickey.png" login="Sébastien" password="Sébastien"/>
+<personne imagesrc="D:\My Documents\ProjetOptim\images\mickey.png" login="mael" password="mael"/>
+<personne imagesrc="D:\My Documents\ProjetOptim\images\loupe.png" login="test" password="test"/>
 </identification>
