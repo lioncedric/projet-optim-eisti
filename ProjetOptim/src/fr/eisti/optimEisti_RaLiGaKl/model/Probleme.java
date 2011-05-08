@@ -1,7 +1,6 @@
 package fr.eisti.optimEisti_RaLiGaKl.model;
 
 import fr.eisti.optimEisti_RaLiGaKl.view.problemes.PanelProbleme;
-import java.lang.Double;
 import java.util.ArrayList;
 import javax.swing.JTextField;
 
@@ -195,7 +194,110 @@ public class Probleme {
         }
     }
 
+   
+
     /**
+     * Fonction qui retourne le problème sous forme de matrice pour pouvoir l'exporter sous scilab
+     * @return matrice : la matrice correspondante au problème
+     */
+    public double[][] formaliserProblemeScilab() {
+        //declaration de la matrice representant le probleme pour l'algo du simplexe
+        double[][] matrice;
+        //declaration de la variable qui stocke le nombre de variables imaginaires (les Ei)
+        int nbVariablesImg;
+
+        //appel de la fonction recuperant le nombre de variables imaginaires
+        nbVariablesImg = combienVariablesImg();
+        //on peut a present declarer la taille de la matrice
+        matrice = new double[nbVariablesImg + 1][this.coeffVariables.size() + nbVariablesImg + 1];
+        //on initialise la matrice avec des zéros
+        initMatrice(matrice);
+        //on rempli la matrice avec les différentes données du problème à résoudre (variables, contraintes)
+        remplirMatriceScilab(matrice, nbVariablesImg);
+        afficherMatrice(matrice);
+
+        //on retourne la matrice
+        return matrice;
+    }
+
+    /**
+     * Fonction qui retourne le nombre de variables imaginaires
+     * @return nb : nombre de variables imaginaires
+     */
+    public int combienVariablesImg() {
+        //declaration et initialisation du nombre de variables necessaires
+        int nb;
+        nb = 0;
+        //pour chaque contrainte du probleme
+        for (int i = 0; i < this.contraintes.size(); i++) {
+            //si c'est une contrainted'inegalite, c'est OK, ce n'est qu'une contrainte
+            if (this.contraintes.get(i).getInegalite().equals("Infériorité") || this.contraintes.get(i).getInegalite().equals("Supériorité")) {
+                nb += 1;
+            } else {//c'est que l'on a une egalite que l'on peut reecrire sous forme de 2 inegalites superieur ou egal et inferieur ou egal
+                nb += 2;
+            }
+        }
+        //on retourne la valeur
+        return nb;
+    }
+
+    /**
+     * Procedure qui remplit la matrice avec tous les elements d'un probleme
+     * @param matrice : matrice representant le probleme
+     * @param nb : nombre de variables imaginaires
+     */
+    public void remplirMatriceScilab(double[][] matrice, int nb) {
+        //pour autant qu'il y a de contraintes (on va remplir toutes les lignes de la matrice sauf la derniere
+        int cpt = 0;
+        for (int i = 0; i < this.contraintes.size(); i++) {
+            //pour toutes les colonnes de la matrice
+
+            for (int j = 0; j < this.coeffVariables.size(); j++) {
+                //on remplit la matrice avec les coefficients de chacune des contraintes du probleme
+                if (this.contraintes.get(i).getInegalite().equals("Infériorité")) {
+
+                    matrice[cpt][j] = this.contraintes.get(i).getCoeffVariables().get(j);
+                } else if (this.contraintes.get(i).getInegalite().equals("Supériorité")) {
+                    matrice[cpt][j] = -this.contraintes.get(i).getCoeffVariables().get(j);
+
+                } else {
+                    matrice[cpt][j] = this.contraintes.get(i).getCoeffVariables().get(j);
+                    matrice[cpt + 1][j] = -this.contraintes.get(i).getCoeffVariables().get(j);
+                }
+
+
+            }
+            //on remplit la matrice avec des 1 en les decalant a chaque iteration d'une case de plus.
+            matrice[cpt][cpt + this.coeffVariables.size()] = 1;
+            //on remplit la derniere colonne de la matrice avec les bi, qui sont les constantes de chaque contrainte
+            if (this.contraintes.get(i).getInegalite().equals("Infériorité")) {
+                matrice[cpt][this.coeffVariables.size() + nb] = this.contraintes.get(i).getConstante();
+            } else if (this.contraintes.get(i).getInegalite().equals("Supériorité")) {
+                matrice[cpt][this.coeffVariables.size() + nb] = -this.contraintes.get(i).getConstante();
+            } else {
+                matrice[cpt][this.coeffVariables.size() + nb] = this.contraintes.get(i).getConstante();
+                cpt++;
+                //on remplit la matrice avec des 1 en les decalant a chaque iteration d'une case de plus.
+                matrice[cpt][cpt + this.coeffVariables.size()] = 1;
+                //on remplit la derniere colonne de la matrice avec les bi, qui sont les constantes de chaque contrainte
+                matrice[cpt][this.coeffVariables.size() + nb] = -this.contraintes.get(i).getConstante();
+            }
+            cpt++;
+
+        }
+
+        //pour chaque colonne de la derniere ligne
+        for (int j = 0; j < this.coeffVariables.size(); j++) {
+            if (this.objectif.equals("Minimiser")) {
+                matrice[nb][j] = -this.coeffVariables.get(j);
+            } else {
+                //on ajoute les coefficients de la fonction a maximiser
+                matrice[nb][j] = this.coeffVariables.get(j);
+            }
+        }
+
+    }
+ /**
      * Procédure qui remplit la matrice avec tous les éléments d'un problème
      * @param matrice : matrice représentant le problème
      * @param nb : nombre de variables imaginaires
@@ -213,7 +315,6 @@ public class Probleme {
         System.out.println("FIN remplissage");
         System.out.println("\n");
     }
-
     public ArrayList<Double> getCoeffVariables() {
         return coeffVariables;
     }
@@ -264,107 +365,5 @@ public class Probleme {
 
     public ArrayList<Double> getResultat() {
         return resultat;
-    }
-
-    /**
-     * Fonction qui retourne le problème sous forme de matrice pour l'utilisation de la méthode de résolution du simplexe
-     * @return matrice : la matrice correspondante au problème
-     */
-    public double[][] formaliserProblemeScilab() {
-        //declaration de la matrice representant le probleme pour l'algo du simplexe
-        double[][] matrice;
-        //declaration de la variable qui stocke le nombre de variables imaginaires (les Ei)
-        int nbVariablesImg;
-
-        //appel de la fonction recuperant le nombre de variables imaginaires
-        nbVariablesImg = combienVariablesImg();
-        //on peut a present declarer la taille de la matrice
-        matrice = new double[nbVariablesImg + 1][this.coeffVariables.size() + nbVariablesImg + 1];
-        //on initialise la matrice avec des zéros
-        initMatrice(matrice);
-        //on rempli la matrice avec les différentes données du problème à résoudre (variables, contraintes)
-        remplirMatrice(matrice, nbVariablesImg);
-        afficherMatrice(matrice);
-
-        //on retourne la matrice
-        return matrice;
-    }
-
-    /**
-     * Fonction qui retourne le nombre de variables imaginaires
-     * @return nb : nombre de variables imaginaires
-     */
-    public int combienVariablesImg() {
-        //declaration et initialisation du nombre de variables necessaires
-        int nb;
-        nb = 0;
-        //pour chaque contrainte du probleme
-        for (int i = 0; i < this.contraintes.size(); i++) {
-            //si c'est une contrainted'inegalite, c'est OK, ce n'est qu'une contrainte
-            if (this.contraintes.get(i).getInegalite().equals("Infériorité") || this.contraintes.get(i).getInegalite().equals("Supériorité")) {
-                nb += 1;
-            } else {//c'est que l'on a une egalite que l'on peut reecrire sous forme de 2 inegalites superieur ou egal et inferieur ou egal
-                nb += 2;
-            }
-        }
-        //on retourne la valeur
-        return nb;
-    }
-
-    /**
-     * Procedure qui remplit la matrice avec tous les elements d'un probleme
-     * @param matrice : matrice representant le probleme
-     * @param nb : nombre de variables imaginaires
-     */
-    public void remplirMatrice(double[][] matrice, int nb) {
-        //pour autant qu'il y a de contraintes (on va remplir toutes les lignes de la matrice sauf la derniere
-        int cpt = 0;
-        for (int i = 0; i < this.contraintes.size(); i++) {
-            //pour toutes les colonnes de la matrice
-
-            for (int j = 0; j < this.coeffVariables.size(); j++) {
-                //on remplit la matrice avec les coefficients de chacune des contraintes du probleme
-                if (this.contraintes.get(i).getInegalite().equals("Infériorité")) {
-
-                    matrice[cpt][j] = this.contraintes.get(i).getCoeffVariables().get(j);
-                } else if (this.contraintes.get(i).getInegalite().equals("Supériorité")) {
-                    matrice[cpt][j] = -this.contraintes.get(i).getCoeffVariables().get(j);
-
-                } else {
-                    matrice[cpt][j] = this.contraintes.get(i).getCoeffVariables().get(j);
-                    matrice[cpt + 1][j] = -this.contraintes.get(i).getCoeffVariables().get(j);
-                }
-
-
-            }
-            //on remplit la matrice avec des 1 en les decalant a chaque iteration d'une case de plus.
-            matrice[cpt][cpt + this.coeffVariables.size()] = 1;
-            //on remplit la derniere colonne de la matrice avec les bi, qui sont les constantes de chaque contrainte
-            if (this.contraintes.get(i).getInegalite().equals("Infériorité")) {
-                matrice[cpt][this.coeffVariables.size() + nb] = this.contraintes.get(i).getConstante();
-            } else if (this.contraintes.get(i).getInegalite().equals("Supériorité")) {
-                matrice[cpt][this.coeffVariables.size() + nb] = -this.contraintes.get(i).getConstante();
-            } else {
-                matrice[cpt][this.coeffVariables.size() + nb] = this.contraintes.get(i).getConstante();
-                cpt++;
-                //on remplit la matrice avec des 1 en les decalant a chaque iteration d'une case de plus.
-                matrice[cpt][cpt + this.coeffVariables.size()] = 1;
-                //on remplit la derniere colonne de la matrice avec les bi, qui sont les constantes de chaque contrainte
-                matrice[cpt][this.coeffVariables.size() + nb] = -this.contraintes.get(i).getConstante();
-            }
-            cpt++;
-
-        }
-
-        //pour chaque colonne de la derniere ligne
-        for (int j = 0; j < this.coeffVariables.size(); j++) {
-            if (this.objectif.equals("Minimiser")) {
-                matrice[nb][j] = -this.coeffVariables.get(j);
-            } else {
-                //on ajoute les coefficients de la fonction a maximiser
-                matrice[nb][j] = this.coeffVariables.get(j);
-            }
-        }
-
     }
 }
