@@ -65,7 +65,9 @@ public class PanelProbleme extends JPanel {
     private ImageIcon icon;
     private Probleme probleme;
     private int numProbleme;
+    private int hauteur=0;
     private Tableau panTableau;
+     private PanelResultat panelResultat;
     //declaration des varables pour le panel de droite
     private PanelProblemesUtilisateur liste;
     // private ArrayList<Contrainte> contraintes;
@@ -240,22 +242,21 @@ public class PanelProbleme extends JPanel {
         Graphics2D g2d = (Graphics2D) g;
         g2d.setPaint(new GradientPaint(0, 0, couleur1, 0, this.getHeight(), couleur2, true));
         g2d.fillRect(0, 0, this.getWidth(), this.getHeight());
-        titre.setBounds(this.getWidth() * 10 / 100, this.getHeight() * 6 / 100, this.getWidth() * 30 / 100, this.getHeight() * 6 / 100);
-        jtfTitre.setBounds(this.getWidth() * 42 / 100, this.getHeight() * 6 / 100, this.getWidth() * 30 / 100, this.getHeight() * 6 / 100);
-
-        description.setBounds(this.getWidth() * 10 / 100, this.getHeight() * 15 / 100, this.getWidth() * 15 / 100, this.getHeight() * 15 / 100);
-        textfield.setBounds(this.getWidth() * 42 / 100, this.getHeight() * 15 / 100, this.getWidth() * 50 / 100, this.getHeight() * 20 / 100);
-
-        donnees.setBounds(this.getWidth() * 10 / 100, this.getHeight() * 38 / 100, this.getWidth() * 20 / 100, this.getHeight() * 15 / 100);
-        maximiser.setBounds(this.getWidth() * 42 / 100, this.getHeight() * 40 / 100, this.getWidth() * 20 / 100, this.getHeight() * 10 / 100);
-        minimiser.setBounds(this.getWidth() * 65 / 100, this.getHeight() * 40 / 100, this.getWidth() * 20 / 100, this.getHeight() * 10 / 100);
-        slide.setBounds(this.getWidth() * 42 / 100, this.getHeight() * 50 / 100, this.getWidth() * 40 / 100, this.getHeight() * 10 / 100);
-        variables.setBounds(this.getWidth() * 10 / 100, this.getHeight() * 48 / 100, this.getWidth() * 40 / 100, this.getHeight() * 15 / 100);
-        panDonnees.setBounds(this.getWidth() * 25 / 100, this.getHeight() * 60 / 100, this.getWidth() * 75 / 100, this.getHeight() * 10 / 100);
-        objectif.setBounds(this.getWidth() * 10 / 100, this.getHeight() * 58 / 100, this.getWidth() * 20 / 100, this.getHeight() * 15 / 100);
-        contraintes.setBounds(this.getWidth() * 10 / 100, this.getHeight() * 68 / 100, this.getWidth() * 30 / 100, this.getHeight() * 10 / 100);
-        panTableau.setBounds(this.getWidth() * 5 / 100, this.getHeight() * 78 / 100, this.getWidth() * 90 / 100, this.getHeight() * 20 / 100);
-        ajouter.setBounds(this.getWidth() * 42 / 100, this.getHeight() * 70 / 100, this.getWidth() * 40 / 100, this.getHeight() * 5 / 100);
+        titre.setBounds(this.getWidth() * 10 / 100,hauteur*this.getHeight()/700+ this.getHeight() * 6 / 100, this.getWidth() * 30 / 100, this.getHeight() * 6 / 100);
+        jtfTitre.setBounds(this.getWidth() * 42 / 100,hauteur*this.getHeight()/700+ this.getHeight() * 6 / 100, this.getWidth() * 30 / 100, this.getHeight() * 6 / 100);
+        description.setBounds(this.getWidth() * 10 / 100,hauteur*this.getHeight()/700+ this.getHeight() * 15 / 100, this.getWidth() * 15 / 100, this.getHeight() * 15 / 100);
+        textfield.setBounds(this.getWidth() * 42 / 100,hauteur*this.getHeight()/700+ this.getHeight() * 15 / 100, this.getWidth() * 50 / 100, this.getHeight() * 20 / 100);
+        donnees.setBounds(this.getWidth() * 10 / 100,hauteur*this.getHeight()/700+ this.getHeight() * 38 / 100, this.getWidth() * 20 / 100, this.getHeight() * 15 / 100);
+        maximiser.setBounds(this.getWidth() * 42 / 100,hauteur*this.getHeight()/700+ this.getHeight() * 40 / 100, this.getWidth() * 20 / 100, this.getHeight() * 10 / 100);
+        minimiser.setBounds(this.getWidth() * 65 / 100,hauteur*this.getHeight()/700+ this.getHeight() * 40 / 100, this.getWidth() * 20 / 100, this.getHeight() * 10 / 100);
+        slide.setBounds(this.getWidth() * 42 / 100,hauteur*this.getHeight()/700+ this.getHeight() * 50 / 100, this.getWidth() * 40 / 100, this.getHeight() * 10 / 100);
+        variables.setBounds(this.getWidth() * 10 / 100,hauteur*this.getHeight()/700+ this.getHeight() * 48 / 100, this.getWidth() * 40 / 100, this.getHeight() * 15 / 100);
+        panDonnees.setBounds(this.getWidth() * 25 / 100,hauteur*this.getHeight()/700+ this.getHeight() * 60 / 100, this.getWidth() * 75 / 100, this.getHeight() * 10 / 100);
+        objectif.setBounds(this.getWidth() * 10 / 100,hauteur*this.getHeight()/700+ this.getHeight() * 58 / 100, this.getWidth() * 20 / 100, this.getHeight() * 15 / 100);
+        contraintes.setBounds(this.getWidth() * 10 / 100,hauteur*this.getHeight()/700+ this.getHeight() * 68 / 100, this.getWidth() * 30 / 100, this.getHeight() * 10 / 100);
+        panTableau.setBounds(this.getWidth() * 5 / 100,hauteur*this.getHeight()/700+ this.getHeight() * 78 / 100, this.getWidth() * 90 / 100, this.getHeight() * 20 / 100);
+        ajouter.setBounds(this.getWidth() * 42 / 100,hauteur*this.getHeight()/700+ this.getHeight() * 70 / 100, this.getWidth() * 40 / 100, this.getHeight() * 5 / 100);
+      panelResultat.setBounds(0,hauteur*this.getHeight()/700+ this.getHeight() , this.getWidth() , this.getHeight() * 40 / 100);
         this.updateUI();
     }
 
@@ -305,8 +306,7 @@ public class PanelProbleme extends JPanel {
         this.add(panDonnees);
         panDonnees.setBackground(new Color(0, 0, 0, 0));
         this.add(contraintes);
-
-
+this.add(panelResultat);
         //pan3.setPreferredSize(new Dimension(200,200));
         this.raffraichitTabContrainte(fsl.getContraintes());
 
@@ -325,6 +325,7 @@ public class PanelProbleme extends JPanel {
 
     private void initialiserVariables() {
 
+        panelResultat= new PanelResultat(this);
         panDonnees = new JPanel();
 
         titre = new JLabel("Titre du probleme : ");
@@ -518,5 +519,13 @@ public class PanelProbleme extends JPanel {
 
     public void setVariables(JLabel variables) {
         this.variables = variables;
+    }
+
+    public int getHauteur() {
+        return hauteur;
+    }
+
+    public void setHauteur(int hauteur) {
+        this.hauteur = hauteur;
     }
 }

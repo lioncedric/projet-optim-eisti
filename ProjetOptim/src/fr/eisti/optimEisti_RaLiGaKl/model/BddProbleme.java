@@ -223,7 +223,7 @@ public class BddProbleme {
             int nbvariables3 = res.getElementsByTagName("*").getLength();
             if (nbvariables1 == nbvariables3) {
                 probleme.getResultat().add(Double.parseDouble(res.getAttributes().getNamedItem("valeur").getTextContent()));
-                for (int i = 1; i < nbvariables3; i++) {
+                for (int i = 0; i < nbvariables3; i++) {
                     probleme.getResultat().add(Double.parseDouble(res.getElementsByTagName("*").item(i).getAttributes().getNamedItem("coeff").getTextContent()));
                 }
             }

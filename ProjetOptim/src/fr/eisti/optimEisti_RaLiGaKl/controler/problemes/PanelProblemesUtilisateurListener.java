@@ -11,6 +11,8 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import javax.swing.JFileChooser;
 import javax.swing.JList;
@@ -129,10 +131,12 @@ public class PanelProblemesUtilisateurListener implements ActionListener, MouseL
                 }
             }
         } else if (e.getSource() == this.ppu.getBoutonSolution()) {
-            Probleme p = ((PanelProbleme) Main.fenetrePrincipale.getDroite().getSelectedComponent()).getProbleme();
-            p.renseignerProbleme((PanelProbleme) Main.fenetrePrincipale.getDroite().getSelectedComponent());
+//            Probleme p = ((PanelProbleme) Main.fenetrePrincipale.getDroite().getSelectedComponent()).getProbleme();
+  //          p.renseignerProbleme((PanelProbleme) Main.fenetrePrincipale.getDroite().getSelectedComponent());
             //et on genere la solution par l'algorithme du simplexe
-            Solution solution = new Solution(p.formaliserProbleme(), p.getCoeffVariables().size());
+         //   Solution solution = new Solution(p.formaliserProbleme(), p.getCoeffVariables().size());
+            Thread basculer=new Thread(new Basculer());
+             basculer.start();
 
         } else if (e.getSource() == this.ppu.getBoutonNew()) {
             boolean nouveau = false;
@@ -182,7 +186,7 @@ public class PanelProblemesUtilisateurListener implements ActionListener, MouseL
                     i++;
                 }
             }
-             SaveListener.estmodifié();
+            SaveListener.estmodifié();
         }
     }
 
