@@ -164,7 +164,8 @@ public class BddProbleme {
         }
         if (!p.getResultat().isEmpty()) {
             Element resultat = bdd.createElement("resultat");
-            for (int i = 0; i < p.getResultat().size(); i++) {
+            objectif.setAttribute("valeur", "" + p.getResultat().get(0));
+            for (int i = 1; i < p.getResultat().size(); i++) {
                 Element variable = bdd.createElement("variable");
                 variable.setAttribute("coeff", "" + p.getResultat().get(i));
                 resultat.appendChild(variable);
@@ -206,6 +207,7 @@ public class BddProbleme {
             NodeList constantes = ((Element) contraintes.item(i)).getElementsByTagName("constante");
             probleme.getContraintes().get(i).setConstante(Double.parseDouble((constantes.item(0).getAttributes().getNamedItem("valeur").getTextContent())));
             int nbvariables2 = variables.getLength();
+
             if (nbvariables1 == nbvariables2) {
                 for (int j = 0; j < nbvariables2; j++) {
                     probleme.getContraintes().get(i).getCoeffVariables().add(Double.parseDouble(variables.item(j).getAttributes().getNamedItem("coeff").getTextContent()));
@@ -218,8 +220,12 @@ public class BddProbleme {
         NodeList ListeRes = NoeudProbleme.getElementsByTagName("resultat");
         if (ListeRes.getLength() == 1) {
             Element res = (Element) ListeRes.item(0);
-            for (int i = 0; i < nbvariables1; i++) {
-                probleme.getResultat().add(Double.parseDouble(res.getElementsByTagName("*").item(i).getAttributes().getNamedItem("coeff").getTextContent()));
+            int nbvariables3 = res.getElementsByTagName("*").getLength();
+            if (nbvariables1 == nbvariables3) {
+                probleme.getResultat().add(Double.parseDouble(res.getAttributes().getNamedItem("valeur").getTextContent()));
+                for (int i = 1; i < nbvariables3; i++) {
+                    probleme.getResultat().add(Double.parseDouble(res.getElementsByTagName("*").item(i).getAttributes().getNamedItem("coeff").getTextContent()));
+                }
             }
         }
         return probleme;
@@ -232,7 +238,7 @@ public class BddProbleme {
      */
     public static void exporterScilab(Probleme p, String nom) {
         //on normalise le probleme sous forme de tableau
-        double[][] probleme = p.formaliserProbleme();
+        double[][] probleme = p.formaliserProblemeScilab();
         //nombre de lignes du tableau
         int lignes = probleme.length;
         //nombres de colonnes du tableau

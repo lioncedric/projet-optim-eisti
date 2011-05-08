@@ -30,6 +30,7 @@
                 </xs:complexType>
             </xs:element>
         </xs:sequence>
+        <xs:attribute name="valeur" use="required" type="xs:double"/>
     </xs:complexType>
 
     <xs:complexType name="tObjectif">

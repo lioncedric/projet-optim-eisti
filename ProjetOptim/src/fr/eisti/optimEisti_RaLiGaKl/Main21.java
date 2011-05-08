@@ -25,7 +25,8 @@ public class Main21 {
         BDDUtilisateur.existeCompte("meri", "meri");
         BddProbleme.load(BDDUtilisateur.getNomUtilisateur(), BDDUtilisateur.getImage());
         Probleme p=BddProbleme.getProbleme(9);
+        BddProbleme.exporterScilab(p,"C:\\Users\\Administrator\\Desktop\\ok.sci");
      //   p.formaliserProbleme();
-         Solution solution = new Solution(p.formaliserProbleme(), p.getCoeffVariables().size());
+      //   Solution solution = new Solution(p.formaliserProbleme(), p.getCoeffVariables().size());
     }
 }
