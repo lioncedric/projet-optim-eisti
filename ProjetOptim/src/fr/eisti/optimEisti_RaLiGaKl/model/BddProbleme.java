@@ -8,6 +8,8 @@ import java.io.*;
 import fr.eisti.optimEisti_RaLiGaKl.Main;
 import java.util.ArrayList;
 import java.util.Iterator;
+import java.util.LinkedList;
+import java.util.List;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.validation.Schema;
@@ -103,25 +105,25 @@ public class BddProbleme {
     /**
      * Fonction qui renvoie le numero du problème ayant pour titre la chaine passée en paramètre
      * @param nomProbleme
-     * @return Renvoi le numero du probleme dans la liste ou -1 si le problème n'existe pas
+     * @return Renvoi une liste contenant tous les numéros des problemes qui vérifient l'expression tapée
      */
-    public static int rechercheProbleme(String nomProbleme) {
+    public static List<Integer> rechercheProbleme(String nomProbleme) {
         //declaration et initialisation de l'indice que l'on va retourner
-        int num = -1;
+        List<Integer> listeDeNumProblemesMatch=new LinkedList<Integer>();
         //on selectionne dans l'arbre xml les éléments 'titre'
         NodeList liste = bdd.getDocumentElement().getElementsByTagName("titre");
         //pour chacun de ces noeuds
         for (int i = 0; i < liste.getLength(); i++) {
             //on récupère la valeur du titre
-            String lowerNom = liste.item(i).getChildNodes().item(0).getNodeValue();
+            String lowerNom = liste.item(i).getChildNodes().item(0).getNodeValue().toLowerCase();
             //si le titre du problème correspond au problème recherché
-            if (lowerNom.equalsIgnoreCase(nomProbleme)) {
+            if (lowerNom.startsWith(nomProbleme.toLowerCase())) {
                 //on stocke dans la variable le numéro du problème ayant ce titre
-                num = i;
+                listeDeNumProblemesMatch.add(i);
             }
         }
         //on finit par retourner la valeur
-        return num;
+        return listeDeNumProblemesMatch;
     }
 
     /**

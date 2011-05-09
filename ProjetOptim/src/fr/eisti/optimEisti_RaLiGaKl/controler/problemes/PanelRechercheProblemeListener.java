@@ -11,6 +11,7 @@ import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.util.List;
 
 /**
  * Classe qui écoute les évènements qui se produisent dans le panel de recherche
@@ -38,19 +39,13 @@ public class PanelRechercheProblemeListener implements KeyListener, MouseListene
      * @param e 
      */
     public void keyPressed(KeyEvent e) {
-        //on gere le cas ou il appuie sur la touche ENTRER
-        if (e.getKeyCode() == KeyEvent.VK_ENTER) {
-            //on recupere le numero du probleme a l'aide de la fonction recherche
-            int numeroProbleme = BddProbleme.rechercheProbleme(this.panRechProb.getJtfRecherche().getText());
-            //si le probleme existe
-            if (numeroProbleme != -1) {
-                //on selectionne l'index correspondant à celui recherché dans la liste des problemes
-                Main.fenetrePrincipale.getGauche().getList().setSelectedIndex(numeroProbleme);
-            }
-        }
     }
 
     public void keyReleased(KeyEvent e) {
+        //a chaque nouvelle lettre tappe, on raffraichit la liste
+        //on recupere les numero des problemes a l'aide de la fonction recherche
+        List maListe = BddProbleme.rechercheProbleme(this.panRechProb.getJtfRecherche().getText());
+        Main.fenetrePrincipale.getGauche().miseajourRecherche(maListe);
     }
 
     /**

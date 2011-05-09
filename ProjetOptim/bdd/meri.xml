@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
-<listeProblemes utilisateur="meri" url="D:\My Documents\ProjetOptim\images\mickey.png">
+<listeProblemes url="D:\My Documents\ProjetOptim\images\mickey.png" utilisateur="meri">
     <probleme>
         <titre>Testmumu3</titre>
         <description>Un deuxieme ...</description>
@@ -224,4 +224,53 @@
             <constante valeur="200.0"/>
         </contrainte>
     </probleme>
+<probleme>
+<titre>Mon probleme4</titre>
+<description>Entrer votre description du problème</description>
+<objectif type="Maximiser">
+<variable coeff="4.0"/>
+</objectif>
+</probleme>
+<probleme>
+<titre>Mon probleme5</titre>
+<description>Entrer votre description du problème</description>
+<objectif type="Maximiser">
+<variable coeff="5.0"/>
+</objectif>
+</probleme>
+<probleme>
+<titre>Mon probleme6</titre>
+<description>Entrer votre description du problème</description>
+<objectif type="Maximiser">
+<variable coeff="6.0"/>
+</objectif>
+</probleme>
+<probleme>
+<titre>Mon probleme7</titre>
+<description>Entrer votre description du problème</description>
+<objectif type="Maximiser">
+<variable coeff="7.0"/>
+</objectif>
+</probleme>
+<probleme>
+<titre>b8</titre>
+<description>Entrer votre description du problème</description>
+<objectif type="Maximiser">
+<variable coeff="8.0"/>
+</objectif>
+</probleme>
+<probleme>
+<titre>b9</titre>
+<description>Entrer votre description du problème</description>
+<objectif type="Maximiser">
+<variable coeff="9.0"/>
+</objectif>
+</probleme>
+<probleme>
+<titre>m10</titre>
+<description>Entrer votre description du problème</description>
+<objectif type="Maximiser">
+<variable coeff="10.0"/>
+</objectif>
+</probleme>
 </listeProblemes>

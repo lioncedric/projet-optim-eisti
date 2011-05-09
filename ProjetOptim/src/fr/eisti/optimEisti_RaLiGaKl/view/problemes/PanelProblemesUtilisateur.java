@@ -6,6 +6,8 @@ import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.GridLayout;
+import java.util.LinkedList;
+import java.util.List;
 import javax.swing.BorderFactory;
 import javax.swing.DefaultListModel;
 import javax.swing.JButton;
@@ -50,10 +52,10 @@ public final class PanelProblemesUtilisateur extends JPanel {
      * Procédure permettant d'initialiser toutes les variables déclarées précédemment
      */
     public void initialiserVariables() {
-          this.listModel = new DefaultListModel();
+        this.listModel = new DefaultListModel();
         this.list = new JList(listModel);
         this.listScrollPane = new JScrollPane(list);
-      
+
         this.boutonSolution = new JButton("Afficher solution");
         this.boutonNew = new JButton("Nouveau probleme");
         this.panBoutons = new JPanel();
@@ -74,7 +76,7 @@ public final class PanelProblemesUtilisateur extends JPanel {
         this.jMenuItemExporter.addActionListener(new PanelProblemesUtilisateurListener(this));
         this.boutonNew.addActionListener(new PanelProblemesUtilisateurListener(this));
         this.boutonSolution.addActionListener(new PanelProblemesUtilisateurListener(this));
-     
+
         this.list.addMouseListener(new PanelProblemesUtilisateurListener(this));
 
         this.list.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
@@ -95,7 +97,7 @@ public final class PanelProblemesUtilisateur extends JPanel {
 
         this.list.setSelectedIndex(0);
         this.panBoutons.add(this.boutonNew);
-       
+
         this.panBoutons.add(this.boutonSolution);
         this.panCentre.add(this.panRecherche, BorderLayout.NORTH);
         this.panCentre.add(this.listScrollPane, BorderLayout.CENTER);
@@ -136,7 +138,24 @@ public final class PanelProblemesUtilisateur extends JPanel {
         for (int i = 0; i < BddProbleme.nombreProblemes(); i++) {
             this.listModel.addElement(BddProbleme.getProbleme(i).getTitre());
         }
+    }
 
+    /**
+     * Procédure miseajour qui raffraichit la liste des problèmes de l'utilisateur
+     */
+    public void miseajourRecherche(List<Integer> liste) {
+        //on commence par supprimer tous les éléments
+        this.listModel.removeAllElements();
+        
+        //puis on ajoute un à un tous les problèmes
+        if (liste instanceof LinkedList) {
+            while (!liste.isEmpty()) {
+                this.listModel.addElement(BddProbleme.getProbleme(((LinkedList<Integer>) liste).getFirst()).getTitre());
+                liste.remove(0);
+            }
+            this.list.revalidate();
+        } else {
+        }
     }
 
     //LES GETTERS AND SETTERS
@@ -151,7 +170,6 @@ public final class PanelProblemesUtilisateur extends JPanel {
     public JButton getBoutonNew() {
         return boutonNew;
     }
-
 
     public JButton getBoutonSolution() {
         return boutonSolution;
@@ -168,7 +186,6 @@ public final class PanelProblemesUtilisateur extends JPanel {
     public JMenuItem getjMenuItemExporter() {
         return jMenuItemExporter;
     }
-
 
     public JPopupMenu getJpopup() {
         return jpopup;
