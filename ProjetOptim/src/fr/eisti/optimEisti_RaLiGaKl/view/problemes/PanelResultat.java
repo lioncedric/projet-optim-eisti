@@ -11,6 +11,7 @@ import java.awt.Graphics;
 import java.awt.Graphics2D;
 import javax.swing.BorderFactory;
 import javax.swing.DefaultListModel;
+import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JList;
 import javax.swing.JPanel;
@@ -29,8 +30,12 @@ public class PanelResultat extends JPanel {
     private PanelProbleme panelProbleme;
     private JLabel texteres;
     private DefaultListModel listModel;
+    private JButton effacer;
+    private JButton calculer;
 
     public PanelResultat(PanelProbleme panelProbleme) {
+        effacer = new JButton("Effacer");
+        calculer = new JButton("Calculer");
         this.listModel = new DefaultListModel();
         this.res = new JList(listModel);
         outpout = new JTextArea();
@@ -50,6 +55,9 @@ public class PanelResultat extends JPanel {
         this.panelProbleme = panelProbleme;
         this.add(outpout);
         this.add(res);
+        this.add(calculer);
+        outpout.setEditable(false);
+        this.add(effacer);
         this.setBackground(new Color(255, 255, 255, 255));
     }
 
@@ -57,8 +65,10 @@ public class PanelResultat extends JPanel {
     public void paintComponent(Graphics g) {
 
         texteres.setBounds(this.getWidth() * 10 / 100, this.getHeight() * 5 / 100, this.getWidth() * 20 / 100, this.getHeight() * 15 / 100);
-        outpout.setBounds(this.getWidth() * 5 / 100, this.getHeight() * 20 / 100, this.getWidth() * 40 / 100, this.getHeight() * 60 / 100);
-        res.setBounds(this.getWidth() * 55 / 100, this.getHeight() * 20 / 100, this.getWidth() * 40 / 100, this.getHeight() * 60 / 100);
+        effacer.setBounds(this.getWidth() * 5 / 100, this.getHeight() * 20 / 100, this.getWidth() * 40 / 100, this.getHeight() * 10 / 100);
+        outpout.setBounds(this.getWidth() * 5 / 100, this.getHeight() * 30 / 100, this.getWidth() * 40 / 100, this.getHeight() * 60 / 100);
+        res.setBounds(this.getWidth() * 55 / 100, this.getHeight() * 30 / 100, this.getWidth() * 40 / 100, this.getHeight() * 60 / 100);
+        calculer.setBounds(this.getWidth() * 55 / 100, this.getHeight() * 20 / 100, this.getWidth() * 40 / 100, this.getHeight() * 10 / 100);
         this.updateUI();
     }
 }
