@@ -21,8 +21,10 @@ public class Probleme {
 
     @Override
     public String toString() {
-        return "Probleme{description=" + description + "titre=" + titre + "objectif=" + objectif + "coeffVariables=" + coeffVariables + "contraintes=" + contraintes + '}';
+        return "Probleme{" + "description=" + description + "titre=" + titre + "objectif=" + objectif + "coeffVariables=" + coeffVariables + "resultat=" + resultat + "contraintes=" + contraintes + '}';
     }
+
+   
 
     @Override
     public boolean equals(Object obj) {
@@ -64,6 +66,10 @@ public class Probleme {
         }
         //récupération des contraintes du problème
         this.setContraintes(fenetre.getPanTableau().enregistrerContraintes());
+
+        //if (fenetre.getPanelResultat().getListModel().getSize()!=null){
+
+       // };
     }
 
     /**

@@ -71,4 +71,29 @@ public class PanelResultat extends JPanel {
         calculer.setBounds(this.getWidth() * 55 / 100, this.getHeight() * 20 / 100, this.getWidth() * 40 / 100, this.getHeight() * 10 / 100);
         this.updateUI();
     }
+
+    public JButton getCalculer() {
+        return calculer;
+    }
+
+    public void setCalculer(JButton calculer) {
+        this.calculer = calculer;
+    }
+
+    public JButton getEffacer() {
+        return effacer;
+    }
+
+    public void setEffacer(JButton effacer) {
+        this.effacer = effacer;
+    }
+
+    public DefaultListModel getListModel() {
+        return listModel;
+    }
+
+    public void setListModel(DefaultListModel listModel) {
+        this.listModel = listModel;
+    }
+    
 }

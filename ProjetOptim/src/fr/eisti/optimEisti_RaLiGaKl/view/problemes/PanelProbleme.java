@@ -361,6 +361,10 @@ this.add(panelResultat);
         icon = null;
     }
 
+    public PanelResultat getPanelResultat() {
+        return panelResultat;
+    }
+
     public JButton getAjouter() {
         return ajouter;
     }
