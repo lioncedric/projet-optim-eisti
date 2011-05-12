@@ -246,7 +246,10 @@ public class Probleme {
         //on retourne la valeur
         return nb;
     }
-
+  public void resoudre() {
+      Simplexe.start(this);
+       
+  }
     /**
      * Procedure qui remplit la matrice avec tous les elements d'un probleme
      * @param matrice : matrice representant le probleme

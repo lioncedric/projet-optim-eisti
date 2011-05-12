@@ -187,15 +187,5 @@
 <constante valeur="5.0"/>
 </contrainte>
 </probleme>
-<probleme>
-<titre>Mon probleme</titre>
-<description>Entrer votre description du problème</description>
-<objectif type="Maximiser">
-<variable coeff="1.0"/>
-</objectif>
-<contrainte type="Infériorité">
-<variable coeff="1.0"/>
-<constante valeur="2.0"/>
-</contrainte>
-</probleme>
+
 </listeProblemes>

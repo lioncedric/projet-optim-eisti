@@ -4,6 +4,7 @@
  */
 package fr.eisti.optimEisti_RaLiGaKl.view.problemes;
 
+import fr.eisti.optimEisti_RaLiGaKl.controler.problemes.PanelProblemeListener;
 import fr.eisti.optimEisti_RaLiGaKl.model.Probleme;
 import java.awt.Color;
 import java.awt.GradientPaint;
@@ -33,16 +34,9 @@ public class PanelResultat extends JPanel {
     private JButton effacer;
     private JButton calculer;
 
-    public PanelResultat(PanelProbleme panelProbleme) {
-        effacer = new JButton("Effacer");
-        calculer = new JButton("Calculer");
-        this.listModel = new DefaultListModel();
-        this.res = new JList(listModel);
-        outpout = new JTextArea();
-
-        outpout.setBorder(BorderFactory.createBevelBorder(BevelBorder.RAISED));
-        res.setBorder(BorderFactory.createBevelBorder(BevelBorder.RAISED));
+    public void miseajour() {
         Probleme p = panelProbleme.getProbleme();
+        listModel.removeAllElements();
         if (!p.getResultat().isEmpty()) {
             listModel.addElement("y = " + p.getResultat().get(0));
 
@@ -50,6 +44,20 @@ public class PanelResultat extends JPanel {
                 listModel.addElement("x" + i + " = " + p.getResultat().get(i));
             }
         }
+    }
+
+    public PanelResultat(PanelProbleme panelProbleme) {
+        effacer = new JButton("Effacer");
+        calculer = new JButton("Calculer");
+        calculer.addActionListener(new PanelProblemeListener());
+        this.listModel = new DefaultListModel();
+        this.res = new JList(listModel);
+        outpout = new JTextArea();
+       // miseajour();
+        outpout.setBorder(BorderFactory.createBevelBorder(BevelBorder.RAISED));
+        res.setBorder(BorderFactory.createBevelBorder(BevelBorder.RAISED));
+
+
         texteres = new JLabel("Resultat :");
         this.add(texteres);
         this.panelProbleme = panelProbleme;
@@ -95,5 +103,4 @@ public class PanelResultat extends JPanel {
     public void setListModel(DefaultListModel listModel) {
         this.listModel = listModel;
     }
-    
 }

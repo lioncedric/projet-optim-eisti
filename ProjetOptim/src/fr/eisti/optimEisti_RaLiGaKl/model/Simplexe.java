@@ -9,27 +9,24 @@ import com.sun.servicetag.SystemEnvironment;
  * Classe qui permet de générer la solution à un problème d'optimisation mathématique
  * @author Razavet Maël, Lion Cédric, Klelifa Sarah, Gallet Mériadec
  */
-public class Solution {
+public class Simplexe {
 
-    //declarations d'un tableau destiné à contenir la solution de notre probème
-    double[] solution;
+    public static void start(Probleme probleme) {
 
-    /**
-     * Constructeur qui permet de creer la soluton d'un problème
-     * @param matrice probleme normalisé sous forme de tableau
-     * @param nbVariables : nombre de variables imaginaires
-     */
-    public Solution(double[][] matrice, int nbVariables) {
+        /**
+         * Constructeur qui permet de creer la soluton d'un problème
+         * @param matrice probleme normalisé sous forme de tableau
+         * @param nbVariables : nombre de variables imaginaires
+         */
         //declaration du tableau destine a contenir la solution
-        solution = new double[nbVariables + 1];//le nombre de variables + le maximum atteint par la fonction
-        init(matrice);
+        double[][] matrice = probleme.formaliserProbleme();
+        init(matrice, probleme);
     }
-
     /**
      * Procedure qui s'occupe du traitement a faire pour generer la solution au probleme en appelant les autres fonctions
      * @param matrice 
      */
-    public void init(double[][] matrice) {
+    public static  void init(double[][] matrice,Probleme probleme) {
         //booleen permettant de savoir si le probleme est resolu ou pas
         boolean resolu = false;
         boolean noSolution = false;
@@ -54,10 +51,7 @@ public class Solution {
             System.out.println("Votre probleme n'admet pas de solution !");
         } else {
             //on stocke les valeurs de la solution dans la variable adéquate
-            exporterSolution(matrice, solution);
-            for (int i = 0; i < this.solution.length; i++) {
-                System.out.println(this.solution[i]);
-            }
+            exporterSolution(matrice, probleme);
         }
     }
 
@@ -66,7 +60,7 @@ public class Solution {
      * @param matrice : matrice representant le probleme
      * @return tab : un tableau de 2 variables contenant le numero de la ligne et le numero de la colonne ou se trouve le pivot dans la matrice
      */
-    public int[] chercherPivot(double[][] matrice) {
+    public static int[] chercherPivot(double[][] matrice) {
         //declaration du tableau
         int[] tab;
         tab = new int[2];
@@ -126,7 +120,7 @@ public class Solution {
      * @param matrice : matrice representant le probleme
      * @return resolu : un booleen selon si le probleme est resolu ou pas.
      */
-    public boolean problemeResolu(double[][] matrice) {
+    public static boolean problemeResolu(double[][] matrice) {
         //initialisation du booleen
         boolean resolu = true;
         //initilisation d'un indice de boucle
@@ -147,7 +141,7 @@ public class Solution {
      * @param matrice : matrice representant le probleme
      * @param tab : le tableau contenant le numero de la ligne et le numero de la colonne ou se trouve le pivot dans la matrice
      */
-    public void reductionPivot(double[][] matrice, int[] tab) {
+    public static void reductionPivot(double[][] matrice, int[] tab) {
         //on recupere la ligne contenant le pivot
         int min = tab[0];
         //on recupere la colonne contenant le pivot
@@ -207,17 +201,17 @@ public class Solution {
      * @param matrice : matrice representant le probleme
      * @param tabSolutions : le tableau destine a contenir la solution
      */
-    public void exporterSolution(double[][] matrice, double[] tabSolutions) {
+    public static void exporterSolution(double[][] matrice, Probleme probleme) {
         //declaration d'un booleen
         boolean trouve = false;
         //declaration d'une variable ligne pour stocker le numero de la ligne ou il faudra lire la valuer du Xi
         int ligne = 0;
 
         //le maximum est l'inverse de la valeur contenue dans la case [derniere ligne][derniere colonne] de la matrice
-        tabSolutions[0] = -matrice[matrice.length - 1][matrice[0].length - 1];
+        probleme.getResultat().add(-matrice[matrice.length - 1][matrice[0].length - 1]);
 
         //pour les premieres colonnes (celles qui sont representatives des valeurs du probleme)
-        for (int j = 0; j < this.solution.length - 1; j++) {
+        for (int j = 0; j < probleme.getCoeffVariables().size(); j++) {
             trouve = false;
             int i = 0;
             //on cherche la solution des Xi en regardant ou se trouve le 1 de la matrice identite
@@ -244,7 +238,7 @@ public class Solution {
                     i++;
                 }
                 //on ajoute au tableau solution lavaleur qui se trouve sur la ligne trouvee et a la derniere colonne (coefficient bi ou i=ligne)
-                tabSolutions[j + 1] = matrice[ligne][matrice[0].length - 1];
+                 probleme.getResultat().add(matrice[ligne][matrice[0].length - 1]);
 
             } else {
                 while (i < matrice.length && !trouve) {
@@ -259,7 +253,7 @@ public class Solution {
                     i++;
                 }
                 //on ajoute au tableau solution lavaleur qui se trouve sur la ligne trouvee et a la derniere colonne (coefficient bi ou i=ligne)
-                tabSolutions[j + 1] = 0;
+                 probleme.getResultat().add(0.0);
             }
         }
     }

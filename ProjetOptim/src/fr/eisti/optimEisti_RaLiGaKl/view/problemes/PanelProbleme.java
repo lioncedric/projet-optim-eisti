@@ -23,6 +23,7 @@ import javax.swing.JTextField;
 import fr.eisti.optimEisti_RaLiGaKl.controler.problemes.contraintes.MoreListener;
 import fr.eisti.optimEisti_RaLiGaKl.controler.problemes.SaveListener;
 import fr.eisti.optimEisti_RaLiGaKl.Main;
+import fr.eisti.optimEisti_RaLiGaKl.controler.problemes.PanelProblemeListener;
 import fr.eisti.optimEisti_RaLiGaKl.model.BDDUtilisateur;
 import fr.eisti.optimEisti_RaLiGaKl.model.BddProbleme;
 import fr.eisti.optimEisti_RaLiGaKl.model.Contrainte;
@@ -71,7 +72,7 @@ public class PanelProbleme extends JPanel {
     //declaration des varables pour le panel de droite
     private PanelProblemesUtilisateur liste;
     // private ArrayList<Contrainte> contraintes;
-    private FenetreListener fsl;
+    private PanelProblemeListener fsl;
     
     //Les couleurs pour le dégradé
     private Color couleur1;
@@ -79,7 +80,7 @@ public class PanelProbleme extends JPanel {
 
     public PanelProbleme() {
         super();
-        fsl = new FenetreListener();
+        fsl = new PanelProblemeListener();
         this.probleme = new Probleme();
         probleme.setNumero(-100);
         initialiserVariables();
@@ -92,7 +93,7 @@ public class PanelProbleme extends JPanel {
 
     public PanelProbleme(Probleme probleme) {
         super();
-        fsl = new FenetreListener();
+        fsl = new PanelProblemeListener();
         this.probleme = probleme;
         initialiserVariables();
         traitementPanel();

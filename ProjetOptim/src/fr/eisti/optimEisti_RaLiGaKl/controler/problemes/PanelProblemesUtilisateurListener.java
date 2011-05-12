@@ -4,7 +4,7 @@ import fr.eisti.optimEisti_RaLiGaKl.controler.problemes.SaveListener;
 import fr.eisti.optimEisti_RaLiGaKl.view.problemes.PanelProblemesUtilisateur;
 import fr.eisti.optimEisti_RaLiGaKl.Main;
 import fr.eisti.optimEisti_RaLiGaKl.model.*;
-import fr.eisti.optimEisti_RaLiGaKl.model.Solution;
+import fr.eisti.optimEisti_RaLiGaKl.model.Simplexe;
 import fr.eisti.optimEisti_RaLiGaKl.view.problemes.PanelOngletProbleme;
 import fr.eisti.optimEisti_RaLiGaKl.view.problemes.PanelProbleme;
 import java.awt.event.ActionEvent;
@@ -135,10 +135,6 @@ public class PanelProblemesUtilisateurListener implements ActionListener, MouseL
                 }
             }
         } else if (e.getSource() == this.ppu.getBoutonSolution()) {
-//            Probleme p = ((PanelProbleme) Main.fenetrePrincipale.getDroite().getSelectedComponent()).getProbleme();
-            //          p.renseignerProbleme((PanelProbleme) Main.fenetrePrincipale.getDroite().getSelectedComponent());
-            //et on genere la solution par l'algorithme du simplexe
-            //   Solution solution = new Solution(p.formaliserProbleme(), p.getCoeffVariables().size());
             Thread basculer = new Thread(new Basculer());
             basculer.start();
 

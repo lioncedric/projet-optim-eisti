@@ -5,7 +5,7 @@ package fr.eisti.optimEisti_RaLiGaKl;
  *
  * @author Administrator
  */
-import fr.eisti.optimEisti_RaLiGaKl.model.Solution;
+import fr.eisti.optimEisti_RaLiGaKl.model.Simplexe;
 import fr.eisti.optimEisti_RaLiGaKl.view.compte.Accueil;
 import fr.eisti.optimEisti_RaLiGaKl.view.problemes.Fenetre;
 
@@ -25,7 +25,7 @@ public class Main2 {
         remplirTableau();
         afficherMatrice(matrice, 3);
         //et on genere la solution par l'algorithme du simplexe
-        Solution solution = new Solution(matrice, 3);
+      //  Simplexe solution = new Simplexe(matrice, 3);
     }
 
     public static void remplirTableau() {

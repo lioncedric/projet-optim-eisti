@@ -7,7 +7,7 @@ package fr.eisti.optimEisti_RaLiGaKl;
 import fr.eisti.optimEisti_RaLiGaKl.model.BDDUtilisateur;
 import fr.eisti.optimEisti_RaLiGaKl.model.BddProbleme;
 import fr.eisti.optimEisti_RaLiGaKl.model.Probleme;
-import fr.eisti.optimEisti_RaLiGaKl.model.Solution;
+import fr.eisti.optimEisti_RaLiGaKl.model.Simplexe;
 import java.io.IOException;
 
 /**
@@ -27,6 +27,6 @@ public class Main21 {
         Probleme p=BddProbleme.getProbleme(9);
        // BddProbleme.exporterScilab(p,"C:\\Users\\Administrator\\Desktop\\ok.sci");
      //   p.formaliserProbleme();
-         Solution solution = new Solution(p.formaliserProbleme(), p.getCoeffVariables().size());
+       //  Simplexe solution = new Simplexe(p.formaliserProbleme(), p.getCoeffVariables().size());
     }
 }

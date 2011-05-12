@@ -91,7 +91,7 @@ public class Fenetre extends JFrame {
         splitPane.setOneTouchExpandable(false);
         splitPane.setDividerSize(4);//definit la taille de la zone de separation entre les deux composants
         splitPane.setContinuousLayout(true);
-        splitPane.setBackground(Color.DARK_GRAY);
+        splitPane.setBackground(Color.lightGray);
         setContentPane(splitPane);
     }
 
