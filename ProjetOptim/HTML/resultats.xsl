@@ -10,9 +10,6 @@
             <body onload="init()">
 
                 <div id="blocTitre">
-                    <h1>
-                        <xsl:value-of select="listeProblemes/@utilisateur"/>: voici vos problèmes
-                    </h1>
                 </div>
 
                 <div id="conteneur">

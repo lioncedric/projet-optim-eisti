@@ -77,7 +77,7 @@ public class FenetreListener implements ChangeListener, ActionListener, Componen
          //on supprime tous les composants du panel contenant la fonction objectif avec tous les panels
         ((PanelProbleme) Main.fenetrePrincipale.getDroite().getSelectedComponent()).getPanDonnees().removeAll();
 
-        //on
+        
         ((PanelProbleme) Main.fenetrePrincipale.getDroite().getSelectedComponent()).getPanDonnees().add(new JLabel("y="));
          JTextField jtff = new JTextField(3);
         ((PanelProbleme) Main.fenetrePrincipale.getDroite().getSelectedComponent()).getPanDonnees().add(jtff);

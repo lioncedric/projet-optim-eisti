@@ -9,10 +9,11 @@ body {
 }
 
 #blocTitre{
-    background-color: red;
+    background-image:url("BaniereFinal.png");
+    background-repeat:no-repeat;
     height: 150px;
     text-align: center;
-    width:99.5%;
+    width:1024px;
     -moz-border-radius:1%;
     -webkit-border-radius:1%;
     -moz-box-shadow: 6px 6px 5px #90A4A1;
