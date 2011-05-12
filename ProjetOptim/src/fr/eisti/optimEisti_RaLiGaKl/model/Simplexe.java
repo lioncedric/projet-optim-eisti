@@ -3,7 +3,7 @@
  */
 package fr.eisti.optimEisti_RaLiGaKl.model;
 
-import com.sun.servicetag.SystemEnvironment;
+import fr.eisti.optimEisti_RaLiGaKl.view.problemes.PanelResultat;
 
 /**
  * Classe qui permet de générer la solution à un problème d'optimisation mathématique
@@ -42,6 +42,7 @@ public class Simplexe {
                 reductionPivot(matrice, tabCoordPivot);
                 resolu = problemeResolu(matrice);
                 System.out.println("Le probleme est-il resolu ? " + resolu);
+                  PanelResultat.ecrire("Le probleme est-il resolu ? " + resolu);
             } else {
                 System.out.println("Coucou");
                 resolu = true;
@@ -50,6 +51,7 @@ public class Simplexe {
         }
         if (noSolution) {
             System.out.println("Votre probleme n'admet pas de solution !");
+        PanelResultat.ecrire("Votre probleme n'admet pas de solution !");
         } else {
             //on stocke les valeurs de la solution dans la variable adéquate
             exporterSolution(matrice, probleme);
@@ -83,6 +85,7 @@ public class Simplexe {
             }
         }
         System.out.println(ligneDuMax);
+         System.out.println(ligneDuMax);
 
         //on initialise le min a une valeur tres grande afin de trouver forcement une valeur plus petite
         double valeurMin = 1000000;//le million, le million, ...
@@ -152,6 +155,7 @@ public class Simplexe {
         if (matrice[min][max] != 1) {
             double pivot = matrice[min][max];
             System.out.println("On divise les coeff de la ligne par: " + pivot);
+           PanelResultat.ecrire("On divise les coeff de la ligne par: " + pivot);
             //pour chaque colonne de la matrice
             for (int j = 0; j < matrice[0].length; j++) {
                 //on divise chacun des termes de la ligne par la valeur du pivot
@@ -159,6 +163,7 @@ public class Simplexe {
             }
         }
         System.out.println("Etape 1");
+         PanelResultat.ecrire("Etape 1");
         //pour autant qu'il y a de contraintes (on va remplir toutes les lignes de la matrice sauf la derniere
         for (int i = 0; i < matrice.length; i++) {
             //pour toutes les colonnes de la matrice
@@ -166,9 +171,12 @@ public class Simplexe {
                 System.out.print(" | " + matrice[i][j]);
             }
             System.out.print("\n");
+               PanelResultat.ecrire("\n");
         }
         System.out.println("FIN etape 1");
         System.out.println("\n");
+         PanelResultat.ecrire("FIN etape 1");
+         PanelResultat.ecrire("\n");
 
         //pour chaque ligne de la matrice
         for (int i = 0; i < matrice.length; i++) {
@@ -190,11 +198,14 @@ public class Simplexe {
             //pour toutes les colonnes de la matrice
             for (int j = 0; j < matrice[0].length; j++) {
                 System.out.print(" | " + matrice[i][j]);
+              PanelResultat.ecrire(" | " + matrice[i][j]);
             }
             System.out.print("\n");
+            PanelResultat.ecrire("\n");
         }
         System.out.println("\n");
         System.out.println("\n");
+
     }
 
     /**

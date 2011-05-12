@@ -80,7 +80,7 @@ public class PanelProbleme extends JPanel {
 
     public PanelProbleme() {
         super();
-        fsl = new PanelProblemeListener();
+        fsl = new PanelProblemeListener(this);
         this.probleme = new Probleme();
         probleme.setNumero(-100);
         initialiserVariables();
@@ -93,7 +93,7 @@ public class PanelProbleme extends JPanel {
 
     public PanelProbleme(Probleme probleme) {
         super();
-        fsl = new PanelProblemeListener();
+        fsl = new PanelProblemeListener(this);
         this.probleme = probleme;
         initialiserVariables();
         traitementPanel();

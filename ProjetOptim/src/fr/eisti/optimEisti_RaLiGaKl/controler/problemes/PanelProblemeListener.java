@@ -9,6 +9,7 @@ import fr.eisti.optimEisti_RaLiGaKl.model.Contrainte;
 import fr.eisti.optimEisti_RaLiGaKl.model.Probleme;
 import fr.eisti.optimEisti_RaLiGaKl.model.Simplexe;
 import fr.eisti.optimEisti_RaLiGaKl.view.problemes.PanelProbleme;
+import fr.eisti.optimEisti_RaLiGaKl.view.problemes.PanelResultat;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
@@ -26,12 +27,15 @@ public class PanelProblemeListener implements ChangeListener, ActionListener {
 
     private ArrayList<String> valeursTextFields;
     private ArrayList<Contrainte> contraintes;
+    private PanelProbleme panelProbleme;
 
-    public PanelProblemeListener() {
+    public PanelProblemeListener(PanelProbleme panelProbleme) {
         //on initialise la liste des valeurs des textFields
         valeursTextFields = new ArrayList();
         //on initialise la liste des contraintes
         contraintes = new ArrayList<Contrainte>();
+        this.panelProbleme = panelProbleme;
+
     }
 
     @Override
@@ -100,13 +104,17 @@ public class PanelProblemeListener implements ChangeListener, ActionListener {
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        Probleme p = ((PanelProbleme) Main.fenetrePrincipale.getDroite().getSelectedComponent()).getProbleme();
-        p.renseignerProbleme((PanelProbleme) Main.fenetrePrincipale.getDroite().getSelectedComponent());
-        //et on genere la solution par l'algorithme du simplexe
-        p.resoudre();
-        ((PanelProbleme) Main.fenetrePrincipale.getDroite().getSelectedComponent()).getPanelResultat().miseajour();
-        p.getResultat().clear();
-        SaveListener.estmodifié();
-
+        if (e.getSource() == this.panelProbleme.getPanelResultat().getCalculer()) {
+            Probleme p = ((PanelProbleme) Main.fenetrePrincipale.getDroite().getSelectedComponent()).getProbleme();
+            p.renseignerProbleme((PanelProbleme) Main.fenetrePrincipale.getDroite().getSelectedComponent());
+            //et on genere la solution par l'algorithme du simplexe
+            p.resoudre();
+            ((PanelProbleme) Main.fenetrePrincipale.getDroite().getSelectedComponent()).getPanelResultat().miseajour();
+            p.getResultat().clear();
+            SaveListener.estmodifié();
+        }
+        if (e.getSource() == this.panelProbleme.getPanelResultat().getEffacer()) {
+            PanelResultat.effacer();
+        }
     }
 }
