@@ -77,11 +77,11 @@ public class PanelProbleme extends JPanel {
     private Color couleur1;
     private Color couleur2;
 
-    public PanelProbleme(int numero) {
+    public PanelProbleme() {
         super();
         fsl = new FenetreListener();
         this.probleme = new Probleme();
-        probleme.setNumero(numero);
+        probleme.setNumero(-100);
         initialiserVariables();
         traitementPanel();
         mettreFond();
@@ -135,18 +135,8 @@ public class PanelProbleme extends JPanel {
         if (titreOK && descriptionOK && variablesOK && ligneRempli) {
             Probleme p = this.getProbleme();
             p.renseignerProbleme(this);
-            if (p.getNumero() < BddProbleme.nombreProblemes()) {
-                int numero = p.getNumero();
-                System.out.print(numero + "/");
-                BddProbleme.supprimerProbleme(numero);
-                for (int i = 0; i < Main.fenetrePrincipale.getDroite().getTabCount(); i++) {
-                    int numProbeCours = ((PanelProbleme) Main.fenetrePrincipale.getDroite().getComponentAt(i)).getProbleme().getNumero();
-                    if (numProbeCours > numero) {
-                        ((PanelProbleme) Main.fenetrePrincipale.getDroite().getComponentAt(i)).getProbleme().setNumero(numProbeCours - 1);
-
-                    }
-
-                }
+            if (p.getNumero()>=0 && p.getNumero() < BddProbleme.nombreProblemes()) {
+                BddProbleme.supprimerProbleme(p.getNumero());
             }
             p.setNumero(BddProbleme.nombreProblemes());
             BddProbleme.addProbleme(p);

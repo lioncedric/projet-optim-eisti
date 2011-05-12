@@ -20,15 +20,14 @@ import java.util.List;
  */
 public class PanelRechercheProblemeListener implements KeyListener, MouseListener {
 
-    //decalarion du panel depuis lequel l'ation a été générée
-    private PanelRechercheProbleme panRechProb;
+  
 
     /**
      * Constructeur permettant d'initialise notre variable
      * @param panRech 
      */
-    public PanelRechercheProblemeListener(PanelRechercheProbleme panRech) {
-        this.panRechProb = panRech;
+    public PanelRechercheProblemeListener() {
+      
     }
 
     public void keyTyped(KeyEvent e) {
@@ -44,8 +43,8 @@ public class PanelRechercheProblemeListener implements KeyListener, MouseListene
     public void keyReleased(KeyEvent e) {
         //a chaque nouvelle lettre tappe, on raffraichit la liste
         //on recupere les numero des problemes a l'aide de la fonction recherche
-        List maListe = BddProbleme.rechercheProbleme(this.panRechProb.getJtfRecherche().getText());
-        Main.fenetrePrincipale.getGauche().miseajourRecherche(maListe);
+        
+        Main.fenetrePrincipale.getGauche().miseajour();
     }
 
     /**
@@ -53,7 +52,7 @@ public class PanelRechercheProblemeListener implements KeyListener, MouseListene
      * @param e 
      */
     public void mouseClicked(MouseEvent e) {
-        this.panRechProb.getJtfRecherche().setText("");
+       
     }
 
     public void mousePressed(MouseEvent e) {
@@ -70,6 +69,6 @@ public class PanelRechercheProblemeListener implements KeyListener, MouseListene
      * @param e 
      */
     public void mouseExited(MouseEvent e) {
-        this.panRechProb.getJtfRecherche().setText("Rechercher ...");
+      
     }
 }

@@ -5,6 +5,9 @@ import fr.eisti.optimEisti_RaLiGaKl.model.BddProbleme;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Font;
+import java.awt.GradientPaint;
+import java.awt.Graphics;
+import java.awt.Graphics2D;
 import java.awt.GridLayout;
 import java.util.LinkedList;
 import java.util.List;
@@ -54,6 +57,7 @@ public final class PanelProblemesUtilisateur extends JPanel {
     public void initialiserVariables() {
         this.listModel = new DefaultListModel();
         this.list = new JList(listModel);
+        this.list.setCellRenderer(new ListRenderer());
         this.listScrollPane = new JScrollPane(list);
 
         this.boutonSolution = new JButton("Afficher solution");
@@ -116,9 +120,18 @@ public final class PanelProblemesUtilisateur extends JPanel {
         this.listScrollPane.setOpaque(false);
         this.panBoutons.setOpaque(false);
         this.setBackground(couleur);
-        this.list.setBackground(new Color(209, 238, 238));
+        this.list.setBackground(new Color(200, 210, 238,0));
     }
-
+   @Override
+  public void paintComponent(Graphics g) {
+        super.paintComponent(g);
+         Color couleur1=Color.WHITE;
+        Color couleur2=new Color(20,145, 238);
+        Graphics2D g2d = (Graphics2D) g;
+        g2d.setPaint(new GradientPaint(0, 0, couleur1, 0, this.getHeight(), couleur2, true));
+        g2d.fillRect(0, 0, this.getWidth(), this.getHeight());
+          this.updateUI();
+    }
     /**
      * Fonction qui renvoie un booleen pour dire si le nom du problème passé en paramètre existe déjà dans la liste ou pas
      * @param name
@@ -132,66 +145,69 @@ public final class PanelProblemesUtilisateur extends JPanel {
      * Procédure miseajour qui raffraichit la liste des problèmes de l'utilisateur
      */
     public void miseajour() {
+        List liste = BddProbleme.rechercheProbleme(this.panRecherche.getJtfRecherche().getText());
         //on commence par supprimer tous les éléments
         this.listModel.removeAllElements();
         //puis on ajoute un à un tous les problèmes
-        for (int i = 0; i < BddProbleme.nombreProblemes(); i++) {
-            this.listModel.addElement(BddProbleme.getProbleme(i).getTitre());
-        }
-    }
-
-    /**
-     * Procédure miseajour qui raffraichit la liste des problèmes de l'utilisateur
-     */
-    public void miseajourRecherche(List<Integer> liste) {
-        //on commence par supprimer tous les éléments
-        this.listModel.removeAllElements();
-        
         //puis on ajoute un à un tous les problèmes
-        if (liste instanceof LinkedList) {
-            while (!liste.isEmpty()) {
-                this.listModel.addElement(BddProbleme.getProbleme(((LinkedList<Integer>) liste).getFirst()).getTitre());
-                liste.remove(0);
-            }
-            this.list.revalidate();
-        } else {
+        while (!liste.isEmpty()) {
+            this.listModel.addElement(BddProbleme.getProbleme(((LinkedList<Integer>) liste).getFirst()));
+            liste.remove(0);
         }
+        this.list.revalidate();
     }
 
     //LES GETTERS AND SETTERS
     public JList getList() {
         return list;
+
+
     }
 
     public DefaultListModel getListModel() {
         return listModel;
+
+
     }
 
     public JButton getBoutonNew() {
         return boutonNew;
+
+
     }
 
     public JButton getBoutonSolution() {
         return boutonSolution;
+
+
     }
 
     public JMenuItem getjMenuItemOuvrir() {
         return jMenuItemOuvrir;
+
+
     }
 
     public JMenuItem getjMenuItemSuppr() {
         return jMenuItemSuppr;
+
+
     }
 
     public JMenuItem getjMenuItemExporter() {
         return jMenuItemExporter;
+
+
     }
 
     public JPopupMenu getJpopup() {
         return jpopup;
+
+
     }
 
     public PanelRechercheProbleme getPanRecherche() {
         return panRecherche;
+
     }
 }

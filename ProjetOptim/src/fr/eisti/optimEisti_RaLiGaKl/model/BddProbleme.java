@@ -184,7 +184,9 @@ public class BddProbleme {
      */
     public static Probleme getProbleme(int nb) {
         Element NoeudProbleme = (Element) bdd.getDocumentElement().getElementsByTagName("probleme").item(nb);
-        return getProblemeImport(NoeudProbleme);
+         Probleme probleme=getProblemeImport(NoeudProbleme);
+         probleme.setNumero(nb);
+        return probleme;
     }
 
     /**

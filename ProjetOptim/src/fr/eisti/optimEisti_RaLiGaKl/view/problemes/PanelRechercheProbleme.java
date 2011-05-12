@@ -34,7 +34,7 @@ public class PanelRechercheProbleme extends JPanel {
      * Procédure permettant d'initialiser toutes les variables déclarées précédemment
      */
     public void initialiserVariables() {
-        this.jtfRecherche = new JTextField("Rechercher ...");
+        this.jtfRecherche = new JTextField("");
     }
 
     /**
@@ -56,8 +56,8 @@ public class PanelRechercheProbleme extends JPanel {
         this.setLayout(null);
         this.add(this.jtfRecherche);
         //on spécifie deux listeners à la zone de recherche
-        this.jtfRecherche.addKeyListener(new PanelRechercheProblemeListener(this));
-        this.jtfRecherche.addMouseListener(new PanelRechercheProblemeListener(this));
+        this.jtfRecherche.addKeyListener(new PanelRechercheProblemeListener());
+        this.jtfRecherche.addMouseListener(new PanelRechercheProblemeListener());
     }
 
     /**

@@ -83,12 +83,13 @@ public class PanelProblemesUtilisateurListener implements ActionListener, MouseL
         } //si l'action est supprimer
         else if (e.getSource() == this.ppu.getjMenuItemSuppr()) {
             //on recupere le numero de l'item qui a été sélectionné dans la liste
-            int numero = ((JList) this.ppu.getList()).getSelectedIndex();
+            int numero;
+            Probleme probleme;
+            probleme = (Probleme) this.ppu.getList().getSelectedValue();
+            numero = probleme.getNumero();
             //si il y en a vraiment un de sélectionné
-            if (numero != -1) {
-                //on recupere le probleme en question
-                Probleme probleme;
-                probleme = BddProbleme.getProbleme(numero);
+           if (numero >= 0) {
+               
                 //on vérifie que l'utilisateur ne s'est pas trompé
                 String message = "Etes vous sur de vouloir supprimer le probleme '" + probleme.getTitre();
                 int reponse = JOptionPane.showConfirmDialog(null, message, "Suppression du probleme", JOptionPane.YES_NO_OPTION);
@@ -104,8 +105,11 @@ public class PanelProblemesUtilisateurListener implements ActionListener, MouseL
         } else if (e.getSource() == this.ppu.getjMenuItemExporter()) {
 
             //On récupère le numéro
-            int numero = ((JList) this.ppu.getList()).getSelectedIndex();
-            if (numero != -1) {
+            int numero;
+            Probleme probleme;
+            probleme = (Probleme) this.ppu.getList().getSelectedValue();
+            numero = probleme.getNumero();
+         if (numero >= 0) {
                 try {
                     JFileChooser fc = new JFileChooser();
                     fc.addChoosableFileFilter(new FiltreSimple("Fichier Excel", ".csv"));
@@ -132,11 +136,11 @@ public class PanelProblemesUtilisateurListener implements ActionListener, MouseL
             }
         } else if (e.getSource() == this.ppu.getBoutonSolution()) {
 //            Probleme p = ((PanelProbleme) Main.fenetrePrincipale.getDroite().getSelectedComponent()).getProbleme();
-  //          p.renseignerProbleme((PanelProbleme) Main.fenetrePrincipale.getDroite().getSelectedComponent());
+            //          p.renseignerProbleme((PanelProbleme) Main.fenetrePrincipale.getDroite().getSelectedComponent());
             //et on genere la solution par l'algorithme du simplexe
-         //   Solution solution = new Solution(p.formaliserProbleme(), p.getCoeffVariables().size());
-            Thread basculer=new Thread(new Basculer());
-             basculer.start();
+            //   Solution solution = new Solution(p.formaliserProbleme(), p.getCoeffVariables().size());
+            Thread basculer = new Thread(new Basculer());
+            basculer.start();
 
         } else if (e.getSource() == this.ppu.getBoutonNew()) {
             boolean nouveau = false;
@@ -147,7 +151,7 @@ public class PanelProblemesUtilisateurListener implements ActionListener, MouseL
             }
             if (!nouveau) {
                 //on en crée un à la suite des autres et on lui attribue le titre "Sans nom"
-                Main.fenetrePrincipale.getDroite().add("Sans nom", new PanelProbleme(BddProbleme.nombreProblemes()));
+                Main.fenetrePrincipale.getDroite().add("Sans nom", new PanelProbleme());
                 Main.fenetrePrincipale.getDroite().setTabComponentAt(Main.fenetrePrincipale.getDroite().getTabCount() - 1, new PanelOngletProbleme(Main.fenetrePrincipale.getDroite()));
                 Main.fenetrePrincipale.getDroite().setSelectedIndex(Main.fenetrePrincipale.getDroite().getTabCount() - 1);
             }
@@ -159,8 +163,10 @@ public class PanelProblemesUtilisateurListener implements ActionListener, MouseL
      */
     public void ouvrir() {
         //on récupère le numéro du problème sélectrionné dans la liste
-        int numero = ((JList) this.ppu.getList()).getSelectedIndex();
-
+        int numero;
+        Probleme probleme;
+        probleme = (Probleme) this.ppu.getList().getSelectedValue();
+        numero = probleme.getNumero();
         //si il y en a un de sélectionné
         if (numero >= 0) {
             boolean present = false;
@@ -168,18 +174,15 @@ public class PanelProblemesUtilisateurListener implements ActionListener, MouseL
                 present = present || ((PanelProbleme) Main.fenetrePrincipale.getDroite().getComponentAt(i)).getProbleme().getNumero() == numero;
             }
             if (!present) {
-                Probleme probleme;
-                probleme = BddProbleme.getProbleme(numero);
-                probleme.setNumero(numero);
+
                 Main.fenetrePrincipale.getDroite().add(probleme.getTitre(), new PanelProbleme(probleme));
                 Main.fenetrePrincipale.getDroite().setTabComponentAt(Main.fenetrePrincipale.getDroite().getTabCount() - 1, new PanelOngletProbleme(Main.fenetrePrincipale.getDroite()));
                 Main.fenetrePrincipale.getDroite().setSelectedIndex(Main.fenetrePrincipale.getDroite().getTabCount() - 1);
             } else {
                 boolean trouve = false;
-                int i = 0;
-                String s = new String((String) this.ppu.getList().getSelectedValue());
+                int i = 0; 
                 while (i < Main.fenetrePrincipale.getDroite().getTabCount() && !trouve) {
-                    if (Main.fenetrePrincipale.getDroite().getTitleAt(i).equals(s)) {
+                    if (((PanelProbleme) Main.fenetrePrincipale.getDroite().getComponentAt(i)).getProbleme().getNumero() == numero) {
                         trouve = true;
                         Main.fenetrePrincipale.getDroite().setSelectedIndex(i);
                     }
