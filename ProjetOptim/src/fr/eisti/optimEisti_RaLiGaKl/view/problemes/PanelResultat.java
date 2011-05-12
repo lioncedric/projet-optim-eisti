@@ -37,13 +37,14 @@ public class PanelResultat extends JPanel {
     public void miseajour() {
         Probleme p = panelProbleme.getProbleme();
         listModel.removeAllElements();
+        res.removeAll();
         if (!p.getResultat().isEmpty()) {
-            listModel.addElement("y = " + p.getResultat().get(0));
 
-            for (int i = 1; i < p.getResultat().size(); i++) {
-                listModel.addElement("x" + i + " = " + p.getResultat().get(i));
+            for (int i = 0; i < p.getResultat().size(); i++) {
+                listModel.addElement(p.getResultat().get(i).toString());
             }
         }
+
     }
 
     public PanelResultat(PanelProbleme panelProbleme) {
@@ -51,9 +52,11 @@ public class PanelResultat extends JPanel {
         calculer = new JButton("Calculer");
         calculer.addActionListener(new PanelProblemeListener());
         this.listModel = new DefaultListModel();
+
         this.res = new JList(listModel);
+        res.setCellRenderer(new ListResRenderer());
         outpout = new JTextArea();
-       // miseajour();
+        // miseajour();
         outpout.setBorder(BorderFactory.createBevelBorder(BevelBorder.RAISED));
         res.setBorder(BorderFactory.createBevelBorder(BevelBorder.RAISED));
 
@@ -67,6 +70,7 @@ public class PanelResultat extends JPanel {
         outpout.setEditable(false);
         this.add(effacer);
         this.setBackground(new Color(255, 255, 255, 255));
+        miseajour();
     }
 
     @Override

@@ -22,11 +22,12 @@ public class Simplexe {
         double[][] matrice = probleme.formaliserProbleme();
         init(matrice, probleme);
     }
+
     /**
      * Procedure qui s'occupe du traitement a faire pour generer la solution au probleme en appelant les autres fonctions
      * @param matrice 
      */
-    public static  void init(double[][] matrice,Probleme probleme) {
+    public static void init(double[][] matrice, Probleme probleme) {
         //booleen permettant de savoir si le probleme est resolu ou pas
         boolean resolu = false;
         boolean noSolution = false;
@@ -206,7 +207,7 @@ public class Simplexe {
         boolean trouve = false;
         //declaration d'une variable ligne pour stocker le numero de la ligne ou il faudra lire la valuer du Xi
         int ligne = 0;
-
+        probleme.getResultat().clear();
         //le maximum est l'inverse de la valeur contenue dans la case [derniere ligne][derniere colonne] de la matrice
         probleme.getResultat().add(-matrice[matrice.length - 1][matrice[0].length - 1]);
 
@@ -238,7 +239,7 @@ public class Simplexe {
                     i++;
                 }
                 //on ajoute au tableau solution lavaleur qui se trouve sur la ligne trouvee et a la derniere colonne (coefficient bi ou i=ligne)
-                 probleme.getResultat().add(matrice[ligne][matrice[0].length - 1]);
+                probleme.getResultat().add(matrice[ligne][matrice[0].length - 1]);
 
             } else {
                 while (i < matrice.length && !trouve) {
@@ -253,7 +254,7 @@ public class Simplexe {
                     i++;
                 }
                 //on ajoute au tableau solution lavaleur qui se trouve sur la ligne trouvee et a la derniere colonne (coefficient bi ou i=ligne)
-                 probleme.getResultat().add(0.0);
+                probleme.getResultat().add(0.0);
             }
         }
     }

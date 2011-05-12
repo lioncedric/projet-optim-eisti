@@ -24,8 +24,6 @@ public class Probleme {
         return "Probleme{" + "description=" + description + "titre=" + titre + "objectif=" + objectif + "coeffVariables=" + coeffVariables + "resultat=" + resultat + "contraintes=" + contraintes + '}';
     }
 
-   
-
     @Override
     public boolean equals(Object obj) {
         return obj.toString().equals(this.toString());
@@ -67,9 +65,13 @@ public class Probleme {
         //récupération des contraintes du problème
         this.setContraintes(fenetre.getPanTableau().enregistrerContraintes());
 
-        //if (fenetre.getPanelResultat().getListModel().getSize()!=null){
-
-       // };
+        if (!fenetre.getPanelResultat().getListModel().isEmpty()) {
+            for (int i = 0; i <fenetre.getPanelResultat().getListModel().getSize(); i++) {
+               this.getResultat().add(Double.parseDouble((String) fenetre.getPanelResultat().getListModel().getElementAt(i)));
+             
+            }
+        }
+        
     }
 
     /**
@@ -200,8 +202,6 @@ public class Probleme {
         }
     }
 
-   
-
     /**
      * Fonction qui retourne le problème sous forme de matrice pour pouvoir l'exporter sous scilab
      * @return matrice : la matrice correspondante au problème
@@ -246,10 +246,12 @@ public class Probleme {
         //on retourne la valeur
         return nb;
     }
-  public void resoudre() {
-      Simplexe.start(this);
-       
-  }
+
+    public void resoudre() {
+        Simplexe.start(this);
+
+    }
+
     /**
      * Procedure qui remplit la matrice avec tous les elements d'un probleme
      * @param matrice : matrice representant le probleme
@@ -306,7 +308,8 @@ public class Probleme {
         }
 
     }
- /**
+
+    /**
      * Procédure qui remplit la matrice avec tous les éléments d'un problème
      * @param matrice : matrice représentant le problème
      * @param nb : nombre de variables imaginaires
@@ -324,6 +327,7 @@ public class Probleme {
         System.out.println("FIN remplissage");
         System.out.println("\n");
     }
+
     public ArrayList<Double> getCoeffVariables() {
         return coeffVariables;
     }

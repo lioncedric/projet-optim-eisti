@@ -166,7 +166,7 @@ public class BddProbleme {
         }
         if (!p.getResultat().isEmpty()) {
             Element resultat = bdd.createElement("resultat");
-            objectif.setAttribute("valeur", "" + p.getResultat().get(0));
+            resultat.setAttribute("valeur", "" + p.getResultat().get(0));
             for (int i = 1; i < p.getResultat().size(); i++) {
                 Element variable = bdd.createElement("variable");
                 variable.setAttribute("coeff", "" + p.getResultat().get(i));

@@ -18,6 +18,7 @@ public class Basculer implements Runnable {
     public void run() {
         PanelProbleme p = ((PanelProbleme) Main.fenetrePrincipale.getDroite().getSelectedComponent());
         p.getSlide().setEnabled(false);
+        
         p.getMaximiser().setEnabled(false);
         p.getMinimiser().setEnabled(false);
         p.getPanTableau().getTable().setEnabled(false);

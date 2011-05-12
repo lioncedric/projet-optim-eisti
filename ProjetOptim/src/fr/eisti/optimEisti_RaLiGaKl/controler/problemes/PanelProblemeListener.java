@@ -105,6 +105,8 @@ public class PanelProblemeListener implements ChangeListener, ActionListener {
         //et on genere la solution par l'algorithme du simplexe
         p.resoudre();
         ((PanelProbleme) Main.fenetrePrincipale.getDroite().getSelectedComponent()).getPanelResultat().miseajour();
+        p.getResultat().clear();
+        SaveListener.estmodifié();
 
     }
 }

@@ -57,7 +57,7 @@ public final class PanelProblemesUtilisateur extends JPanel {
     public void initialiserVariables() {
         this.listModel = new DefaultListModel();
         this.list = new JList(listModel);
-        this.list.setCellRenderer(new ListRenderer());
+        this.list.setCellRenderer(new ListProblemeRenderer());
         this.listScrollPane = new JScrollPane(list);
 
         this.boutonSolution = new JButton("Afficher solution");

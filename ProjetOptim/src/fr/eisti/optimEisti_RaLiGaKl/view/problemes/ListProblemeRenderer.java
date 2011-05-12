@@ -11,9 +11,9 @@ import javax.swing.JLabel;
 import javax.swing.JList;
 import javax.swing.ListCellRenderer;
 
-public class ListRenderer extends JLabel implements ListCellRenderer {
+public class ListProblemeRenderer extends JLabel implements ListCellRenderer {
 
-    public ListRenderer() {
+    public ListProblemeRenderer() {
         setOpaque(true);
     }
 
