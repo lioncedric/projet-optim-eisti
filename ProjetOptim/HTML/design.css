@@ -1,6 +1,9 @@
 body {
     min-width:640px;
+    width: 1024px;
     background-color: #D3EEF9;
+     margin-left: auto;
+    margin-right: auto;
 }
 #blocTitre, #blocProbleme, .blocResultats {
     display:inline-block;
@@ -23,18 +26,21 @@ body {
 }
 
 #conteneur{
-    width: 100%;
+    width: 1024px;;
     float: left;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 #blocProbleme{
     float: left;
-    width: 20%;
+    width: 200px;
     margin-left: 0%;
     position: absolute;
-    margin-top: 8%;
+    margin-top: 130px;
     background-color: #B9CBD1;
     min-height: 370px;
+    height: 450px;
     -moz-border-radius:4%;
     -webkit-border-radius:4%;
     -moz-box-shadow: 6px 6px 5px #90A4A1;
@@ -46,9 +52,8 @@ body {
 .blocResultats{
     float: right;
     background-color: #A9D0C4;
-    width:77%;
-    margin-left: 2%;
-    min-height: 500px;
+    width: 805px;
+    min-height: 580px;
     -moz-border-radius:1%;
     -webkit-border-radius:1%;
     -moz-box-shadow: 6px 6px 5px #90A4A1;
@@ -102,7 +107,7 @@ fieldset{
     -moz-border-radius:4% 4% 0px 0px;
     -webkit-border-radius:4% 4% 0px 0px;
     text-align: center;
-    font-size: 120%;
+    font-size: 20px;
 }
 
 #profil{
@@ -112,9 +117,8 @@ fieldset{
 
 #conteneurProfil{
     float: left;
-    max-height: 20%;
-    min-height: 15%;
-    width: 20%;
+    height: 120px;
+    width: 200px;
     -moz-border-radius:4%;
     -webkit-border-radius:4%;
     background-color: orange;
@@ -131,7 +135,7 @@ fieldset{
     -webkit-border-radius:4% 4% 0px 0px;
     padding-left: 1%;
     text-align: center;
-    font-size: 120%;
+    font-size: 20px;
 }
 
 #listeProblemes{
@@ -143,7 +147,7 @@ fieldset{
     -moz-border-radius:1% 1% 0px 0px;
     -webkit-border-radius:1% 1% 0px 0px;
     text-align: center;
-    font-size: 120%;
+    font-size: 20px;
 }
 
 #resultats{
@@ -152,7 +156,7 @@ fieldset{
 
 #span_profil{
     padding-left: 45px;
-    font-size: 120%;
+    font-size: 20px;
     padding-top: 25px;
     position: absolute;
 }
