@@ -66,14 +66,14 @@ public class PanelProbleme extends JPanel {
     private ImageIcon icon;
     private Probleme probleme;
     private int numProbleme;
-    private int hauteur=0;
+    private int hauteur = 0;
     private Tableau panTableau;
-     private PanelResultat panelResultat;
+    private PanelResultat panelResultat;
+    private BoutonHautBas boutonHautBAs;
     //declaration des varables pour le panel de droite
     private PanelProblemesUtilisateur liste;
     // private ArrayList<Contrainte> contraintes;
     private PanelProblemeListener fsl;
-    
     //Les couleurs pour le dégradé
     private Color couleur1;
     private Color couleur2;
@@ -103,15 +103,16 @@ public class PanelProbleme extends JPanel {
         slide.addChangeListener(new SaveListener());
     }
 
-    public void mettreFond(){
-        this.couleur1=Color.WHITE;
-        this.couleur2=new Color(209, 238, 238);
+    public void mettreFond() {
+        this.couleur1 = Color.WHITE;
+        this.couleur2 = new Color(209, 238, 238);
     }
-    public void modifierFond(Color c1, Color c2){
-        this.couleur1=c1;
-        this.couleur2=c2;
+
+    public void modifierFond(Color c1, Color c2) {
+        this.couleur1 = c1;
+        this.couleur2 = c2;
     }
-    
+
     /**
      * sauvegarder le contenu de la fenetre dans un probleme
      * @param indexTab le fenetre contenant les informations du probleme
@@ -136,7 +137,7 @@ public class PanelProbleme extends JPanel {
         if (titreOK && descriptionOK && variablesOK && ligneRempli) {
             Probleme p = this.getProbleme();
             p.renseignerProbleme(this);
-            if (p.getNumero()>=0 && p.getNumero() < BddProbleme.nombreProblemes()) {
+            if (p.getNumero() >= 0 && p.getNumero() < BddProbleme.nombreProblemes()) {
                 BddProbleme.supprimerProbleme(p.getNumero());
             }
             p.setNumero(BddProbleme.nombreProblemes());
@@ -233,21 +234,22 @@ public class PanelProbleme extends JPanel {
         Graphics2D g2d = (Graphics2D) g;
         g2d.setPaint(new GradientPaint(0, 0, couleur1, 0, this.getHeight(), couleur2, true));
         g2d.fillRect(0, 0, this.getWidth(), this.getHeight());
-        titre.setBounds(this.getWidth() * 10 / 100,hauteur*this.getHeight()/700+ this.getHeight() * 6 / 100, this.getWidth() * 30 / 100, this.getHeight() * 6 / 100);
-        jtfTitre.setBounds(this.getWidth() * 42 / 100,hauteur*this.getHeight()/700+ this.getHeight() * 6 / 100, this.getWidth() * 30 / 100, this.getHeight() * 6 / 100);
-        description.setBounds(this.getWidth() * 10 / 100,hauteur*this.getHeight()/700+ this.getHeight() * 15 / 100, this.getWidth() * 15 / 100, this.getHeight() * 15 / 100);
-        textfield.setBounds(this.getWidth() * 42 / 100,hauteur*this.getHeight()/700+ this.getHeight() * 15 / 100, this.getWidth() * 50 / 100, this.getHeight() * 20 / 100);
-        donnees.setBounds(this.getWidth() * 10 / 100,hauteur*this.getHeight()/700+ this.getHeight() * 38 / 100, this.getWidth() * 20 / 100, this.getHeight() * 15 / 100);
-        maximiser.setBounds(this.getWidth() * 42 / 100,hauteur*this.getHeight()/700+ this.getHeight() * 40 / 100, this.getWidth() * 20 / 100, this.getHeight() * 10 / 100);
-        minimiser.setBounds(this.getWidth() * 65 / 100,hauteur*this.getHeight()/700+ this.getHeight() * 40 / 100, this.getWidth() * 20 / 100, this.getHeight() * 10 / 100);
-        slide.setBounds(this.getWidth() * 42 / 100,hauteur*this.getHeight()/700+ this.getHeight() * 50 / 100, this.getWidth() * 40 / 100, this.getHeight() * 10 / 100);
-        variables.setBounds(this.getWidth() * 10 / 100,hauteur*this.getHeight()/700+ this.getHeight() * 48 / 100, this.getWidth() * 40 / 100, this.getHeight() * 15 / 100);
-        panDonnees.setBounds(this.getWidth() * 25 / 100,hauteur*this.getHeight()/700+ this.getHeight() * 60 / 100, this.getWidth() * 75 / 100, this.getHeight() * 10 / 100);
-        objectif.setBounds(this.getWidth() * 10 / 100,hauteur*this.getHeight()/700+ this.getHeight() * 58 / 100, this.getWidth() * 20 / 100, this.getHeight() * 15 / 100);
-        contraintes.setBounds(this.getWidth() * 10 / 100,hauteur*this.getHeight()/700+ this.getHeight() * 68 / 100, this.getWidth() * 30 / 100, this.getHeight() * 10 / 100);
-        panTableau.setBounds(this.getWidth() * 5 / 100,hauteur*this.getHeight()/700+ this.getHeight() * 78 / 100, this.getWidth() * 90 / 100, this.getHeight() * 20 / 100);
-        ajouter.setBounds(this.getWidth() * 42 / 100,hauteur*this.getHeight()/700+ this.getHeight() * 70 / 100, this.getWidth() * 40 / 100, this.getHeight() * 5 / 100);
-      panelResultat.setBounds(0,hauteur*this.getHeight()/700+ this.getHeight() , this.getWidth() , this.getHeight() * 40 / 100);
+        titre.setBounds(this.getWidth() * 10 / 100, hauteur * this.getHeight() / 700 + this.getHeight() * 6 / 100, this.getWidth() * 30 / 100, this.getHeight() * 6 / 100);
+        jtfTitre.setBounds(this.getWidth() * 42 / 100, hauteur * this.getHeight() / 700 + this.getHeight() * 6 / 100, this.getWidth() * 30 / 100, this.getHeight() * 6 / 100);
+        description.setBounds(this.getWidth() * 10 / 100, hauteur * this.getHeight() / 700 + this.getHeight() * 15 / 100, this.getWidth() * 15 / 100, this.getHeight() * 15 / 100);
+        textfield.setBounds(this.getWidth() * 42 / 100, hauteur * this.getHeight() / 700 + this.getHeight() * 15 / 100, this.getWidth() * 50 / 100, this.getHeight() * 20 / 100);
+        donnees.setBounds(this.getWidth() * 10 / 100, hauteur * this.getHeight() / 700 + this.getHeight() * 38 / 100, this.getWidth() * 20 / 100, this.getHeight() * 15 / 100);
+        maximiser.setBounds(this.getWidth() * 42 / 100, hauteur * this.getHeight() / 700 + this.getHeight() * 40 / 100, this.getWidth() * 20 / 100, this.getHeight() * 10 / 100);
+        minimiser.setBounds(this.getWidth() * 65 / 100, hauteur * this.getHeight() / 700 + this.getHeight() * 40 / 100, this.getWidth() * 20 / 100, this.getHeight() * 10 / 100);
+        slide.setBounds(this.getWidth() * 42 / 100, hauteur * this.getHeight() / 700 + this.getHeight() * 50 / 100, this.getWidth() * 40 / 100, this.getHeight() * 10 / 100);
+        variables.setBounds(this.getWidth() * 10 / 100, hauteur * this.getHeight() / 700 + this.getHeight() * 48 / 100, this.getWidth() * 40 / 100, this.getHeight() * 15 / 100);
+        panDonnees.setBounds(this.getWidth() * 25 / 100, hauteur * this.getHeight() / 700 + this.getHeight() * 60 / 100, this.getWidth() * 75 / 100, this.getHeight() * 10 / 100);
+        objectif.setBounds(this.getWidth() * 10 / 100, hauteur * this.getHeight() / 700 + this.getHeight() * 58 / 100, this.getWidth() * 20 / 100, this.getHeight() * 15 / 100);
+        contraintes.setBounds(this.getWidth() * 10 / 100, hauteur * this.getHeight() / 700 + this.getHeight() * 68 / 100, this.getWidth() * 30 / 100, this.getHeight() * 10 / 100);
+        panTableau.setBounds(this.getWidth() * 5 / 100, hauteur * this.getHeight() / 700 + this.getHeight() * 78 / 100, this.getWidth() * 90 / 100, this.getHeight() * 20 / 100);
+        ajouter.setBounds(this.getWidth() * 42 / 100, hauteur * this.getHeight() / 700 + this.getHeight() * 70 / 100, this.getWidth() * 40 / 100, this.getHeight() * 5 / 100);
+        panelResultat.setBounds(0, hauteur * this.getHeight() / 700 + this.getHeight(), this.getWidth(), this.getHeight() * 40 / 100);
+        boutonHautBAs.setBounds(this.getWidth() * 94 / 100, this.getHeight() * 2 / 100, this.getHeight() * 5 / 100, this.getHeight() * 5 / 100);
         this.updateUI();
     }
 
@@ -297,7 +299,7 @@ public class PanelProbleme extends JPanel {
         this.add(panDonnees);
         panDonnees.setBackground(new Color(0, 0, 0, 0));
         this.add(contraintes);
-this.add(panelResultat);
+        this.add(panelResultat);
         //pan3.setPreferredSize(new Dimension(200,200));
         this.raffraichitTabContrainte(fsl.getContraintes());
 
@@ -316,7 +318,7 @@ this.add(panelResultat);
 
     private void initialiserVariables() {
 
-        panelResultat= new PanelResultat(this);
+        panelResultat = new PanelResultat(this);
         panDonnees = new JPanel();
 
         titre = new JLabel("Titre du probleme : ");
@@ -327,6 +329,9 @@ this.add(panelResultat);
         contraintes = new JLabel("Liste des contraintes :");
         contraintes.setForeground(new Color(0, 0, 0));
 
+
+        boutonHautBAs = new BoutonHautBas(this);
+        this.add(boutonHautBAs);
         boutonsObjectif = new ButtonGroup();
 
         maximiser = new JRadioButton("Maximiser");

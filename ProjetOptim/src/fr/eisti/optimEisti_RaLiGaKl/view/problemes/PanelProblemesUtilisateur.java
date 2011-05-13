@@ -30,7 +30,7 @@ public final class PanelProblemesUtilisateur extends JPanel {
     private JList list;                         //declaration de la liste que l'on voit visuellement
     private JScrollPane listScrollPane;         //declaration d'un jscrollpane destiné à contenir notre liste
     private DefaultListModel listModel;         //declaration d'une listeModel qui est la liste abstraite que va contenir notre liste visuelle
-    private JButton boutonSolution;             //declaration du bouton permettant de générer la solution
+    private JButton boutonHtml;             //declaration du bouton permettant de générer le html
     private JButton boutonNew;                  //declaration du bouton permettant de créer un nouveau problème
     private JPanel panBoutons;                  //declaration du panel qui va contenir tous les boutons
     private JPanel panCentre;                   //declaration du panel qui correspond au centre
@@ -60,7 +60,7 @@ public final class PanelProblemesUtilisateur extends JPanel {
         this.list.setCellRenderer(new ListProblemeRenderer());
         this.listScrollPane = new JScrollPane(list);
 
-        this.boutonSolution = new JButton("Afficher solution");
+        this.boutonHtml = new JButton("Générer HTML");
         this.boutonNew = new JButton("Nouveau probleme");
         this.panBoutons = new JPanel();
         this.panCentre = new JPanel();
@@ -79,7 +79,7 @@ public final class PanelProblemesUtilisateur extends JPanel {
         this.jMenuItemSuppr.addActionListener(new PanelProblemesUtilisateurListener(this));
         this.jMenuItemExporter.addActionListener(new PanelProblemesUtilisateurListener(this));
         this.boutonNew.addActionListener(new PanelProblemesUtilisateurListener(this));
-        this.boutonSolution.addActionListener(new PanelProblemesUtilisateurListener(this));
+        this.boutonHtml.addActionListener(new PanelProblemesUtilisateurListener(this));
 
         this.list.addMouseListener(new PanelProblemesUtilisateurListener(this));
 
@@ -102,7 +102,7 @@ public final class PanelProblemesUtilisateur extends JPanel {
         this.list.setSelectedIndex(0);
         this.panBoutons.add(this.boutonNew);
 
-        this.panBoutons.add(this.boutonSolution);
+        this.panBoutons.add(this.boutonHtml);
         this.panCentre.add(this.panRecherche, BorderLayout.NORTH);
         this.panCentre.add(this.listScrollPane, BorderLayout.CENTER);
 
@@ -178,8 +178,8 @@ public final class PanelProblemesUtilisateur extends JPanel {
 
     }
 
-    public JButton getBoutonSolution() {
-        return boutonSolution;
+    public JButton getBoutonHtml() {
+        return boutonHtml;
 
 
     }
