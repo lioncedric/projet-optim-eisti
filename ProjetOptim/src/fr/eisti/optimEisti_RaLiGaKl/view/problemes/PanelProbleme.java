@@ -69,7 +69,7 @@ public class PanelProbleme extends JPanel {
     private int hauteur = 0;
     private Tableau panTableau;
     private PanelResultat panelResultat;
-    private BoutonHautBas boutonHautBAs;
+    private PanelHautBas boutonHautBAs;
     //declaration des varables pour le panel de droite
     private PanelProblemesUtilisateur liste;
     // private ArrayList<Contrainte> contraintes;
@@ -330,7 +330,7 @@ public class PanelProbleme extends JPanel {
         contraintes.setForeground(new Color(0, 0, 0));
 
 
-        boutonHautBAs = new BoutonHautBas(this);
+        boutonHautBAs = new PanelHautBas(this);
         this.add(boutonHautBAs);
         boutonsObjectif = new ButtonGroup();
 

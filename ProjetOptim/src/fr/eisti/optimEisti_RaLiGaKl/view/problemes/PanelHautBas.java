@@ -14,7 +14,7 @@ import javax.swing.JPanel;
  *
  * @author Administrator
  */
-public class BoutonHautBas1 extends JPanel implements MouseListener {
+public class PanelHautBas extends JPanel implements MouseListener {
 
     private boolean position;
     private String NonImageHaut;
@@ -22,7 +22,7 @@ public class BoutonHautBas1 extends JPanel implements MouseListener {
     private String NonImageSelect;
     private PanelProbleme panelProbleme;
 
-    public BoutonHautBas1(PanelProbleme panelProbleme) {
+    public PanelHautBas(PanelProbleme panelProbleme) {
         position = false;
         this.setBackground(Color.red);
         this.addMouseListener(this);
