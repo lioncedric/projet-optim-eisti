@@ -5,6 +5,7 @@ package fr.eisti.optimEisti_RaLiGaKl;
  *
  * @author Administrator
  */
+import fr.eisti.optimEisti_RaLiGaKl.model.Probleme;
 import fr.eisti.optimEisti_RaLiGaKl.model.Simplexe;
 import fr.eisti.optimEisti_RaLiGaKl.view.compte.Accueil;
 import fr.eisti.optimEisti_RaLiGaKl.view.problemes.Fenetre;
@@ -25,7 +26,12 @@ public class Main2 {
         remplirTableau();
         afficherMatrice(matrice, 3);
         //et on genere la solution par l'algorithme du simplexe
-      //  Simplexe solution = new Simplexe(matrice, 3);
+        Probleme p=new Probleme();
+        p.getCoeffVariables().add(0.0);
+        p.getCoeffVariables().add(1.0);
+        p.getCoeffVariables().add(2.0);
+        //Simplexe.init(matrice,p);
+        System.out.println(p.getResultat());
     }
 
     public static void remplirTableau() {

@@ -2,6 +2,7 @@ package fr.eisti.optimEisti_RaLiGaKl.model;
 
 import fr.eisti.optimEisti_RaLiGaKl.view.problemes.PanelProbleme;
 import java.util.ArrayList;
+import java.util.List;
 import javax.swing.JTextField;
 
 /**
@@ -247,8 +248,8 @@ public class Probleme {
         return nb;
     }
 
-    public void resoudre() {
-        Simplexe.start(this);
+    public ArrayList<Double> resoudre() {
+       return  Simplexe.start(this.formaliserProbleme(),this.coeffVariables.size(),this.objectif);
 
     }
 
@@ -379,4 +380,9 @@ public class Probleme {
     public ArrayList<Double> getResultat() {
         return resultat;
     }
+
+    public void setResultat(ArrayList<Double> resultat) {
+        this.resultat = resultat;
+    }
+    
 }

@@ -4,6 +4,8 @@
 package fr.eisti.optimEisti_RaLiGaKl.model;
 
 import fr.eisti.optimEisti_RaLiGaKl.view.problemes.PanelResultat;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Classe qui permet de générer la solution à un problème d'optimisation mathématique
@@ -11,51 +13,55 @@ import fr.eisti.optimEisti_RaLiGaKl.view.problemes.PanelResultat;
  */
 public class Simplexe {
 
-    public static void start(Probleme probleme) {
-
+    public static ArrayList<Double> start(double[][] matrice,int nbvar, String objectif) {
         /**
          * Constructeur qui permet de creer la soluton d'un problème
          * @param matrice probleme normalisé sous forme de tableau
          * @param nbVariables : nombre de variables imaginaires
          */
         //declaration du tableau destine a contenir la solution
-        double[][] matrice = probleme.formaliserProbleme();
-        init(matrice, probleme);
+      
+        return init(matrice, nbvar, objectif);
     }
 
     /**
      * Procedure qui s'occupe du traitement a faire pour generer la solution au probleme en appelant les autres fonctions
      * @param matrice 
      */
-    public static void init(double[][] matrice, Probleme probleme) {
+    public static ArrayList<Double> init(double[][] matrice, int nbvar, String objectif) {
         //booleen permettant de savoir si le probleme est resolu ou pas
         boolean resolu = false;
         boolean noSolution = false;
+        ArrayList<Double> resultat=new ArrayList<Double>();
 
         //on fait les operations de Gauss sur la matrice tant que le probleme n'est pas resolu
         while (!resolu) {
             int[] tabCoordPivot;
             //on recupere ces coordonnees en appelant la fonction adequate
             tabCoordPivot = chercherPivot(matrice);
-            //on appelle la focntion qui permet de faire la reduction pivot
+
+            //si le probleme n'a pas tous les coefficients de la colonne pivot negatifs
             if (tabCoordPivot[0] != -50000 || tabCoordPivot[1] != -50000) {
+                //on appelle la focntion qui permet de faire la reduction pivot
                 reductionPivot(matrice, tabCoordPivot);
                 resolu = problemeResolu(matrice);
                 System.out.println("Le probleme est-il resolu ? " + resolu);
-                  PanelResultat.ecrire("Le probleme est-il resolu ? " + resolu);
+                PanelResultat.ecrire("Le probleme est-il resolu ? " + resolu);
             } else {
-                System.out.println("Coucou");
                 resolu = true;
                 noSolution = true;
             }
         }
+
+        //si le probleme n'admet pas de solution
         if (noSolution) {
             System.out.println("Votre probleme n'admet pas de solution !");
-        PanelResultat.ecrire("Votre probleme n'admet pas de solution !");
+            PanelResultat.ecrire("Votre probleme n'admet pas de solution !");
         } else {
             //on stocke les valeurs de la solution dans la variable adéquate
-            exporterSolution(matrice, probleme);
+            resultat=exporterSolution(matrice, nbvar, objectif);
         }
+        return resultat;
     }
 
     /**
@@ -75,7 +81,7 @@ public class Simplexe {
         int ligneDuMax = -1;
 
         //pour chaque colonne de la matrice
-        for (int j = 0; j < matrice[0].length; j++) {
+        for (int j = 0; j < matrice[0].length - 1; j++) {
             //si la valeur du coefficient de cette colonne et de la derniere ligne est plus grand que le max
             if (matrice[i][j] > valeurMax) {
                 //on definit le nouveau max
@@ -84,8 +90,7 @@ public class Simplexe {
                 ligneDuMax = j;
             }
         }
-        System.out.println(ligneDuMax);
-         System.out.println(ligneDuMax);
+        System.out.println("valeur ligne du max:" + ligneDuMax);
 
         //on initialise le min a une valeur tres grande afin de trouver forcement une valeur plus petite
         double valeurMin = 1000000;//le million, le million, ...
@@ -98,8 +103,9 @@ public class Simplexe {
         //pour chaque ligne sauf la derniere (autrement dit, pour toutes les lignes de contraintes)
         for (i = 0; i < matrice.length - 1; i++) {
             System.out.println(matrice[i][ligneDuMax]);
-            //si la valeur du calcul est inferieure au min, on definit la nouvelle ligne contenant le pivot
+            //si la colonne pivot ne contient que des elements negatifs
             if (matrice[i][ligneDuMax] > 0) {
+                //si la valeur du calcul est inferieure au min, on definit la nouvelle ligne contenant le pivot
                 if ((matrice[i][matrice[0].length - 1] / matrice[i][ligneDuMax]) < valeurMin) {
                     valeurMin = matrice[i][matrice[0].length - 1] / matrice[i][ligneDuMax];
                     ligneDuMin = i;
@@ -107,6 +113,7 @@ public class Simplexe {
                 }
             }
         }
+        //si au final, tous les coefficients sont negatifs, on fixe les valeurs a -50000
         if (bool) {
             ligneDuMin = -50000;
             ligneDuMax = -50000;
@@ -115,6 +122,8 @@ public class Simplexe {
         //on stocke la ligne contenant le min et celle contenant le max dans le tableau
         tab[0] = ligneDuMin;
         tab[1] = ligneDuMax;
+        System.out.println("valeur:" + tab[0]);
+        System.out.println("valeur:" + tab[1]);
         //on retourne le tableau
         return tab;
     }
@@ -130,7 +139,7 @@ public class Simplexe {
         //initilisation d'un indice de boucle
         int j = 0;
         //pour chaque colonne de la matrice
-        while (j < matrice[0].length) {
+        while (j < matrice[0].length - 1) {
             //on regarde si toutes les valeurs de la derniere ligne sont positives ou nulle
             resolu = resolu && matrice[matrice.length - 1][j] <= 0;
             //on incremente la colonne
@@ -155,7 +164,7 @@ public class Simplexe {
         if (matrice[min][max] != 1) {
             double pivot = matrice[min][max];
             System.out.println("On divise les coeff de la ligne par: " + pivot);
-           PanelResultat.ecrire("On divise les coeff de la ligne par: " + pivot);
+            PanelResultat.ecrire("On divise les coeff de la ligne par: " + pivot);
             //pour chaque colonne de la matrice
             for (int j = 0; j < matrice[0].length; j++) {
                 //on divise chacun des termes de la ligne par la valeur du pivot
@@ -163,7 +172,7 @@ public class Simplexe {
             }
         }
         System.out.println("Etape 1");
-         PanelResultat.ecrire("Etape 1");
+        PanelResultat.ecrire("Etape 1");
         //pour autant qu'il y a de contraintes (on va remplir toutes les lignes de la matrice sauf la derniere
         for (int i = 0; i < matrice.length; i++) {
             //pour toutes les colonnes de la matrice
@@ -171,12 +180,12 @@ public class Simplexe {
                 System.out.print(" | " + matrice[i][j]);
             }
             System.out.print("\n");
-               PanelResultat.ecrire("\n");
+            PanelResultat.ecrire("\n");
         }
         System.out.println("FIN etape 1");
         System.out.println("\n");
-         PanelResultat.ecrire("FIN etape 1");
-         PanelResultat.ecrire("\n");
+        PanelResultat.ecrire("FIN etape 1");
+        PanelResultat.ecrire("\n");
 
         //pour chaque ligne de la matrice
         for (int i = 0; i < matrice.length; i++) {
@@ -198,7 +207,7 @@ public class Simplexe {
             //pour toutes les colonnes de la matrice
             for (int j = 0; j < matrice[0].length; j++) {
                 System.out.print(" | " + matrice[i][j]);
-              PanelResultat.ecrire(" | " + matrice[i][j]);
+                PanelResultat.ecrire(" | " + matrice[i][j]);
             }
             System.out.print("\n");
             PanelResultat.ecrire("\n");
@@ -213,17 +222,23 @@ public class Simplexe {
      * @param matrice : matrice representant le probleme
      * @param tabSolutions : le tableau destine a contenir la solution
      */
-    public static void exporterSolution(double[][] matrice, Probleme probleme) {
+    public static ArrayList<Double> exporterSolution(double[][] matrice, int nbvar, String objectif) {
         //declaration d'un booleen
         boolean trouve = false;
         //declaration d'une variable ligne pour stocker le numero de la ligne ou il faudra lire la valuer du Xi
         int ligne = 0;
-        probleme.getResultat().clear();
-        //le maximum est l'inverse de la valeur contenue dans la case [derniere ligne][derniere colonne] de la matrice
-        probleme.getResultat().add(-matrice[matrice.length - 1][matrice[0].length - 1]);
+        ArrayList<Double> resultat=new ArrayList<Double>();
+
+        if (objectif.equalsIgnoreCase("maximiser")) {
+            //le maximum est l'inverse de la valeur contenue dans la case [derniere ligne][derniere colonne] de la matrice
+            resultat.add(-matrice[matrice.length - 1][matrice[0].length - 1]);
+        } else {
+            //le maximum est l'inverse de la valeur contenue dans la case [derniere ligne][derniere colonne] de la matrice
+            resultat.add(matrice[matrice.length - 1][matrice[0].length - 1]);
+        }
 
         //pour les premieres colonnes (celles qui sont representatives des valeurs du probleme)
-        for (int j = 0; j < probleme.getCoeffVariables().size(); j++) {
+        for (int j = 0; j < nbvar; j++) {
             trouve = false;
             int i = 0;
             //on cherche la solution des Xi en regardant ou se trouve le 1 de la matrice identite
@@ -250,7 +265,7 @@ public class Simplexe {
                     i++;
                 }
                 //on ajoute au tableau solution lavaleur qui se trouve sur la ligne trouvee et a la derniere colonne (coefficient bi ou i=ligne)
-                probleme.getResultat().add(matrice[ligne][matrice[0].length - 1]);
+                resultat.add(matrice[ligne][matrice[0].length - 1]);
 
             } else {
                 while (i < matrice.length && !trouve) {
@@ -265,8 +280,9 @@ public class Simplexe {
                     i++;
                 }
                 //on ajoute au tableau solution lavaleur qui se trouve sur la ligne trouvee et a la derniere colonne (coefficient bi ou i=ligne)
-                probleme.getResultat().add(0.0);
+                resultat.add(0.0);
             }
         }
+        return resultat;
     }
 }
