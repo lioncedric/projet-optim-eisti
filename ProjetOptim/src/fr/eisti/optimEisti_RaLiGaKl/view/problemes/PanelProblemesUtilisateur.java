@@ -120,18 +120,20 @@ public final class PanelProblemesUtilisateur extends JPanel {
         this.listScrollPane.setOpaque(false);
         this.panBoutons.setOpaque(false);
         this.setBackground(couleur);
-        this.list.setBackground(new Color(200, 210, 238,0));
+        this.list.setBackground(new Color(200, 210, 238, 0));
     }
-   @Override
-  public void paintComponent(Graphics g) {
+
+    @Override
+    public void paintComponent(Graphics g) {
         super.paintComponent(g);
-         Color couleur1=Color.WHITE;
-        Color couleur2=new Color(20,145, 238);
+        Color couleur1 = Color.WHITE;
+        Color couleur2 = new Color(20, 145, 238);
         Graphics2D g2d = (Graphics2D) g;
         g2d.setPaint(new GradientPaint(0, 0, couleur1, 0, this.getHeight(), couleur2, true));
         g2d.fillRect(0, 0, this.getWidth(), this.getHeight());
-          this.updateUI();
+        this.updateUI();
     }
+
     /**
      * Fonction qui renvoie un booleen pour dire si le nom du problème passé en paramètre existe déjà dans la liste ou pas
      * @param name

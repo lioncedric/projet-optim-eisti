@@ -147,8 +147,8 @@ public class Probleme {
                 } else {
                     matrice[i][j + temp] = listeContrainte[i].get(j);
                     decalage++;
-                    if (temp + 2 == decalage || (temp + 1 == decalage && this.contraintes.get(i).getInegalite().equals("Egalité"))) {
-                        listeM.add(temp + j);
+                    if (temp + 2 == decalage ) {
+                        listeM.add(temp + j -1);
                     }
                 }
             }

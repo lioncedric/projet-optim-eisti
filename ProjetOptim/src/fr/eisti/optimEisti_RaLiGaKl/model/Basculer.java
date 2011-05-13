@@ -28,19 +28,42 @@ public class Basculer implements Runnable {
             c.setEnabled(false);
         }
         try {
-            int i = 0;
-
-            p.setHauteur(0);
-            while (i < 270) {
+  
+            while (p.getHauteur() > -270) {
                 p.setHauteur(p.getHauteur() - 1);
                 Main.fenetrePrincipale.repaint();
                 Thread.sleep(5);
 
-                i++;
             }
 
 
         } catch (InterruptedException ex) {
         }
     }
+
+    public void run2() {
+        PanelProbleme p = ((PanelProbleme) Main.fenetrePrincipale.getDroite().getSelectedComponent());
+        p.getSlide().setEnabled(true);
+
+        p.getMaximiser().setEnabled(true);
+        p.getMinimiser().setEnabled(true);
+        p.getPanTableau().getTable().setEnabled(true);
+        p.getAjouter().setEnabled(true);
+
+        for (Component c : p.getPanDonnees().getComponents()) {
+            c.setEnabled(true);
+        }
+        try {
+            while (p.getHauteur() < 0) {
+                p.setHauteur(p.getHauteur() + 1);
+                Main.fenetrePrincipale.repaint();
+                Thread.sleep(5);
+            }
+
+
+        } catch (InterruptedException ex) {
+        }
+    }
+
+
 }
