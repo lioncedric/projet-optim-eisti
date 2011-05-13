@@ -135,11 +135,16 @@ public class PanelProblemesUtilisateurListener implements ActionListener, MouseL
                 }
             }
         } else if (e.getSource() == this.ppu.getBoutonHtml()) {
-            try {
-              System.out.print("mael a toi d'ecrire ce code !!!");
-            } catch (Exception ex) {
-              
-            }
+           System.out.println("mael a toi d'ecrire ce code !!!");
+            System.out.println("mael a toi d'ecrire ce code !!!");
+             System.out.println("mael a toi d'ecrire ce code !!!");
+              System.out.println("mael a toi d'ecrire ce code !!!");
+               System.out.println("mael a toi d'ecrire ce code !!!");
+                System.out.println("mael a toi d'ecrire ce code !!!");
+                 System.out.println("mael a toi d'ecrire ce code !!!");
+                  System.out.println("mael a toi d'ecrire ce code !!!");
+
+
 
         } else if (e.getSource() == this.ppu.getBoutonNew()) {
             boolean nouveau = false;
