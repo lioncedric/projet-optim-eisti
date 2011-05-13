@@ -31,7 +31,7 @@ public class PanelHautBas extends JPanel implements MouseListener {
 
     @Override
     public void mouseClicked(MouseEvent e) {
-        if (panelProbleme.getHauteur() == 0 || panelProbleme.getHauteur() == -270) {
+        if ((panelProbleme.getHauteur() == 0 || panelProbleme.getHauteur() == -270)&& panelProbleme.verifier()) {
             position = !position;
             Thread basculer = new Thread(new Basculer(position));
 

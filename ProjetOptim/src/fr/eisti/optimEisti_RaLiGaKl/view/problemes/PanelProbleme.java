@@ -112,19 +112,20 @@ public class PanelProbleme extends JPanel {
         this.couleur1 = c1;
         this.couleur2 = c2;
     }
-
-    /**
-     * sauvegarder le contenu de la fenetre dans un probleme
-     * @param indexTab le fenetre contenant les informations du probleme
+  /**
+     * verifier le contenu de la fenetre dans un probleme
      */
-    public void enregisrer(int indexTab) {
+    public boolean verifier() {
         boolean titreOK;
-        titreOK = !(this.getJtfTitre().getText().equals(""));
-        boolean descriptionOK;
-        descriptionOK = !(this.getTextfield().getText().equals(""));
         boolean ligneRempli;
-        ligneRempli = this.getPanTableau().ligneRempli();
+        boolean descriptionOK;
         boolean variablesOK = true;
+        titreOK = !(this.getJtfTitre().getText().equals(""));
+
+        descriptionOK = !(this.getTextfield().getText().equals(""));
+
+        ligneRempli = this.getPanTableau().ligneRempli();
+
         for (int i = 0; i < this.getSlide().getValue(); i++) {
             JTextField jtf = (JTextField) (this.getPanDonnees().getComponent(3 * i + 1));
             variablesOK = variablesOK && !(jtf.getText().equals("")) && !(jtf.getText().equals("0"));
@@ -134,7 +135,14 @@ public class PanelProbleme extends JPanel {
                 variablesOK = false;
             }
         }
-        if (titreOK && descriptionOK && variablesOK && ligneRempli) {
+        return titreOK && descriptionOK && variablesOK && ligneRempli;
+    }
+    /**
+     * enregisrer le contenu de la fenetre dans un probleme
+     * @param indexTab le fenetre contenant les informations du probleme
+     */
+    public void enregisrer(int indexTab) {
+        if (verifier()) {
             Probleme p = this.getProbleme();
             p.renseignerProbleme(this);
             if (p.getNumero() >= 0 && p.getNumero() < BddProbleme.nombreProblemes()) {
