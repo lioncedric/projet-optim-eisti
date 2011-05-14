@@ -108,10 +108,11 @@ public class PanelProblemeListener implements ChangeListener, ActionListener {
             Probleme p = ((PanelProbleme) Main.fenetrePrincipale.getDroite().getSelectedComponent()).getProbleme();
             p.renseignerProbleme((PanelProbleme) Main.fenetrePrincipale.getDroite().getSelectedComponent());
             //et on genere la solution par l'algorithme du simplexe
-            
-            ((PanelProbleme) Main.fenetrePrincipale.getDroite().getSelectedComponent()).getPanelResultat().miseajour();
-            p.setResultat(p.resoudre());
-            SaveListener.estmodifié();
+           
+           
+            ((PanelProbleme) Main.fenetrePrincipale.getDroite().getSelectedComponent()).getPanelResultat().miseajour( p.resoudre());
+
+           SaveListener.estmodifié();
         }
         if (e.getSource() == this.panelProbleme.getPanelResultat().getEffacer()) {
             PanelResultat.effacer();

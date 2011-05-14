@@ -12,6 +12,7 @@ import java.awt.Dimension;
 import java.awt.GradientPaint;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
+import java.util.ArrayList;
 import javax.swing.BorderFactory;
 import javax.swing.DefaultListModel;
 import javax.swing.JButton;
@@ -39,14 +40,13 @@ public class PanelResultat extends JPanel {
     private JButton effacer;
     private JButton calculer;
 
-    public void miseajour() {
-        Probleme p = panelProbleme.getProbleme();
+    public void miseajour(ArrayList<Double> lst) {
         listModel.removeAllElements();
         res.removeAll();
-        if (!p.getResultat().isEmpty()) {
+        if (!lst.isEmpty()) {
 
-            for (int i = 0; i < p.getResultat().size(); i++) {
-                listModel.addElement(p.getResultat().get(i).toString());
+            for (int i = 0; i < lst.size(); i++) {
+                listModel.addElement(lst.get(i).toString());
             }
         }
 
@@ -81,7 +81,7 @@ public class PanelResultat extends JPanel {
         this.add(resS);
         this.add(effacer);
         this.setBackground(new Color(255, 255, 255, 255));
-        miseajour();
+        miseajour(panelProbleme.getProbleme().getResultat());
     }
 
     public static void ecrire(String s) {
