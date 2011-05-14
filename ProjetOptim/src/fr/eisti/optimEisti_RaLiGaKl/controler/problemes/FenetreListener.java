@@ -17,6 +17,8 @@ import fr.eisti.optimEisti_RaLiGaKl.model.FiltreSimple;
 import fr.eisti.optimEisti_RaLiGaKl.model.Utilitaire;
 import java.awt.event.ComponentListener;
 import java.io.File;
+import java.io.FileReader;
+import java.io.FileWriter;
 import javax.swing.JFileChooser;
 
 /**
@@ -61,8 +63,8 @@ public class FenetreListener implements ActionListener, ComponentListener {
 
 
         } else if (e.getSource() == this.fenetre.getAffResHtml()) {
-            try {
-                /*JFileChooser fc = new JFileChooser();
+            //try {
+                JFileChooser fc = new JFileChooser();
                 fc.addChoosableFileFilter(new FiltreSimple("Fichier HTML", ".html"));
                 fc.setAcceptAllFileFilterUsed(false);
                 int returnVal = fc.showSaveDialog(null);
@@ -71,13 +73,17 @@ public class FenetreListener implements ActionListener, ComponentListener {
                     String nom2 = new File(nom).getParent();
                     if (!nom.endsWith(".html")) {
                         nom = nom + ".html";
-                    }*/
-                    // Utilitaire.creerHTML("bdd/" + BDDUtilisateur.getNomUtilisateur() + ".xml", "HTML/resultats.xsl", nom);
-                 Utilitaire.creerHTML("bdd/" + BDDUtilisateur.getNomUtilisateur() + ".xml", "HTML/resultats.xsl", BDDUtilisateur.getNomUtilisateur() + ".html");
+                    }
+                try {
+                    Utilitaire.creerHTML("bdd/" + BDDUtilisateur.getNomUtilisateur() + ".xml", "HTML/resultats.xsl", nom);
+                } catch (Exception ex) {
+                    Logger.getLogger(FenetreListener.class.getName()).log(Level.SEVERE, null, ex);
+                }
+                 //Utilitaire.creerHTML("bdd/" + BDDUtilisateur.getNomUtilisateur() + ".xml", "HTML/resultats.xsl", "HTML/"+BDDUtilisateur.getNomUtilisateur() + ".html");
                      //prendre en compte les html
-                    /*String inputList[];
+                    String inputList[];
                     File inputDirectory = new File("HTML");
-                    File outputDirectory = new File(nom2+"dossier");
+                    File outputDirectory = new File(nom2);
                     outputDirectory.mkdir();
                     inputList = inputDirectory.list();
                     for (int i = 0; i < inputList.length; i++) {
@@ -88,11 +94,12 @@ public class FenetreListener implements ActionListener, ComponentListener {
                                 outputFile.createNewFile();
 
                                 FileReader in = new FileReader(inputList[i]);
-                                FileWriter out = new FileWriter(outputFile);
-                                int c;
+                                FileWriter out = new FileWriter(outputFile, true);
+                                int c=0;
 
                                 while ((c = in.read()) != -1) {
                                     out.write(c);
+                                    System.out.println(c);
                                 }
 
                                 in.close();
@@ -102,12 +109,12 @@ public class FenetreListener implements ActionListener, ComponentListener {
                             }
                         }
 
-                    }*/
-                //}
+                    }
+                }
                
-            } catch (Exception ex) {
+            /*} catch (Exception ex) {
                 Logger.getLogger(FenetreListener.class.getName()).log(Level.SEVERE, null, ex);
-            }
+            }*/
         } else if (e.getSource() == this.fenetre.getRecharger()) {
             try {
                 BddProbleme.load(BDDUtilisateur.getNomUtilisateur(), BDDUtilisateur.getImage());
@@ -154,4 +161,5 @@ public class FenetreListener implements ActionListener, ComponentListener {
     @Override
     public void componentHidden(ComponentEvent e) {
     }
+    
 }

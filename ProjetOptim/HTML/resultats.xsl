@@ -4,10 +4,231 @@
     <xsl:template match="/">
 
         <html>
-            <link rel="stylesheet" media="screen" type="text/css" title="Design" href="design.css" />
-            <title>Résultats de vos problèmes</title>
-            <script type="text/javascript" src="script.js"></script>
+            <!--<link rel="stylesheet" media="screen" type="text/css" title="Design" href="design.css" /><script type="text/javascript" src="script.js"></script>-->
+            <head>
+                <title>Résultats de vos problèmes</title>
+                <style type="text/css">
+                body {
+                    min-width:640px;
+                    width: 1024px;
+                    background-color: #fffff;
+                     margin-left: auto;
+                    margin-right: auto;
+                }
+                #blocTitre, #blocProbleme, .blocResultats {
+                    display:inline-block;
+                    margin-bottom: 10px;
+                    margin-right: 2px;
+                }
+
+                #blocTitre{
+                    background-image:url("BaniereFinal.png");
+                    background-repeat:no-repeat;
+                    height: 150px;
+                    text-align: center;
+                    width:1024px;
+                    -moz-border-radius:2px;
+                    -webkit-border-radius:2px;
+                    -moz-box-shadow: 6px 6px 5px #90A4A1;
+                    -webkit-box-shadow: 6px 6px 5px #90A4A1;
+                    -o-box-shadow: 6px 6px 5px #90A4A1;
+                    box-shadow: 6px 6px 5px #90A4A1;
+                }
+
+                #conteneur{
+                    width: 1024px;;
+                    float: left;
+                    margin-left: auto;
+                    margin-right: auto;
+                }
+
+                #blocProbleme{
+                    float: left;
+                    width: 200px;
+                    margin-left: 0px;
+                    position: absolute;
+                    margin-top: 130px;
+                    min-height: 370px;
+                    height: 450px;
+                    -moz-border-radius:5px;
+                    -webkit-border-radius:5px;
+                    -moz-box-shadow: 6px 6px 5px #90A4A1;
+                    -webkit-box-shadow: 6px 6px 5px #90A4A1;
+                    -o-box-shadow: 6px 6px 5px #90A4A1;
+                    box-shadow: 6px 6px 5px #90A4A1;
+                    background:-moz-linear-gradient(top, #59ffff 0%, #1988a0 100%);
+                }
+
+                .blocResultats{
+                    float: right;
+                    width: 805px;
+                    margin-right: -0px;
+                    min-height: 580px;
+                    -moz-border-radius:5px;
+                    -webkit-border-radius:5px;
+                    -moz-box-shadow: 6px 6px 5px #90A4A1;
+                    -webkit-box-shadow: 6px 6px 5px #90A4A1;
+                    -o-box-shadow: 6px 6px 5px #90A4A1;
+                    box-shadow: 6px 6px 5px #90A4A1;
+                    background:-moz-linear-gradient(top, #59ffff 0%, #1988a0 100%);
+                }
+
+
+                legend{
+                    font-weight: bold;
+                    font-size: 20px;
+                    text-decoration: underline;
+                    font-family: "Arial Black", Arial, Verdana, serif;
+                }
+
+                fieldset{
+                    color:#4C69C7;
+                    border: 2px solid #4C69C7;
+                    font-size: 20px;
+                    font-weight: bold;
+                    text-align: center;
+                }
+
+                #fctObecjtive{
+                    font-size: 16px;
+                    text-align: center;
+                }
+
+                #contraintes{
+                    text-align: center;
+                }
+
+                #spanRes{
+                    font-weight: bold;
+                    font-size: 20px;
+                    text-decoration: underline;
+                    font-family: "Arial Black", Arial, Verdana, serif;
+                }
+
+                #contraintesSpan{
+                    font-weight: bold;
+                    font-size: 20px;
+                    text-decoration: underline;
+                    font-family: "Arial Black", Arial, Verdana, serif;
+                }
+
+                #utilisateur{
+                    margin-bottom: 5px;
+                    -moz-border-radius:5px 5px 0px 0px;
+                    -webkit-border-radius:5px 5px 0px 0px;
+                    text-align: center;
+                    font-size: 20px;
+                    color: black;
+                    background:-moz-linear-gradient(top, #194da0 0%, #59ffff 100%);
+                }
+
+                #profil{
+                    margin-bottom: 5px;
+                    padding-left: 5px;
+                }
+
+                #conteneurProfil{
+                    float: left;
+                    height: 120px;
+                    width: 200px;
+                    -moz-border-radius:5px;
+                    -webkit-border-radius:5px;
+                     background:-moz-linear-gradient(top, #59ffff 0%, #1988a0 100%);
+                    -moz-box-shadow: 6px 6px 5px #90A4A1;
+                    -webkit-box-shadow: 6px 6px 5px #90A4A1;
+                    -o-box-shadow: 6px 6px 5px #90A4A1;
+                    box-shadow: 6px 6px 5px #90A4A1;
+                }
+
+                #titreProbleme{
+                    margin-bottom: 5px;
+                    -moz-border-radius:5px 5px 0px 0px;
+                    -webkit-border-radius:5px 5px 0px 0px;
+                    padding-left: 5px;
+                    text-align: center;
+                    font-size: 20px;
+                    color: black;
+                    background:-moz-linear-gradient(top, #194da0 0%, #59ffff 100%);
+                }
+
+                #listeProblemes{
+                    padding-left: 20px;
+                }
+
+                #titreBlocResultats{
+                     background:-moz-linear-gradient(top, #194da0 0%, #59ffff 100%);
+                    -moz-border-radius:5px 5px 0px 0px;
+                    -webkit-border-radius:5px 5px 0px 0px;
+                    text-align: center;
+                    font-size: 20px;
+                }
+
+                #resultats{
+                    text-align: center;
+                }
+
+                #span_profil{
+                    padding-left: 20px;
+                    font-size: 20px;
+                    padding-top: 15px;
+                    position: absolute;
+                }
+                </style>
+            </head>
             <body onload="init()">
+                <!-- <script language="text/javascript">
+                    //fonction qui initialise la page html
+function init(){
+    titreBlocProbleme=document.getElementById("titreBlocResultats");
+    titreBlocProbleme.style.display="none";
+    //on récupère tous les elements de classname=lien
+    elementsHref=document.getElementsByClassName('lien');
+    //on recup tous les elements bloc de probleme res
+    elements=document.getElementsByClassName('res');
+    //on parcours les tableaux des elements
+    for(var i=0; i<elements.length; i++){
+        //on cache tous les blocs
+        elements[i].style.display="none";
+        //on modifie tous les id de deux tableaux en leur attribuant un numero
+        elements[i].setAttribute("id", i);
+        elementsHref[i].setAttribute("id", i);
+    }
+}
+
+//fonction qui affiche le bloc dont le lien correspond
+function afficheProbleme(obj){
+    element=document.getElementById("image");
+    titreBlocProbleme=document.getElementById("titreBlocResultats");
+    titreBlocProbleme.style.display="block";
+    //on recupere l'id
+    numero=obj.getAttribute("id");
+    //on recupere tous les blocs res
+    elements=document.getElementsByClassName('res');
+     //on parcours tous les elements du tableau
+    for(var i=0; i<elements.length; i++){
+        //si lelement correspond au probleme cliqué
+        if(elements[i].getAttribute("id")==numero){
+            //on affiche son bloc
+            elements[i].style.display="block";
+            element.style.display="none";
+        }
+        //sinon
+        else{
+            //on laisse cacher les autres blocs
+            elements[i].style.display="none";
+        }
+    }
+}
+
+
+
+                </script>-->
+
+                <script type="text/javascript">
+
+     
+
+    </script>
 
                 <div id="blocTitre">
                 </div>
@@ -82,7 +303,7 @@
                                     </xsl:for-each>
                                     <xsl:for-each select="objectif/variable">
                                         <B>
-                                             <xsl:choose>
+                                            <xsl:choose>
                                                 <xsl:when test="position() != 1">
                                                     <xsl:if test="@coeff=1">
                                                         <xsl:text> + </xsl:text>
@@ -124,15 +345,15 @@
                                                     </xsl:if>
                                                     <xsl:if test="@coeff!=1">
                                                         <xsl:if test="@coeff=-1">
-                                                                <xsl:text> - </xsl:text>
-                                                                <xsl:text>x</xsl:text>
-                                                                <xsl:number value="position()" format="1"/>
-                                                            </xsl:if>
-                                                            <xsl:if test="@coeff!=-1">
-                                                                <xsl:value-of select="substring(@coeff,1,string-length(@coeff))"/>
-                                                                <xsl:text>x</xsl:text>
-                                                                <xsl:number value="position()" format="1"/>
-                                                            </xsl:if>
+                                                            <xsl:text> - </xsl:text>
+                                                            <xsl:text>x</xsl:text>
+                                                            <xsl:number value="position()" format="1"/>
+                                                        </xsl:if>
+                                                        <xsl:if test="@coeff!=-1">
+                                                            <xsl:value-of select="substring(@coeff,1,string-length(@coeff))"/>
+                                                            <xsl:text>x</xsl:text>
+                                                            <xsl:number value="position()" format="1"/>
+                                                        </xsl:if>
                                                     </xsl:if>
                                                 </xsl:otherwise>
                                             </xsl:choose>
@@ -190,15 +411,15 @@
                                                     </xsl:if>
                                                     <xsl:if test="@coeff!=1">
                                                         <xsl:if test="@coeff=-1">
-                                                                <xsl:text> - </xsl:text>
-                                                                <xsl:text>x</xsl:text>
-                                                                <xsl:number value="position()" format="1"/>
-                                                            </xsl:if>
-                                                            <xsl:if test="@coeff!=-1">
-                                                                <xsl:value-of select="substring(@coeff,1,string-length(@coeff))"/>
-                                                                <xsl:text>x</xsl:text>
-                                                                <xsl:number value="position()" format="1"/>
-                                                            </xsl:if>
+                                                            <xsl:text> - </xsl:text>
+                                                            <xsl:text>x</xsl:text>
+                                                            <xsl:number value="position()" format="1"/>
+                                                        </xsl:if>
+                                                        <xsl:if test="@coeff!=-1">
+                                                            <xsl:value-of select="substring(@coeff,1,string-length(@coeff))"/>
+                                                            <xsl:text>x</xsl:text>
+                                                            <xsl:number value="position()" format="1"/>
+                                                        </xsl:if>
                                                     </xsl:if>
                                                 </xsl:otherwise>
                                             </xsl:choose>
