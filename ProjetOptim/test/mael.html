@@ -164,7 +164,18 @@
                     padding-top: 15px;
                     position: absolute;
                 }
-                </style></head><body onload="init()"><script type="text/javascript"></script><div id="blocTitre"></div><div id="conteneur"><div id="conteneurProfil"><div id="utilisateur">
+                </style><script type="text/javascript">
+function init(){
+    titreBlocProbleme=document.getElementById("titreBlocResultats");
+    titreBlocProbleme.style.display="none";
+    //on récupère tous les elements de classname=lien
+    elementsHref=document.getElementsByClassName('lien');
+    //on recup tous les elements bloc de probleme res
+    elements=document.getElementsByClassName('res');
+    //on parcours les tableaux des elements
+    alert(elements.length);
+}
+</script></head><body onload="init()"><script type="text/javascript"></script><div id="blocTitre"></div><div id="conteneur"><div id="conteneurProfil"><div id="utilisateur">
                         Utilisateur
                         </div><div id="profil"><img src="../../../../../D:\My Documents\ProjetOptim\images\mickey.png"><span id="span_profil">mael</span></div></div><div id="blocProbleme"><div id="titreProbleme">
                             Probl&egrave;me
