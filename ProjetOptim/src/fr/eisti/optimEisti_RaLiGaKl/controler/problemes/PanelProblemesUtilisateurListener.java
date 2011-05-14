@@ -11,6 +11,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.io.File;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -125,17 +126,28 @@ public class PanelProblemesUtilisateurListener implements ActionListener, MouseL
                 }
             }
         } else if (e.getSource() == this.ppu.getBoutonHtml()) {
-            System.out.println("mael a toi d'ecrire ce code !!!");
-            System.out.println("mael a toi d'ecrire ce code !!!");
-            System.out.println("mael a toi d'ecrire ce code !!!");
-            System.out.println("mael a toi d'ecrire ce code !!!");
-            System.out.println("mael a toi d'ecrire ce code !!!");
-            System.out.println("mael a toi d'ecrire ce code !!!");
-            System.out.println("mael a toi d'ecrire ce code !!!");
-            System.out.println("mael a toi d'ecrire ce code !!!");
-
-
-
+            JFileChooser fc = new JFileChooser();
+            fc.addChoosableFileFilter(new FiltreSimple("Fichier HTML", ".html"));
+            fc.setAcceptAllFileFilterUsed(false);
+            int returnVal = fc.showSaveDialog(null);
+            if (returnVal == JFileChooser.APPROVE_OPTION) {
+                String nom = fc.getSelectedFile().getAbsolutePath();
+                String nom2 = new File(nom).getParent();
+                if (!nom.endsWith(".html")) {
+                    nom = nom + ".html";
+                }
+                try {
+                    Utilitaire.creerHTML("bdd/" + BDDUtilisateur.getNomUtilisateur() + ".xml", "HTML/resultats.xsl", nom);
+                } catch (Exception ex) {
+                }
+                try {
+                    new File(nom2 + "/html").mkdir();
+                    Utilitaire.copie("HTML/script.js", nom2 + "/html/script.js");
+                    Utilitaire.copie("HTML/design.css", nom2 + "/html/design.css");
+                    Utilitaire.copie("HTML/BaniereFinal.png", nom2 + "/html/BaniereFinal.png");
+                } catch (Exception ex) {
+                }
+            }
         } else if (e.getSource() == this.ppu.getBoutonNew()) {
             boolean nouveau = false;
             int i = 0;
