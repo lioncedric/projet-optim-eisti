@@ -6,6 +6,7 @@ import java.awt.Container;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.ComponentEvent;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -29,7 +30,6 @@ import javax.swing.JFileChooser;
 public class FenetreListener implements ActionListener, ComponentListener {
 
     private Fenetre fenetre;
-  
 
     /**
      * Constructeur du listener de la fenetre
@@ -37,12 +37,10 @@ public class FenetreListener implements ActionListener, ComponentListener {
      */
     public FenetreListener(Fenetre f1) {
         this.fenetre = f1;
-     
+
     }
 
-
     @Override
-
     public void actionPerformed(ActionEvent e) {
 
         if (e.getSource() == this.fenetre.getImportXml()) {
@@ -64,56 +62,30 @@ public class FenetreListener implements ActionListener, ComponentListener {
 
         } else if (e.getSource() == this.fenetre.getAffResHtml()) {
             //try {
-                JFileChooser fc = new JFileChooser();
-                fc.addChoosableFileFilter(new FiltreSimple("Fichier HTML", ".html"));
-                fc.setAcceptAllFileFilterUsed(false);
-                int returnVal = fc.showSaveDialog(null);
-                if (returnVal == JFileChooser.APPROVE_OPTION) {
-                    String nom = fc.getSelectedFile().getAbsolutePath();
-                    String nom2 = new File(nom).getParent();
-                    if (!nom.endsWith(".html")) {
-                        nom = nom + ".html";
-                    }
+            JFileChooser fc = new JFileChooser();
+            fc.addChoosableFileFilter(new FiltreSimple("Fichier HTML", ".html"));
+            fc.setAcceptAllFileFilterUsed(false);
+            int returnVal = fc.showSaveDialog(null);
+            if (returnVal == JFileChooser.APPROVE_OPTION) {
+                String nom = fc.getSelectedFile().getAbsolutePath();
+                String nom2 = new File(nom).getParent();
+                if (!nom.endsWith(".html")) {
+                    nom = nom + ".html";
+                }
                 try {
                     Utilitaire.creerHTML("bdd/" + BDDUtilisateur.getNomUtilisateur() + ".xml", "HTML/resultats.xsl", nom);
                 } catch (Exception ex) {
-                    Logger.getLogger(FenetreListener.class.getName()).log(Level.SEVERE, null, ex);
                 }
-                 //Utilitaire.creerHTML("bdd/" + BDDUtilisateur.getNomUtilisateur() + ".xml", "HTML/resultats.xsl", "HTML/"+BDDUtilisateur.getNomUtilisateur() + ".html");
-                     //prendre en compte les html
-                    String inputList[];
-                    File inputDirectory = new File("HTML");
-                    File outputDirectory = new File(nom2);
-                    outputDirectory.mkdir();
-                    inputList = inputDirectory.list();
-                    for (int i = 0; i < inputList.length; i++) {
-                        File inputFile = new File(inputDirectory, inputList[i]);
-                        if (!inputFile.isDirectory()) {
-                            try {
-                                File outputFile = new File(outputDirectory, inputList[i]);
-                                outputFile.createNewFile();
-
-                                FileReader in = new FileReader(inputList[i]);
-                                FileWriter out = new FileWriter(outputFile, true);
-                                int c=0;
-
-                                while ((c = in.read()) != -1) {
-                                    out.write(c);
-                                    System.out.println(c);
-                                }
-
-                                in.close();
-                                out.close();
-                            } catch (IOException e1) {
-                                System.out.println(e1);
-                            }
-                        }
-
-                    }
+                try {
+                    new File(nom2 + "/html").mkdir();
+                    Utilitaire.copie("HTML/script.js", nom2 + "/html/script.js");
+                    Utilitaire.copie("HTML/design.css", nom2 + "/html/design.css");
+                    Utilitaire.copie("HTML/BaniereFinal.png", nom2 + "/html/BaniereFinal.png");
+                } catch (Exception ex) {
                 }
-               
+            }
             /*} catch (Exception ex) {
-                Logger.getLogger(FenetreListener.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(FenetreListener.class.getName()).log(Level.SEVERE, null, ex);
             }*/
         } else if (e.getSource() == this.fenetre.getRecharger()) {
             try {
@@ -138,14 +110,13 @@ public class FenetreListener implements ActionListener, ComponentListener {
         }
     }
 
-  
-
     /**
      * Redéfinition de la méthode componentResized de l'interface ComponentListener
-     * @param e 
+     * @param e
      */
     @Override
-    public void componentResized(ComponentEvent e) {
+    public void componentResized(
+            ComponentEvent e) {
         //on redefinit la taille du slitPane pour ne pas qu'il soit ni trop petit ni trop grand
         this.fenetre.appliquerChangementSplitPane();
     }
@@ -161,5 +132,4 @@ public class FenetreListener implements ActionListener, ComponentListener {
     @Override
     public void componentHidden(ComponentEvent e) {
     }
-    
 }

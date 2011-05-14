@@ -127,4 +127,18 @@ public class Utilitaire {
         // Transformation
         transformer.transform(source, resultat);
     }
+
+    public static void copie(String fichierIn, String fichierout) throws FileNotFoundException, IOException {
+        InputStream in;
+        OutputStream out;
+        in = new FileInputStream(fichierIn);
+        out = new FileOutputStream(fichierout);
+        int c = 0;
+        while ((c = in.read()) != -1) {
+            out.write(c);
+        }
+        in.close();
+        out.close();
+
+    }
 }
