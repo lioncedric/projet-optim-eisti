@@ -174,6 +174,25 @@
                     position: absolute;
                 }
                 </style>
+
+                <script type="text/javascript">
+function init(){
+    titreBlocProbleme=document.getElementById("titreBlocResultats");
+    titreBlocProbleme.style.display="none";
+    //on récupère tous les elements de classname=lien
+    elementsHref=document.getElementsByClassName('lien');
+    //on recup tous les elements bloc de probleme res
+    elements=document.getElementsByClassName('res');
+    //on parcours les tableaux des elements
+    for(var i=0; i<elements.length; i++){
+        //on cache tous les blocs
+        elements[i].style.display="none";
+        //on modifie tous les id de deux tableaux en leur attribuant un numero
+        elements[i].setAttribute("id", i);
+        elementsHref[i].setAttribute("id", i);
+    }
+}
+</script>
             </head>
             <body onload="init()">
                 <!-- <script language="text/javascript">
