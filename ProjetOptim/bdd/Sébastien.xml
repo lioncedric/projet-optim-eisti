@@ -37,6 +37,109 @@
 
 
 
+
+
+
+
+
+<probleme>
+<titre>dhs</titre>
+<description>Pro</description>
+<objectif type="Maximiser">
+<variable coeff="1.0"/>
+<variable coeff="2.0"/>
+</objectif>
+<contrainte type="Infériorité">
+<variable coeff="-3.0"/>
+<variable coeff="2.0"/>
+<constante valeur="2.0"/>
+</contrainte>
+<contrainte type="Infériorité">
+<variable coeff="-1.0"/>
+<variable coeff="2.0"/>
+<constante valeur="4.0"/>
+</contrainte>
+<contrainte type="Infériorité">
+<variable coeff="1.0"/>
+<variable coeff="1.0"/>
+<constante valeur="5.0"/>
+</contrainte>
+</probleme>
+
+
+
+
+
+
+
+
+
+<probleme>
+<titre>M266</titre>
+<description>Entrer votre descripy</description>
+<objectif type="Minimiser">
+<variable coeff="1.0"/>
+<variable coeff="-2.0"/>
+<variable coeff="2.0"/>
+</objectif>
+<contrainte type="Egalité">
+<variable coeff="1.0"/>
+<variable coeff="1.0"/>
+<variable coeff="-1.0"/>
+<constante valeur="3.0"/>
+</contrainte>
+<contrainte type="Egalité">
+<variable coeff="-1.0"/>
+<variable coeff="3.0"/>
+<variable coeff="0.0"/>
+<constante valeur="-4.0"/>
+</contrainte>
+<resultat valeur="6.0">
+<variable coeff="4.0"/>
+<variable coeff="0.0"/>
+<variable coeff="1.0"/>
+<variable coeff="6.0"/>
+<variable coeff="4.0"/>
+<variable coeff="0.0"/>
+<variable coeff="1.0"/>
+<variable coeff="6.0"/>
+<variable coeff="4.0"/>
+<variable coeff="0.0"/>
+<variable coeff="1.0"/>
+<variable coeff="6.0"/>
+<variable coeff="4.0"/>
+<variable coeff="0.0"/>
+<variable coeff="1.0"/>
+<variable coeff="6.0"/>
+<variable coeff="4.0"/>
+<variable coeff="0.0"/>
+<variable coeff="1.0"/>
+<variable coeff="6.0"/>
+<variable coeff="4.0"/>
+<variable coeff="0.0"/>
+<variable coeff="1.0"/>
+<variable coeff="6.0"/>
+<variable coeff="4.0"/>
+<variable coeff="0.0"/>
+<variable coeff="1.0"/>
+<variable coeff="6.0"/>
+<variable coeff="4.0"/>
+<variable coeff="0.0"/>
+<variable coeff="1.0"/>
+<variable coeff="6.0"/>
+<variable coeff="4.0"/>
+<variable coeff="0.0"/>
+<variable coeff="1.0"/>
+<variable coeff="6.0"/>
+<variable coeff="4.0"/>
+<variable coeff="0.0"/>
+<variable coeff="1.0"/>
+<variable coeff="6.0"/>
+<variable coeff="4.0"/>
+<variable coeff="0.0"/>
+<variable coeff="1.0"/>
+</resultat>
+</probleme>
 <probleme>
 <titre>Mon problemeActions</titre>
 <description>Entrer votre description du problème</description>
@@ -62,147 +165,48 @@
 <resultat valeur="6000.0">
 <variable coeff="75.0"/>
 <variable coeff="0.0"/>
+<variable coeff="6000.0"/>
+<variable coeff="75.0"/>
+<variable coeff="0.0"/>
+<variable coeff="6000.0"/>
+<variable coeff="75.0"/>
+<variable coeff="0.0"/>
+<variable coeff="6000.0"/>
+<variable coeff="75.0"/>
+<variable coeff="0.0"/>
+<variable coeff="6000.0"/>
+<variable coeff="75.0"/>
+<variable coeff="0.0"/>
+<variable coeff="6000.0"/>
+<variable coeff="75.0"/>
+<variable coeff="0.0"/>
+<variable coeff="6000.0"/>
+<variable coeff="75.0"/>
+<variable coeff="0.0"/>
+<variable coeff="6000.0"/>
+<variable coeff="75.0"/>
+<variable coeff="0.0"/>
+<variable coeff="6000.0"/>
+<variable coeff="75.0"/>
+<variable coeff="0.0"/>
+<variable coeff="6000.0"/>
+<variable coeff="75.0"/>
+<variable coeff="0.0"/>
+<variable coeff="6000.0"/>
+<variable coeff="75.0"/>
+<variable coeff="0.0"/>
+<variable coeff="6000.0"/>
+<variable coeff="75.0"/>
+<variable coeff="0.0"/>
+<variable coeff="6000.0"/>
+<variable coeff="75.0"/>
+<variable coeff="0.0"/>
 </resultat>
 </probleme>
 
 
-
 <probleme>
-<titre>qsdrgdqsdfs</titre>
-<description>Un deuxieme ...</description>
-<objectif type="Maximiser">
-<variable coeff="10.0"/>
-<variable coeff="20.0"/>
-</objectif>
-<contrainte type="Infériorité">
-<variable coeff="2.0"/>
-<variable coeff="1.0"/>
-<constante valeur="30.0"/>
-</contrainte>
-<contrainte type="Infériorité">
-<variable coeff="1.0"/>
-<variable coeff="4.0"/>
-<constante valeur="64.0"/>
-</contrainte>
-<contrainte type="Infériorité">
-<variable coeff="5.0"/>
-<variable coeff="6.0"/>
-<constante valeur="110.0"/>
-</contrainte>
-<resultat valeur="340.0">
-<variable coeff="4.0"/>
-<variable coeff="15.0"/>
-<variable coeff="340.0"/>
-<variable coeff="4.0"/>
-<variable coeff="15.0"/>
-<variable coeff="340.0"/>
-<variable coeff="4.0"/>
-<variable coeff="15.0"/>
-<variable coeff="340.0"/>
-<variable coeff="4.0"/>
-<variable coeff="15.0"/>
-<variable coeff="340.0"/>
-<variable coeff="4.0"/>
-<variable coeff="15.0"/>
-<variable coeff="340.0"/>
-<variable coeff="4.0"/>
-<variable coeff="15.0"/>
-<variable coeff="340.0"/>
-<variable coeff="4.0"/>
-<variable coeff="15.0"/>
-<variable coeff="340.0"/>
-<variable coeff="4.0"/>
-<variable coeff="15.0"/>
-<variable coeff="340.0"/>
-<variable coeff="4.0"/>
-<variable coeff="15.0"/>
-<variable coeff="340.0"/>
-<variable coeff="4.0"/>
-<variable coeff="15.0"/>
-<variable coeff="340.0"/>
-<variable coeff="4.0"/>
-<variable coeff="15.0"/>
-<variable coeff="340.0"/>
-<variable coeff="4.0"/>
-<variable coeff="15.0"/>
-</resultat>
-</probleme>
-<probleme>
-<titre>dhs</titre>
-<description>Pro</description>
-<objectif type="Maximiser">
-<variable coeff="1.0"/>
-<variable coeff="2.0"/>
-</objectif>
-<contrainte type="Infériorité">
-<variable coeff="-3.0"/>
-<variable coeff="2.0"/>
-<constante valeur="2.0"/>
-</contrainte>
-<contrainte type="Infériorité">
-<variable coeff="-1.0"/>
-<variable coeff="2.0"/>
-<constante valeur="4.0"/>
-</contrainte>
-<contrainte type="Infériorité">
-<variable coeff="1.0"/>
-<variable coeff="1.0"/>
-<constante valeur="5.0"/>
-</contrainte>
-</probleme>
-<probleme>
-<titre>Testmum</titre>
-<description>Un deuxieme ...</description>
-<objectif type="Maximiser">
-<variable coeff="10.0"/>
-<variable coeff="20.0"/>
-</objectif>
-<contrainte type="Infériorité">
-<variable coeff="2.0"/>
-<variable coeff="1.0"/>
-<constante valeur="30.0"/>
-</contrainte>
-<contrainte type="Infériorité">
-<variable coeff="1.0"/>
-<variable coeff="4.0"/>
-<constante valeur="64.0"/>
-</contrainte>
-<contrainte type="Infériorité">
-<variable coeff="5.0"/>
-<variable coeff="6.0"/>
-<constante valeur="110.0"/>
-</contrainte>
-<resultat valeur="340.0">
-<variable coeff="4.0"/>
-<variable coeff="15.0"/>
-<variable coeff="340.0"/>
-<variable coeff="4.0"/>
-<variable coeff="15.0"/>
-</resultat>
-</probleme>
-
-<probleme>
-<titre>Sans problem</titre>
-<description>Entrer votre description du problème</description>
-<objectif type="Maximiser">
-<variable coeff="1.0"/>
-<variable coeff="-2.0"/>
-</objectif>
-<contrainte type="Infériorité">
-<variable coeff="1.0"/>
-<variable coeff="1.0"/>
-<constante valeur="3.0"/>
-</contrainte>
-<contrainte type="Infériorité">
-<variable coeff="-1.0"/>
-<variable coeff="3.0"/>
-<constante valeur="-4.0"/>
-</contrainte>
-</probleme>
-
-
-<probleme>
-<titre>Mon problemeActionseryu</titre>
+<titre>Mon problemeActionser</titre>
 <description>Entrer votre description du problème</description>
 <objectif type="Maximiser">
 <variable coeff="80.0"/>
@@ -225,70 +229,6 @@
 </contrainte>
 <resultat valeur="6000.0">
 <variable coeff="75.0"/>
-<variable coeff="0.0"/>
-<variable coeff="6000.0"/>
-<variable coeff="75.0"/>
-<variable coeff="0.0"/>
-<variable coeff="6000.0"/>
-<variable coeff="75.0"/>
-<variable coeff="0.0"/>
-<variable coeff="6000.0"/>
-<variable coeff="75.0"/>
-<variable coeff="0.0"/>
-<variable coeff="6000.0"/>
-<variable coeff="75.0"/>
-<variable coeff="0.0"/>
-<variable coeff="6000.0"/>
-<variable coeff="75.0"/>
-<variable coeff="0.0"/>
-<variable coeff="6000.0"/>
-<variable coeff="75.0"/>
-<variable coeff="0.0"/>
-<variable coeff="6000.0"/>
-<variable coeff="75.0"/>
-<variable coeff="0.0"/>
-<variable coeff="6000.0"/>
-<variable coeff="75.0"/>
-<variable coeff="0.0"/>
-<variable coeff="6000.0"/>
-<variable coeff="75.0"/>
-<variable coeff="0.0"/>
-</resultat>
-</probleme>
-<probleme>
-<titre>M2</titre>
-<description>Entrer votre descripy</description>
-<objectif type="Minimiser">
-<variable coeff="1.0"/>
-<variable coeff="-2.0"/>
-<variable coeff="2.0"/>
-</objectif>
-<contrainte type="Egalité">
-<variable coeff="1.0"/>
-<variable coeff="1.0"/>
-<variable coeff="-1.0"/>
-<constante valeur="3.0"/>
-</contrainte>
-<contrainte type="Egalité">
-<variable coeff="-1.0"/>
-<variable coeff="3.0"/>
-<variable coeff="0.0"/>
-<constante valeur="-4.0"/>
-</contrainte>
-</probleme>
-<probleme>
-<titre>Mon prob</titre>
-<description>7</description>
-<objectif type="Maximiser">
-<variable coeff="4.0"/>
-</objectif>
-<contrainte type="Infériorité">
-<variable coeff="5.0"/>
-<constante valeur="0.0"/>
-</contrainte>
-<resultat valeur="0.0">
-<variable coeff="0.0"/>
-<variable coeff="0.0"/>
 <variable coeff="0.0"/>
 </resultat>
 </probleme>

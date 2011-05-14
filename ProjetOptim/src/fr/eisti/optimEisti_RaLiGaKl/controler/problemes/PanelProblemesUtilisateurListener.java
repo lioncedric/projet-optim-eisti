@@ -37,35 +37,25 @@ public class PanelProblemesUtilisateurListener implements ActionListener, MouseL
         this.ppu = pPpu;
     }
 
-    public void SupprimerProbleme(int numero) {
+    public static void SupprimerProbleme(int numero) {
         BddProbleme.supprimerProbleme(numero);
-        boolean remove = false;
-        int numProbRemove = 100;
         int i = 0;
-        while (i < Main.fenetrePrincipale.getDroite().getTabCount() && !remove) {
-
+        //suprime l'onglet du probleme correspondant
+        while (i < Main.fenetrePrincipale.getDroite().getTabCount()) {
             if (((PanelProbleme) Main.fenetrePrincipale.getDroite().getComponentAt(i)).getProbleme().getNumero() == numero) {
-
-                remove = true;
-                numProbRemove = i;
-                Main.fenetrePrincipale.getDroite().remove(numProbRemove);
-
+                Main.fenetrePrincipale.getDroite().remove(i);
             }
             i++;
 
         }
-        if (remove) {
-
-            for (int j = 0; j < Main.fenetrePrincipale.getDroite().getTabCount(); j++) {
-                int numProbeCours = ((PanelProbleme) Main.fenetrePrincipale.getDroite().getComponentAt(j)).getProbleme().getNumero();
-                if (numProbeCours > numProbRemove) {
-                    ((PanelProbleme) Main.fenetrePrincipale.getDroite().getComponentAt(j)).getProbleme().setNumero(numProbeCours - 1);
-
-                }
+        //met a jour l'index des autres onglets
+        for (int j = 0; j < Main.fenetrePrincipale.getDroite().getTabCount(); j++) {
+            int numProbeCours = ((PanelProbleme) Main.fenetrePrincipale.getDroite().getComponentAt(j)).getProbleme().getNumero();
+            if (numProbeCours > numero) {
+                ((PanelProbleme) Main.fenetrePrincipale.getDroite().getComponentAt(j)).getProbleme().setNumero(numProbeCours - 1);
 
             }
         }
-
         Main.fenetrePrincipale.repaint();
         Main.fenetrePrincipale.getGauche().miseajour();
     }
@@ -88,8 +78,8 @@ public class PanelProblemesUtilisateurListener implements ActionListener, MouseL
             probleme = (Probleme) this.ppu.getList().getSelectedValue();
             numero = probleme.getNumero();
             //si il y en a vraiment un de sélectionné
-           if (numero >= 0) {
-               
+            if (numero >= 0) {
+
                 //on vérifie que l'utilisateur ne s'est pas trompé
                 String message = "Etes vous sur de vouloir supprimer le probleme '" + probleme.getTitre();
                 int reponse = JOptionPane.showConfirmDialog(null, message, "Suppression du probleme", JOptionPane.YES_NO_OPTION);
@@ -109,7 +99,7 @@ public class PanelProblemesUtilisateurListener implements ActionListener, MouseL
             Probleme probleme;
             probleme = (Probleme) this.ppu.getList().getSelectedValue();
             numero = probleme.getNumero();
-         if (numero >= 0) {
+            if (numero >= 0) {
                 try {
                     JFileChooser fc = new JFileChooser();
                     fc.addChoosableFileFilter(new FiltreSimple("Fichier Excel", ".csv"));
@@ -135,14 +125,14 @@ public class PanelProblemesUtilisateurListener implements ActionListener, MouseL
                 }
             }
         } else if (e.getSource() == this.ppu.getBoutonHtml()) {
-           System.out.println("mael a toi d'ecrire ce code !!!");
             System.out.println("mael a toi d'ecrire ce code !!!");
-             System.out.println("mael a toi d'ecrire ce code !!!");
-              System.out.println("mael a toi d'ecrire ce code !!!");
-               System.out.println("mael a toi d'ecrire ce code !!!");
-                System.out.println("mael a toi d'ecrire ce code !!!");
-                 System.out.println("mael a toi d'ecrire ce code !!!");
-                  System.out.println("mael a toi d'ecrire ce code !!!");
+            System.out.println("mael a toi d'ecrire ce code !!!");
+            System.out.println("mael a toi d'ecrire ce code !!!");
+            System.out.println("mael a toi d'ecrire ce code !!!");
+            System.out.println("mael a toi d'ecrire ce code !!!");
+            System.out.println("mael a toi d'ecrire ce code !!!");
+            System.out.println("mael a toi d'ecrire ce code !!!");
+            System.out.println("mael a toi d'ecrire ce code !!!");
 
 
 
@@ -184,7 +174,7 @@ public class PanelProblemesUtilisateurListener implements ActionListener, MouseL
                 Main.fenetrePrincipale.getDroite().setSelectedIndex(Main.fenetrePrincipale.getDroite().getTabCount() - 1);
             } else {
                 boolean trouve = false;
-                int i = 0; 
+                int i = 0;
                 while (i < Main.fenetrePrincipale.getDroite().getTabCount() && !trouve) {
                     if (((PanelProbleme) Main.fenetrePrincipale.getDroite().getComponentAt(i)).getProbleme().getNumero() == numero) {
                         trouve = true;

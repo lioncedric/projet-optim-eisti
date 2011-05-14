@@ -65,14 +65,15 @@ public class Probleme {
         }
         //récupération des contraintes du problème
         this.setContraintes(fenetre.getPanTableau().enregistrerContraintes());
+        this.getResultat().clear();
 
         if (!fenetre.getPanelResultat().getListModel().isEmpty()) {
-            for (int i = 0; i <fenetre.getPanelResultat().getListModel().getSize(); i++) {
-               this.getResultat().add(Double.parseDouble((String) fenetre.getPanelResultat().getListModel().getElementAt(i)));
-             
+            for (int i = 0; i < fenetre.getPanelResultat().getListModel().getSize(); i++) {
+                this.getResultat().add(Double.parseDouble((String) fenetre.getPanelResultat().getListModel().getElementAt(i)));
+
             }
         }
-        
+
     }
 
     /**
@@ -148,8 +149,8 @@ public class Probleme {
                 } else {
                     matrice[i][j + temp] = listeContrainte[i].get(j);
                     decalage++;
-                    if (temp + 2 == decalage ) {
-                        listeM.add(temp + j -1);
+                    if (temp + 2 == decalage) {
+                        listeM.add(temp + j - 1);
                     }
                 }
             }
@@ -248,8 +249,8 @@ public class Probleme {
         return nb;
     }
 
-    public ArrayList<Double> resoudre() {
-       return  Simplexe.start(this.formaliserProbleme(),this.coeffVariables.size(),this.objectif);
+    public ArrayList<Double> chercherSolutions() {
+        return Simplexe.start(this.formaliserProbleme(), this.coeffVariables.size(), this.objectif);
 
     }
 
@@ -384,5 +385,4 @@ public class Probleme {
     public void setResultat(ArrayList<Double> resultat) {
         this.resultat = resultat;
     }
-    
 }

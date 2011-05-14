@@ -112,7 +112,8 @@ public class PanelProbleme extends JPanel {
         this.couleur1 = c1;
         this.couleur2 = c2;
     }
-  /**
+
+    /**
      * verifier le contenu de la fenetre dans un probleme
      */
     public boolean verifier() {
@@ -137,6 +138,7 @@ public class PanelProbleme extends JPanel {
         }
         return titreOK && descriptionOK && variablesOK && ligneRempli;
     }
+
     /**
      * enregisrer le contenu de la fenetre dans un probleme
      * @param indexTab le fenetre contenant les informations du probleme
@@ -148,8 +150,17 @@ public class PanelProbleme extends JPanel {
             if (p.getNumero() >= 0 && p.getNumero() < BddProbleme.nombreProblemes()) {
                 BddProbleme.supprimerProbleme(p.getNumero());
             }
-            p.setNumero(BddProbleme.nombreProblemes());
+            //met a jour l'index des autres onglets
+            for (int j = 0; j < Main.fenetrePrincipale.getDroite().getTabCount(); j++) {
+                int numProbeCours = ((PanelProbleme) Main.fenetrePrincipale.getDroite().getComponentAt(j)).getProbleme().getNumero();
+                if (numProbeCours > p.getNumero()) {
+                    ((PanelProbleme) Main.fenetrePrincipale.getDroite().getComponentAt(j)).getProbleme().setNumero(numProbeCours - 1);
+
+                }
+            }
             BddProbleme.addProbleme(p);
+            ((PanelProbleme) Main.fenetrePrincipale.getDroite().getComponentAt(indexTab)).getProbleme().setNumero(BddProbleme.nombreProblemes() - 1);
+            p.setNumero(BddProbleme.nombreProblemes() - 1);
             BddProbleme.save(BDDUtilisateur.getNomUtilisateur());
             Main.fenetrePrincipale.getDroite().setTitleAt(indexTab, p.getTitre());
             SaveListener.estmodifié();
