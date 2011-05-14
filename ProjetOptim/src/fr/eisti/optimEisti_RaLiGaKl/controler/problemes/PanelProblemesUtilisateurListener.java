@@ -1,10 +1,8 @@
 package fr.eisti.optimEisti_RaLiGaKl.controler.problemes;
 
-import fr.eisti.optimEisti_RaLiGaKl.controler.problemes.SaveListener;
 import fr.eisti.optimEisti_RaLiGaKl.view.problemes.PanelProblemesUtilisateur;
 import fr.eisti.optimEisti_RaLiGaKl.Main;
 import fr.eisti.optimEisti_RaLiGaKl.model.*;
-import fr.eisti.optimEisti_RaLiGaKl.model.Simplexe;
 import fr.eisti.optimEisti_RaLiGaKl.view.problemes.PanelOngletProbleme;
 import fr.eisti.optimEisti_RaLiGaKl.view.problemes.PanelProbleme;
 import java.awt.event.ActionEvent;
@@ -12,13 +10,9 @@ import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.io.File;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 import javax.swing.JFileChooser;
-import javax.swing.JList;
 import javax.swing.JOptionPane;
-import javax.swing.JTextField;
 
 /**
  * Classe qui écoute les actions du panel de problemes utilisateur

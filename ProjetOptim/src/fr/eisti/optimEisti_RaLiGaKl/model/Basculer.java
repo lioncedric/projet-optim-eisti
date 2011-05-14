@@ -14,15 +14,15 @@ import java.awt.Component;
  */
 public class Basculer implements Runnable {
 
-    private boolean position;
+    private boolean devoilerSolution;
 
-    public Basculer(boolean position) {
-        this.position = position;
+    public Basculer(boolean devoilerSolution) {
+        this.devoilerSolution = devoilerSolution;
     }
 
     @Override
     public void run() {
-        if (position) {
+        if (devoilerSolution) {
             PanelProbleme p = ((PanelProbleme) Main.fenetrePrincipale.getDroite().getSelectedComponent());
             p.getSlide().setEnabled(false);
 
@@ -35,17 +35,14 @@ public class Basculer implements Runnable {
                 c.setEnabled(false);
             }
             try {
-
                 while (p.getHauteur() > -270) {
                     p.setHauteur(p.getHauteur() - 1);
                     Main.fenetrePrincipale.repaint();
                     Thread.sleep(5);
-
                 }
-
-
             } catch (InterruptedException ex) {
             }
+            
         } else {
             PanelProbleme p = ((PanelProbleme) Main.fenetrePrincipale.getDroite().getSelectedComponent());
             p.getSlide().setEnabled(true);
@@ -64,8 +61,6 @@ public class Basculer implements Runnable {
                     Main.fenetrePrincipale.repaint();
                     Thread.sleep(5);
                 }
-
-
             } catch (InterruptedException ex) {
             }
         }

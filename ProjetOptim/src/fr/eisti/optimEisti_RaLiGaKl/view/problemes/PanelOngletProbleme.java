@@ -4,7 +4,6 @@ import javax.swing.*;
 import javax.swing.plaf.basic.BasicButtonUI;
 import java.awt.*;
 import java.awt.event.*;
-import javax.swing.border.BevelBorder;
 
 /**
  * Component to be used as tabComponent;
@@ -44,8 +43,6 @@ public class PanelOngletProbleme extends JPanel {
             }
         };
 
-      
-      
         add(label);
         //add more space between the label and the button
         label.setBorder(BorderFactory.createEmptyBorder(0, 5, 0, 5));
@@ -59,7 +56,7 @@ public class PanelOngletProbleme extends JPanel {
     public class SaveButton extends JButton implements ActionListener, MouseListener {
 
         public SaveButton() {
-            super(new ImageIcon("images/icone_sauvegardeRed.png"));
+            super(new ImageIcon("images/icone_sauvegardeR.png"));
             setBorderPainted(false);
            
             //int size = 17;
@@ -80,21 +77,17 @@ public class PanelOngletProbleme extends JPanel {
         public void actionPerformed(ActionEvent e) {
             int i = pane.indexOfTabComponent(PanelOngletProbleme.this);
             if (i != -1) {
-
                 ((PanelProbleme) pane.getComponentAt(i)).enregisrer(i);
             }
         }
 
         public void mouseClicked(MouseEvent e) {
-
         }
 
         public void mousePressed(MouseEvent e) {
-
         }
 
         public void mouseReleased(MouseEvent e) {
-
         }
 
         public void mouseEntered(MouseEvent e) {
@@ -102,7 +95,7 @@ public class PanelOngletProbleme extends JPanel {
         }
 
         public void mouseExited(MouseEvent e) {
-            setIcon(new ImageIcon("images/icone_sauvegardeRed.png"));
+            setIcon(new ImageIcon("images/icone_sauvegardeR.png"));
         }
     }
 
@@ -151,10 +144,6 @@ public class PanelOngletProbleme extends JPanel {
                 g2.translate(1, 1);
             }
             g2.setStroke(new BasicStroke(2));
-            g2.setColor(Color.BLACK);
-            if (getModel().isRollover()) {
-                g2.setColor(Color.MAGENTA);
-            }
             int delta = 6;
             g2.drawLine(delta, delta, getWidth() - delta - 1, getHeight() - delta - 1);
             g2.drawLine(getWidth() - delta - 1, delta, delta, getHeight() - delta - 1);

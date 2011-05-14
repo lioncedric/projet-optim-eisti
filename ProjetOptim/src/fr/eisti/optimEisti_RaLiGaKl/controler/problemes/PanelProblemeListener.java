@@ -7,7 +7,6 @@ package fr.eisti.optimEisti_RaLiGaKl.controler.problemes;
 import fr.eisti.optimEisti_RaLiGaKl.Main;
 import fr.eisti.optimEisti_RaLiGaKl.model.Contrainte;
 import fr.eisti.optimEisti_RaLiGaKl.model.Probleme;
-import fr.eisti.optimEisti_RaLiGaKl.model.Simplexe;
 import fr.eisti.optimEisti_RaLiGaKl.view.problemes.PanelProbleme;
 import fr.eisti.optimEisti_RaLiGaKl.view.problemes.PanelResultat;
 import java.awt.event.ActionEvent;

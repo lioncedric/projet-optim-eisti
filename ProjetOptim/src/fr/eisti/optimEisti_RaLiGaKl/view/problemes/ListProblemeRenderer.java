@@ -13,10 +13,31 @@ import javax.swing.ListCellRenderer;
 
 public class ListProblemeRenderer extends JLabel implements ListCellRenderer {
 
+    private Color couleurTexte;
+    private final Color couleurFond;//valeur inchangeable
+    private Color couleurFondSelection;
+    private Color couleurTexteSelection;
+    
     public ListProblemeRenderer() {
         setOpaque(true);
+        this.couleurFond=new Color(255,255,255,0);
+        this.couleurTexte=Color.BLACK;
+        this.couleurFondSelection=new Color(222,240,243);
+        this.couleurTexteSelection=Color.BLACK;
+    }
+    
+    public void changerCouleurTexte(Color c){
+        this.couleurTexte=c;
+    }
+    
+    public void changerCouleurFondSelection(Color c){
+        this.couleurFondSelection=c;
     }
 
+    public void changerCouleurTexteSelection(Color c){
+        this.couleurTexteSelection=c;
+    }
+    
     @Override
     public Component getListCellRendererComponent(JList list, Object value, int index, boolean isSelected, boolean cellHasFocus) {
         Probleme p = (Probleme) value;
@@ -29,18 +50,18 @@ public class ListProblemeRenderer extends JLabel implements ListCellRenderer {
                 && !dropLocation.isInsert()
                 && dropLocation.getIndex() == index) {
 
-           background = new Color(255, 50, 50, 0);
-            foreground = Color.BLACK;
+            background = this.couleurFond;
+            foreground = this.couleurTexte;
 
             // check if this cell is selected
         } else if (isSelected) {
-            background = Color.BLUE;
-            foreground = Color.WHITE;
+            background = this.couleurFondSelection;
+            foreground = this.couleurTexteSelection;
 
             // unselected, and not the DnD drop location
         } else {
-            background = new Color(255, 50, 50, 0);
-            foreground = Color.BLACK;
+            background = this.couleurFond;
+            foreground = this.couleurTexte;
         }
 
         setBackground(background);

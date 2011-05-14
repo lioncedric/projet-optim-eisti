@@ -30,7 +30,8 @@ public final class PanelProblemesUtilisateur extends JPanel {
     private JList list;                         //declaration de la liste que l'on voit visuellement
     private JScrollPane listScrollPane;         //declaration d'un jscrollpane destiné à contenir notre liste
     private DefaultListModel listModel;         //declaration d'une listeModel qui est la liste abstraite que va contenir notre liste visuelle
-    private JButton boutonHtml;             //declaration du bouton permettant de générer le html
+    private ListProblemeRenderer listePR;       //declaration d'une liste renderer pour la configuration des couleurs
+    private JButton boutonHtml;                 //declaration du bouton permettant de générer le html
     private JButton boutonNew;                  //declaration du bouton permettant de créer un nouveau problème
     private JPanel panBoutons;                  //declaration du panel qui va contenir tous les boutons
     private JPanel panCentre;                   //declaration du panel qui correspond au centre
@@ -39,6 +40,11 @@ public final class PanelProblemesUtilisateur extends JPanel {
     private JMenuItem jMenuItemOuvrir;          //declaration d'un item ouvrir de la liste du jmenupup
     private JMenuItem jMenuItemExporter;        //declaration d'un item exporter de la liste du jmenupup
     private JMenuItem jMenuItemSuppr;           //declaration d'un item supprimer de la liste du jmenupup
+    private Color couleur1;                     //declaration de la couleur de fond degrade 1
+    private Color couleur2;                     //declaration de la couleur de fond degrade 2
+    private final Color couleurFondListe;       //declaration de la couleur de fond de la liste
+    private Color couleurTexteBoutons;          //declaration de la couleur de texte
+    private Color couleurFondPanelBoutons;      //declaration de la couleur de fond du panel bas des boutons
 
     /**
      * Constructeur permettant de créer le panel utilisateur
@@ -48,7 +54,8 @@ public final class PanelProblemesUtilisateur extends JPanel {
         initialiserVariables();
         layoutListenersEtAutres();
         traitement();
-        mettreCouleur(Color.WHITE);
+        this.couleurFondListe = new Color(255, 255, 255,0);
+        mettreCouleur();
     }
 
     /**
@@ -57,7 +64,8 @@ public final class PanelProblemesUtilisateur extends JPanel {
     public void initialiserVariables() {
         this.listModel = new DefaultListModel();
         this.list = new JList(listModel);
-        this.list.setCellRenderer(new ListProblemeRenderer());
+        this.listePR = new ListProblemeRenderer();
+        this.list.setCellRenderer(this.listePR);
         this.listScrollPane = new JScrollPane(list);
 
         this.boutonHtml = new JButton("Générer HTML");
@@ -69,6 +77,7 @@ public final class PanelProblemesUtilisateur extends JPanel {
         this.jMenuItemOuvrir = new JMenuItem("Ouvrir");
         this.jMenuItemExporter = new JMenuItem("Exporter");
         this.jMenuItemSuppr = new JMenuItem("Supprimer");
+        
     }
 
     /**
@@ -115,19 +124,31 @@ public final class PanelProblemesUtilisateur extends JPanel {
      * Procédure permetant de mettre le fond du panel en couleur
      * @param couleur : la couleur que l'on veut mettre en fond
      */
-    public void mettreCouleur(Color couleur) {
+    public void mettreCouleur() {
         this.panCentre.setOpaque(false);
         this.listScrollPane.setOpaque(false);
-        this.panBoutons.setOpaque(false);
-        this.setBackground(couleur);
-        this.list.setBackground(new Color(200, 210, 238, 0));
+        this.panBoutons.setBackground(Color.WHITE);
+        this.list.setBackground(this.couleurFondListe);
+        this.couleur1 = Color.WHITE;
+        this.couleur2 = new Color(20, 145, 238);
+    }
+
+    public void changerCouleurDegrade(Color c1, Color c2) {
+        this.couleur1 = c1;
+        this.couleur2 = c2;
+    }
+
+    public void changerCouleurFondPanelBoutons(Color c) {
+        this.couleurFondPanelBoutons = c;
+    }
+
+    public void changerCouleurTexteBoutons(Color c) {
+        this.couleurTexteBoutons = c;
     }
 
     @Override
     public void paintComponent(Graphics g) {
         super.paintComponent(g);
-        Color couleur1 = Color.WHITE;
-        Color couleur2 = new Color(20, 145, 238);
         Graphics2D g2d = (Graphics2D) g;
         g2d.setPaint(new GradientPaint(0, 0, couleur1, 0, this.getHeight(), couleur2, true));
         g2d.fillRect(0, 0, this.getWidth(), this.getHeight());
@@ -151,7 +172,6 @@ public final class PanelProblemesUtilisateur extends JPanel {
         //on commence par supprimer tous les éléments
         this.listModel.removeAllElements();
         //puis on ajoute un à un tous les problèmes
-        //puis on ajoute un à un tous les problèmes
         while (!liste.isEmpty()) {
             this.listModel.addElement(BddProbleme.getProbleme(((LinkedList<Integer>) liste).getFirst()));
             liste.remove(0);
@@ -160,56 +180,35 @@ public final class PanelProblemesUtilisateur extends JPanel {
     }
 
     //LES GETTERS AND SETTERS
-    public JList getList() {
-        return list;
-
-
-    }
-
-    public DefaultListModel getListModel() {
-        return listModel;
-
-
+    public JButton getBoutonHtml() {
+        return boutonHtml;
     }
 
     public JButton getBoutonNew() {
         return boutonNew;
-
-
-    }
-
-    public JButton getBoutonHtml() {
-        return boutonHtml;
-
-
-    }
-
-    public JMenuItem getjMenuItemOuvrir() {
-        return jMenuItemOuvrir;
-
-
-    }
-
-    public JMenuItem getjMenuItemSuppr() {
-        return jMenuItemSuppr;
-
-
     }
 
     public JMenuItem getjMenuItemExporter() {
         return jMenuItemExporter;
+    }
 
+    public JMenuItem getjMenuItemOuvrir() {
+        return jMenuItemOuvrir;
+    }
 
+    public JMenuItem getjMenuItemSuppr() {
+        return jMenuItemSuppr;
     }
 
     public JPopupMenu getJpopup() {
         return jpopup;
-
-
     }
 
-    public PanelRechercheProbleme getPanRecherche() {
-        return panRecherche;
+    public JList getList() {
+        return list;
+    }
 
+    public ListProblemeRenderer getListePR() {
+        return listePR;
     }
 }
