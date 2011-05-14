@@ -4,4 +4,5 @@
     <personne imagesrc="images\mickey.png" login="Sébastien" password="Sébastien"/>
 <personne imagesrc="D:\My Documents\ProjetOptim\images\mickey.png" login="mael" password="mael"/>
 <personne imagesrc="D:\My Documents\ProjetOptim\images\loupe.png" login="test" password="test"/>
+<personne imagesrc="D:\My Documents\NetBeansProjects\ProjetOptim\images\mickey.png" login="ced" password="ced"/>
 </identification>

@@ -105,7 +105,7 @@ public class PanelProblemeListener implements ChangeListener, ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == this.panelProbleme.getPanelResultat().getCalculer()) {
-            Probleme p = ((PanelProbleme) Main.fenetrePrincipale.getDroite().getSelectedComponent()).getProbleme();
+            Probleme p = new  Probleme();
             p.renseignerProbleme((PanelProbleme) Main.fenetrePrincipale.getDroite().getSelectedComponent());
             //et on genere la solution par l'algorithme du simplexe
             ((PanelProbleme) Main.fenetrePrincipale.getDroite().getSelectedComponent()).getPanelResultat().miseajour(p.chercherSolutions());
