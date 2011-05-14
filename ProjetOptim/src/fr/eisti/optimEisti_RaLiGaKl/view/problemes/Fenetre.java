@@ -160,6 +160,7 @@ public class Fenetre extends JFrame {
         pleinEcran.addActionListener(new FenetreListener(this));
         petitEcran.addActionListener(new FenetreListener(this));
         affResHtml.addActionListener(new FenetreListener(this));
+        preferences.addActionListener(new FenetreListener(this));
     }
 
     public JTabbedPane getDroite() {
@@ -276,5 +277,9 @@ public class Fenetre extends JFrame {
 
     public JMenuItem getAffResHtml() {
         return affResHtml;
+    }
+
+    public JMenuItem getPreferences() {
+        return preferences;
     }
 }

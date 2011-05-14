@@ -2,24 +2,19 @@ package fr.eisti.optimEisti_RaLiGaKl.controler.problemes;
 
 import fr.eisti.optimEisti_RaLiGaKl.model.BDDUtilisateur;
 import fr.eisti.optimEisti_RaLiGaKl.model.BddProbleme;
-import java.awt.Container;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.ComponentEvent;
-import java.io.FileNotFoundException;
 import java.io.IOException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 
 import fr.eisti.optimEisti_RaLiGaKl.view.problemes.Fenetre;
 import fr.eisti.optimEisti_RaLiGaKl.Main;
 import fr.eisti.optimEisti_RaLiGaKl.model.FiltreSimple;
 import fr.eisti.optimEisti_RaLiGaKl.model.Utilitaire;
+import fr.eisti.optimEisti_RaLiGaKl.view.compte.Preferences;
 import java.awt.event.ComponentListener;
 import java.io.File;
-import java.io.FileReader;
-import java.io.FileWriter;
 import javax.swing.JFileChooser;
 
 /**
@@ -53,12 +48,13 @@ public class FenetreListener implements ActionListener, ComponentListener {
                 }
             } catch (Exception ex) {
             }
+            
         } else if (e.getSource() == this.fenetre.getDeconnexion()) {
             Main.accueil.setVisible(true);
             this.fenetre.dispose();
+            
         } else if (e.getSource() == this.fenetre.getQuitter()) {
             System.exit(0);
-
 
         } else if (e.getSource() == this.fenetre.getAffResHtml()) {
             //try {
@@ -84,9 +80,7 @@ public class FenetreListener implements ActionListener, ComponentListener {
                 } catch (Exception ex) {
                 }
             }
-            /*} catch (Exception ex) {
-            Logger.getLogger(FenetreListener.class.getName()).log(Level.SEVERE, null, ex);
-            }*/
+            
         } else if (e.getSource() == this.fenetre.getRecharger()) {
             try {
                 BddProbleme.load(BDDUtilisateur.getNomUtilisateur(), BDDUtilisateur.getImage());
@@ -95,6 +89,7 @@ public class FenetreListener implements ActionListener, ComponentListener {
                 Main.fenetrePrincipale.repaint();
             } catch (IOException ex) {
             }
+            
         } //si l'utilisateur veut mettre la fenêtre en taille minimale
         else if (e.getSource() == this.fenetre.getPetitEcran()) {
             //on applique le changement
@@ -107,6 +102,10 @@ public class FenetreListener implements ActionListener, ComponentListener {
             this.fenetre.setExtendedState(Fenetre.MAXIMIZED_BOTH);
         } else if (e.getSource() == this.fenetre.getAffResHtml()) {
             //ouvrir la page html
+        }
+        else if(e.getSource() == this.fenetre.getPreferences()) {
+            Preferences p=new Preferences();
+            p.setVisible(true);
         }
     }
 

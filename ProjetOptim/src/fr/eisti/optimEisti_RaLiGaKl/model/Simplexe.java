@@ -5,7 +5,6 @@ package fr.eisti.optimEisti_RaLiGaKl.model;
 
 import fr.eisti.optimEisti_RaLiGaKl.view.problemes.PanelResultat;
 import java.util.ArrayList;
-import java.util.List;
 
 /**
  * Classe qui permet de générer la solution à un problème d'optimisation mathématique
