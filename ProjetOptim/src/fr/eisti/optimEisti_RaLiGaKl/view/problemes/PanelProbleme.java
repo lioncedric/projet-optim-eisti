@@ -325,7 +325,7 @@ public class PanelProbleme extends JPanel {
 
         titreOK = !(this.getJtfTitre().getText().equals(""));
         descriptionOK = !(this.getTextfield().getText().equals(""));
-        ligneRempli = this.getPanTableau().ligneRempli();
+        ligneRempli = this.getPanTableau().ligneRempli() && this.getPanTableau().getTable().getRowCount() != 0;
 
         for (int i = 0; i < this.getSlide().getValue(); i++) {
             JTextField jtf = (JTextField) (this.getPanDonnees().getComponent(3 * i + 1));
