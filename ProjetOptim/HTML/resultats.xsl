@@ -10,7 +10,7 @@
                 <script type="text/javascript" src="./html/script.js"></script>
                 <title>Résultats de vos problèmes</title>
             </head>
-            <body>
+            <body onload="init()">
                 <div id="blocTitre">
                 </div>
 
