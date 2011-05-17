@@ -165,6 +165,21 @@
 <variable coeff="0.0"/>
 </resultat>
 </probleme>
+
+
+<probleme>
+<titre>Mon probleme45</titre>
+<description>Entrer votre description du problème</description>
+<objectif type="Maximiser">
+<variable coeff="4.0"/>
+<variable coeff="5.0"/>
+</objectif>
+<contrainte type="Infériorité">
+<variable coeff="2.0"/>
+<variable coeff="4.0"/>
+<constante valeur="8.0"/>
+</contrainte>
+</probleme>
 <probleme>
 <titre>big probleme</titre>
 <description>enorme</description>
@@ -190,23 +205,6 @@
 <resultat valeur="12000.0">
 <variable coeff="40.0"/>
 <variable coeff="20.0"/>
-<variable coeff="12000.0"/>
-<variable coeff="40.0"/>
-<variable coeff="20.0"/>
 </resultat>
-</probleme>
-
-<probleme>
-<titre>Mon probleme45</titre>
-<description>Entrer votre description du problème</description>
-<objectif type="Maximiser">
-<variable coeff="4.0"/>
-<variable coeff="5.0"/>
-</objectif>
-<contrainte type="Infériorité">
-<variable coeff="2.0"/>
-<variable coeff="4.0"/>
-<constante valeur="8.0"/>
-</contrainte>
 </probleme>
 </listeProblemes>

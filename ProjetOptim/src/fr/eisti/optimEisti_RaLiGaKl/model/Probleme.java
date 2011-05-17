@@ -167,12 +167,7 @@ public class Probleme {
             }
         }
         for (int j = 0; j < listeM.size(); j++) {
-            if (this.objectif.equals("Minimiser")) {
                 matrice[this.contraintes.size()][listeM.get(j)] = -M;
-            } else {
-                //on ajoute les coefficients de la fonction a maximiser
-                matrice[this.contraintes.size()][listeM.get(j)] = M;
-            }
         }
         if (this.objectif.equals("Minimiser")) {
             matrice[this.contraintes.size()][this.coeffVariables.size() + colonnes] = M * coefM[coefM.length - 1];
