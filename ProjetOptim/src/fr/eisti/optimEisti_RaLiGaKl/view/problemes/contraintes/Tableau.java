@@ -158,7 +158,11 @@ public class Tableau extends JPanel{
 
             for (int i = 0; i < contraintes.size(); i++) {
                     for (int j = 0; j < contraintes.get(i).getCoeffVariables().size(); j++) {
+                        try{
                         this.table.setValueAt(contraintes.get(i).getCoeffVariables().get(j), i, j);
+                        }
+                        catch(ArrayIndexOutOfBoundsException e){//vitesse slider excessive
+                        }
                     }
                     if (contraintes.get(i).getInegalite().equals("Infériorité")) {
                         this.table.setValueAt("<=", i, this.table.getColumnCount() - 3);
