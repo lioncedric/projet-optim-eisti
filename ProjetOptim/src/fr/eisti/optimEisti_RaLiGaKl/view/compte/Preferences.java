@@ -4,14 +4,15 @@
  */
 package fr.eisti.optimEisti_RaLiGaKl.view.compte;
 
+import fr.eisti.optimEisti_RaLiGaKl.Main;
 import fr.eisti.optimEisti_RaLiGaKl.controler.compte.PreferencesListener;
 import java.awt.BorderLayout;
-import java.awt.Graphics;
+import java.awt.Color;
 import java.awt.GridLayout;
-import javax.swing.JButton;
 import javax.swing.JDialog;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JTextField;
 
 /**
  *
@@ -30,24 +31,12 @@ public class Preferences extends JDialog {
     private JLabel couleurFondSelectionPanelProblemes;
     private JLabel couleurTexteSelectionPanelProblemes;
     private JLabel fondPanelBoutons;
-    private JLabel couleurTextePanelBoutons;
     private JLabel fondFenetre1;
     private JLabel fondFenetre2;
     private JLabel couleurTexteFenetre;
-    private JLabel opaciteComposantsFenetre;
-    private JButton b1;
-    private JButton b2;
-    private JButton b3;
-    private JButton b4;
-    private JButton b5;
-    private JButton b6;
-    private JButton b7;
-    private JButton b8;
-    private JButton b9;
-    private JButton b10;
-    private JButton b11;
-    private JButton b12;
-    private JButton b13;
+    private JLabel couleurComposantsTransparents;
+    
+    private JTextField[] tab;
 
     /**
      * Constructeur permettant de créer le jdialog
@@ -57,6 +46,7 @@ public class Preferences extends JDialog {
         initialiserVariables();
         ajoutListeners();
         traitement();
+        attribuerCouleurs();
     }
 
     /**
@@ -76,8 +66,8 @@ public class Preferences extends JDialog {
         this.gauche = new JPanel();
         this.droite = new JPanel();
         this.tout.setLayout(new BorderLayout());
-        this.gauche.setLayout(new GridLayout(13, 1));
-        this.droite.setLayout(new GridLayout(13, 1));
+        this.gauche.setLayout(new GridLayout(12, 1));
+        this.droite.setLayout(new GridLayout(12, 1));
 
         this.fondPanelProfil = new JLabel("Couleur de fond du bloc 'Profil'");
         this.couleurTextePanelProfil = new JLabel("Couleur de texte du bloc 'Profil'");
@@ -89,89 +79,86 @@ public class Preferences extends JDialog {
         this.couleurTexteSelectionPanelProblemes = new JLabel("Couleur du texte lors de la sélection d'un problème");
 
         this.fondPanelBoutons = new JLabel("Couleur de fond du bloc 'Actions'");
-        this.couleurTextePanelBoutons = new JLabel("Couleur de texte du bloc 'Actions'");
 
         this.fondFenetre1 = new JLabel("Couleur de dégradé 1 de la fenêtre principale");
         this.fondFenetre2 = new JLabel("Couleur de dégradé 2 de la fenêtre principale");
         this.couleurTexteFenetre = new JLabel("Couleur de texte de la fenêtre principale");
-        this.opaciteComposantsFenetre = new JLabel("Opacité des composants de la fenêtre principale");
+        this.couleurComposantsTransparents = new JLabel("Couleur des composants en transparent");
 
 
-        this.b1 = new JButton(".");
-        this.b2 = new JButton(".");
-        this.b3 = new JButton(".");
-        this.b4 = new JButton(".");
-        this.b5 = new JButton(".");
-        this.b6 = new JButton(".");
-        this.b7 = new JButton(".");
-        this.b8 = new JButton(".");
-        this.b9 = new JButton(".");
-        this.b10 = new JButton(".");
-        this.b11 = new JButton(".");
-        this.b12 = new JButton(".");
-        this.b13 = new JButton(".");
+        tab=new JTextField[13];
+        for(int i=0;i<13;i++){
+            tab[i]=new JTextField(5);
+            tab[i].addMouseListener(new PreferencesListener(this));
+            tab[i].setEditable(false);
+        }
+       
+    }
+    
+    public void attribuerCouleurs(){
+        tab[0].setBackground(Main.fenetrePrincipale.getPanProfil().getCouleurFond());
+        tab[1].setBackground(Main.fenetrePrincipale.getPanProfil().getCouleurTexte());
+        tab[2].setBackground(Main.fenetrePrincipale.getGauche().getCouleur1());
+        tab[3].setBackground(Main.fenetrePrincipale.getGauche().getCouleur2());
+        tab[4].setBackground(Main.fenetrePrincipale.getGauche().getListePR().getCouleurTexte());
+        tab[5].setBackground(Main.fenetrePrincipale.getGauche().getListePR().getCouleurFondSelection());
+        tab[6].setBackground(Main.fenetrePrincipale.getGauche().getListePR().getCouleurTexteSelection());
+        tab[7].setBackground(Main.fenetrePrincipale.getGauche().getCouleurFondPanelBoutons());
+        tab[8].setBackground(Main.fenetrePrincipale.getCouleur1());
+        tab[9].setBackground(Main.fenetrePrincipale.getCouleur2());
+        tab[10].setBackground(Main.fenetrePrincipale.getCouleurTexte());
+        tab[11].setBackground(Main.fenetrePrincipale.getCouleurComposantsTransparents());
     }
 
     public void ajoutListeners(){
-        this.b1.addActionListener(new PreferencesListener(this));
-        this.b2.addActionListener(new PreferencesListener(this));
-        this.b3.addActionListener(new PreferencesListener(this));
-        this.b4.addActionListener(new PreferencesListener(this));
-        this.b5.addActionListener(new PreferencesListener(this));
-        this.b6.addActionListener(new PreferencesListener(this));
-        this.b7.addActionListener(new PreferencesListener(this));
-        this.b8.addActionListener(new PreferencesListener(this));
-        this.b9.addActionListener(new PreferencesListener(this));
-        this.b10.addActionListener(new PreferencesListener(this));
-        this.b11.addActionListener(new PreferencesListener(this));
-        this.b12.addActionListener(new PreferencesListener(this));
-        this.b13.addActionListener(new PreferencesListener(this));
     }
     /**
      * Ajoute le panel sur la fenêtre
      */
     public void traitement() {
         this.gauche.add(fondPanelProfil);
-        this.droite.add(b1);
+        this.droite.add(tab[0]);
 
         this.gauche.add(couleurTextePanelProfil);
-        this.droite.add(b2);
+        this.droite.add(tab[1]);
 
         this.gauche.add(fondPanelProblemes1);
-        this.droite.add(b3);
+        this.droite.add(tab[2]);
 
         this.gauche.add(fondPanelProblemes2);
-        this.droite.add(b4);
+        this.droite.add(tab[3]);
 
         this.gauche.add(couleurTextePanelProblemes);
-        this.droite.add(b5);
+        this.droite.add(tab[4]);
 
         this.gauche.add(couleurFondSelectionPanelProblemes);
-        this.droite.add(b6);
+        this.droite.add(tab[5]);
 
         this.gauche.add(couleurTexteSelectionPanelProblemes);
-        this.droite.add(b7);
+        this.droite.add(tab[6]);
 
         this.gauche.add(fondPanelBoutons);
-        this.droite.add(b8);
-
-        this.gauche.add(couleurTextePanelBoutons);
-        this.droite.add(b9);
+        this.droite.add(tab[7]);
 
         this.gauche.add(fondFenetre1);
-        this.droite.add(b10);
+        this.droite.add(tab[8]);
 
         this.gauche.add(fondFenetre2);
-        this.droite.add(b11);
+        this.droite.add(tab[9]);
 
         this.gauche.add(couleurTexteFenetre);
-        this.droite.add(b12);
+        this.droite.add(tab[10]);
 
-        this.gauche.add(opaciteComposantsFenetre);
-        this.droite.add(b13);
+        this.gauche.add(couleurComposantsTransparents);
+        this.droite.add(tab[11]);
 
         this.tout.add(this.gauche,BorderLayout.CENTER);
         this.tout.add(this.droite,BorderLayout.EAST);
         this.setContentPane(tout);
     }
+
+    public JTextField[] getTab() {
+        return tab;
+    }
+    
 }

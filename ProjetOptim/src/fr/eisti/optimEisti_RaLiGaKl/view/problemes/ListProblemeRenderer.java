@@ -26,18 +26,6 @@ public class ListProblemeRenderer extends JLabel implements ListCellRenderer {
         this.couleurTexteSelection=Color.BLACK;
     }
     
-    public void changerCouleurTexte(Color c){
-        this.couleurTexte=c;
-    }
-    
-    public void changerCouleurFondSelection(Color c){
-        this.couleurFondSelection=c;
-    }
-
-    public void changerCouleurTexteSelection(Color c){
-        this.couleurTexteSelection=c;
-    }
-    
     @Override
     public Component getListCellRendererComponent(JList list, Object value, int index, boolean isSelected, boolean cellHasFocus) {
         Probleme p = (Probleme) value;
@@ -68,5 +56,29 @@ public class ListProblemeRenderer extends JLabel implements ListCellRenderer {
         setForeground(foreground);
 
         return this;
+    }
+    
+    public void changerCouleurTexte(Color c){
+        this.couleurTexte=c;
+    }
+    
+    public void changerCouleurFondSelection(Color c){
+        this.couleurFondSelection=c;
+    }
+
+    public void changerCouleurTexteSelection(Color c){
+        this.couleurTexteSelection=c;
+    }
+
+    public Color getCouleurFondSelection() {
+        return couleurFondSelection;
+    }
+
+    public Color getCouleurTexte() {
+        return couleurTexte;
+    }
+
+    public Color getCouleurTexteSelection() {
+        return couleurTexteSelection;
     }
 }

@@ -54,6 +54,14 @@ public class Fenetre extends JFrame {
     private JTabbedPane droite;
     private PanelProfil panProfil;
     private JPanel panGauche;
+    //Les couleurs pour le dégradé du panel de droite(que l'on ne peut pas mettre 
+    //dans le panel de droite puisqu'il n'est pas récupérable depuis la classe Fenetre)
+    private Color couleur1;
+    private Color couleur2;
+    private Color couleurTexte;
+    private Color couleurFondComposants;
+    private Color couleurComposantsTransparents;
+    private int coeffTransparence;
 
     /**
      * Constructeur
@@ -93,6 +101,13 @@ public class Fenetre extends JFrame {
         splitPane.setContinuousLayout(true);
         splitPane.setBackground(Color.lightGray);
         setContentPane(splitPane);
+
+
+        this.couleur1 = Color.WHITE;
+        this.couleur2 = new Color(209, 238, 238);
+        this.couleurComposantsTransparents = Color.red;
+        this.coeffTransparence = 50;
+        this.couleurTexte = Color.BLACK;
     }
 
     public void appliquerChangementSplitPane() {
@@ -281,5 +296,63 @@ public class Fenetre extends JFrame {
 
     public JMenuItem getPreferences() {
         return preferences;
+    }
+
+    public Color getCouleur1() {
+        return couleur1;
+    }
+
+    public Color getCouleur2() {
+        return couleur2;
+    }
+
+    public void setCouleur1(Color couleur1) {
+        this.couleur1 = couleur1;
+    }
+
+    public void setCouleur2(Color couleur2) {
+        this.couleur2 = couleur2;
+    }
+
+    public void setCouleurFondComposants(Color couleurFondComposants) {
+        this.couleurFondComposants = couleurFondComposants;
+    }
+
+    public void setCouleurTexte(Color couleurTexte) {
+        this.couleurTexte = couleurTexte;
+        int i = 0;
+        while (i < this.droite.getComponents().length) {
+            if (this.droite.getComponents()[i] instanceof PanelProbleme) {
+                ((PanelProbleme) this.droite.getComponents()[i]).mettreCouleurTexte(couleurTexte);
+            }
+            i++;
+        }
+    }
+
+    public Color getCouleurFondComposants() {
+        return couleurFondComposants;
+    }
+
+    public Color getCouleurTexte() {
+        return couleurTexte;
+    }
+
+    public void setCouleurComposantsTransparents(Color couleurComposantsTransparents) {
+        this.couleurComposantsTransparents = couleurComposantsTransparents;
+        int i = 0;
+        while (i < this.droite.getComponents().length) {
+            if (this.droite.getComponents()[i] instanceof PanelProbleme) {
+                ((PanelProbleme) this.droite.getComponents()[i]).changerFondComposants(couleurComposantsTransparents);
+            }
+            i++;
+        }
+    }
+
+    public Color getCouleurComposantsTransparents() {
+        return couleurComposantsTransparents;
+    }
+
+    public int getCoeffTransparence() {
+        return coeffTransparence;
     }
 }

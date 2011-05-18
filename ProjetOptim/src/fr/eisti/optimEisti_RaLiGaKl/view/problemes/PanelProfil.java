@@ -32,6 +32,8 @@ public class PanelProfil extends JPanel {
     private JPanel panBouton;           //declaratin du panel contenant le seul bouton
     private JButton boutonProfil;       //declaration du bouton permettant de modifier son profil
     private Image avatar;               //declaration d'une image
+    private Color couleurFond;
+    private Color couleurTexte;
 
     /**
      * Constructeur permettant de créer le panel profil de l'utilisateur
@@ -40,7 +42,8 @@ public class PanelProfil extends JPanel {
         initialiserVariables();
         ajoutImageFond();
         traitement();
-        mettreCouleur(Color.WHITE);
+        mettreCouleurFond(this.couleurFond);
+        mettreCouleurTexte(this.couleurTexte);
     }
 
     /**
@@ -54,6 +57,8 @@ public class PanelProfil extends JPanel {
         this.nbProblemes = new JLabel(String.valueOf(BddProbleme.nombreProblemes()) + " probleme(s)", JLabel.CENTER);
         this.panBouton = new JPanel();
         this.boutonProfil = new JButton("Gérer mon profil");
+        this.couleurFond=Color.WHITE;
+        this.couleurTexte=Color.BLACK;
     }
 
     /**
@@ -84,7 +89,7 @@ public class PanelProfil extends JPanel {
         }
         this.panDroite.setLayout(new GridLayout(2, 1));
         this.panBouton.add(this.boutonProfil);
-        this.panDroite.add(PanelProfil.nomUtilisateur);
+        this.panDroite.add(nomUtilisateur);
         this.panDroite.add(this.nbProblemes);
         this.panHaut.add(PanelProfil.panImage, BorderLayout.WEST);
         this.panHaut.add(this.panDroite, BorderLayout.CENTER);
@@ -113,13 +118,19 @@ public class PanelProfil extends JPanel {
      * Procédure permetant de mettre le fond du panel en couleur
      * @param couleur : la couleur que l'on veut mettre en fond
      */
-    public void mettreCouleur(Color couleur) {
+    public void mettreCouleurFond(Color couleur) {
+        this.couleurFond=couleur;
         this.panBouton.setOpaque(false);
         this.panDroite.setOpaque(false);
         this.panHaut.setOpaque(false);
-        this.setBackground(couleur);
+        this.setBackground(this.couleurFond);
     }
 
+    public void mettreCouleurTexte(Color couleur){
+        this.couleurTexte=couleur;
+        this.nomUtilisateur.setForeground(this.couleurTexte);
+        this.nbProblemes.setForeground(this.couleurTexte);
+    }
     /**
      * Procédure qui met à jour le nombre de problèmes d'un utilisateur
      */
@@ -154,4 +165,13 @@ public class PanelProfil extends JPanel {
     public void setNbProblemes(JLabel nbProblemes) {
         this.nbProblemes = nbProblemes;
     }
+
+    public Color getCouleurFond() {
+        return couleurFond;
+    }
+
+    public Color getCouleurTexte() {
+        return couleurTexte;
+    }
+    
 }

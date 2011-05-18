@@ -43,7 +43,6 @@ public final class PanelProblemesUtilisateur extends JPanel {
     private Color couleur1;                     //declaration de la couleur de fond degrade 1
     private Color couleur2;                     //declaration de la couleur de fond degrade 2
     private final Color couleurFondListe;       //declaration de la couleur de fond de la liste
-    private Color couleurTexteBoutons;          //declaration de la couleur de texte
     private Color couleurFondPanelBoutons;      //declaration de la couleur de fond du panel bas des boutons
 
     /**
@@ -77,6 +76,8 @@ public final class PanelProblemesUtilisateur extends JPanel {
         this.jMenuItemOuvrir = new JMenuItem("Ouvrir");
         this.jMenuItemExporter = new JMenuItem("Exporter");
         this.jMenuItemSuppr = new JMenuItem("Supprimer");
+        
+        this.couleurFondPanelBoutons=Color.WHITE;
         
     }
 
@@ -127,23 +128,22 @@ public final class PanelProblemesUtilisateur extends JPanel {
     public void mettreCouleur() {
         this.panCentre.setOpaque(false);
         this.listScrollPane.setOpaque(false);
-        this.panBoutons.setBackground(Color.WHITE);
         this.list.setBackground(this.couleurFondListe);
+        this.panBoutons.setBackground(this.couleurFondPanelBoutons);
         this.couleur1 = Color.WHITE;
         this.couleur2 = new Color(20, 145, 238);
     }
 
-    public void changerCouleurDegrade(Color c1, Color c2) {
+    public void changerCouleurDegrade1(Color c1) {
         this.couleur1 = c1;
+    }
+    public void changerCouleurDegrade2(Color c2) {
         this.couleur2 = c2;
     }
 
-    public void changerCouleurFondPanelBoutons(Color c) {
-        this.couleurFondPanelBoutons = c;
-    }
-
-    public void changerCouleurTexteBoutons(Color c) {
-        this.couleurTexteBoutons = c;
+    public void changerCouleurFondPanelBoutons(Color couleur) {
+        this.couleurFondPanelBoutons=couleur;
+        this.panBoutons.setBackground(this.couleurFondPanelBoutons);
     }
 
     @Override
@@ -211,4 +211,25 @@ public final class PanelProblemesUtilisateur extends JPanel {
     public ListProblemeRenderer getListePR() {
         return listePR;
     }
+
+    public Color getCouleur1() {
+        return couleur1;
+    }
+
+    public Color getCouleur2() {
+        return couleur2;
+    }
+
+    public Color getCouleurFondListe() {
+        return couleurFondListe;
+    }
+
+    public Color getCouleurFondPanelBoutons() {
+        return couleurFondPanelBoutons;
+    }
+
+    public JPanel getPanBoutons() {
+        return panBoutons;
+    }
+    
 }

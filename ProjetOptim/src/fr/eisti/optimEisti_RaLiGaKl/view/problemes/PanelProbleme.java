@@ -7,12 +7,7 @@ package fr.eisti.optimEisti_RaLiGaKl.view.problemes;
 import fr.eisti.optimEisti_RaLiGaKl.view.problemes.contraintes.Tableau;
 import java.awt.FlowLayout;
 import java.awt.Graphics;
-import java.awt.Image;
-import java.io.File;
-import java.io.IOException;
-import javax.imageio.ImageIO;
 import javax.swing.ButtonGroup;
-import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -70,12 +65,6 @@ public class PanelProbleme extends JPanel {
     private PanelProblemesUtilisateur liste;
     // private ArrayList<Contrainte> contraintes;
     private PanelProblemeListener fsl;
-    //Les couleurs pour le dégradé
-    private Color couleur1;
-    private Color couleur2;
-    private Color couleurTexte;
-    private Color couleurFondComposants;
-    private int coeffTransparence;
 
     public PanelProbleme() {
         super();
@@ -84,9 +73,8 @@ public class PanelProbleme extends JPanel {
         probleme.setNumero(-100);
         initialiserVariables();
         traitementPanel();
-        mettreCouleurFond(Color.white, new Color(209, 238, 238));
         mettreCouleurTexte(Color.BLACK);
-        mettreFondComposants(Color.RED);
+        mettreFondComposants(Color.GRAY);
         slide.addChangeListener(fsl);
         slide.addChangeListener(new SaveListener());
     }
@@ -98,7 +86,6 @@ public class PanelProbleme extends JPanel {
         initialiserVariables();
         traitementPanel();
         remplissage();
-        mettreCouleurFond(Color.white, new Color(209, 238, 238));
         mettreCouleurTexte(Color.BLACK);
         mettreFondComposants(Color.RED);
         slide.addChangeListener(fsl);
@@ -139,43 +126,38 @@ public class PanelProbleme extends JPanel {
 
     }
 
-    public void mettreCouleurFond(Color c1, Color c2) {
-        this.couleur1 = c1;
-        this.couleur2 = c2;
-    }
-
     public void mettreCouleurTexte(Color couleur) {
-        this.couleurTexte = couleur;
         //cela modifie automatiquement toutes les coleur du panel
-        titre.setForeground(couleurTexte);
-        description.setForeground(couleurTexte);
-        variables.setForeground(couleurTexte);
-        objectif.setForeground(couleurTexte);
-        donnees.setForeground(couleurTexte);
-        contraintes.setForeground(couleurTexte);
-        ajouter.setForeground(couleurTexte);
+        titre.setForeground(Main.fenetrePrincipale.getCouleurTexte());
+        description.setForeground(Main.fenetrePrincipale.getCouleurTexte());
+        variables.setForeground(Main.fenetrePrincipale.getCouleurTexte());
+        objectif.setForeground(Main.fenetrePrincipale.getCouleurTexte());
+        donnees.setForeground(Main.fenetrePrincipale.getCouleurTexte());
+        contraintes.setForeground(Main.fenetrePrincipale.getCouleurTexte());
+        maximiser.setForeground(Main.fenetrePrincipale.getCouleurTexte());
+        minimiser.setForeground(Main.fenetrePrincipale.getCouleurTexte());
     }
 
     public void mettreFondComposants(Color couleurFond) {
-        this.couleurFondComposants = couleurFond;
+        Main.fenetrePrincipale.setCouleurFondComposants(couleurFond);
         //ces composants doivent toujpours rester avec un fond transparent
         slide.setBackground(new Color(couleurFond.getRed(), couleurFond.getGreen(), couleurFond.getBlue(), 0));
         maximiser.setBackground(new Color(couleurFond.getRed(), couleurFond.getGreen(), couleurFond.getBlue(), 0));
         minimiser.setBackground(new Color(couleurFond.getRed(), couleurFond.getGreen(), couleurFond.getBlue(), 0));
         panDonnees.setBackground(new Color(couleurFond.getRed(), couleurFond.getGreen(), couleurFond.getBlue(), 0));
+        
         //par defaut
-        this.coeffTransparence = 50;
-        jtfTitre.setBackground(new Color(couleurFond.getRed(), couleurFond.getGreen(), couleurFond.getBlue(), coeffTransparence));
-        textfield.setBackground(new Color(couleurFond.getRed(), couleurFond.getGreen(), couleurFond.getBlue(), coeffTransparence));
-        ajouter.setBackground(new Color(couleurFond.getRed(), couleurFond.getGreen(), couleurFond.getBlue(), coeffTransparence));
+        this.jtfTitre.setBackground(new Color(couleurFond.getRed(),couleurFond.getGreen(),couleurFond.getBlue()));
+        jtfTitre.setBackground(new Color(couleurFond.getRed(), couleurFond.getGreen(), couleurFond.getBlue(), Main.fenetrePrincipale.getCoeffTransparence()));
+        textfield.setBackground(new Color(couleurFond.getRed(), couleurFond.getGreen(), couleurFond.getBlue(), Main.fenetrePrincipale.getCoeffTransparence()));
+        ajouter.setBackground(new Color(couleurFond.getRed(), couleurFond.getGreen(), couleurFond.getBlue(), Main.fenetrePrincipale.getCoeffTransparence()));
     }
 
-    public void changerFondComposants(Color couleurFond, int coeffTranspa) {
-        this.couleurFondComposants = couleurFond;
-        this.coeffTransparence = coeffTranspa;
-        jtfTitre.setBackground(new Color(couleurFond.getRed(), couleurFond.getGreen(), couleurFond.getBlue(), coeffTransparence));
-        textfield.setBackground(new Color(couleurFond.getRed(), couleurFond.getGreen(), couleurFond.getBlue(), coeffTransparence));
-        ajouter.setBackground(new Color(couleurFond.getRed(), couleurFond.getGreen(), couleurFond.getBlue(), coeffTransparence));
+    public void changerFondComposants(Color couleurFond) {
+        Main.fenetrePrincipale.setCouleurFondComposants(couleurFond);
+        jtfTitre.setBackground(new Color(couleurFond.getRed(), couleurFond.getGreen(), couleurFond.getBlue(), Main.fenetrePrincipale.getCoeffTransparence()));
+        textfield.setBackground(new Color(couleurFond.getRed(), couleurFond.getGreen(), couleurFond.getBlue(), Main.fenetrePrincipale.getCoeffTransparence()));
+        ajouter.setBackground(new Color(couleurFond.getRed(), couleurFond.getGreen(), couleurFond.getBlue(), Main.fenetrePrincipale.getCoeffTransparence()));
     }
 
     private void traitementPanel() {
@@ -218,7 +200,7 @@ public class PanelProbleme extends JPanel {
     public void paintComponent(Graphics g) {
         super.paintComponent(g);
         Graphics2D g2d = (Graphics2D) g;
-        g2d.setPaint(new GradientPaint(0, 0, couleur1, 0, this.getHeight(), couleur2, true));
+        g2d.setPaint(new GradientPaint(0, 0,  Main.fenetrePrincipale.getCouleur1(), 0, this.getHeight(),  Main.fenetrePrincipale.getCouleur2(), true));
         g2d.fillRect(0, 0, this.getWidth(), this.getHeight());
         titre.setBounds(this.getWidth() * 10 / 100, hauteur * this.getHeight() / 700 + this.getHeight() * 6 / 100, this.getWidth() * 30 / 100, this.getHeight() * 6 / 100);
         jtfTitre.setBounds(this.getWidth() * 42 / 100, hauteur * this.getHeight() / 700 + this.getHeight() * 6 / 100, this.getWidth() * 30 / 100, this.getHeight() * 6 / 100);
@@ -310,8 +292,8 @@ public class PanelProbleme extends JPanel {
         panTableau.setBorder(BorderFactory.createBevelBorder(BevelBorder.RAISED));
         this.add(ajouter);
         ajouter.setBorder(BorderFactory.createBevelBorder(BevelBorder.RAISED));
-        ajouter.setBackground(new Color(0, 0, 0, this.coeffTransparence));
-        ajouter.setForeground(this.couleurTexte);
+        ajouter.setBackground(new Color(0, 0, 0, Main.fenetrePrincipale.getCoeffTransparence()));
+        ajouter.setForeground(Main.fenetrePrincipale.getCouleurTexte());
     }
 
     /**
@@ -460,4 +442,6 @@ public class PanelProbleme extends JPanel {
     public void setHauteur(int hauteur) {
         this.hauteur = hauteur;
     }
+
+
 }
