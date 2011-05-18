@@ -160,21 +160,16 @@ public class Probleme {
         //pour chaque colonne de la derniere ligne
         for (int j = 0; j < this.coeffVariables.size(); j++) {
             if (this.objectif.equals("Minimiser")) {
-                matrice[this.contraintes.size()][j] = -(this.coeffVariables.get(j) - M * coefM[j]);
+                matrice[this.contraintes.size()][j] = -this.coeffVariables.get(j) + M * coefM[j];
             } else {
                 //on ajoute les coefficients de la fonction a maximiser
-                matrice[this.contraintes.size()][j] = this.coeffVariables.get(j) - M * coefM[j];
+                matrice[this.contraintes.size()][j] = this.coeffVariables.get(j) + M * coefM[j];
             }
         }
         for (int j = 0; j < listeM.size(); j++) {
-                matrice[this.contraintes.size()][listeM.get(j)] = -M;
+            matrice[this.contraintes.size()][listeM.get(j)] = -M;
         }
-        if (this.objectif.equals("Minimiser")) {
-            matrice[this.contraintes.size()][this.coeffVariables.size() + colonnes] = M * coefM[coefM.length - 1];
-        } else {
-            //on ajoute les coefficients de la fonction a maximiser
-            matrice[this.contraintes.size()][this.coeffVariables.size() + colonnes] = -M * coefM[coefM.length - 1];
-        }
+        matrice[this.contraintes.size()][this.coeffVariables.size() + colonnes] = M * coefM[coefM.length - 1];
         afficherMatrice(matrice);
         //on rempli la matrice avec les différentes données du problème à résoudre (variables, contraintes)
         // afficherMatrice(matrice);
