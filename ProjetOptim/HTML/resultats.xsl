@@ -55,7 +55,7 @@
                     <!-- affichage du résultat cliqué et des résultats -->
                     <div class="blocResultats">
                         <div id="image">
-                          <img src="./html/pageBienvenue.png" id="imageBienvenue" alt="Bienvenue sur le site OptimEisti"/>
+                          <img src="./html/pageBienvenue.png" id="imageBienvenue" alt="Bienvenue sur le site OptimEisti" height="580px" width="810px"/>
                         </div>
                         
                         <xsl:for-each select="listeProblemes/probleme">

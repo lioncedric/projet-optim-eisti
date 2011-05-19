@@ -56,7 +56,7 @@ public class CreerCompteListener implements MouseListener {
         } //si on n'a pas sélectionné d'image
         else if(this.maFenetre.getPanFond().getJtfAvatar().getText().equals("")){
             //opération sur le dom
-            BDDUtilisateur.ajouterUtilisateur(this.maFenetre.getPanFond().getJtfNomUtilisateur().getText(), this.maFenetre.getPanFond().getJtfMdp().getText(), "images\\mickey.png");
+            BDDUtilisateur.ajouterUtilisateur(this.maFenetre.getPanFond().getJtfNomUtilisateur().getText(), this.maFenetre.getPanFond().getJtfMdp().getText(), new File("images\\mickey.png").getAbsolutePath());
             //on ouvre un dialogue
             JOptionPane.showMessageDialog(null, "Création réussie!", "Information", JOptionPane.INFORMATION_MESSAGE);
             //on ferme cette fenetre
