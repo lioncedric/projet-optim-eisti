@@ -143,12 +143,14 @@ public class Utilitaire {
 
     }
 
-    public static void html() throws Exception {
+    public static boolean html() throws Exception {
+        boolean retourne=false;//booleen pour savoir si il a été crée ou pas
         JFileChooser fc = new JFileChooser();
         fc.addChoosableFileFilter(new FiltreSimple("Fichier HTML", ".html"));
         fc.setAcceptAllFileFilterUsed(false);
         int returnVal = fc.showSaveDialog(null);
         if (returnVal == JFileChooser.APPROVE_OPTION) {
+            retourne=true;
             String nom = fc.getSelectedFile().getAbsolutePath();
             String nom2 = new File(nom).getParent();
             if (!nom.endsWith(".html")) {
@@ -164,6 +166,7 @@ public class Utilitaire {
             Utilitaire.copie("HTML/BaniereFinal.png", nom2 + "/html/BaniereFinal.png");
             Utilitaire.copie("HTML/pageBienvenue.png", nom2 + "/html/pageBienvenue.png");
         }
+        return retourne;
     }
 }
 

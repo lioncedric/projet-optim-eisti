@@ -123,10 +123,15 @@ public class PanelProblemesUtilisateurListener implements ActionListener, MouseL
             }
         } else if (e.getSource() == this.ppu.getBoutonHtml()) {
             try {
-                //fonction qui crée la page html
-                Utilitaire.html();
-                //on ouvre un dialogue
-                JOptionPane.showMessageDialog(null, "Création réussie!", "Information", JOptionPane.INFORMATION_MESSAGE);
+               //Si la création du html a réussit
+                if(Utilitaire.html()){
+                     //on ouvre un dialogue
+                    JOptionPane.showMessageDialog(null, "Création réussie!", "Information", JOptionPane.INFORMATION_MESSAGE);
+                }
+                else{
+                    //on ouvre un dialogue
+                    JOptionPane.showMessageDialog(null, "Création annulée! ", "Erreur", JOptionPane.ERROR_MESSAGE);
+                }
             } catch (Exception ex) {
                 Logger.getLogger(FenetreListener.class.getName()).log(Level.SEVERE, null, ex);
                  //on ouvre un dialogue

@@ -59,6 +59,7 @@ public class CreerCompteListener implements MouseListener {
             BDDUtilisateur.ajouterUtilisateur(this.maFenetre.getPanFond().getJtfNomUtilisateur().getText(), this.maFenetre.getPanFond().getJtfMdp().getText(), "images\\mickey.png");
             //on ouvre un dialogue
             JOptionPane.showMessageDialog(null, "Création réussie!", "Information", JOptionPane.INFORMATION_MESSAGE);
+            //on ferme cette fenetre
             this.maFenetre.dispose();
         }
         else if (!bonFormatImage()) {

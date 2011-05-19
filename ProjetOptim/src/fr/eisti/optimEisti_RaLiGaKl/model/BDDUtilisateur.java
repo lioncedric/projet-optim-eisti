@@ -62,6 +62,7 @@ public class BDDUtilisateur {
      *  @param imageSrc image le representant
      */
     public static void modifierUtilisateur(String login, String mdp, String imageSrc) {
+        //Déclaration et initialisation des variables
         int i = 0;
         boolean trouve = false;
         String NomUtilisateurTmp = "";
@@ -79,16 +80,13 @@ public class BDDUtilisateur {
             //ainsi que le mot de passe
             pass = liste.item(i).getAttributes().getNamedItem("password").getNodeValue();
             //si il sont égaux au nom d'utilisateur et mot de passe en paramètre alors
-            System.out.println("Courou1");
             if (NomUtilisateurTmp.equals(NomUtilisateur) && pass.equals(motDePasse)) {
                 trouve = true;
-                System.out.println("Courou2");
                 liste.item(i).getAttributes().getNamedItem("imagesrc").setNodeValue(imageSrc);
 
                 liste.item(i).getAttributes().getNamedItem("password").setNodeValue(mdp);
-                System.out.println(liste.item(i).getAttributes().getNamedItem("password").getNodeValue());
+
                 liste.item(i).getAttributes().getNamedItem("login").setNodeValue(login);
-                System.out.println(liste.item(i).getAttributes().getNamedItem("login").getNodeValue());
                 //permet de transformer le dom en xml
                 Utilitaire.transformerXml(document, chFichierIdentification);
                 File fichier = new File("bdd/" + NomUtilisateur + ".xml");
@@ -188,22 +186,42 @@ public class BDDUtilisateur {
         return NomUtilisateur;
     }
 
+    /**
+     * modifie le nom d'utilisateur
+     * @param NomUtilisateur
+     */
     public static void setNomUtilisateur(String NomUtilisateur) {
         BDDUtilisateur.NomUtilisateur = NomUtilisateur;
     }
 
+    /**
+     * récupère l'image
+     * @return image
+     */
     public static String getImage() {
         return image;
     }
 
+    /**
+     * modifie l'image
+     * @param image
+     */
     public static void setImage(String image) {
         BDDUtilisateur.image = image;
     }
 
+    /**
+     * récupère le mot de passe
+     * @return motDePasse
+     */
     public static String getMotDePasse() {
         return motDePasse;
     }
 
+    /**
+     * modifie le mot de passe
+     * @param motDePasse
+     */
     public static void setMotDePasse(String motDePasse) {
         BDDUtilisateur.motDePasse = motDePasse;
     }
