@@ -1,9 +1,10 @@
 //fonction qui initialise la page html
 function init(){
     //on récupère le div du titre du bloc de résultats
-    titreBlocProbleme=document.getElementById("titreBlocResultats");
+    titreBlocProbleme=document.getElementsByClassName("titreBlocResultats");
     //on le cache
-    titreBlocProbleme.style.display="none";
+    titreBlocProbleme[0].style.display="none";
+    titreBlocProbleme[1].style.display="none";
     //on récupère tous les elements de classname=lien
     elementsHref=document.getElementsByClassName('lien');
     //on recup tous les elements bloc de probleme res
@@ -32,9 +33,10 @@ function afficheProbleme(obj){
     //On récupère le div de l'image d'accueil
     element=document.getElementById("image");
     //on récupère le div du titre du bloc de résultats
-    titreBlocProbleme=document.getElementById("titreBlocResultats");
+    titreBlocProbleme=document.getElementsByClassName("titreBlocResultats");
     //on l'affiche
-    titreBlocProbleme.style.display="block";
+    titreBlocProbleme[0].style.display="block";
+    titreBlocProbleme[1].style.display="block";
     //on recupere l'id
     numero=obj.getAttribute("id");
     //on recupere tous les blocs res

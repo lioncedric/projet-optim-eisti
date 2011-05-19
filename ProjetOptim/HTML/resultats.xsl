@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="ISO-8859-1"?>
-<!--<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">-->
+
 <xsl:stylesheet version="1.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
     <xsl:template match="/">
-        
+        <!DOCTYPE HTML SYSTEM>
         <html>
             
             <head>
@@ -58,16 +58,16 @@
                                     <xsl:value-of select="titre"/>
                                 </div>
                 <!-- affichage de la description-->
-                                <div id="description">
+                                <div>
                                     <fieldset>
-                                        <legend id="descriptionLegend">Description:</legend>
+                                        <legend>Description:</legend>
                                         <xsl:value-of select="description"/>
                                         <br/>
                                     </fieldset>
                                 </div>
                                 <br/>
                 <!-- affichage de la fonction objective-->
-                                <div id="fctObecjtive">
+                                <div class="fctObecjtive">
                                     <span class="contraintesSpan">Fonction objective: </span>
                                     <xsl:text>    </xsl:text>
                                     <xsl:for-each select="objectif">
@@ -146,7 +146,7 @@
                                 <br/>
                                 <br/>
                  <!-- affichage des contraintes-->
-                                <div id="contraintes">
+                                <div class="contraintes">
                                     <span class="contraintesSpan">avec les contraintes:</span>
                                     <br/>
                                     
@@ -233,7 +233,7 @@
                                 <br/>
                                 <br/>
                  <!-- Affichage des résultats-->
-                                <div id="resultats">
+                                <div class="resultats">
                                     <xsl:for-each select="resultat">
                                         <span id="spanRes">Résultats:</span>
                                         <br/>
