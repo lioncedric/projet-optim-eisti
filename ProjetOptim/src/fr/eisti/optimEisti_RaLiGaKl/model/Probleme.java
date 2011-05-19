@@ -149,6 +149,9 @@ public class Probleme {
                 } else {
                     matrice[i][j + temp] = listeContrainte[i].get(j);
                     decalage++;
+                    if(this.contraintes.get(i).getInegalite().equals("Egalité")){
+                         artifices.add(temp + j);
+                    }
                     if (temp + 2 == decalage) {
                         listeM.add(temp + j - 1);
                         artifices.add(temp + j);
