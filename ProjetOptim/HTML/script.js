@@ -1,6 +1,8 @@
 //fonction qui initialise la page html
 function init(){
+    //on récupère le div du titre du bloc de résultats
     titreBlocProbleme=document.getElementById("titreBlocResultats");
+    //on le cache
     titreBlocProbleme.style.display="none";
     //on récupère tous les elements de classname=lien
     elementsHref=document.getElementsByClassName('lien');
@@ -18,8 +20,11 @@ function init(){
 
 //fonction qui affiche le bloc dont le lien correspond
 function afficheProbleme(obj){
+    //On récupère le div de l'image d'accueil
     element=document.getElementById("image");
+    //on récupère le div du titre du bloc de résultats
     titreBlocProbleme=document.getElementById("titreBlocResultats");
+    //on l'affiche
     titreBlocProbleme.style.display="block";
     //on recupere l'id
     numero=obj.getAttribute("id");
@@ -31,6 +36,7 @@ function afficheProbleme(obj){
         if(elements[i].getAttribute("id")==numero){
             //on affiche son bloc
             elements[i].style.display="block";
+            //on enlève l'image
             element.style.display="none";
         }
         //sinon

@@ -21,7 +21,7 @@
                         Utilisateur
                         </div>
                         <div id="profil">
-                            <img src="{listeProblemes/@url}"/>
+                            <img src="file:///{listeProblemes/@url}" id="imageProfil"/>
                             <span id="span_profil">
                                 <xsl:value-of select="listeProblemes/@utilisateur"/>
                             </span>

@@ -12,7 +12,7 @@ body {
 }
 
 #blocTitre{
-    background-image:url("BaniereFinal.png");
+    background-image:url(BaniereFinal.png);
     background-repeat:no-repeat;
     height: 150px;
     text-align: center;

@@ -1,6 +1,8 @@
 package fr.eisti.optimEisti_RaLiGaKl.model;
 
 import java.io.*;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 
 import org.w3c.dom.*;
@@ -23,23 +25,35 @@ public class BDDUtilisateur {
      * @param mdp
      */
     public static void ajouterUtilisateur(String NomUtilisateur, String mdp, String imageSrc) {
-
-        // Parse an XML document into a DOM tree.
-        Document document;
-        document = Utilitaire.parseXmlDom(new File(chFichierIdentification));
-        //on recupere le noeud racine
-        Element racine = document.getDocumentElement();
-        //On créé un nouveau noeud Personne
-        Element personne = document.createElement("personne");
-        //on modifie ces attributs login et password
-        personne.setAttribute("login", NomUtilisateur);
-        personne.setAttribute("password", mdp);
-        personne.setAttribute("imagesrc", imageSrc);
-        //on ajoute le noeuf fils à la racine
-        racine.appendChild(personne);
-        //permet de transformer le dom en xml
-        Utilitaire.transformerXml(document, chFichierIdentification);
+        try {
+            // Parse an XML document into a DOM tree.
+            Document document;
+            document = Utilitaire.parseXmlDom(new File(chFichierIdentification));
+            //on recupere le noeud racine
+            Element racine = document.getDocumentElement();
+            //On créé un nouveau noeud Personne
+            Element personne = document.createElement("personne");
+            //on modifie ces attributs login et password
+            personne.setAttribute("login", NomUtilisateur);
+            personne.setAttribute("password", mdp);
+            //On copie l'image dans le répertoire images de la racine du projet si elle n'y est pas déjà
+            if(!imageSrc.endsWith("images\\" + new File(imageSrc).getName())){
+                //on copie l'image dans un répertoire du projet pour la réutiliser en html
+                Utilitaire.copie(imageSrc, "images/" + new File(imageSrc).getName());
+            }
+            //on ajoute un attribut avec le src de son avatar
+            personne.setAttribute("imagesrc", imageSrc);
+            //on ajoute le noeuf fils à la racine
+            racine.appendChild(personne);
+            //permet de transformer le dom en xml
+            Utilitaire.transformerXml(document, chFichierIdentification);
+        } catch (FileNotFoundException ex) {
+            Logger.getLogger(BDDUtilisateur.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (IOException ex) {
+            Logger.getLogger(BDDUtilisateur.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
+
 
     /**
      * permet de modifier nom, mot de passe et image d'un utilisateur ainsi que de reattribuer le fichier xml de ses problemes
