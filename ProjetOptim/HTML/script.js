@@ -5,6 +5,8 @@ function init(){
     //on le cache
     titreBlocProbleme[0].style.display="none";
     titreBlocProbleme[1].style.display="none";
+    //On récupère le div de l'image d'accueil
+    document.getElementById('image').style.display='none';
     //on récupère tous les elements de classname=lien
     elementsHref=document.getElementsByClassName('lien');
     //on recup tous les elements bloc de probleme res
@@ -23,6 +25,8 @@ function init(){
 function afficheProbleme(obj){
     //On récupère le div de l'image d'accueil
     element=document.getElementById("image");
+    //on enlève l'image
+    element.style.display="none";
     //on récupère le div du titre du bloc de résultats
     titreBlocProbleme=document.getElementsByClassName("titreBlocResultats");
     //on l'affiche
@@ -38,8 +42,6 @@ function afficheProbleme(obj){
         if(elements[i].getAttribute("id")==numero){
             //on affiche son bloc
             elements[i].style.display="block";
-            //on enlève l'image
-            element.style.display="none";
         }
         //sinon
         else{
