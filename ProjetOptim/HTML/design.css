@@ -1,7 +1,7 @@
 body {
     min-width:640px;
     width: 1024px;
-    background-color: #fffff;
+    background-color: #FFFFFF;
     margin-left: auto;
     margin-right: auto;
 }
@@ -9,6 +9,10 @@ body {
     display:inline-block;
     margin-bottom: 10px;
     margin-right: 2px;
+}
+
+a{
+   color: black;
 }
 
 #blocTitre{
@@ -22,7 +26,7 @@ body {
     -moz-box-shadow: 6px 6px 5px #90A4A1;
     -webkit-box-shadow: 6px 6px 5px #90A4A1;
     -o-box-shadow: 6px 6px 5px #90A4A1;
-    box-shadow: 6px 6px 5px #90A4A1;
+    -moz-box-shadow: 6px 6px 5px #90A4A1;
 }
 
 #conteneur{
@@ -45,11 +49,13 @@ body {
     -moz-box-shadow: 6px 6px 5px #90A4A1;
     -webkit-box-shadow: 6px 6px 5px #90A4A1;
     -o-box-shadow: 6px 6px 5px #90A4A1;
-    box-shadow: 6px 6px 5px #90A4A1;
-    background:-moz-linear-gradient(top, #59ffff 0%, #1988a0 100%);
+    -moz-box-shadow: 6px 6px 5px #90A4A1;
+    -moz-linear-background:gradient(top, #59ffff 0%, #1988a0 100%);
 }
 
 .blocResultats{
+    background-image:url(pageBienvenue.png);
+    background-repeat:no-repeat;
     float: right;
     width: 805px;
     margin-right: -0px;
@@ -59,8 +65,8 @@ body {
     -moz-box-shadow: 6px 6px 5px #90A4A1;
     -webkit-box-shadow: 6px 6px 5px #90A4A1;
     -o-box-shadow: 6px 6px 5px #90A4A1;
-    box-shadow: 6px 6px 5px #90A4A1;
-    background:-moz-linear-gradient(top, #59ffff 0%, #1988a0 100%);
+    -moz-box-shadow: 6px 6px 5px #90A4A1;
+    -moz-linear-background:gradient(top, #59ffff 0%, #1988a0 100%);
 }
 
 
@@ -109,7 +115,7 @@ fieldset{
     text-align: center;
     font-size: 20px;
     color: black;
-    background:-moz-linear-gradient(top, #194da0 0%, #59ffff 100%);
+    -moz-linear-background:gradient(top, #194da0 0%, #59ffff 100%);
 }
 
 #profil{
@@ -123,11 +129,11 @@ fieldset{
     width: 200px;
     -moz-border-radius:5px;
     -webkit-border-radius:5px;
-     background:-moz-linear-gradient(top, #59ffff 0%, #1988a0 100%);
+    -moz-linear-background:gradient(top, #59ffff 0%, #1988a0 100%);
     -moz-box-shadow: 6px 6px 5px #90A4A1;
     -webkit-box-shadow: 6px 6px 5px #90A4A1;
     -o-box-shadow: 6px 6px 5px #90A4A1;
-    box-shadow: 6px 6px 5px #90A4A1;
+    -moz-box-shadow: 6px 6px 5px #90A4A1;
 }
 
 #titreProbleme{
@@ -138,7 +144,7 @@ fieldset{
     text-align: center;
     font-size: 20px;
     color: black;
-    background:-moz-linear-gradient(top, #194da0 0%, #59ffff 100%);
+    -moz-linear-background:gradient(top, #194da0 0%, #59ffff 100%);
 }
 
 #listeProblemes{
@@ -146,7 +152,7 @@ fieldset{
 }
 
 .titreBlocResultats{
-     background:-moz-linear-gradient(top, #194da0 0%, #59ffff 100%);
+    -moz-linear-background:gradient(top, #194da0 0%, #59ffff 100%);
     -moz-border-radius:5px 5px 0px 0px;
     -webkit-border-radius:5px 5px 0px 0px;
     text-align: center;

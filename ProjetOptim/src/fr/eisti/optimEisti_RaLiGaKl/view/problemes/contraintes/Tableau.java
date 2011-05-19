@@ -112,6 +112,7 @@ public class Tableau extends JPanel{
                     supprimerLigne.setCellEditor(new ButtonEditor(new JCheckBox()));
                     supprimerLigne.setMaxWidth(10);
                     JScrollPane js=new JScrollPane(table);
+                    
                    
                     this.add(js,BorderLayout.CENTER);
                 }
