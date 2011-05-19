@@ -5,11 +5,13 @@ import fr.eisti.optimEisti_RaLiGaKl.Main;
 import fr.eisti.optimEisti_RaLiGaKl.model.*;
 import fr.eisti.optimEisti_RaLiGaKl.view.problemes.PanelOngletProbleme;
 import fr.eisti.optimEisti_RaLiGaKl.view.problemes.PanelProbleme;
+import java.awt.Desktop;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.io.File;
+import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -127,6 +129,23 @@ public class PanelProblemesUtilisateurListener implements ActionListener, MouseL
                 if(Utilitaire.html()){
                      //on ouvre un dialogue
                     JOptionPane.showMessageDialog(null, "Création réussie!", "Information", JOptionPane.INFORMATION_MESSAGE);
+                     //on affiche la page html à l'utilisateur
+                    // On vérifie que la classe Desktop soit bien supportée :
+                    if ( Desktop.isDesktopSupported() ) {
+                            // On récupère l'instance du desktop :
+                            Desktop desktop = Desktop.getDesktop();
+
+                            // On vérifie que la fonction browse est bien supportée :
+                            if (desktop.isSupported(Desktop.Action.OPEN)) {
+                                try{
+                                    // Et on lance l'application associé au protocole :
+                                    desktop.open(new File("C:/Users/Princess Sarah/Documents/sarah.html"));
+                                    System.out.println("ouverture réussit");
+                                }catch(IOException efile){
+                                    System.out.println("Problème de lecture du fichier");
+                                }
+                            }
+                    }
                 }
                 else{
                     //on ouvre un dialogue
@@ -136,6 +155,8 @@ public class PanelProblemesUtilisateurListener implements ActionListener, MouseL
                 Logger.getLogger(FenetreListener.class.getName()).log(Level.SEVERE, null, ex);
                  //on ouvre un dialogue
                 JOptionPane.showMessageDialog(null, "Création échouée! ", "Erreur", JOptionPane.ERROR_MESSAGE);
+            
+
             }
         } else if (e.getSource() == this.ppu.getBoutonNew()) {
             boolean nouveau = false;
