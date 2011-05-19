@@ -95,7 +95,7 @@ fieldset{
     font-family: "Arial Black", Arial, Verdana, serif;
 }
 
-#contraintesSpan{
+.contraintesSpan{
     font-weight: bold;
     font-size: 20px;
     text-decoration: underline;
@@ -145,7 +145,7 @@ fieldset{
     padding-left: 20px;
 }
 
-#titreBlocResultats{
+.titreBlocResultats{
      background:-moz-linear-gradient(top, #194da0 0%, #59ffff 100%);
     -moz-border-radius:5px 5px 0px 0px;
     -webkit-border-radius:5px 5px 0px 0px;

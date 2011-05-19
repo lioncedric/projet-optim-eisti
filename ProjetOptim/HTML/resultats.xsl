@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="ISO-8859-1"?>
-
+<!--<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">-->
 <xsl:stylesheet version="1.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
     <xsl:template match="/">
-
+        
         <html>
             
             <head>
@@ -21,7 +21,7 @@
                         Utilisateur
                         </div>
                         <div id="profil">
-                            <img src="file:///{listeProblemes/@url}" id="imageProfil"/>
+                            <img src="file:///{listeProblemes/@url}" id="imageProfil" alt="Votre image de profil"/>
                             <span id="span_profil">
                                 <xsl:value-of select="listeProblemes/@utilisateur"/>
                             </span>
@@ -33,13 +33,15 @@
                             Problème
                         </div>
                         <div id="listeProblemes">
+                            <ul>
                             <xsl:for-each select="listeProblemes/probleme">
                                 <li>
-                                    <a href="#" id="" class="lien" onclick="afficheProbleme(this)">
+                                    <a href="#" class="lien" onclick="afficheProbleme(this)">
                                         <xsl:value-of select="titre"/>
                                     </a>
                                 </li>
                             </xsl:for-each>
+                            </ul>
                         </div>
                     </div>
 
@@ -51,14 +53,14 @@
                         </div>
                         
                         <xsl:for-each select="listeProblemes/probleme">
-                            <div class="res" id="">
-                                <div id="titreBlocResultats">
+                            <div class="res">
+                                <div class="titreBlocResultats">
                                     <xsl:value-of select="titre"/>
                                 </div>
                 <!-- affichage de la description-->
                                 <div id="description">
                                     <fieldset>
-                                        <legend id="description">Description:</legend>
+                                        <legend id="descriptionLegend">Description:</legend>
                                         <xsl:value-of select="description"/>
                                         <br/>
                                     </fieldset>
@@ -66,7 +68,7 @@
                                 <br/>
                 <!-- affichage de la fonction objective-->
                                 <div id="fctObecjtive">
-                                    <span id="contraintesSpan">Fonction objective: </span>
+                                    <span class="contraintesSpan">Fonction objective: </span>
                                     <xsl:text>    </xsl:text>
                                     <xsl:for-each select="objectif">
                                         <xsl:choose>
@@ -145,7 +147,7 @@
                                 <br/>
                  <!-- affichage des contraintes-->
                                 <div id="contraintes">
-                                    <span id="contraintesSpan">avec les contraintes:</span>
+                                    <span class="contraintesSpan">avec les contraintes:</span>
                                     <br/>
                                     
                                     <xsl:for-each select="contrainte">
