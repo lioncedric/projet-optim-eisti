@@ -54,6 +54,13 @@ public class CreerCompteListener implements MouseListener {
             JOptionPane.showMessageDialog(null, "Création réussie!", "Information", JOptionPane.INFORMATION_MESSAGE);
             this.maFenetre.dispose();
         } //si l'image n'a pas le bon format
+        else if(this.maFenetre.getPanFond().getJtfAvatar().getText().equals("")){
+             //opération sur le dom
+            BDDUtilisateur.ajouterUtilisateur(this.maFenetre.getPanFond().getJtfNomUtilisateur().getText(), this.maFenetre.getPanFond().getJtfMdp().getText(), "images\\mickey.png");
+            //on ouvre un dialogue
+            JOptionPane.showMessageDialog(null, "Création réussie!", "Information", JOptionPane.INFORMATION_MESSAGE);
+            this.maFenetre.dispose();
+        }
         else if (!bonFormatImage()) {
             //la fenetre n'est pas au premier plan
             maFenetre.setAlwaysOnTop(false);
