@@ -67,9 +67,12 @@ public class Probleme {
         this.setContraintes(fenetre.getPanTableau().enregistrerContraintes());
         this.getResultat().clear();
 
-        if (!fenetre.getPanelResultat().getListModel().isEmpty()) {
+        if (!(fenetre.getPanelResultat().getListModel().isEmpty())) {
             for (int i = 0; i < fenetre.getPanelResultat().getListModel().getSize(); i++) {
-                this.getResultat().add(Double.parseDouble((String) fenetre.getPanelResultat().getListModel().getElementAt(i)));
+                try {
+                    this.resultat.add(Double.parseDouble((String) fenetre.getPanelResultat().getListModel().getElementAt(i)));
+                } catch (Exception e) {
+                }
 
             }
         }
@@ -80,7 +83,7 @@ public class Probleme {
      * Fonction qui retourne le problème sous forme de matrice pour l'utilisation de la méthode de résolution du simplexe
      * @return matrice : la matrice correspondante au problème
      */
-    public double[][] formaliserProbleme( ArrayList<Integer> artifices) {
+    public double[][] formaliserProbleme(ArrayList<Integer> artifices) {
         //declaration de la matrice representant le probleme pour l'algo du simplexe
         double[][] matrice;
         double signe = 0;
@@ -149,14 +152,14 @@ public class Probleme {
                 } else {
                     matrice[i][j + temp] = listeContrainte[i].get(j);
                     decalage++;
-                    if(this.contraintes.get(i).getInegalite().equals("Egalité")){
-                         artifices.add(temp + j);
+                    if (this.contraintes.get(i).getInegalite().equals("Egalité")) {
+                        artifices.add(temp + j);
                     }
                     if (temp + 2 == decalage) {
                         listeM.add(temp + j - 1);
                         artifices.add(temp + j);
                         //numero variable artificielle =temp + j
-                   
+
                     }
                 }
             }
@@ -246,9 +249,9 @@ public class Probleme {
     }
 
     public ArrayList<Double> chercherSolutions() {
-         ArrayList<Integer> artifices=new ArrayList<Integer>();
-        double[][] tableau=this.formaliserProbleme(artifices);
-        return Simplexe.start(tableau,artifices, this.coeffVariables.size(), this.objectif);
+        ArrayList<Integer> artifices = new ArrayList<Integer>();
+        double[][] tableau = this.formaliserProbleme(artifices);
+        return Simplexe.start(tableau, artifices, this.coeffVariables.size(), this.objectif);
 
     }
 

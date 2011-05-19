@@ -6,12 +6,9 @@ package fr.eisti.optimEisti_RaLiGaKl.view.problemes;
 
 import fr.eisti.optimEisti_RaLiGaKl.Main;
 import fr.eisti.optimEisti_RaLiGaKl.controler.problemes.PanelProblemeListener;
-import fr.eisti.optimEisti_RaLiGaKl.model.Probleme;
 import java.awt.Color;
 import java.awt.Dimension;
-import java.awt.GradientPaint;
 import java.awt.Graphics;
-import java.awt.Graphics2D;
 import java.util.ArrayList;
 import javax.swing.BorderFactory;
 import javax.swing.DefaultListModel;
@@ -21,7 +18,6 @@ import javax.swing.JList;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
-import javax.swing.ListModel;
 import javax.swing.border.BevelBorder;
 
 /**
@@ -44,7 +40,7 @@ public class PanelResultat extends JPanel {
         listModel.removeAllElements();
         res.removeAll();
         if (lst == null || lst.isEmpty()) {
-            listModel.addElement("Votre probleme n'admet pas de solutions");
+            listModel.addElement("Pas de solutions !");
         } else {
             for (int i = 0; i < lst.size(); i++) {
                 listModel.addElement(lst.get(i).toString());
@@ -99,12 +95,12 @@ public class PanelResultat extends JPanel {
 
         texteres.setBounds(this.getWidth() * 10 / 100, this.getHeight() * 5 / 100, this.getWidth() * 20 / 100, this.getHeight() * 15 / 100);
 
-        effacer.setBounds(this.getWidth() * 5 / 100, this.getHeight() * 20 / 100, this.getWidth() * 40 / 100, this.getHeight() * 10 / 100);
-        outpoutS.setPreferredSize(new Dimension(this.getWidth() * 40 / 100, this.getHeight() * 60 / 100));
-        outpoutS.setBounds(this.getWidth() * 5 / 100, this.getHeight() * 30 / 100, this.getWidth() * 40 / 100, this.getHeight() * 60 / 100);
+        effacer.setBounds(this.getWidth() * 5 / 100, this.getHeight() * 20 / 100, this.getWidth() * 60 / 100, this.getHeight() * 10 / 100);
+        outpoutS.setPreferredSize(new Dimension(this.getWidth() * 60 / 100, this.getHeight() * 60 / 100));
+        outpoutS.setBounds(this.getWidth() * 5 / 100, this.getHeight() * 30 / 100, this.getWidth() * 60 / 100, this.getHeight() * 60 / 100);
         resS.setPreferredSize(new Dimension(this.getWidth() * 40 / 100, this.getHeight() * 60 / 100));
-        resS.setBounds(this.getWidth() * 55 / 100, this.getHeight() * 30 / 100, this.getWidth() * 40 / 100, this.getHeight() * 60 / 100);
-        calculer.setBounds(this.getWidth() * 55 / 100, this.getHeight() * 20 / 100, this.getWidth() * 40 / 100, this.getHeight() * 10 / 100);
+        resS.setBounds(this.getWidth() * 70 / 100, this.getHeight() * 30 / 100, this.getWidth() * 25 / 100, this.getHeight() * 60 / 100);
+        calculer.setBounds(this.getWidth() * 70 / 100, this.getHeight() * 20 / 100, this.getWidth() * 25 / 100, this.getHeight() * 10 / 100);
         this.updateUI();
     }
 
