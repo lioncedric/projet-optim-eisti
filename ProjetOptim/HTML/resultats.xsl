@@ -26,7 +26,7 @@ indent="yes"/>
                         Utilisateur
                         </div>
                         <div id="profil">
-                            <img src="file:///{listeProblemes/@url}" id="imageProfil" alt="Votre image de profil"/>
+                            <img src="file:///{listeProblemes/@url}" id="imageProfil" alt="Image introuvable"/>
                             <span id="span_profil">
                                 <xsl:value-of select="listeProblemes/@utilisateur"/>
                             </span>
@@ -73,7 +73,7 @@ indent="yes"/>
                                 <br/>
                 <!-- affichage de la fonction objective-->
                                 <div class="fctObecjtive">
-                                    <span class="contraintesSpan">Fonction objective: </span>
+                                    <span class="contraintesSpan">Fonction objective: </span><br/>
                                     <xsl:text>    </xsl:text>
                                     <xsl:for-each select="objectif">
                                         <xsl:choose>
@@ -154,7 +154,7 @@ indent="yes"/>
                                 <div class="contraintes">
                                     <span class="contraintesSpan">avec les contraintes:</span>
                                     <br/>
-                                    
+                                    <div class="contraintesDiv">
                                     <xsl:for-each select="contrainte">
                                         <xsl:for-each select="variable">
                                             <xsl:choose>
@@ -234,6 +234,7 @@ indent="yes"/>
                                             <br/>
                                         </xsl:for-each>
                                     </xsl:for-each>
+                                    </div>
                                 </div>
                                 <br/>
                                 <br/>

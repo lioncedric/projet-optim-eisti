@@ -94,6 +94,13 @@ fieldset{
     text-align: center;
 }
 
+.contraintesDiv{
+    margin-left: 290px;;
+    margin-right: auto;
+    width: 300px;
+    text-align: left;
+}
+
 #spanRes{
     font-weight: bold;
     font-size: 20px;
