@@ -17,15 +17,6 @@ function init(){
         elements[i].setAttribute("id", i);
         elementsHref[i].setAttribute("id", i);
     }
-    /*if(document.getElementById("imageProfil").complete==true){
-        //document.getElementById("imageProfil").setAttribute("src","html/fermer.jpg");
-        //alert(document.getElementById("imageProfil").getAttribute("src"));
-        alert("oui");
-    }
-    else{
-        //document.getElementById("imageProfil").setAttribute("src","html/fermer.jpg");
-        alert("non");
-    }*/
 }
 
 //fonction qui affiche le bloc dont le lien correspond

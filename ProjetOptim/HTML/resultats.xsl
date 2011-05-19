@@ -3,11 +3,11 @@
 <xsl:stylesheet version="1.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
     <xsl:template match="/">
        <xsl:output
-method="html"
-encoding="utf-8"
-omit-xml-declaration="no"
-doctype-public="-//W3C//DTD HTML 4.01 Transitional//EN"
-indent="yes"/>
+        method="html"
+        encoding="utf-8"
+        omit-xml-declaration="no"
+        doctype-public="-//W3C//DTD HTML 4.01 Transitional//EN"
+        indent="yes"/>
         <html>
             
             <head>
@@ -54,7 +54,7 @@ indent="yes"/>
                     <!-- affichage du résultat cliqué et des résultats -->
                     <div class="blocResultats">
                         <div id="image">
-                          Bienvenue sur le site OptimEisti
+                          <img src="./html/pageBienvenue.png" id="imageBienvenue" alt="Bienvenue sur le site OptimEisti"/>
                         </div>
                         
                         <xsl:for-each select="listeProblemes/probleme">
@@ -154,7 +154,6 @@ indent="yes"/>
                                 <div class="contraintes">
                                     <span class="contraintesSpan">avec les contraintes:</span>
                                     <br/>
-                                    <div class="contraintesDiv">
                                     <xsl:for-each select="contrainte">
                                         <xsl:for-each select="variable">
                                             <xsl:choose>
@@ -234,11 +233,10 @@ indent="yes"/>
                                             <br/>
                                         </xsl:for-each>
                                     </xsl:for-each>
-                                    </div>
                                 </div>
                                 <br/>
                                 <br/>
-                 <!-- Affichage des résultats-->
+                                <!-- Affichage des résultats-->
                                 <div class="resultats">
                                     <xsl:for-each select="resultat">
                                         <span id="spanRes">Résultats:</span>

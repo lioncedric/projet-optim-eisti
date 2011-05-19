@@ -78,7 +78,7 @@ public class FenetreListener implements ActionListener, ComponentListener {
                     Utilitaire.copie("HTML/script.js", nom2 + "/html/script.js");
                     Utilitaire.copie("HTML/design.css", nom2 + "/html/design.css");
                     Utilitaire.copie("HTML/BaniereFinal.png", nom2 + "/html/BaniereFinal.png");
-                    Utilitaire.copie("HTML/fermer.jpg", nom2 + "/html/fermer.jpg");
+                    Utilitaire.copie("HTML/pageBienvenue.png", nom2 + "/html/pageBienvenue.png");
                 } catch (Exception ex) {
                 }
             }
