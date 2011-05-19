@@ -23,6 +23,8 @@ function init(){
 function afficheProbleme(obj){
     //On récupère le div de l'image d'accueil
     element=document.getElementById("image");
+    //on enlève l'image
+    element.style.display="none";
     //on récupère le div du titre du bloc de résultats
     titreBlocProbleme=document.getElementsByClassName("titreBlocResultats");
     //on l'affiche
@@ -38,8 +40,6 @@ function afficheProbleme(obj){
         if(elements[i].getAttribute("id")==numero){
             //on affiche son bloc
             elements[i].style.display="block";
-            //on enlève l'image
-            element.style.display="none";
         }
         //sinon
         else{

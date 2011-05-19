@@ -60,6 +60,7 @@ public class FenetreListener implements ActionListener, ComponentListener {
 
         } else if (e.getSource() == this.fenetre.getAffResHtml()) {
             try {
+                //fonction qui crée la page html
                 Utilitaire.html();
                 //on ouvre un dialogue
                 JOptionPane.showMessageDialog(null, "Création réussie!", "Information", JOptionPane.INFORMATION_MESSAGE);
