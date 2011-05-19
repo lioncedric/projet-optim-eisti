@@ -43,8 +43,9 @@ public class PanelResultat extends JPanel {
     public void miseajour(ArrayList<Double> lst) {
         listModel.removeAllElements();
         res.removeAll();
-        if (!lst.isEmpty()) {
-
+        if (lst == null || lst.isEmpty()) {
+            listModel.addElement("Votre probleme n'admet pas de solutions");
+        } else {
             for (int i = 0; i < lst.size(); i++) {
                 listModel.addElement(lst.get(i).toString());
             }
@@ -56,7 +57,7 @@ public class PanelResultat extends JPanel {
         effacer = new JButton("Effacer");
         calculer = new JButton("Calculer");
         calculer.addActionListener(new PanelProblemeListener(panelProbleme));
-         effacer.addActionListener(new PanelProblemeListener(panelProbleme));
+        effacer.addActionListener(new PanelProblemeListener(panelProbleme));
         this.listModel = new DefaultListModel();
 
         this.res = new JList(listModel);
@@ -87,9 +88,10 @@ public class PanelResultat extends JPanel {
     public static void ecrire(String s) {
         ((PanelProbleme) Main.fenetrePrincipale.getDroite().getSelectedComponent()).getPanelResultat().getOutpout().append(s);
     }
+
     public static void effacer() {
         ((PanelProbleme) Main.fenetrePrincipale.getDroite().getSelectedComponent()).getPanelResultat().getOutpout().setText("");
-         ((PanelProbleme) Main.fenetrePrincipale.getDroite().getSelectedComponent()).getPanelResultat().getListModel().removeAllElements();
+        ((PanelProbleme) Main.fenetrePrincipale.getDroite().getSelectedComponent()).getPanelResultat().getListModel().removeAllElements();
     }
 
     @Override

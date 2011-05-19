@@ -87,7 +87,7 @@ public class PanelProbleme extends JPanel {
         traitementPanel();
         remplissage();
         mettreCouleurTexte(Color.BLACK);
-        mettreFondComposants(Color.RED);
+        mettreFondComposants(Color.GRAY);
         slide.addChangeListener(fsl);
         slide.addChangeListener(new SaveListener());
     }

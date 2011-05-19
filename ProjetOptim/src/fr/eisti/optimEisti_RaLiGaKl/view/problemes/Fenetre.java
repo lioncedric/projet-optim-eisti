@@ -106,7 +106,7 @@ public class Fenetre extends JFrame {
 
         this.couleur1 = Color.WHITE;
         this.couleur2 = new Color(209, 238, 238);
-        this.couleurComposantsTransparents = Color.red;
+        this.couleurComposantsTransparents = Color.GRAY;
         this.coeffTransparence = 50;
         this.couleurTexte = Color.BLACK;
     }

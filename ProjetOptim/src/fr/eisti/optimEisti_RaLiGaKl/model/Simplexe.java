@@ -12,14 +12,13 @@ import java.util.ArrayList;
  */
 public class Simplexe {
 
-    public static ArrayList<Double> start(double[][] matrice,ArrayList<Integer> numVarArti,int nbvar, String objectif) {
+    public static ArrayList<Double> start(double[][] matrice, ArrayList<Integer> numVarArti, int nbvar, String objectif) {
         /**
          * Constructeur qui permet de creer la soluton d'un problème
          * @param matrice probleme normalisé sous forme de tableau
          * @param nbVariables : nombre de variables imaginaires
          */
         //declaration du tableau destine a contenir la solution
-      
         return init(matrice, numVarArti, nbvar, objectif);
     }
 
@@ -27,23 +26,12 @@ public class Simplexe {
      * Procedure qui s'occupe du traitement a faire pour generer la solution au probleme en appelant les autres fonctions
      * @param matrice 
      */
-    public static ArrayList<Double> init(double[][] matrice,ArrayList<Integer> numVarArti, int nbvar, String objectif) {
-        
-        
-        
-        
-        
-        
-        //NOUVELLE VARIABLE A PRENDRE EN COMPTE : LA DEUXIEME
-        
-        
-        
-        
-        
+    public static ArrayList<Double> init(double[][] matrice, ArrayList<Integer> numVarArti, int nbvar, String objectif) {
+
         //booleen permettant de savoir si le probleme est resolu ou pas
         boolean resolu = false;
         boolean noSolution = false;
-        ArrayList<Double> resultat=new ArrayList<Double>();
+        ArrayList<Double> resultat = new ArrayList<Double>();
 
         //on fait les operations de Gauss sur la matrice tant que le probleme n'est pas resolu
         while (!resolu) {
@@ -68,7 +56,10 @@ public class Simplexe {
             PanelResultat.ecrire("Votre probleme n'admet pas de solution !");
         } else {
             //on stocke les valeurs de la solution dans la variable adéquate
-            resultat=calculerSolution(matrice, numVarArti, nbvar, objectif);
+            resultat = calculerSolution2(matrice, numVarArti, nbvar, objectif);
+            if(resultat.size()==1){
+                resultat=null;
+            }
         }
         return resultat;
     }
@@ -236,7 +227,7 @@ public class Simplexe {
         boolean trouve = false;
         //declaration d'une variable ligne pour stocker le numero de la ligne ou il faudra lire la valuer du Xi
         int ligne = 0;
-        ArrayList<Double> resultat=new ArrayList<Double>();
+        ArrayList<Double> resultat = new ArrayList<Double>();
 
         if (objectif.equalsIgnoreCase("maximiser")) {
             //le maximum est l'inverse de la valeur contenue dans la case [derniere ligne][derniere colonne] de la matrice
@@ -246,13 +237,7 @@ public class Simplexe {
             resultat.add(matrice[matrice.length - 1][matrice[0].length - 1]);
         }
 
-        
-        
-        
-        
-        
-        
-        
+
         //pour les premieres colonnes (celles qui sont representatives des valeurs du probleme)
         for (int j = 0; j < nbvar; j++) {
             trouve = false;
@@ -300,5 +285,72 @@ public class Simplexe {
             }
         }
         return resultat;
+    }
+
+    public static ArrayList<Double> calculerSolution2(double[][] matrice, ArrayList<Integer> numVarArti, int nbvar, String objectif) {
+        ArrayList<Double> resultat = new ArrayList<Double>();
+        boolean problemeSansSolution = false;
+
+        if (objectif.equalsIgnoreCase("maximiser")) {
+            //le maximum est l'inverse de la valeur contenue dans la case [derniere ligne][derniere colonne] de la matrice
+            resultat.add(-matrice[matrice.length - 1][matrice[0].length - 1]);
+        } else {
+            //le maximum est l'inverse de la valeur contenue dans la case [derniere ligne][derniere colonne] de la matrice
+            resultat.add(matrice[matrice.length - 1][matrice[0].length - 1]);
+        }
+
+        ArrayList<Integer> listeNumeroColonnesId = new ArrayList<Integer>();
+        listeNumeroColonnesId = trouverNumeroColonnesId(matrice);
+
+        //pour toutes les colonnes sauf la derniere
+        boolean sansSolution = false;
+        int k = 0;
+        while (k < listeNumeroColonnesId.size() && !sansSolution) {
+            sansSolution = sansSolution || numVarArti.contains(listeNumeroColonnesId.get(k));
+            k++;
+        }
+
+        //si le probleme admet une solution
+        if (!sansSolution) {
+            //pour chacune des colonnes des vraies variables
+            for (int j = 0; j < nbvar; j++) {
+                if (listeNumeroColonnesId.contains(j)) {
+                    boolean aTrouveValeur1 = false;
+                    int i = 0;
+                    System.out.println("valeur de i"+i);
+                    while (i < matrice.length && !aTrouveValeur1) {
+                        if (matrice[i][j] == 1) {
+                            aTrouveValeur1 = true;
+                            resultat.add(matrice[i][matrice[0].length - 1]);
+                        }
+                        i++;
+                    }
+                } else {
+                    resultat.add(0.0);
+                }
+            }
+        }
+        return resultat;
+    }
+
+    public static ArrayList<Integer> trouverNumeroColonnesId(double[][] matrice) {
+        ArrayList<Integer> liste = new ArrayList<Integer>();
+
+        //ici, tout est inverse puisque les i sont les colonnes et les j les lignes, d'ou les matrice[j][i]
+        for (int i = 0; i < matrice[0].length - 1; i++) {
+            int nombreZero = 0;
+            int nombreUn = 0;
+            for (int j = 0; j < matrice.length; j++) {
+                if (matrice[j][i] == 0) {
+                    nombreZero++;
+                } else if (matrice[j][i] == 1) {
+                    nombreUn++;
+                }
+            }
+            if (nombreUn == 1 && nombreZero == matrice.length - 1) {
+                liste.add(i);
+            }
+        }
+        return liste;
     }
 }
