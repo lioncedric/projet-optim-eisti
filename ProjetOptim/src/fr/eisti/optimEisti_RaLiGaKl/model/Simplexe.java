@@ -12,7 +12,7 @@ import java.util.ArrayList;
  */
 public class Simplexe {
 
-    public static ArrayList<Double> start(double[][] matrice,int nbvar, String objectif) {
+    public static ArrayList<Double> start(double[][] matrice,ArrayList<Integer> numVarArti,int nbvar, String objectif) {
         /**
          * Constructeur qui permet de creer la soluton d'un problème
          * @param matrice probleme normalisé sous forme de tableau
@@ -20,14 +20,26 @@ public class Simplexe {
          */
         //declaration du tableau destine a contenir la solution
       
-        return init(matrice, nbvar, objectif);
+        return init(matrice, numVarArti, nbvar, objectif);
     }
 
     /**
      * Procedure qui s'occupe du traitement a faire pour generer la solution au probleme en appelant les autres fonctions
      * @param matrice 
      */
-    public static ArrayList<Double> init(double[][] matrice, int nbvar, String objectif) {
+    public static ArrayList<Double> init(double[][] matrice,ArrayList<Integer> numVarArti, int nbvar, String objectif) {
+        
+        
+        
+        
+        
+        
+        //NOUVELLE VARIABLE A PRENDRE EN COMPTE : LA DEUXIEME
+        
+        
+        
+        
+        
         //booleen permettant de savoir si le probleme est resolu ou pas
         boolean resolu = false;
         boolean noSolution = false;
@@ -44,8 +56,6 @@ public class Simplexe {
                 //on appelle la focntion qui permet de faire la reduction pivot
                 reductionPivot(matrice, tabCoordPivot);
                 resolu = problemeResolu(matrice);
-                System.out.println("Le probleme est-il resolu ? " + resolu);
-                PanelResultat.ecrire("Le probleme est-il resolu ? " + resolu);
             } else {
                 resolu = true;
                 noSolution = true;
@@ -58,7 +68,7 @@ public class Simplexe {
             PanelResultat.ecrire("Votre probleme n'admet pas de solution !");
         } else {
             //on stocke les valeurs de la solution dans la variable adéquate
-            resultat=exporterSolution(matrice, nbvar, objectif);
+            resultat=calculerSolution(matrice, numVarArti, nbvar, objectif);
         }
         return resultat;
     }
@@ -89,7 +99,7 @@ public class Simplexe {
                 ligneDuMax = j;
             }
         }
-        System.out.println("valeur ligne du max:" + ligneDuMax);
+        System.out.println("bla:" + valeurMax);
 
         //on initialise le min a une valeur tres grande afin de trouver forcement une valeur plus petite
         double valeurMin = 1000000;//le million, le million, ...
@@ -221,7 +231,7 @@ public class Simplexe {
      * @param matrice : matrice representant le probleme
      * @param tabSolutions : le tableau destine a contenir la solution
      */
-    public static ArrayList<Double> exporterSolution(double[][] matrice, int nbvar, String objectif) {
+    public static ArrayList<Double> calculerSolution(double[][] matrice, ArrayList<Integer> numVarArti, int nbvar, String objectif) {
         //declaration d'un booleen
         boolean trouve = false;
         //declaration d'une variable ligne pour stocker le numero de la ligne ou il faudra lire la valuer du Xi
@@ -236,6 +246,13 @@ public class Simplexe {
             resultat.add(matrice[matrice.length - 1][matrice[0].length - 1]);
         }
 
+        
+        
+        
+        
+        
+        
+        
         //pour les premieres colonnes (celles qui sont representatives des valeurs du probleme)
         for (int j = 0; j < nbvar; j++) {
             trouve = false;
