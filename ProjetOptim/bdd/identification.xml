@@ -7,4 +7,6 @@
 <personne imagesrc="D:\My Documents\NetBeansProjects\ProjetOptim\images\mickey.png" login="ced" password="ced"/>
 <personne imagesrc="D:\My Documents\ProjetOptim\images\mickey.png" login="a" password="a"/>
 <personne imagesrc="D:\My Documents\ProjetOptim\images\mickey.png" login="non" password="non"/>
+
+
 </identification>

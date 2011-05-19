@@ -205,6 +205,11 @@ public class BDDUtilisateur {
                     trouve = true;
                     //on supprime le noeud
                     racine.removeChild(liste.item(i));
+                    //Si le fichier xml propre à l'utilisateur existe bien
+                    if(new File("./bdd/"+BDDUtilisateur.getNomUtilisateur()+".xml").exists()){
+                        //on supprime le fichier
+                        new File("./bdd/"+BDDUtilisateur.getNomUtilisateur()+".xml").delete();
+                    }
                     //permet de transformer le dom en xml
                     Utilitaire.transformerXml(document, chFichierIdentification);
                 }

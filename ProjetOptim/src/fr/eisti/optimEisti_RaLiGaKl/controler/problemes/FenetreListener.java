@@ -11,6 +11,7 @@ import java.io.IOException;
 import fr.eisti.optimEisti_RaLiGaKl.view.problemes.Fenetre;
 import fr.eisti.optimEisti_RaLiGaKl.Main;
 import fr.eisti.optimEisti_RaLiGaKl.view.compte.Preferences;
+import java.awt.Desktop;
 import java.awt.event.ComponentListener;
 import java.io.File;
 import java.util.logging.Level;
@@ -55,35 +56,62 @@ public class FenetreListener implements ActionListener, ComponentListener {
             this.fenetre.dispose();
 
         } else if (e.getSource() == this.fenetre.getSupprimerCompte()) {
-            if (BDDUtilisateur.supprimerCompte(BDDUtilisateur.getNomUtilisateur())) {
-                //on ouvre un dialogue
-                JOptionPane.showMessageDialog(null, "Suppression réussie!", "Information", JOptionPane.INFORMATION_MESSAGE);
-                Main.accueil.setVisible(true);
-                this.fenetre.dispose();
-            } else {
-                //on ouvre un dialogue
-                JOptionPane.showMessageDialog(null, "Création annulée! ", "Erreur", JOptionPane.ERROR_MESSAGE);
+            JOptionPane jop = new JOptionPane();
+            int option = jop.showConfirmDialog(null, "Voulez-vous vraiment supprimer votre compte ?", "Suppression de compte", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
+
+            if (option == JOptionPane.OK_OPTION) {
+                if (BDDUtilisateur.supprimerCompte(BDDUtilisateur.getNomUtilisateur())) {
+                    //on ouvre un dialogue
+                    JOptionPane.showMessageDialog(null, "Suppression réussie!", "Information", JOptionPane.INFORMATION_MESSAGE);
+                    //on déconnecte la session
+                    Main.accueil.setVisible(true);
+                    this.fenetre.dispose();
+                } else {
+                    //on ouvre un dialogue
+                    JOptionPane.showMessageDialog(null, "Suppression échouée! ", "Erreur", JOptionPane.ERROR_MESSAGE);
+                }
             }
+            else {
+                    //on ouvre un dialogue
+                    JOptionPane.showMessageDialog(null, "Création annulée! ", "Erreur", JOptionPane.ERROR_MESSAGE);
+            }
+
         } else if (e.getSource() == this.fenetre.getQuitter()) {
             System.exit(0);
 
         } else if (e.getSource() == this.fenetre.getAffResHtml()) {
             try {
+                String chemin;
+                chemin = BddProbleme.html();
                 //Si la création du html a réussit
-                if (BddProbleme.html()!=null) {
+                if (chemin != null) {
                     //on ouvre un dialogue
-                    JOptionPane.showMessageDialog(null, "Création réussie!", "Information", JOptionPane.INFORMATION_MESSAGE);
+                    //on affiche la page html à l'utilisateur
+                    // On vérifie que la classe Desktop soit bien supportée :
+                    if (Desktop.isDesktopSupported()) {
+                        // On récupère l'instance du desktop :
+                        Desktop desktop = Desktop.getDesktop();
+
+                        // On vérifie que la fonction browse est bien supportée :
+                        if (desktop.isSupported(Desktop.Action.OPEN)) {
+                            try {
+                                // Et on lance l'application associé au protocole :
+                                desktop.open(new File(chemin));
+                                System.out.println("ouverture réussit");
+                            } catch (IOException efile) {
+                                System.out.println("Problème de lecture du fichier");
+                            }
+                        }
+                    }
                 } else {
                     //on ouvre un dialogue
                     JOptionPane.showMessageDialog(null, "Création annulée! ", "Erreur", JOptionPane.ERROR_MESSAGE);
                 }
-
             } catch (Exception ex) {
                 Logger.getLogger(FenetreListener.class.getName()).log(Level.SEVERE, null, ex);
                 //on ouvre un dialogue
                 JOptionPane.showMessageDialog(null, "Création échouée! ", "Erreur", JOptionPane.ERROR_MESSAGE);
             }
-
         } else if (e.getSource() == this.fenetre.getRecharger()) {
             try {
                 BddProbleme.load(BDDUtilisateur.getNomUtilisateur(), BDDUtilisateur.getImage());

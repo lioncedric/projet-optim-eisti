@@ -110,7 +110,7 @@ public class BddProbleme {
      */
     public static List<Integer> rechercheProbleme(String nomProbleme) {
         //declaration et initialisation de l'indice que l'on va retourner
-        List<Integer> listeDeNumProblemesMatch=new LinkedList<Integer>();
+        List<Integer> listeDeNumProblemesMatch = new LinkedList<Integer>();
         //on selectionne dans l'arbre xml les éléments 'titre'
         NodeList liste = bdd.getDocumentElement().getElementsByTagName("titre");
         //pour chacun de ces noeuds
@@ -185,8 +185,8 @@ public class BddProbleme {
      */
     public static Probleme getProbleme(int nb) {
         Element NoeudProbleme = (Element) bdd.getDocumentElement().getElementsByTagName("probleme").item(nb);
-         Probleme probleme=getProblemeImport(NoeudProbleme);
-         probleme.setNumero(nb);
+        Probleme probleme = getProblemeImport(NoeudProbleme);
+        probleme.setNumero(nb);
         return probleme;
     }
 
@@ -446,8 +446,12 @@ public class BddProbleme {
 
     }
 
-     public static String html() throws Exception {
-        boolean retourne=false;//booleen pour savoir si il a été crée ou pas
+    /**
+     * Retourne le nom du fichier html et permet de sélectionner un répertoire ou on va stocker le fichier html crée
+     * @return nom
+     * @throws Exception
+     */
+    public static String html() throws Exception {
         //Nouveau jfilechooser
         JFileChooser fc = new JFileChooser();
         //ajout d'un filtre pour fichier html
@@ -458,8 +462,6 @@ public class BddProbleme {
         int returnVal = fc.showSaveDialog(null);
         //si on valide
         if (returnVal == JFileChooser.APPROVE_OPTION) {
-            //retourne est vrai
-            retourne=true;
             //on récupère le chemin absolu (le nom du fichier y compris)
             String nom = fc.getSelectedFile().getAbsolutePath();
             //on récupère le chemin du répertoire ou se trouve le fichier
@@ -469,19 +471,23 @@ public class BddProbleme {
                 //on récupère le nom complet
                 nom = nom + ".html";
             }
-            //on compile le xsl avec le xml pour créer le html
-            Utilitaire.creerHTML("bdd/" + BDDUtilisateur.getNomUtilisateur() + ".xml", "HTML/resultats.xsl", nom);
-           //on crée un répertoire du nom de html
-            new File(nom2 + "/html").mkdir();
-             //Copie tous les fichiers nécessaires au fonctionnement du HTML
-            Utilitaire.copie("HTML/script.js", nom2 + "/html/script.js");
-            Utilitaire.copie("HTML/design.css", nom2 + "/html/design.css");
-            Utilitaire.copie("HTML/BaniereFinal.png", nom2 + "/html/BaniereFinal.png");
-            Utilitaire.copie("HTML/pageBienvenue.png", nom2 + "/html/pageBienvenue.png");
-            return nom;
-        }else{
+            if (new File("bdd/" + BDDUtilisateur.getNomUtilisateur() + ".xml").exists()) {
+                //on compile le xsl avec le xml pour créer le html
+                Utilitaire.creerHTML("bdd/" + BDDUtilisateur.getNomUtilisateur() + ".xml", "HTML/resultats.xsl", nom);
+                //on crée un répertoire du nom de html
+                new File(nom2 + "/html").mkdir();
+                //Copie tous les fichiers nécessaires au fonctionnement du HTML
+                Utilitaire.copie("HTML/script.js", nom2 + "/html/script.js");
+                Utilitaire.copie("HTML/design.css", nom2 + "/html/design.css");
+                Utilitaire.copie("HTML/BaniereFinal.png", nom2 + "/html/BaniereFinal.png");
+                Utilitaire.copie("HTML/pageBienvenue.png", nom2 + "/html/pageBienvenue.png");
+                return nom;
+            }else{
+                return "le fichier n'existe pas";
+            }
+
+        } else {
             return null;
         }
-        //On retourne le boolee
     }
 }

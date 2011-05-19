@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<listeProblemes url="D:\My Documents\ProjetOptim\images\mickey.png" utilisateur="t">
+<probleme>
+<titre>Mon probleme</titre>
+<description>Entrer votre description du problème</description>
+<objectif type="Maximiser">
+<variable coeff="1.0"/>
+</objectif>
+<contrainte type="Supériorité">
+<variable coeff="50.0"/>
+<constante valeur="10.0"/>
+</contrainte>
+</probleme>
+</listeProblemes>

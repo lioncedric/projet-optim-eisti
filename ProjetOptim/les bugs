@@ -17,7 +17,6 @@ pour plutard
 -jfilechooser qd image=0Kb => nullpointerException
 
 XSLT:
-suppression de compte
 pb si oui.xml n'existe pas, lors de creation html exception
 
 Sarah bug enorme avec les contraintres

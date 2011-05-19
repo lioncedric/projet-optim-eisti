@@ -128,7 +128,7 @@ public class PanelProblemesUtilisateurListener implements ActionListener, MouseL
                 String chemin;
                 chemin = BddProbleme.html();
                //Si la création du html a réussit
-                if(chemin != null){
+                if(chemin != null && !chemin.equals("le fichier n'existe pas")){
                     //on ouvre un dialogue
                      //on affiche la page html à l'utilisateur
                     // On vérifie que la classe Desktop soit bien supportée :
@@ -147,6 +147,9 @@ public class PanelProblemesUtilisateurListener implements ActionListener, MouseL
                                 }
                             }
                     }
+                }else if(chemin.equals("le fichier n'existe pas")){
+                    //on ouvre un dialogue
+                    JOptionPane.showMessageDialog(null, "Création annulée, votre fichier xml n'existe pas! ", "Erreur", JOptionPane.ERROR_MESSAGE);
                 }
                 else{
                     //on ouvre un dialogue

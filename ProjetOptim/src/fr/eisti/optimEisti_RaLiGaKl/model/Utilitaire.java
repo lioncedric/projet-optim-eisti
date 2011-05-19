@@ -112,7 +112,8 @@ public class Utilitaire {
         DocumentBuilderFactory fabriqueD = DocumentBuilderFactory.newInstance();
         DocumentBuilder constructeur = fabriqueD.newDocumentBuilder();
         File fileXml = new File(xml);
-        Document document = constructeur.parse(fileXml);
+        if(fileXml.exists()){
+            Document document = constructeur.parse(fileXml);
         Source source = new DOMSource(document);
 
         // Création du fichier de sortie
@@ -127,6 +128,8 @@ public class Utilitaire {
 
         // Transformation
         transformer.transform(source, resultat);
+        }
+        
     }
 
     public static void copie(String fichierIn, String fichierout) throws FileNotFoundException, IOException {
