@@ -15,7 +15,8 @@
                     </xs:complexType>
                 </xs:element>
             </xs:sequence>
-            <xs:attribute name="utilisateur" type="xs:string" />
+            <xs:attribute name="utilisateur"  use="optional" type="xs:string" />
+            <xs:attribute name="url"  use="optional" type="xs:string" />
         </xs:complexType>
 
     </xs:element>
