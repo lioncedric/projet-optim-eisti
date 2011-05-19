@@ -24,18 +24,24 @@ import javax.swing.JPanel;
 public class PanelHautBas extends JPanel implements MouseListener {
 
     private boolean devoilerSolution;
+    private boolean hover;
     private Image imageON;
     private Image imageOFF;
+    private Image imageONsel;
+    private Image imageOFFsel;
     private PanelProbleme panelProbleme;
 
     public PanelHautBas(PanelProbleme panelProbleme) {
         this.devoilerSolution = false;
+        this.hover = false;
         this.addMouseListener(this);
         this.panelProbleme = panelProbleme;
         this.setOpaque(false);
         try {
-            imageON = ImageIO.read(new File("images/button-vert.png"));
-            imageOFF = ImageIO.read(new File("images/button-rouge.png"));
+            imageON = ImageIO.read(new File("images/bas.png"));
+            imageOFF = ImageIO.read(new File("images/haut.png"));
+            imageONsel = ImageIO.read(new File("images/basSelec.png"));
+            imageOFFsel = ImageIO.read(new File("images/hautSelec.png"));
         } catch (IOException e) {
             System.out.println("Erreur lors du chargement de l'image");
         }
@@ -53,10 +59,19 @@ public class PanelHautBas extends JPanel implements MouseListener {
     @Override
     public void paintComponent(Graphics g) {
         if (this.devoilerSolution) {
-            g.drawImage(imageOFF, 0, 0, this.getWidth(), this.getHeight(), this);
+            if (this.hover && panelProbleme.getHauteur() == -270) {
+                g.drawImage(imageOFFsel, 0, 0, this.getWidth(), this.getHeight(), this);
+            } else {
+                g.drawImage(imageOFF, 0, 0, this.getWidth(), this.getHeight(), this);
+            }
         } else {
-            g.drawImage(imageON, 0, 0, this.getWidth(), this.getHeight(), this);
+            if (this.hover && panelProbleme.getHauteur() == 0 && panelProbleme.verifier()) {
+                g.drawImage(imageONsel, 0, 0, this.getWidth(), this.getHeight(), this);
+            } else {
+                g.drawImage(imageON, 0, 0, this.getWidth(), this.getHeight(), this);
+            }
         }
+
     }
 
     @Override
@@ -69,19 +84,24 @@ public class PanelHautBas extends JPanel implements MouseListener {
 
     @Override
     public void mouseEntered(MouseEvent e) {
+        this.hover = true;
         if (this.devoilerSolution) {
+
             this.setToolTipText("Masquer la solution du problème");
         } else {
             this.setToolTipText("Afficher la solution du problème");
         }
         Cursor main = new Cursor(Cursor.HAND_CURSOR);
         setCursor(main);
+        repaint();
 
     }
 
     @Override
     public void mouseExited(MouseEvent e) {
+        this.hover = false;
         Cursor normal = new Cursor(Cursor.DEFAULT_CURSOR);
         setCursor(normal);
+        repaint();
     }
 }

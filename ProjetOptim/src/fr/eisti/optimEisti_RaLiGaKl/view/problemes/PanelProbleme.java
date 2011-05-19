@@ -217,7 +217,7 @@ public class PanelProbleme extends JPanel {
         panTableau.setBounds(this.getWidth() * 5 / 100, hauteur * this.getHeight() / 700 + this.getHeight() * 78 / 100, this.getWidth() * 90 / 100, this.getHeight() * 20 / 100);
         ajouter.setBounds(this.getWidth() * 42 / 100, hauteur * this.getHeight() / 700 + this.getHeight() * 70 / 100, this.getWidth() * 40 / 100, this.getHeight() * 5 / 100);
         panelResultat.setBounds(0, hauteur * this.getHeight() / 700 + this.getHeight(), this.getWidth(), this.getHeight() * 40 / 100);
-        boutonHautBAs.setBounds(this.getWidth() * 96 / 100, this.getHeight() * 2 / 100, this.getWidth() * 3 / 100, this.getWidth() * 3 / 100);
+        boutonHautBAs.setBounds(this.getWidth() * 94 / 100, this.getHeight() * 1 / 100, this.getWidth() * 6 / 100, this.getWidth() * 6 / 100);
         this.updateUI();
     }
 
