@@ -73,6 +73,7 @@ public class FenetreListener implements ActionListener, ComponentListener {
                 } catch (Exception ex) {
                 }
                 try {
+                    //Copie tous les fichiers nécessaires au fonctionnement du HTML
                     new File(nom2 + "/html").mkdir();
                     Utilitaire.copie("HTML/script.js", nom2 + "/html/script.js");
                     Utilitaire.copie("HTML/design.css", nom2 + "/html/design.css");

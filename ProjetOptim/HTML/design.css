@@ -2,7 +2,7 @@ body {
     min-width:640px;
     width: 1024px;
     background-color: #fffff;
-     margin-left: auto;
+    margin-left: auto;
     margin-right: auto;
 }
 #blocTitre, #blocProbleme, .blocResultats {

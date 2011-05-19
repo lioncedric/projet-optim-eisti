@@ -1,14 +1,19 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml version="1.0" encoding="utf-8"?>
 
 <xsl:stylesheet version="1.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
     <xsl:template match="/">
-        <!DOCTYPE HTML SYSTEM>
+       <xsl:output
+method="html"
+encoding="utf-8"
+omit-xml-declaration="no"
+doctype-public="-//W3C//DTD HTML 4.01 Transitional//EN"
+indent="yes"/>
         <html>
             
             <head>
                 <link rel="stylesheet" media="screen" type="text/css" title="Design" href="./html/design.css" />
                 <script type="text/javascript" src="./html/script.js"></script>
-                <title>Résultats de vos problèmes</title>
+                <title>RÃ©sultats de vos problÃ¨mes</title>
             </head>
             <body onload="init()">
                 <div id="blocTitre">
@@ -30,7 +35,7 @@
                     <!--affichage des problemes sous forme de menu-->
                     <div id="blocProbleme">
                         <div id="titreProbleme">
-                            Problème
+                            ProblÃ¨me
                         </div>
                         <div id="listeProblemes">
                             <ul>
@@ -46,7 +51,7 @@
                     </div>
 
 
-                    <!-- affichage du résultat cliqué et des résultats -->
+                    <!-- affichage du rÃ©sultat cliquÃ© et des rÃ©sultats -->
                     <div class="blocResultats">
                         <div id="image">
                           Bienvenue sur le site OptimEisti
@@ -208,10 +213,10 @@
                                             </xsl:choose>
                                         </xsl:for-each>
                                         <xsl:choose>
-                                            <xsl:when test="@type='Infériorité'">
+                                            <xsl:when test="@type='InfÃ©rioritÃ©'">
                                                 <span> &#60;&#61; </span>
                                             </xsl:when>
-                                            <xsl:when test="@type='Supériorité'">
+                                            <xsl:when test="@type='SupÃ©rioritÃ©'">
                                                 <span> &#62;&#61; </span>
                                             </xsl:when>
                                             <xsl:otherwise>
@@ -232,10 +237,10 @@
                                 </div>
                                 <br/>
                                 <br/>
-                 <!-- Affichage des résultats-->
+                 <!-- Affichage des rÃ©sultats-->
                                 <div class="resultats">
                                     <xsl:for-each select="resultat">
-                                        <span id="spanRes">Résultats:</span>
+                                        <span id="spanRes">RÃ©sultats:</span>
                                         <br/>
                                             F = 
                                         <xsl:value-of select="@valeur"/>
@@ -254,7 +259,11 @@
                     </div>
                 </div>
 
-    
+                 <p>
+    <a href="http://validator.w3.org/check?uri=referer"><img
+        src="http://www.w3.org/Icons/valid-html401"
+        alt="Valid HTML 4.01 Transitional" height="31" width="88"/></a>
+  </p>
             </body>
         </html>
     </xsl:template>
