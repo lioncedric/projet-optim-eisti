@@ -446,7 +446,7 @@ public class BddProbleme {
 
     }
 
-     public static boolean html() throws Exception {
+     public static String html() throws Exception {
         boolean retourne=false;//booleen pour savoir si il a été crée ou pas
         //Nouveau jfilechooser
         JFileChooser fc = new JFileChooser();
@@ -478,8 +478,10 @@ public class BddProbleme {
             Utilitaire.copie("HTML/design.css", nom2 + "/html/design.css");
             Utilitaire.copie("HTML/BaniereFinal.png", nom2 + "/html/BaniereFinal.png");
             Utilitaire.copie("HTML/pageBienvenue.png", nom2 + "/html/pageBienvenue.png");
+            return nom;
+        }else{
+            return null;
         }
         //On retourne le boolee
-        return retourne;
     }
 }

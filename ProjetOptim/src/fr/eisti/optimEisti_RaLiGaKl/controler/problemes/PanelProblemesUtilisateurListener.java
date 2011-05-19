@@ -125,10 +125,11 @@ public class PanelProblemesUtilisateurListener implements ActionListener, MouseL
             }
         } else if (e.getSource() == this.ppu.getBoutonHtml()) {
             try {
+                String chemin;
+                chemin = BddProbleme.html();
                //Si la création du html a réussit
-                if(BddProbleme.html()){
-                     //on ouvre un dialogue
-                    JOptionPane.showMessageDialog(null, "Création réussie!", "Information", JOptionPane.INFORMATION_MESSAGE);
+                if(chemin != null){
+                    //on ouvre un dialogue
                      //on affiche la page html à l'utilisateur
                     // On vérifie que la classe Desktop soit bien supportée :
                     if ( Desktop.isDesktopSupported() ) {
@@ -139,7 +140,7 @@ public class PanelProblemesUtilisateurListener implements ActionListener, MouseL
                             if (desktop.isSupported(Desktop.Action.OPEN)) {
                                 try{
                                     // Et on lance l'application associé au protocole :
-                                    desktop.open(new File("C:/Users/Princess Sarah/Documents/sarah.html"));
+                                    desktop.open(new File(chemin));
                                     System.out.println("ouverture réussit");
                                 }catch(IOException efile){
                                     System.out.println("Problème de lecture du fichier");

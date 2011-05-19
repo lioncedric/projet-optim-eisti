@@ -10,7 +10,6 @@ import java.io.IOException;
 
 import fr.eisti.optimEisti_RaLiGaKl.view.problemes.Fenetre;
 import fr.eisti.optimEisti_RaLiGaKl.Main;
-import fr.eisti.optimEisti_RaLiGaKl.model.Utilitaire;
 import fr.eisti.optimEisti_RaLiGaKl.view.compte.Preferences;
 import java.awt.event.ComponentListener;
 import java.io.File;
@@ -71,7 +70,7 @@ public class FenetreListener implements ActionListener, ComponentListener {
         } else if (e.getSource() == this.fenetre.getAffResHtml()) {
             try {
                 //Si la création du html a réussit
-                if (BddProbleme.html()) {
+                if (BddProbleme.html()!=null) {
                     //on ouvre un dialogue
                     JOptionPane.showMessageDialog(null, "Création réussie!", "Information", JOptionPane.INFORMATION_MESSAGE);
                 } else {
