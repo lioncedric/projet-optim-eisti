@@ -57,24 +57,7 @@
 
 
 
-<probleme>
-<titre>Sans probleme</titre>
-<description>Entrer votre description du problème</description>
-<objectif type="Maximiser">
-<variable coeff="1.0"/>
-<variable coeff="-2.0"/>
-</objectif>
-<contrainte type="Infériorité">
-<variable coeff="1.0"/>
-<variable coeff="1.0"/>
-<constante valeur="3.0"/>
-</contrainte>
-<contrainte type="Infériorité">
-<variable coeff="-1.0"/>
-<variable coeff="3.0"/>
-<constante valeur="-4.0"/>
-</contrainte>
-</probleme>
+
 
 <probleme>
 <titre>Testmumu2</titre>
@@ -179,6 +162,28 @@
 <resultat valeur="8.0">
 <variable coeff="2.0"/>
 <variable coeff="3.0"/>
+</resultat>
+</probleme>
+<probleme>
+<titre>Sans probleme</titre>
+<description>Entrer votre description du problème</description>
+<objectif type="Maximiser">
+<variable coeff="1.0"/>
+<variable coeff="-2.0"/>
+</objectif>
+<contrainte type="Infériorité">
+<variable coeff="1.0"/>
+<variable coeff="1.0"/>
+<constante valeur="3.0"/>
+</contrainte>
+<contrainte type="Infériorité">
+<variable coeff="-1.0"/>
+<variable coeff="3.0"/>
+<constante valeur="-4.0"/>
+</contrainte>
+<resultat valeur="-599997.0">
+<variable coeff="3.0"/>
+<variable coeff="0.0"/>
 </resultat>
 </probleme>
 </listeProblemes>
