@@ -142,32 +142,6 @@ public class Utilitaire {
         out.close();
 
     }
-
-    public static boolean html() throws Exception {
-        boolean retourne=false;//booleen pour savoir si il a été crée ou pas
-        JFileChooser fc = new JFileChooser();
-        fc.addChoosableFileFilter(new FiltreSimple("Fichier HTML", ".html"));
-        fc.setAcceptAllFileFilterUsed(false);
-        int returnVal = fc.showSaveDialog(null);
-        if (returnVal == JFileChooser.APPROVE_OPTION) {
-            retourne=true;
-            String nom = fc.getSelectedFile().getAbsolutePath();
-            String nom2 = new File(nom).getParent();
-            if (!nom.endsWith(".html")) {
-                nom = nom + ".html";
-            }
-
-            Utilitaire.creerHTML("bdd/" + BDDUtilisateur.getNomUtilisateur() + ".xml", "HTML/resultats.xsl", nom);
-
-            //Copie tous les fichiers nécessaires au fonctionnement du HTML
-            new File(nom2 + "/html").mkdir();
-            Utilitaire.copie("HTML/script.js", nom2 + "/html/script.js");
-            Utilitaire.copie("HTML/design.css", nom2 + "/html/design.css");
-            Utilitaire.copie("HTML/BaniereFinal.png", nom2 + "/html/BaniereFinal.png");
-            Utilitaire.copie("HTML/pageBienvenue.png", nom2 + "/html/pageBienvenue.png");
-        }
-        return retourne;
-    }
 }
 
 

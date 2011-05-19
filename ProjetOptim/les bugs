@@ -17,7 +17,7 @@ pour plutard
 -jfilechooser qd image=0Kb => nullpointerException
 
 XSLT:
-mettre une image par défaut si c'est pas le bon chemin
-Faire marcher sur chrome,...
+Pb image par défaut si on choisit pas => html=image introuvable
+suppression de compte
 
 Sarah bug enorme avec les contraintres

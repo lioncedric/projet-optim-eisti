@@ -39,6 +39,7 @@ public class Fenetre extends JFrame {
     private JMenuItem recharger = new JMenuItem("Recharger");
     private JMenuItem quitter = new JMenuItem("Quitter");
     private JMenuItem deconnexion = new JMenuItem("Se déconnecter");
+    private JMenuItem supprimerCompte = new JMenuItem("Supprimer mon compte");
     private JMenuItem aideItem = new JMenuItem("Aide");
     private JMenuItem aPropos = new JMenuItem("a Propos");
     private JMenuItem importXml = new JMenuItem("Importer des problèmes XML");
@@ -140,6 +141,7 @@ public class Fenetre extends JFrame {
         this.fichier.addSeparator();
         this.fichier.add(deconnexion);
         this.deconnexion.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_D, KeyEvent.CTRL_MASK));//ctrl + d
+        this.fichier.add(supprimerCompte);
         this.fichier.add(quitter);
         this.quitter.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_Q, KeyEvent.CTRL_MASK));//ctrl + q
 
@@ -171,11 +173,20 @@ public class Fenetre extends JFrame {
         importXml.addActionListener(new FenetreListener(this));
         recharger.addActionListener(new FenetreListener(this));
         deconnexion.addActionListener(new FenetreListener(this));
+        supprimerCompte.addActionListener(new FenetreListener(this));
         quitter.addActionListener(new FenetreListener(this));
         pleinEcran.addActionListener(new FenetreListener(this));
         petitEcran.addActionListener(new FenetreListener(this));
         affResHtml.addActionListener(new FenetreListener(this));
         preferences.addActionListener(new FenetreListener(this));
+    }
+
+    public JMenuItem getSupprimerCompte() {
+        return supprimerCompte;
+    }
+
+    public void setSupprimerCompte(JMenuItem supprimerCompte) {
+        this.supprimerCompte = supprimerCompte;
     }
 
     public JTabbedPane getDroite() {

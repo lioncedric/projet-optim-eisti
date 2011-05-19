@@ -126,7 +126,7 @@ public class PanelProblemesUtilisateurListener implements ActionListener, MouseL
         } else if (e.getSource() == this.ppu.getBoutonHtml()) {
             try {
                //Si la création du html a réussit
-                if(Utilitaire.html()){
+                if(BddProbleme.html()){
                      //on ouvre un dialogue
                     JOptionPane.showMessageDialog(null, "Création réussie!", "Information", JOptionPane.INFORMATION_MESSAGE);
                      //on affiche la page html à l'utilisateur

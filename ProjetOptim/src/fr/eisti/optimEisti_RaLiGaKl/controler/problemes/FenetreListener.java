@@ -50,32 +50,41 @@ public class FenetreListener implements ActionListener, ComponentListener {
                 }
             } catch (Exception ex) {
             }
-            
+
         } else if (e.getSource() == this.fenetre.getDeconnexion()) {
             Main.accueil.setVisible(true);
             this.fenetre.dispose();
-            
+
+        } else if (e.getSource() == this.fenetre.getSupprimerCompte()) {
+            if (BDDUtilisateur.supprimerCompte(BDDUtilisateur.getNomUtilisateur())) {
+                //on ouvre un dialogue
+                JOptionPane.showMessageDialog(null, "Suppression réussie!", "Information", JOptionPane.INFORMATION_MESSAGE);
+                Main.accueil.setVisible(true);
+                this.fenetre.dispose();
+            } else {
+                //on ouvre un dialogue
+                JOptionPane.showMessageDialog(null, "Création annulée! ", "Erreur", JOptionPane.ERROR_MESSAGE);
+            }
         } else if (e.getSource() == this.fenetre.getQuitter()) {
             System.exit(0);
 
         } else if (e.getSource() == this.fenetre.getAffResHtml()) {
             try {
                 //Si la création du html a réussit
-                if(Utilitaire.html()){
-                     //on ouvre un dialogue
+                if (BddProbleme.html()) {
+                    //on ouvre un dialogue
                     JOptionPane.showMessageDialog(null, "Création réussie!", "Information", JOptionPane.INFORMATION_MESSAGE);
-                }
-                else{
+                } else {
                     //on ouvre un dialogue
                     JOptionPane.showMessageDialog(null, "Création annulée! ", "Erreur", JOptionPane.ERROR_MESSAGE);
                 }
-                
+
             } catch (Exception ex) {
                 Logger.getLogger(FenetreListener.class.getName()).log(Level.SEVERE, null, ex);
-                 //on ouvre un dialogue
+                //on ouvre un dialogue
                 JOptionPane.showMessageDialog(null, "Création échouée! ", "Erreur", JOptionPane.ERROR_MESSAGE);
             }
-            
+
         } else if (e.getSource() == this.fenetre.getRecharger()) {
             try {
                 BddProbleme.load(BDDUtilisateur.getNomUtilisateur(), BDDUtilisateur.getImage());
@@ -84,7 +93,7 @@ public class FenetreListener implements ActionListener, ComponentListener {
                 Main.fenetrePrincipale.repaint();
             } catch (IOException ex) {
             }
-            
+
         } //si l'utilisateur veut mettre la fenêtre en taille minimale
         else if (e.getSource() == this.fenetre.getPetitEcran()) {
             //on applique le changement
@@ -95,9 +104,8 @@ public class FenetreListener implements ActionListener, ComponentListener {
         else if (e.getSource() == this.fenetre.getPleinEcran()) {
             //on passe tout simplement en mode 'Plein Ecran' en maximisant hauteur et largeur
             this.fenetre.setExtendedState(Fenetre.MAXIMIZED_BOTH);
-        }
-        else if(e.getSource() == this.fenetre.getPreferences()) {
-            Preferences p=new Preferences();
+        } else if (e.getSource() == this.fenetre.getPreferences()) {
+            Preferences p = new Preferences();
             p.setVisible(true);
         }
     }

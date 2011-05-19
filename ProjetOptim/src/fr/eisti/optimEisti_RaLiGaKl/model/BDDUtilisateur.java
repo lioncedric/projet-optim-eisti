@@ -178,6 +178,44 @@ public class BDDUtilisateur {
         //on retourne le booléen
         return existe;
     }
+
+    public static boolean supprimerCompte(String login) {
+        //Déclaration et initialisation des variables
+        int i = 0;
+        boolean trouve = false;
+        String NomUtilisateurTmp = "";
+
+        //Si l'utilisateur existe bien
+        if (BDDUtilisateur.existeUtilisateur(login)) {
+            // Parse an XML document into a DOM tree.
+            Document document;
+            document = Utilitaire.parseXmlDom(new File(chFichierIdentification));
+
+            //on recupere le noeud racine
+            Element racine = document.getDocumentElement();
+            //on recupere toutes les personnes
+            NodeList liste = racine.getElementsByTagName("personne");
+            //Tant qu'on a pas parcouru toute la liste de noeud
+            while (i < liste.getLength() && !trouve) {
+                //on récupère le nom d'utilisateur du noeud en question
+                NomUtilisateurTmp = liste.item(i).getAttributes().getNamedItem("login").getNodeValue();
+                //si il sont égaux au nom d'utilisateur et mot de passe en paramètre alors
+                if (NomUtilisateurTmp.equals(login)) {
+                    //trouve est vrai
+                    trouve = true;
+                    //on supprime le noeud
+                    racine.removeChild(liste.item(i));
+                    //permet de transformer le dom en xml
+                    Utilitaire.transformerXml(document, chFichierIdentification);
+                }
+                //incrémentation du i
+                i++;
+            }
+        }
+        //on retourne le resultat de la fonction
+        return trouve;
+    }
+
     /**
      * recuperer le nom de l'utilisateur en cours
      * @return l'utilisateur en cours

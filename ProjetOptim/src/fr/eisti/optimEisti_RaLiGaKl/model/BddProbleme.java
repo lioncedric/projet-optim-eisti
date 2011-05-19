@@ -10,6 +10,7 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
+import javax.swing.JFileChooser;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.validation.Schema;
@@ -443,5 +444,42 @@ public class BddProbleme {
         } catch (IOException ex) {
         }
 
+    }
+
+     public static boolean html() throws Exception {
+        boolean retourne=false;//booleen pour savoir si il a été crée ou pas
+        //Nouveau jfilechooser
+        JFileChooser fc = new JFileChooser();
+        //ajout d'un filtre pour fichier html
+        fc.addChoosableFileFilter(new FiltreSimple("Fichier HTML", ".html"));
+        //tous les types de fichiers ne sont pas acceptés
+        fc.setAcceptAllFileFilterUsed(false);
+        //on stocke le numero du bouton cliquer (valider, annuler)
+        int returnVal = fc.showSaveDialog(null);
+        //si on valide
+        if (returnVal == JFileChooser.APPROVE_OPTION) {
+            //retourne est vrai
+            retourne=true;
+            //on récupère le chemin absolu (le nom du fichier y compris)
+            String nom = fc.getSelectedFile().getAbsolutePath();
+            //on récupère le chemin du répertoire ou se trouve le fichier
+            String nom2 = new File(nom).getParent();
+            //Si le nom saisit ne se finit pas par .html
+            if (!nom.endsWith(".html")) {
+                //on récupère le nom complet
+                nom = nom + ".html";
+            }
+            //on compile le xsl avec le xml pour créer le html
+            Utilitaire.creerHTML("bdd/" + BDDUtilisateur.getNomUtilisateur() + ".xml", "HTML/resultats.xsl", nom);
+           //on crée un répertoire du nom de html
+            new File(nom2 + "/html").mkdir();
+             //Copie tous les fichiers nécessaires au fonctionnement du HTML
+            Utilitaire.copie("HTML/script.js", nom2 + "/html/script.js");
+            Utilitaire.copie("HTML/design.css", nom2 + "/html/design.css");
+            Utilitaire.copie("HTML/BaniereFinal.png", nom2 + "/html/BaniereFinal.png");
+            Utilitaire.copie("HTML/pageBienvenue.png", nom2 + "/html/pageBienvenue.png");
+        }
+        //On retourne le boolee
+        return retourne;
     }
 }
