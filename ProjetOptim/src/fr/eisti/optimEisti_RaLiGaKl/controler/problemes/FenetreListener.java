@@ -10,12 +10,14 @@ import java.io.IOException;
 
 import fr.eisti.optimEisti_RaLiGaKl.view.problemes.Fenetre;
 import fr.eisti.optimEisti_RaLiGaKl.Main;
-import fr.eisti.optimEisti_RaLiGaKl.model.FiltreSimple;
 import fr.eisti.optimEisti_RaLiGaKl.model.Utilitaire;
 import fr.eisti.optimEisti_RaLiGaKl.view.compte.Preferences;
 import java.awt.event.ComponentListener;
 import java.io.File;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JFileChooser;
+import javax.swing.JOptionPane;
 
 /**
  * Classe qui écoute les actions qui ont lieu sur la fenêtre principale
@@ -57,7 +59,15 @@ public class FenetreListener implements ActionListener, ComponentListener {
             System.exit(0);
 
         } else if (e.getSource() == this.fenetre.getAffResHtml()) {
-          Utilitaire.html();
+            try {
+                Utilitaire.html();
+                //on ouvre un dialogue
+                JOptionPane.showMessageDialog(null, "Création réussie!", "Information", JOptionPane.INFORMATION_MESSAGE);
+            } catch (Exception ex) {
+                Logger.getLogger(FenetreListener.class.getName()).log(Level.SEVERE, null, ex);
+                 //on ouvre un dialogue
+                JOptionPane.showMessageDialog(null, "Création échouée! ", "Erreur", JOptionPane.ERROR_MESSAGE);
+            }
             
         } else if (e.getSource() == this.fenetre.getRecharger()) {
             try {
@@ -78,8 +88,6 @@ public class FenetreListener implements ActionListener, ComponentListener {
         else if (e.getSource() == this.fenetre.getPleinEcran()) {
             //on passe tout simplement en mode 'Plein Ecran' en maximisant hauteur et largeur
             this.fenetre.setExtendedState(Fenetre.MAXIMIZED_BOTH);
-        } else if (e.getSource() == this.fenetre.getAffResHtml()) {
-            //ouvrir la page html
         }
         else if(e.getSource() == this.fenetre.getPreferences()) {
             Preferences p=new Preferences();

@@ -10,6 +10,8 @@ import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.io.File;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
@@ -120,7 +122,15 @@ public class PanelProblemesUtilisateurListener implements ActionListener, MouseL
                 }
             }
         } else if (e.getSource() == this.ppu.getBoutonHtml()) {
-            Utilitaire.html();
+            try {
+                Utilitaire.html();
+                //on ouvre un dialogue
+                JOptionPane.showMessageDialog(null, "Création réussie!", "Information", JOptionPane.INFORMATION_MESSAGE);
+            } catch (Exception ex) {
+                Logger.getLogger(FenetreListener.class.getName()).log(Level.SEVERE, null, ex);
+                 //on ouvre un dialogue
+                JOptionPane.showMessageDialog(null, "Création échouée! ", "Erreur", JOptionPane.ERROR_MESSAGE);
+            }
         } else if (e.getSource() == this.ppu.getBoutonNew()) {
             boolean nouveau = false;
             int i = 0;

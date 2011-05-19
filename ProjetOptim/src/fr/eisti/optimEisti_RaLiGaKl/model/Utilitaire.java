@@ -143,7 +143,7 @@ public class Utilitaire {
 
     }
 
-    public static void html() {
+    public static void html() throws Exception {
         JFileChooser fc = new JFileChooser();
         fc.addChoosableFileFilter(new FiltreSimple("Fichier HTML", ".html"));
         fc.setAcceptAllFileFilterUsed(false);
@@ -154,19 +154,17 @@ public class Utilitaire {
             if (!nom.endsWith(".html")) {
                 nom = nom + ".html";
             }
-            try {
-                Utilitaire.creerHTML("bdd/" + BDDUtilisateur.getNomUtilisateur() + ".xml", "HTML/resultats.xsl", nom);
-            } catch (Exception ex) {
-            }
-            try {
-                //Copie tous les fichiers nécessaires au fonctionnement du HTML
-                new File(nom2 + "/html").mkdir();
-                Utilitaire.copie("HTML/script.js", nom2 + "/html/script.js");
-                Utilitaire.copie("HTML/design.css", nom2 + "/html/design.css");
-                Utilitaire.copie("HTML/BaniereFinal.png", nom2 + "/html/BaniereFinal.png");
-                Utilitaire.copie("HTML/pageBienvenue.png", nom2 + "/html/pageBienvenue.png");
-            } catch (Exception ex) {
-            }
+
+            Utilitaire.creerHTML("bdd/" + BDDUtilisateur.getNomUtilisateur() + ".xml", "HTML/resultats.xsl", nom);
+
+            //Copie tous les fichiers nécessaires au fonctionnement du HTML
+            new File(nom2 + "/html").mkdir();
+            Utilitaire.copie("HTML/script.js", nom2 + "/html/script.js");
+            Utilitaire.copie("HTML/design.css", nom2 + "/html/design.css");
+            Utilitaire.copie("HTML/BaniereFinal.png", nom2 + "/html/BaniereFinal.png");
+            Utilitaire.copie("HTML/pageBienvenue.png", nom2 + "/html/pageBienvenue.png");
         }
     }
 }
+
+
