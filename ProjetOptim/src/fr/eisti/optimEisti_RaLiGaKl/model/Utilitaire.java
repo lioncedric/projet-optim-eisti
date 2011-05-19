@@ -2,6 +2,7 @@ package fr.eisti.optimEisti_RaLiGaKl.model;
 
 import org.w3c.dom.*;
 import java.io.*;
+import javax.swing.JFileChooser;
 import javax.xml.XMLConstants;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
@@ -140,5 +141,32 @@ public class Utilitaire {
         in.close();
         out.close();
 
+    }
+
+    public static void html() {
+        JFileChooser fc = new JFileChooser();
+        fc.addChoosableFileFilter(new FiltreSimple("Fichier HTML", ".html"));
+        fc.setAcceptAllFileFilterUsed(false);
+        int returnVal = fc.showSaveDialog(null);
+        if (returnVal == JFileChooser.APPROVE_OPTION) {
+            String nom = fc.getSelectedFile().getAbsolutePath();
+            String nom2 = new File(nom).getParent();
+            if (!nom.endsWith(".html")) {
+                nom = nom + ".html";
+            }
+            try {
+                Utilitaire.creerHTML("bdd/" + BDDUtilisateur.getNomUtilisateur() + ".xml", "HTML/resultats.xsl", nom);
+            } catch (Exception ex) {
+            }
+            try {
+                //Copie tous les fichiers nécessaires au fonctionnement du HTML
+                new File(nom2 + "/html").mkdir();
+                Utilitaire.copie("HTML/script.js", nom2 + "/html/script.js");
+                Utilitaire.copie("HTML/design.css", nom2 + "/html/design.css");
+                Utilitaire.copie("HTML/BaniereFinal.png", nom2 + "/html/BaniereFinal.png");
+                Utilitaire.copie("HTML/pageBienvenue.png", nom2 + "/html/pageBienvenue.png");
+            } catch (Exception ex) {
+            }
+        }
     }
 }

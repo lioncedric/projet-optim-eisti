@@ -180,7 +180,10 @@ public class BDDUtilisateur {
         //on retourne le booléen
         return existe;
     }
-
+    /**
+     * recuperer le nom de l'utilisateur en cours
+     * @return l'utilisateur en cours
+     */
     public static String getNomUtilisateur() {
         return NomUtilisateur;
     }

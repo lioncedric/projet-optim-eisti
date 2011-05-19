@@ -151,6 +151,8 @@ public class Probleme {
                     decalage++;
                     if (temp + 2 == decalage) {
                         listeM.add(temp + j - 1);
+                        //numero variable artificielle =temp + j
+                        //faire add(temp + j)
                     }
                 }
             }
