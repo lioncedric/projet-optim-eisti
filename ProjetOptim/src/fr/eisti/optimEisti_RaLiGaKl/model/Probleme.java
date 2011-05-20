@@ -81,92 +81,126 @@ public class Probleme {
 
     /**
      * Fonction qui retourne le problème sous forme de matrice pour l'utilisation de la méthode de résolution du simplexe
+     * @param artifices : liste des positions des variables artificielles
      * @return matrice : la matrice correspondante au problème
      */
     public double[][] formaliserProbleme(ArrayList<Integer> artifices) {
         //declaration de la matrice representant le probleme pour l'algo du simplexe
         double[][] matrice;
-        double signe = 0;
+        //si egalité =0,inferiorité = -1, superiorité =1
+        double signe;
+        //varible de penalité de grande valeur
         Double M = 600000.0;
+        //tableau contenant la liste des contraintes a ecrire de facon normalisées
+        ArrayList<Double>[] listeContrainteNormalisés = new ArrayList[this.contraintes.size()];
+        //position des variables de pénalité dans la matrice referant la ligne d'objectif par rapport aux variables d'ecart
         ArrayList<Integer> listeM = new ArrayList<Integer>();
-
-        ArrayList<Double>[] listeContrainte = new ArrayList[this.contraintes.size()];
+        //coef des variables de pénalité dans la matrice referant la ligne d'objectif par rapport aux variables reelles et au constantes
         double[] coefM = new double[this.contraintes.get(0).getCoeffVariables().size() + 1];
+        //on va normaliser chaque contraintes
         for (int i = 0; i < this.contraintes.size(); i++) {
-            listeContrainte[i] = new ArrayList<Double>();
+            //creation de la premiere contrinte normalisé
+            listeContrainteNormalisés[i] = new ArrayList<Double>();
+            //3 cas
             if (this.contraintes.get(i).getInegalite().equals("Supériorité")) {
+                //on etablit le signe de la contrainte
                 signe = -1;
             } else if (this.contraintes.get(i).getInegalite().equals("Infériorité")) {
+                //on etablit le signe de la contrainte
                 signe = 1;
+            } else {
+                //on etablit le signe de la contrainte
+                signe = 0;
             }
+            //cas ou la constante est negative, il faut tout multiplier par -1
             if (this.contraintes.get(i).getConstante() < 0) {
+                //chaque variable eest multiplié par -1
                 for (int j = 0; j < this.contraintes.get(i).getCoeffVariables().size(); j++) {
-                    listeContrainte[i].add(-this.contraintes.get(i).getCoeffVariables().get(j));
+                    listeContrainteNormalisés[i].add(-this.contraintes.get(i).getCoeffVariables().get(j));
                 }
+                //variable d'ecart du type e1 ou -e1 en fonction du signe
                 if (signe != 0) {
-                    listeContrainte[i].add(signe * -1);
+                    listeContrainteNormalisés[i].add(signe * -1);
                 }
+                //variable artificille du type +u1
                 if (-signe <= 0) {
-                    listeContrainte[i].add(1.0);
-
+                    listeContrainteNormalisés[i].add(1.0);
+                    //on additionne les m pour les variables
                     for (int z = 0; z < this.contraintes.get(i).getCoeffVariables().size(); z++) {
                         coefM[z] += -this.contraintes.get(i).getCoeffVariables().get(z);
                     }
+                    //on additionne les m pour la constante
                     coefM[this.contraintes.get(i).getCoeffVariables().size()] += -this.contraintes.get(i).getConstante();
                 }
-                listeContrainte[i].add(-this.contraintes.get(i).getConstante());
-            } else {
-                for (int j = 0; j < this.contraintes.get(i).getCoeffVariables().size(); j++) {
-                    listeContrainte[i].add(this.contraintes.get(i).getCoeffVariables().get(j));
-                }
-                if (signe != 0) {
-                    listeContrainte[i].add(signe);
-                }
-                if (signe <= 0) {
-                    listeContrainte[i].add(1.0);
+                //on ajoute la constante
+                listeContrainteNormalisés[i].add(-this.contraintes.get(i).getConstante());
 
+            } //cas ou la constante est positive
+            else {
+                //on additionne les m pour les variables
+                for (int j = 0; j < this.contraintes.get(i).getCoeffVariables().size(); j++) {
+                    listeContrainteNormalisés[i].add(this.contraintes.get(i).getCoeffVariables().get(j));
+                }
+                //variable d'ecart du type e1 ou -e1 en fonction du signe
+                if (signe != 0) {
+                    listeContrainteNormalisés[i].add(signe);
+                }
+                //variable artificille du type +u1
+                if (signe <= 0) {
+                    listeContrainteNormalisés[i].add(1.0);
+                    //on additionne les m pour les variables
                     for (int z = 0; z < this.contraintes.get(i).getCoeffVariables().size(); z++) {
                         coefM[z] += this.contraintes.get(i).getCoeffVariables().get(z);
                     }
+                    //on additionne les m pour la constante
                     coefM[this.contraintes.get(i).getCoeffVariables().size()] += this.contraintes.get(i).getConstante();
                 }
-                listeContrainte[i].add(this.contraintes.get(i).getConstante());
+                  //on ajoute la constante
+                listeContrainteNormalisés[i].add(this.contraintes.get(i).getConstante());
             }
-
-            System.out.println(listeContrainte[i].toString());
-        }
+            //pour une verif
+           // System.out.println(listeContrainteNormalisés[i].toString());
+        }//normalisation terminée
+        //calcul du nomre de variables artificielles et d'ecart
         int colonnes = 0;
         for (int i = 0; i < this.contraintes.size(); i++) {
-
-            colonnes += listeContrainte[i].size() - 1 - this.coeffVariables.size();
+            colonnes += listeContrainteNormalisés[i].size() - 1 - this.coeffVariables.size();
         }
+        //creation de la matrice represantant un probleme normalisé
         matrice = new double[this.contraintes.size() + 1][this.coeffVariables.size() + 1 + colonnes];
-        initMatrice(matrice);
-
+        initMatrice(matrice);//on met des 0
+        //variable pour decaler les variables d'ecart et artificielles
         int decalage = 0;
+        //pour chaque contrainte
         for (int i = 0; i < this.contraintes.size(); i++) {
+            //on memorise le decalagge en cours
             int temp = decalage;
-            for (int j = 0; j < listeContrainte[i].size() - 1; j++) {
+            //on parcours la liste des contraintes
+            for (int j = 0; j < listeContrainteNormalisés[i].size() - 1; j++) {
+                //on commence a remplir la matrice avec les variables reeles
                 if (j < this.getCoeffVariables().size()) {
-                    matrice[i][j] = listeContrainte[i].get(j);
+                    matrice[i][j] = listeContrainteNormalisés[i].get(j);
+                //on rempli les varibles d'ecart et artificielles
                 } else {
-                    matrice[i][j + temp] = listeContrainte[i].get(j);
+                    matrice[i][j + temp] = listeContrainteNormalisés[i].get(j);
+                    //on decale 1 fois
                     decalage++;
                     if (this.contraintes.get(i).getInegalite().equals("Egalité")) {
+                        //on identifie une variable artificielle
                         artifices.add(temp + j);
                     }
                     if (temp + 2 == decalage) {
+                        //on ajoute un M
                         listeM.add(temp + j - 1);
+                        //on identifie une variable artificielle
                         artifices.add(temp + j);
-                        //numero variable artificielle =temp + j
-
                     }
                 }
             }
-            matrice[i][this.coeffVariables.size() + colonnes] = listeContrainte[i].get(listeContrainte[i].size() - 1);
+            //on ajoute la constante
+            matrice[i][this.coeffVariables.size() + colonnes] = listeContrainteNormalisés[i].get(listeContrainteNormalisés[i].size() - 1);
         }
-        System.out.println(listeM);
-        //pour chaque colonne de la derniere ligne
+        //pour chaque colonne de la derniere ligne(fonction objectif)
         for (int j = 0; j < this.coeffVariables.size(); j++) {
             if (this.objectif.equals("Minimiser")) {
                 matrice[this.contraintes.size()][j] = -this.coeffVariables.get(j) + M * coefM[j];
@@ -175,14 +209,13 @@ public class Probleme {
                 matrice[this.contraintes.size()][j] = this.coeffVariables.get(j) + M * coefM[j];
             }
         }
+        //on place les M dans la foction obj
         for (int j = 0; j < listeM.size(); j++) {
             matrice[this.contraintes.size()][listeM.get(j)] = -M;
         }
+        //on place la cste de la fction obj
         matrice[this.contraintes.size()][this.coeffVariables.size() + colonnes] = M * coefM[coefM.length - 1];
-        afficherMatrice(matrice);
-        //on rempli la matrice avec les différentes données du problème à résoudre (variables, contraintes)
-        // afficherMatrice(matrice);
-
+        //afficherMatrice(matrice);
         //on retourne la matrice
         return matrice;
     }
@@ -248,6 +281,10 @@ public class Probleme {
         return nb;
     }
 
+    /**
+     * resoudre le probleme d'optimisation lineaire
+     * @return toutes les valeurs optimales des xi mais aussi le resulultat optimal de la fonction en premiere valeur de la liste
+     */
     public ArrayList<Double> chercherSolutions() {
         ArrayList<Integer> artifices = new ArrayList<Integer>();
         double[][] tableau = this.formaliserProbleme(artifices);
