@@ -115,15 +115,16 @@ public class Probleme {
             //cas ou la constante est negative, il faut tout multiplier par -1
             if (this.contraintes.get(i).getConstante() < 0) {
                 //chaque variable eest multiplié par -1
+                signe=-signe;
                 for (int j = 0; j < this.contraintes.get(i).getCoeffVariables().size(); j++) {
                     listeContrainteNormalisés[i].add(-this.contraintes.get(i).getCoeffVariables().get(j));
                 }
                 //variable d'ecart du type e1 ou -e1 en fonction du signe
                 if (signe != 0) {
-                    listeContrainteNormalisés[i].add(signe * -1);
+                    listeContrainteNormalisés[i].add(signe);
                 }
                 //variable artificille du type +u1
-                if (-signe <= 0) {
+                if (signe <= 0) {
                     listeContrainteNormalisés[i].add(1.0);
                     //on additionne les m pour les variables
                     for (int z = 0; z < this.contraintes.get(i).getCoeffVariables().size(); z++) {
@@ -159,7 +160,7 @@ public class Probleme {
                 listeContrainteNormalisés[i].add(this.contraintes.get(i).getConstante());
             }
             //pour une verif
-           // System.out.println(listeContrainteNormalisés[i].toString());
+           System.out.println(listeContrainteNormalisés[i].toString());
         }//normalisation terminée
         //calcul du nomre de variables artificielles et d'ecart
         int colonnes = 0;
@@ -215,7 +216,7 @@ public class Probleme {
         }
         //on place la cste de la fction obj
         matrice[this.contraintes.size()][this.coeffVariables.size() + colonnes] = M * coefM[coefM.length - 1];
-        //afficherMatrice(matrice);
+        afficherMatrice(matrice);
         //on retourne la matrice
         return matrice;
     }
