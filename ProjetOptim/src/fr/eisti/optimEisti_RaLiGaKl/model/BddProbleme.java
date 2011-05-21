@@ -295,13 +295,20 @@ public class BddProbleme {
             fw = new FileWriter(nom, false);
             BufferedWriter sortie = new BufferedWriter(fw);
             //on ecrit dans le fichier
-            sortie.write("//Programmation lineaire: " + p.getTitre() + "\n");
-            sortie.write(c + ";\n");
-            sortie.write(b + ";\n");
-            sortie.write(A + ";\n");
-            sortie.write("Zu=[]" + ";\n");
-            sortie.write(Z1 + ";\n");
-            sortie.write("[Zopt,lag,CA]=linpro(c,A,b,Z1,Zu)" + "\n");
+            sortie.write("//Programmation lineaire: " + p.getTitre());
+            sortie.newLine();
+            sortie.write(c + ";");
+            sortie.newLine();
+            sortie.write(b + ";");
+            sortie.newLine();
+            sortie.write(A + ";");
+            sortie.newLine();
+            sortie.write("Zu=[]" + ";");
+            sortie.newLine();
+            sortie.write(Z1 + ";");
+            sortie.newLine();
+            sortie.write("[Zopt,lag,CA]=linpro(c,A,b,Z1,Zu)");
+            sortie.newLine();
             //on ferme le buffer
             sortie.close();
         } catch (IOException ex) {
@@ -333,7 +340,10 @@ public class BddProbleme {
 
             ArrayList<Contrainte> contraintes = p.getContraintes();//liste des contraintes du probleme
 
-            output.write(p.getTitre() + "\n\n\n");
+            output.write(p.getTitre());
+            output.newLine();
+            output.newLine();
+            output.newLine();
             //On saute une ligne
             output.write(";");
             //calcul de la longueur de la liste de variables
@@ -347,7 +357,7 @@ public class BddProbleme {
                 output.write("x" + j + ";");
             }
             j = 0;
-            output.write("\n");
+            output.newLine();
             output.write(";");
             //Ecriture de 0 sous les variables
             while (j < nbVariablesDecision) {
@@ -355,7 +365,7 @@ public class BddProbleme {
                 output.write("0;");
             }
 
-            output.write("\n");
+            output.newLine();
             output.write("F0;");
 
             //Ecriture des coefficients de la fonction objective
@@ -385,7 +395,8 @@ public class BddProbleme {
             }
             output.write(temp);
             //On saute deux lignes
-            output.write("\n\n");
+            output.newLine();
+            output.newLine();
             output.write("contraintes;");
             j = 8;//la première contrainte se trouve à la ligne 8
             //Ecriture des contraintes
@@ -435,7 +446,7 @@ public class BddProbleme {
                 //Ecriture de la constante liée à cette contrainte
                 output.write(";" + t.getConstante());
 
-                output.write("\n;");
+                output.newLine();
 
             }
 
@@ -482,7 +493,7 @@ public class BddProbleme {
                 Utilitaire.copie("HTML/BaniereFinal.png", nom2 + "/html/BaniereFinal.png");
                 Utilitaire.copie("HTML/pageBienvenue.png", nom2 + "/html/pageBienvenue.png");
                 return nom;
-            }else{
+            } else {
                 return "le fichier n'existe pas";
             }
 
