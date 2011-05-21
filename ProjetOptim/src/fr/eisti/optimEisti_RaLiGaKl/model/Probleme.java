@@ -19,12 +19,19 @@ public class Probleme {
     protected ArrayList<Double> coeffVariables = new ArrayList<Double>();
     protected ArrayList<Double> resultat = new ArrayList<Double>();
     protected ArrayList<Contrainte> contraintes = new ArrayList<Contrainte>();
-
+/**
+ * decription de l'objet
+ * @return l'objet sous forme de chaine
+ */
     @Override
     public String toString() {
         return "Probleme{" + "description=" + description + "titre=" + titre + "objectif=" + objectif + "coeffVariables=" + coeffVariables + "resultat=" + resultat + "contraintes=" + contraintes + '}';
     }
-
+/**
+ * verifier l'ealité entre deux objets
+ * @param obj l'objet a comparer
+ * @return si les deux objets sont egaux
+ */
     @Override
     public boolean equals(Object obj) {
         return obj.toString().equals(this.toString());

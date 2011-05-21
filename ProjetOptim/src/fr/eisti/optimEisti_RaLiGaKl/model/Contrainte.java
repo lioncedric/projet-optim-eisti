@@ -17,15 +17,20 @@ public class Contrainte {
         return "Contrainte{" + "coeffVariables=" + coeffVariables + "inegalite=" + inegalite + "constante=" + constante + '}';
     }
     
-    /**
-     * 
-     */
+   /**
+    * constructeur
+    * @param coeffVariables les coeficients des variables
+    * @param inegalite le type de contrainte
+    * @param constante la valeur de la constante
+    */
     public Contrainte(ArrayList<Double> coeffVariables, String inegalite, double constante){
         this.coeffVariables = coeffVariables;
         this.inegalite = inegalite;
         this.constante = constante;
     }
-
+/**
+ * constructeur
+ */
     public Contrainte(){
         this.coeffVariables = new ArrayList<Double>();
     }

@@ -2,7 +2,7 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package fr.eisti.optimEisti_RaLiGaKl.model;
+package fr.eisti.optimEisti_RaLiGaKl.view.problemes;
 
 import fr.eisti.optimEisti_RaLiGaKl.Main;
 import fr.eisti.optimEisti_RaLiGaKl.view.problemes.PanelProbleme;

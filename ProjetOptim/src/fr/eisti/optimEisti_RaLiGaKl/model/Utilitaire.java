@@ -131,7 +131,11 @@ public class Utilitaire {
         }
         
     }
-
+/**
+ * copie un fichier
+ * @param fichierIn fichier d'entree
+ * @param fichierout fichier dde sortie
+ */
     public static void copie(String fichierIn, String fichierout) throws FileNotFoundException, IOException {
         InputStream in;
         OutputStream out;
