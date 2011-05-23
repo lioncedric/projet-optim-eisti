@@ -16,7 +16,6 @@ pour plutard
 -   bouton(s) sauvegarder a modifier
 -jfilechooser qd image=0Kb => nullpointerException
 
-XSLT:
-pb si oui.xml n'existe pas, lors de creation html exception
+FICHIER .sce peuvent etre selectionner
 
 Sarah bug enorme avec les contraintres

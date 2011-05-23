@@ -100,21 +100,35 @@ public class PanelProblemesUtilisateurListener implements ActionListener, MouseL
             numero = probleme.getNumero();
             if (numero >= 0) {
                 try {
+                    //instanciation de jfilechooser
                     JFileChooser fc = new JFileChooser();
+                    //2 filtres: excel et scilab
                     fc.addChoosableFileFilter(new FiltreSimple("Fichier Excel", ".csv"));
                     fc.addChoosableFileFilter(new FiltreSimple("Fichier Scilab", ".sci"));
+                    //on n'accepte que les filtres
                     fc.setAcceptAllFileFilterUsed(false);
+                    //on stocke la valeur du bouton (valider ou annuler)
                     int returnVal = fc.showSaveDialog(null);
+                    //si on valide
                     if (returnVal == JFileChooser.APPROVE_OPTION) {
+                        //stockage de chemin absolu
                         String nom = fc.getSelectedFile().getAbsolutePath();
+                        //stockage du type de fichier (filtre)
                         String type = fc.getFileFilter().getDescription();
+                        //si c'est un excel
                         if (type.equals("Fichier Excel")) {
+                            //si ça finit par csv alors c'est correcte
                             if (!nom.endsWith(".csv")) {
+                                //stockage du nom complet
                                 nom = nom + ".csv";
                             }
+                            //appel de la fonction qui permet d'exporter en excel
                             BddProbleme.exporterExcel(BddProbleme.getProbleme(numero), nom);
+                        //si c'est un fichier scilab
                         } else if (type.equals("Fichier Scilab")) {
+                            //si ça finit par .sci
                             if (!nom.endsWith(".sci")) {
+                                //stockage du nom complet
                                 nom = nom + ".sci";
                             }
                             BddProbleme.exporterScilab(BddProbleme.getProbleme(numero), nom);
@@ -127,39 +141,39 @@ public class PanelProblemesUtilisateurListener implements ActionListener, MouseL
             try {
                 String chemin;
                 chemin = BddProbleme.html();
-               //Si la création du html a réussit
-                if(chemin != null && !chemin.equals("le fichier n'existe pas")){
+                //Si la création du html a réussit
+                if (chemin != null && !chemin.equals("le fichier n'existe pas")) {
                     //on ouvre un dialogue
-                     //on affiche la page html à l'utilisateur
+                    //on affiche la page html à l'utilisateur
                     // On vérifie que la classe Desktop soit bien supportée :
-                    if ( Desktop.isDesktopSupported() ) {
-                            // On récupère l'instance du desktop :
-                            Desktop desktop = Desktop.getDesktop();
+                    if (Desktop.isDesktopSupported()) {
+                        // On récupère l'instance du desktop :
+                        Desktop desktop = Desktop.getDesktop();
 
-                            // On vérifie que la fonction browse est bien supportée :
-                            if (desktop.isSupported(Desktop.Action.OPEN)) {
-                                try{
-                                    // Et on lance l'application associé au protocole :
-                                    desktop.open(new File(chemin));
-                                    System.out.println("ouverture réussit");
-                                }catch(IOException efile){
-                                    System.out.println("Problème de lecture du fichier");
-                                }
+                        // On vérifie que la fonction browse est bien supportée :
+                        if (desktop.isSupported(Desktop.Action.OPEN)) {
+                            try {
+                                // Et on lance l'application associé au protocole :
+                                desktop.open(new File(chemin));
+                                System.out.println("ouverture réussit");
+                            } catch (IOException efile) {
+                                System.out.println("Problème de lecture du fichier");
                             }
+                        }
                     }
-                }else if(chemin.equals("le fichier n'existe pas")){
+                    //sinon si le chemin n'existe pas
+                } else if (chemin.equals("le fichier n'existe pas")) {
                     //on ouvre un dialogue
                     JOptionPane.showMessageDialog(null, "Création annulée, votre fichier xml n'existe pas! ", "Erreur", JOptionPane.ERROR_MESSAGE);
-                }
-                else{
+                } else {
                     //on ouvre un dialogue
                     JOptionPane.showMessageDialog(null, "Création annulée! ", "Erreur", JOptionPane.ERROR_MESSAGE);
                 }
             } catch (Exception ex) {
                 Logger.getLogger(FenetreListener.class.getName()).log(Level.SEVERE, null, ex);
-                 //on ouvre un dialogue
+                //on ouvre un dialogue
                 JOptionPane.showMessageDialog(null, "Création échouée! ", "Erreur", JOptionPane.ERROR_MESSAGE);
-            
+
 
             }
         } else if (e.getSource() == this.ppu.getBoutonNew()) {
