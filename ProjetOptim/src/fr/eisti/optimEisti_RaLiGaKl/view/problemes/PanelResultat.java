@@ -21,8 +21,8 @@ import javax.swing.JTextArea;
 import javax.swing.border.BevelBorder;
 
 /**
- *
- * @author Administrator
+ * Classe permettant de créer le panel affichant le resultat
+ * @author Razavet Maël, Lion Cédric, Klelifa Sarah, Gallet Mériadec
  */
 public class PanelResultat extends JPanel {
 
@@ -35,7 +35,10 @@ public class PanelResultat extends JPanel {
     private DefaultListModel listModel;
     private JButton effacer;
     private JButton calculer;
-
+    /**
+     * mettre a jour les solutions a l'ecran
+     * @param lst la liste des solutions
+     */
     public void miseajour(ArrayList<Double> lst) {
         listModel.removeAllElements();
         res.removeAll();
@@ -48,7 +51,10 @@ public class PanelResultat extends JPanel {
         }
 
     }
-
+    /**
+     * le constructeur
+     * @param panelProbleme le panel du probleme
+     */
     public PanelResultat(PanelProbleme panelProbleme) {
         effacer = new JButton("Effacer");
         calculer = new JButton("Calculer");
@@ -80,16 +86,24 @@ public class PanelResultat extends JPanel {
         this.setBackground(new Color(255, 255, 255, 255));
         miseajour(panelProbleme.getProbleme().getResultat());
     }
-
+    /**
+     * ecriture d'un message dans le outpout de l'application
+     * @param s teste a ecrire
+     */
     public static void ecrire(String s) {
         ((PanelProbleme) Main.fenetrePrincipale.getDroite().getSelectedComponent()).getPanelResultat().getOutpout().append(s);
     }
-
+    /**
+     * tout effacer
+     */
     public static void effacer() {
         ((PanelProbleme) Main.fenetrePrincipale.getDroite().getSelectedComponent()).getPanelResultat().getOutpout().setText("");
         ((PanelProbleme) Main.fenetrePrincipale.getDroite().getSelectedComponent()).getPanelResultat().getListModel().removeAllElements();
     }
-
+/**
+ * definittion de la peinte du panel
+ * @param g le graphique
+ */
     @Override
     public void paintComponent(Graphics g) {
 
