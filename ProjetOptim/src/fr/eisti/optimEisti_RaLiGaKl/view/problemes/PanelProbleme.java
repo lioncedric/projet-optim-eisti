@@ -23,6 +23,7 @@ import fr.eisti.optimEisti_RaLiGaKl.model.BddProbleme;
 import fr.eisti.optimEisti_RaLiGaKl.model.Contrainte;
 import fr.eisti.optimEisti_RaLiGaKl.model.Probleme;
 import java.awt.Color;
+import java.awt.Dimension;
 import java.awt.GradientPaint;
 import java.awt.Graphics2D;
 import java.util.ArrayList;
@@ -123,7 +124,7 @@ public class PanelProbleme extends JPanel {
         slide.setPaintTicks(true);
         slide.setPaintLabels(true);
         //--------------------------fin du slide-----------------------//
-
+this.description.setPreferredSize(new Dimension(this.getWidth() * 15 / 100, this.getHeight() * 18 / 100));
     }
 
     public void mettreCouleurTexte(Color couleur) {
@@ -202,20 +203,20 @@ public class PanelProbleme extends JPanel {
         Graphics2D g2d = (Graphics2D) g;
         g2d.setPaint(new GradientPaint(0, 0,  Main.fenetrePrincipale.getCouleur1(), 0, this.getHeight(),  Main.fenetrePrincipale.getCouleur2(), true));
         g2d.fillRect(0, 0, this.getWidth(), this.getHeight());
-        titre.setBounds(this.getWidth() * 10 / 100, hauteur * this.getHeight() / 700 + this.getHeight() * 6 / 100, this.getWidth() * 30 / 100, this.getHeight() * 6 / 100);
-        jtfTitre.setBounds(this.getWidth() * 42 / 100, hauteur * this.getHeight() / 700 + this.getHeight() * 6 / 100, this.getWidth() * 30 / 100, this.getHeight() * 6 / 100);
-        description.setBounds(this.getWidth() * 10 / 100, hauteur * this.getHeight() / 700 + this.getHeight() * 15 / 100, this.getWidth() * 15 / 100, this.getHeight() * 15 / 100);
-        textfield.setBounds(this.getWidth() * 42 / 100, hauteur * this.getHeight() / 700 + this.getHeight() * 15 / 100, this.getWidth() * 50 / 100, this.getHeight() * 20 / 100);
-        donnees.setBounds(this.getWidth() * 10 / 100, hauteur * this.getHeight() / 700 + this.getHeight() * 38 / 100, this.getWidth() * 20 / 100, this.getHeight() * 15 / 100);
-        maximiser.setBounds(this.getWidth() * 42 / 100, hauteur * this.getHeight() / 700 + this.getHeight() * 40 / 100, this.getWidth() * 20 / 100, this.getHeight() * 10 / 100);
-        minimiser.setBounds(this.getWidth() * 65 / 100, hauteur * this.getHeight() / 700 + this.getHeight() * 40 / 100, this.getWidth() * 20 / 100, this.getHeight() * 10 / 100);
-        slide.setBounds(this.getWidth() * 42 / 100, hauteur * this.getHeight() / 700 + this.getHeight() * 50 / 100, this.getWidth() * 40 / 100, this.getHeight() * 10 / 100);
-        variables.setBounds(this.getWidth() * 10 / 100, hauteur * this.getHeight() / 700 + this.getHeight() * 48 / 100, this.getWidth() * 40 / 100, this.getHeight() * 15 / 100);
-        panDonnees.setBounds(this.getWidth() * 25 / 100, hauteur * this.getHeight() / 700 + this.getHeight() * 60 / 100, this.getWidth() * 75 / 100, this.getHeight() * 10 / 100);
-        objectif.setBounds(this.getWidth() * 10 / 100, hauteur * this.getHeight() / 700 + this.getHeight() * 58 / 100, this.getWidth() * 20 / 100, this.getHeight() * 15 / 100);
-        contraintes.setBounds(this.getWidth() * 10 / 100, hauteur * this.getHeight() / 700 + this.getHeight() * 68 / 100, this.getWidth() * 30 / 100, this.getHeight() * 10 / 100);
+        titre.setBounds(this.getWidth() * 10 / 100, hauteur * this.getHeight() / 700 + this.getHeight() * 4 / 100, this.getWidth() * 30 / 100, this.getHeight() * 6 / 100);
+        jtfTitre.setBounds(this.getWidth() * 42 / 100, hauteur * this.getHeight() / 700 + this.getHeight() * 4 / 100, this.getWidth() * 30 / 100, this.getHeight() * 6 / 100);
+        description.setBounds(this.getWidth() * 10 / 100, hauteur * this.getHeight() / 700 + this.getHeight() * 12 / 100, this.getWidth() * 15 / 100, this.getHeight() * 15 / 100);
+        textfield.setBounds(this.getWidth() * 42 / 100, hauteur * this.getHeight() / 700 + this.getHeight() * 12 / 100, this.getWidth() * 50 / 100, this.getHeight() * 18 / 100);
+        donnees.setBounds(this.getWidth() * 10 / 100, hauteur * this.getHeight() / 700 + this.getHeight() * 30 / 100, this.getWidth() * 20 / 100, this.getHeight() * 15 / 100);
+        maximiser.setBounds(this.getWidth() * 42 / 100, hauteur * this.getHeight() / 700 + this.getHeight() * 30 / 100, this.getWidth() * 20 / 100, this.getHeight() * 10 / 100);
+        minimiser.setBounds(this.getWidth() * 65 / 100, hauteur * this.getHeight() / 700 + this.getHeight() * 30 / 100, this.getWidth() * 20 / 100, this.getHeight() * 10 / 100);
+        slide.setBounds(this.getWidth() * 42 / 100, hauteur * this.getHeight() / 700 + this.getHeight() * 40 / 100, this.getWidth() * 40 / 100, this.getHeight() * 10 / 100);
+        variables.setBounds(this.getWidth() * 10 / 100, hauteur * this.getHeight() / 700 + this.getHeight() * 38 / 100, this.getWidth() * 40 / 100, this.getHeight() * 15 / 100);
+        panDonnees.setBounds(this.getWidth() * 25 / 100, hauteur * this.getHeight() / 700 + this.getHeight() * 50 / 100, this.getWidth() * 75 / 100, this.getHeight() * 10 / 100);
+        objectif.setBounds(this.getWidth() * 10 / 100, hauteur * this.getHeight() / 700 + this.getHeight() * 48 / 100, this.getWidth() * 20 / 100, this.getHeight() * 15 / 100);
+        contraintes.setBounds(this.getWidth() * 10 / 100, hauteur * this.getHeight() / 700 + this.getHeight() * 60 / 100, this.getWidth() * 30 / 100, this.getHeight() * 10 / 100);
         panTableau.setBounds(this.getWidth() * 5 / 100, hauteur * this.getHeight() / 700 + this.getHeight() * 78 / 100, this.getWidth() * 90 / 100, this.getHeight() * 20 / 100);
-        ajouter.setBounds(this.getWidth() * 42 / 100, hauteur * this.getHeight() / 700 + this.getHeight() * 70 / 100, this.getWidth() * 40 / 100, this.getHeight() * 5 / 100);
+        ajouter.setBounds(this.getWidth() * 42 / 100, hauteur * this.getHeight() / 700 + this.getHeight() * 62 / 100, this.getWidth() * 40 / 100, this.getHeight() * 5 / 100);
         panelResultat.setBounds(0, hauteur * this.getHeight() / 700 + this.getHeight(), this.getWidth(), this.getHeight() * 40 / 100);
         boutonHautBAs.setBounds(this.getWidth() * 94 / 100, this.getHeight() * 1 / 100, this.getWidth() * 6 / 100, this.getWidth() * 6 / 100);
         this.updateUI();
