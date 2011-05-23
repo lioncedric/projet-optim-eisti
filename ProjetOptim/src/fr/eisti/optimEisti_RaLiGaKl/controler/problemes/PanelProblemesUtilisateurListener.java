@@ -156,7 +156,6 @@ public class PanelProblemesUtilisateurListener implements ActionListener, MouseL
                             try {
                                 // Et on lance l'application associé au protocole :
                                 desktop.open(new File(chemin));
-                                System.out.println("ouverture réussit");
                             } catch (IOException efile) {
                                 System.out.println("Problème de lecture du fichier");
                             }

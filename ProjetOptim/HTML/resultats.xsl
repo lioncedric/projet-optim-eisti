@@ -27,7 +27,7 @@
                         </div>
                         <div id="profil">
 
-                            <img src="file:///{listeProblemes/@url}" id="imageProfil" alt="Image introuvable"/>
+                            <img src="file:///{listeProblemes/@url}" id="imageProfil" alt="Erreur image"/>
                             <span id="span_profil">
                                 <xsl:value-of select="listeProblemes/@utilisateur"/>
                             </span>
