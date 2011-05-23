@@ -2,7 +2,6 @@ package fr.eisti.optimEisti_RaLiGaKl.model;
 
 import org.w3c.dom.*;
 import java.io.*;
-import javax.swing.JFileChooser;
 import javax.xml.XMLConstants;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
@@ -112,43 +111,48 @@ public class Utilitaire {
         DocumentBuilderFactory fabriqueD = DocumentBuilderFactory.newInstance();
         DocumentBuilder constructeur = fabriqueD.newDocumentBuilder();
         File fileXml = new File(xml);
-        if(fileXml.exists()){
+        //si le fichier .xml associé à l'utilisateur existe
+        if (fileXml.exists()) {
             Document document = constructeur.parse(fileXml);
-        Source source = new DOMSource(document);
+            Source source = new DOMSource(document);
 
-        // Création du fichier de sortie
-        File fileHtml = new File(html);
-        Result resultat = new StreamResult(fileHtml);
+            // Création du fichier de sortie
+            File fileHtml = new File(html);
+            Result resultat = new StreamResult(fileHtml);
 
-        // Configuration du transformer
-        TransformerFactory fabriqueT = TransformerFactory.newInstance();
-        StreamSource stylesource = new StreamSource(xsl);
-        Transformer transformer = fabriqueT.newTransformer(stylesource);
-        transformer.setOutputProperty(OutputKeys.METHOD, "html");
+            // Configuration du transformer
+            TransformerFactory fabriqueT = TransformerFactory.newInstance();
+            StreamSource stylesource = new StreamSource(xsl);
+            Transformer transformer = fabriqueT.newTransformer(stylesource);
+            transformer.setOutputProperty(OutputKeys.METHOD, "html");
 
-        // Transformation
-        transformer.transform(source, resultat);
+            // Transformation
+            transformer.transform(source, resultat);
         }
-        
+
     }
-/**
- * copie un fichier
- * @param fichierIn fichier d'entree
- * @param fichierout fichier dde sortie
- */
+
+    /**
+     * copie un fichier
+     * @param fichierIn fichier d'entree
+     * @param fichierout fichier dde sortie
+     */
     public static void copie(String fichierIn, String fichierout) throws FileNotFoundException, IOException {
-        InputStream in;
-        OutputStream out;
+        //Déclaration et initialisation de variables
+        InputStream in;//flux d'entrée contenant le fichier à copier
+        OutputStream out;//flux de sortie contenant également le chemin où va être copié le fichier d'entrée
+        //instanciation des flux
         in = new FileInputStream(fichierIn);
         out = new FileOutputStream(fichierout);
-        int c = 0;
+        int c = 0;//compteur pour connaître la fin du fichier
+        //tant qu'on n'est pas à la fin du fichier
         while ((c = in.read()) != -1) {
+            //on écrit le caractère dans le fichier
             out.write(c);
         }
+        //femeture des flux
         in.close();
         out.close();
 
     }
 }
-
-

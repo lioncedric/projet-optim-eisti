@@ -181,8 +181,8 @@ public class BDDUtilisateur {
 
     public static boolean supprimerCompte(String login) {
         //Déclaration et initialisation des variables
-        int i = 0;
-        boolean trouve = false;
+        int i = 0;//compteur
+        boolean trouve = false;//booleen pour savoir si on a trouvé le compte à supprimer
         String NomUtilisateurTmp = "";
 
         //Si l'utilisateur existe bien

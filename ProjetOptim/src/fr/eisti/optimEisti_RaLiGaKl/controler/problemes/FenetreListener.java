@@ -54,17 +54,20 @@ public class FenetreListener implements ActionListener, ComponentListener {
         } else if (e.getSource() == this.fenetre.getDeconnexion()) {
             Main.accueil.setVisible(true);
             this.fenetre.dispose();
-
+        //sinon si on a cliqué sur "supprimer compte"
         } else if (e.getSource() == this.fenetre.getSupprimerCompte()) {
+            //nouvelle joptionPane qui demande confirmation de la suppression du compte
             JOptionPane jop = new JOptionPane();
             int option = jop.showConfirmDialog(null, "Voulez-vous vraiment supprimer votre compte ?", "Suppression de compte", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
-
+            //si il confirme
             if (option == JOptionPane.OK_OPTION) {
+                //appel de la fonction qui permet de supprimer un compte
                 if (BDDUtilisateur.supprimerCompte(BDDUtilisateur.getNomUtilisateur())) {
                     //on ouvre un dialogue
                     JOptionPane.showMessageDialog(null, "Suppression réussie!", "Information", JOptionPane.INFORMATION_MESSAGE);
                     //on déconnecte la session
                     Main.accueil.setVisible(true);
+                    //on ferme la fenetre
                     this.fenetre.dispose();
                 } else {
                     //on ouvre un dialogue
@@ -81,7 +84,8 @@ public class FenetreListener implements ActionListener, ComponentListener {
 
         } else if (e.getSource() == this.fenetre.getAffResHtml()) {
             try {
-                String chemin;
+                //declaration de variable
+                String chemin;//stocke le chemin ou est stocké le fichier html
                 chemin = BddProbleme.html();
                 //Si la création du html a réussit
                 if (chemin != null) {

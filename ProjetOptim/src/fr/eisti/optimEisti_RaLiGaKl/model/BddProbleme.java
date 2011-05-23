@@ -339,33 +339,45 @@ public class BddProbleme {
             Iterator<Double> it = coeff.iterator();//nouvel iterateur pour parcourir la liste
 
             ArrayList<Contrainte> contraintes = p.getContraintes();//liste des contraintes du probleme
-
+            //on écrit le titre du problème sur le .csv
             output.write(p.getTitre());
+            //saut de ligne
             output.newLine();
             output.newLine();
             output.newLine();
             //On saute une ligne
             output.write(";");
             //calcul de la longueur de la liste de variables
+            //tant qu'on est pas à la fin de la liste de coefficient
             while (it.hasNext()) {
+                //incrémentation du compteur de nombre de variables de décision
                 nbVariablesDecision++;
+                //on passe à l'élément suivant
                 it.next();
             }
             //Ecriture du nom des variables
             while (j < nbVariablesDecision) {
+                //incrémentation du compteur
                 j++;
+                //on écrit chaque variables x1,x2,...
                 output.write("x" + j + ";");
             }
+            //on réinitialise le compteur à 0
             j = 0;
+            //saut de ligne
             output.newLine();
+            //saut de cellule
             output.write(";");
             //Ecriture de 0 sous les variables
             while (j < nbVariablesDecision) {
+                 //incrémentation du compteur
                 j++;
+                //on écrit 0
                 output.write("0;");
             }
-
+            //saut de ligne
             output.newLine();
+            //on écrit F0 ce qui implique que les cases sur la même ligne correspond à la définition de la fonction objective
             output.write("F0;");
 
             //Ecriture des coefficients de la fonction objective
@@ -403,16 +415,18 @@ public class BddProbleme {
             for (Contrainte t : contraintes) {
                 monChar = 'B';//la première contrainte se trouve à la colonne B
                 monAscii = (new Character(monChar)).hashCode();//son code ascii correspondant
-                temp = "=";
+                temp = "=";//variable où on stocke ce que l'on veut écrire dans le fichier en sortie
                 //On parcours les coefficients des variables pour chaque contrainte
                 for (Double coefficient : t.getCoeffVariables()) {
                     //on convertit le double en string
                     String str = String.valueOf(coefficient);
                     //on remplace tous les . par des virgules pour que les formaules excel marchent
                     str = str.replace(".", ",");
+                    //on écrit dans le fichier en sortie
                     output.write("" + str + ";");
                 }
                 cpt = 0;
+                //on parcours le nombre de variables de décision
                 while (cpt < nbVariablesDecision) {
                     //Si c'est la derniere variable de décision, la formule ne termine pas par un +
                     if (cpt == nbVariablesDecision - 1) {
@@ -427,15 +441,21 @@ public class BddProbleme {
                     //caractère ascii correspondant
                     monChar = (char) (monAscii);
                 }
+                 //incrémentation du compteur
                 j++;
+                //on écrit dans le fichier en sortie le temp
                 output.write(temp);
                 if (t.getInegalite().equals("Infériorité")) {
+                    //on stocke la valeur ascii de <
                     monAscii = 60;
+                    //transformation en char du nombre ascii
                     monChar = (char) (monAscii);
                     //Affichage de l'inégalité
                     output.write(";" + monChar + "=");
                 } else if (t.getInegalite().equals("Supériorité")) {
+                    //on stocke la valeur ascii de >
                     monAscii = 62;
+                    //transformation en char du nombre ascii
                     monChar = (char) (monAscii);
                     //Affichage de l'inégalité
                     output.write(";" + monChar + "=");
@@ -445,11 +465,11 @@ public class BddProbleme {
                 }
                 //Ecriture de la constante liée à cette contrainte
                 output.write(";" + t.getConstante());
-
+                //saut de ligne
                 output.newLine();
 
             }
-
+            //on ferme le flux
             output.close();
 
         } catch (IOException ex) {
@@ -482,6 +502,7 @@ public class BddProbleme {
                 //on récupère le nom complet
                 nom = nom + ".html";
             }
+            //si le fichier .xml associé à l'utilisateur existe
             if (new File("bdd/" + BDDUtilisateur.getNomUtilisateur() + ".xml").exists()) {
                 //on compile le xsl avec le xml pour créer le html
                 Utilitaire.creerHTML("bdd/" + BDDUtilisateur.getNomUtilisateur() + ".xml", "HTML/resultats.xsl", nom);
@@ -493,11 +514,13 @@ public class BddProbleme {
                 Utilitaire.copie("HTML/BaniereFinal.png", nom2 + "/html/BaniereFinal.png");
                 Utilitaire.copie("HTML/pageBienvenue.png", nom2 + "/html/pageBienvenue.png");
                 return nom;
+            //sinon
             } else {
                 return "le fichier n'existe pas";
             }
-
+        //sinon
         } else {
+            //on retourne null
             return null;
         }
     }

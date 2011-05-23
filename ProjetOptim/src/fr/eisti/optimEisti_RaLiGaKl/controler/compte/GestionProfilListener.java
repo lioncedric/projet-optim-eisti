@@ -42,7 +42,7 @@ public class GestionProfilListener implements MouseListener {
         if (bonFormatImage() && bonneTailleImage() && nomEtMdpCorrects()) {
             //opération sur le dom
             BDDUtilisateur.modifierUtilisateur(this.maFenetre.getPanFond().getJtfNomUtilisateur().getText(),
-                    this.maFenetre.getPanFond().getJtfMdp().getText(), this.maFenetre.getPanFond().getJtfAvatar().getText());
+            this.maFenetre.getPanFond().getJtfMdp().getText(), this.maFenetre.getPanFond().getJtfAvatar().getText());
 
             //on modifie le nom d'utilisateur dans la base de données
             BDDUtilisateur.setNomUtilisateur(this.maFenetre.getPanFond().getJtfNomUtilisateur().getText());

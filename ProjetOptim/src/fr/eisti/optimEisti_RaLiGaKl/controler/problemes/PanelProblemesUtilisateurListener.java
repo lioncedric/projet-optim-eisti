@@ -131,6 +131,7 @@ public class PanelProblemesUtilisateurListener implements ActionListener, MouseL
                                 //stockage du nom complet
                                 nom = nom + ".sci";
                             }
+                            //appel de la fonction qui permet d'exporter en scilab
                             BddProbleme.exporterScilab(BddProbleme.getProbleme(numero), nom);
                         }
                     }
