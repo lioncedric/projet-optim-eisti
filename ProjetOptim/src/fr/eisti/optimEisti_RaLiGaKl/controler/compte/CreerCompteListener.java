@@ -40,8 +40,7 @@ public class CreerCompteListener implements MouseListener {
             //la fenetre n'est pas au premier plan
             maFenetre.setAlwaysOnTop(false);
             //on ouvre un dialogue
-            JOptionPane jop = new JOptionPane();
-            jop.showMessageDialog(null, "Création échouée! Votre nom d'utilisateur est déjà utilisé!", "Erreur", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(null, "Création échouée! Votre nom d'utilisateur est déjà utilisé!", "Erreur", JOptionPane.ERROR_MESSAGE);
             //on remet la fenetre au premier plan
             maFenetre.setAlwaysOnTop(true);
         }//si l'image a la bonne extension (bonFormat) et la bonne taille et que le reste est bien rempli, alors on peut creer le compte
@@ -66,8 +65,7 @@ public class CreerCompteListener implements MouseListener {
             //la fenetre n'est pas au premier plan
             maFenetre.setAlwaysOnTop(false);
             //on ouvre un dialogue
-            JOptionPane jop = new JOptionPane();
-            jop.showMessageDialog(null, "Création échouée! Vous n'avez pas selectionné une image valide.", "Erreur", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(null, "Création échouée! Vous n'avez pas selectionné une image valide.", "Erreur", JOptionPane.ERROR_MESSAGE);
             //on remet la fenetre au premier plan
             maFenetre.setAlwaysOnTop(true);
         } //si l'image n'a pas une taille correcte

@@ -39,26 +39,27 @@ public class FenetreListener implements ActionListener, ComponentListener {
 
     @Override
     public void actionPerformed(ActionEvent e) {
-
+        //si on a cliquer sur l'import xml
         if (e.getSource() == this.fenetre.getImportXml()) {
+            //on ouvre un gestionnaire de fichier qui permet à l'utilisateur de choisir ou il veut enregistrer son importation
             try {
                 JFileChooser fc = new JFileChooser();
                 int returnVal = fc.showOpenDialog(this.fenetre.getDroite());
                 if (returnVal == JFileChooser.APPROVE_OPTION) {
                     File file = fc.getSelectedFile();
+                    //on importe le probleme a l'emplacement choisit avec le nom choisit
                     BddProbleme.importerProbleme(file);
                 }
             } catch (Exception ex) {
             }
-
+        //si l'utilisateur clique sur deconnexion alors on le renvoit à la fenetre d'accueil du logiciel
         } else if (e.getSource() == this.fenetre.getDeconnexion()) {
             Main.accueil.setVisible(true);
             this.fenetre.dispose();
         //sinon si on a cliqué sur "supprimer compte"
         } else if (e.getSource() == this.fenetre.getSupprimerCompte()) {
             //nouvelle joptionPane qui demande confirmation de la suppression du compte
-            JOptionPane jop = new JOptionPane();
-            int option = jop.showConfirmDialog(null, "Voulez-vous vraiment supprimer votre compte ?", "Suppression de compte", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
+            int option = JOptionPane.showConfirmDialog(null, "Voulez-vous vraiment supprimer votre compte ?", "Suppression de compte", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
             //si il confirme
             if (option == JOptionPane.OK_OPTION) {
                 //appel de la fonction qui permet de supprimer un compte
@@ -78,10 +79,10 @@ public class FenetreListener implements ActionListener, ComponentListener {
                     //on ouvre un dialogue
                     JOptionPane.showMessageDialog(null, "Création annulée! ", "Erreur", JOptionPane.ERROR_MESSAGE);
             }
-
+        //si l'utilisateur clique sur quitter alors on ferme le programme
         } else if (e.getSource() == this.fenetre.getQuitter()) {
             System.exit(0);
-
+        //si l'utilisateur clique sur générer html alors on ouvre une page html ac le navigateur par defaut avec tous les problèmes de celui ci
         } else if (e.getSource() == this.fenetre.getAffResHtml()) {
             try {
                 //declaration de variable
@@ -95,13 +96,12 @@ public class FenetreListener implements ActionListener, ComponentListener {
                     if (Desktop.isDesktopSupported()) {
                         // On récupère l'instance du desktop :
                         Desktop desktop = Desktop.getDesktop();
-
                         // On vérifie que la fonction browse est bien supportée :
                         if (desktop.isSupported(Desktop.Action.OPEN)) {
                             try {
                                 // Et on lance l'application associé au protocole :
                                 desktop.open(new File(chemin));
-                            } catch (IOException efile) {
+                            } catch (IOException efile) {//si on n'arrive pas a ouvrir la page on informe l'utilisateur
                                 System.out.println("Problème de lecture du fichier");
                             }
                         }
@@ -111,10 +111,10 @@ public class FenetreListener implements ActionListener, ComponentListener {
                     JOptionPane.showMessageDialog(null, "Création annulée! ", "Erreur", JOptionPane.ERROR_MESSAGE);
                 }
             } catch (Exception ex) {
-                Logger.getLogger(FenetreListener.class.getName()).log(Level.SEVERE, null, ex);
                 //on ouvre un dialogue
                 JOptionPane.showMessageDialog(null, "Création échouée! ", "Erreur", JOptionPane.ERROR_MESSAGE);
             }
+        //si l'utilisateur clique sur recharger alors on recharge le fichier de la bdd
         } else if (e.getSource() == this.fenetre.getRecharger()) {
             try {
                 BddProbleme.load(BDDUtilisateur.getNomUtilisateur(), BDDUtilisateur.getImage());

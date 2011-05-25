@@ -10,7 +10,6 @@ import fr.eisti.optimEisti_RaLiGaKl.view.problemes.Fenetre;
 /**
  * Classe permettant de lancer le programme en appelant la page d'accueil
  * @author Razavet Maël, Lion Cédric, Klelifa Sarah, Gallet Mériadec
-
  */
 public class Main {
 

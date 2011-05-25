@@ -12,8 +12,9 @@ import java.awt.event.MouseListener;
 import javax.swing.JColorChooser;
 
 /**
- *
- * @author Administrator
+ * Classe qui permet de gérer le changement de couleur de l'interface
+ * @author Razavet Maël, Lion Cédric, Klelifa Sarah, Gallet Mériadec
+ * @version 1.0
  */
 public class PreferencesListener implements MouseListener {
 
