@@ -2,7 +2,6 @@ package fr.eisti.optimEisti_RaLiGaKl.model;
 
 import fr.eisti.optimEisti_RaLiGaKl.view.problemes.PanelProbleme;
 import java.util.ArrayList;
-import java.util.List;
 import javax.swing.JTextField;
 
 /**
@@ -40,6 +39,9 @@ public class Probleme {
         return obj.toString().equals(this.toString());
     }
 
+    /**
+     *Constructeur permettant de créer un problème
+     */
     public Probleme() {
         positif = true;
     }
@@ -241,7 +243,6 @@ public class Probleme {
     /**
      * Procédure permettant d'initialiser une matrice avec des 0
      * @param matrice : matrice representant le probleme
-     * @param nb : nombre de variables imaginaires
      */
     public void initMatrice(double[][] matrice) {
         //pour chaque contrainte + 1 car il y a la ligne des variables de la fonction a maximiser en plus
@@ -370,7 +371,6 @@ public class Probleme {
     /**
      * Procédure qui remplit la matrice avec tous les éléments d'un problème
      * @param matrice : matrice représentant le problème
-     * @param nb : nombre de variables imaginaires
      */
     public void afficherMatrice(double[][] matrice) {
         System.out.println("DEBUT remplissage");

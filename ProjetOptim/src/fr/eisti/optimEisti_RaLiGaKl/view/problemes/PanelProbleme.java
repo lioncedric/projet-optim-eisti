@@ -67,6 +67,7 @@ public class PanelProbleme extends JPanel {
     private JRadioButton positif;
     private JRadioButton negatif;
 
+    
     public PanelProbleme() {
         super();
         fsl = new PanelProblemeListener(this);

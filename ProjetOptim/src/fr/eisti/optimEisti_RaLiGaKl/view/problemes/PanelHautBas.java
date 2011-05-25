@@ -15,8 +15,8 @@ import javax.imageio.ImageIO;
 import javax.swing.JPanel;
 
 /**
- *
- * @author Administrator
+ * Classe qui permet de gérer le panel du haut et le clique sur celui-ci
+ * @author Razavet Maël, Lion Cédric, Klelifa Sarah, Gallet Mériadec
  */
 public class PanelHautBas extends JPanel implements MouseListener {
 
@@ -28,6 +28,10 @@ public class PanelHautBas extends JPanel implements MouseListener {
     private Image imageOFFsel;
     private PanelProbleme panelProbleme;
 
+    /**
+     * Constructeur d'un panelHautBas
+     * @param panelProbleme
+     */
     public PanelHautBas(PanelProbleme panelProbleme) {
         this.devoilerSolution = false;
         this.hover = false;

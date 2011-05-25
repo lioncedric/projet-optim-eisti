@@ -23,6 +23,7 @@ public class BDDUtilisateur {
      * permet de créer un nouvel utilisateur
      * @param NomUtilisateur
      * @param mdp
+     * @param imageSrc
      */
     public static void ajouterUtilisateur(String NomUtilisateur, String mdp, String imageSrc) {
         try {

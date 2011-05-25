@@ -9,7 +9,6 @@ import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
-import javax.swing.JOptionPane;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 
@@ -20,37 +19,48 @@ import javax.swing.event.ChangeListener;
  */
 public class SaveListener implements ChangeListener, KeyListener, MouseListener {
 
+
+    @Override
     public void stateChanged(ChangeEvent e) {
         estmodifié();
     }
 
+    @Override
     public void keyTyped(KeyEvent e) {
     }
 
+    @Override
     public void keyPressed(KeyEvent e) {
       
     }
 
+    @Override
     public void keyReleased(KeyEvent e) {
           estmodifié();
     }
 
+    @Override
     public void mouseClicked(MouseEvent e) {
     }
 
+    @Override
     public void mousePressed(MouseEvent e) {
       
     }
 
+    @Override
     public void mouseReleased(MouseEvent e) {
           estmodifié();
     }
 
+    @Override
     public void mouseEntered(MouseEvent e) {
     }
 
+    @Override
     public void mouseExited(MouseEvent e) {
     }
+
 /**
  * fonction qui verifie si un des problemes  a été modifié
  */
@@ -71,9 +81,6 @@ public class SaveListener implements ChangeListener, KeyListener, MouseListener 
 
             } else {
                 ((PanelOngletProbleme) Main.fenetrePrincipale.getDroite().getTabComponentAt(i)).getSave().setEnabled(true);
-
-          
-
             }
         }
     }

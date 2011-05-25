@@ -11,7 +11,6 @@ import javax.swing.JDialog;
 /**
  * Classe qui permet de créer un nouveau compte d'utilisateur
  * @author Razavet Maël, Lion Cédric, Klelifa Sarah, Gallet Mériadec
-
  */
 public class CreerCompte extends JDialog {
 
@@ -19,7 +18,9 @@ public class CreerCompte extends JDialog {
     private Image fond;
     private JPanelFondCreerCompte panFond;
 
-    //Constructeur par défaut
+    /**
+     * Constructeur par défaut
+     */
     public CreerCompte() {
         init();
         ajoutImageFond();

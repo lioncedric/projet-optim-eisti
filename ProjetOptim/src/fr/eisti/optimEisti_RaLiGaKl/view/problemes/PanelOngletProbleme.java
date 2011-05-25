@@ -81,10 +81,8 @@ public class PanelOngletProbleme extends JPanel {
             addMouseListener(this);
             addActionListener(this);
         }
-        /**
-         * que doit on faire lors d'un clic sur un bouton
-         * @param e l'evenemt lors du clic
-         */
+    
+        @Override
         public void actionPerformed(ActionEvent e) {
             int i = pane.indexOfTabComponent(PanelOngletProbleme.this);
             if (i != -1) {
@@ -92,19 +90,24 @@ public class PanelOngletProbleme extends JPanel {
             }
         }
 
+        @Override
         public void mouseClicked(MouseEvent e) {
         }
 
+        @Override
         public void mousePressed(MouseEvent e) {
         }
 
+        @Override
         public void mouseReleased(MouseEvent e) {
         }
 
+        @Override
         public void mouseEntered(MouseEvent e) {
             setIcon(new ImageIcon("images/icone_sauvegarde.png"));
         }
 
+        @Override
         public void mouseExited(MouseEvent e) {
             setIcon(new ImageIcon("images/icone_sauvegardeR.png"));
         }
@@ -135,10 +138,9 @@ public class PanelOngletProbleme extends JPanel {
             //Close the proper tab by clicking the button
             addActionListener(this);
         }
-          /**
-         * que doit on faire lors d'un clic sur un bouton
-         * @param e l'evenemt lors du clic
-         */
+
+       
+        @Override
         public void actionPerformed(ActionEvent e) {
             int i = pane.indexOfTabComponent(PanelOngletProbleme.this);
             if (i != -1) {

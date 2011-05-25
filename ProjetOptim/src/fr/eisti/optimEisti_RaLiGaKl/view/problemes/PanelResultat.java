@@ -30,14 +30,13 @@ public class PanelResultat extends JPanel {
     private JScrollPane outpoutS;
     private JScrollPane resS;
     private JList res;
-    private PanelProbleme panelProbleme;
     private JLabel texteres;
     private DefaultListModel listModel;
     private JButton effacer;
     private JButton calculer;
     /**
      * mettre a jour les solutions a l'ecran
-     * @param lst la liste des solutions
+     * @param lst : la liste des solutions
      */
     public void miseajour(ArrayList<Double> lst) {
         listModel.removeAllElements();
@@ -52,8 +51,8 @@ public class PanelResultat extends JPanel {
 
     }
     /**
-     * le constructeur
-     * @param panelProbleme le panel du probleme
+     * Constructeur d'un panel où sera afficher le résultat
+     * @param panelProbleme : le panel du probleme
      */
     public PanelResultat(PanelProbleme panelProbleme) {
         effacer = new JButton("Effacer");
@@ -65,15 +64,12 @@ public class PanelResultat extends JPanel {
         this.res = new JList(listModel);
         res.setCellRenderer(new ListResRenderer());
         outpout = new JTextArea();
-        // miseajour();
         outpout.setBorder(BorderFactory.createBevelBorder(BevelBorder.RAISED));
         res.setBorder(BorderFactory.createBevelBorder(BevelBorder.RAISED));
 
 
         texteres = new JLabel("Resultat :");
         this.add(texteres);
-        this.panelProbleme = panelProbleme;
-
 
         this.add(calculer);
         outpout.setEditable(false);
@@ -88,7 +84,7 @@ public class PanelResultat extends JPanel {
     }
     /**
      * ecriture d'un message dans le outpout de l'application
-     * @param s teste a ecrire
+     * @param s : teste a ecrire
      */
     public static void ecrire(String s) {
         ((PanelProbleme) Main.fenetrePrincipale.getDroite().getSelectedComponent()).getPanelResultat().getOutpout().append(s);
@@ -102,7 +98,7 @@ public class PanelResultat extends JPanel {
     }
 /**
  * definittion de la peinte du panel
- * @param g le graphique
+ * @param g : le graphique
  */
     @Override
     public void paintComponent(Graphics g) {
@@ -118,30 +114,58 @@ public class PanelResultat extends JPanel {
         this.updateUI();
     }
 
+    /**
+     * Fonction qui permet de récupèrer le bouton calculer
+     * @return le bouton calculer
+     */
     public JButton getCalculer() {
         return calculer;
     }
 
+    /**
+     * Fonction qui permet de modifier le bouton calculer
+     * @param calculer : le nouveau bouton
+     */
     public void setCalculer(JButton calculer) {
         this.calculer = calculer;
     }
 
+    /**
+     * Fonction qui permet de récupèrer le bouton effacer
+     * @return le bouton effacer
+     */
     public JButton getEffacer() {
         return effacer;
     }
 
+    /**
+     * Fonction qui permet de récupèrer le textArea
+     * @return le texte area
+     */
     public JTextArea getOutpout() {
         return outpout;
     }
 
+    /**
+     * Fonction qui permet de modifier le bouton effacer
+     * @param effacer : le nouveau bouton
+     */
     public void setEffacer(JButton effacer) {
         this.effacer = effacer;
     }
 
+    /**
+     * Fonction qui permet de recupérer la listModel
+     * @return la listModel
+     */
     public DefaultListModel getListModel() {
         return listModel;
     }
 
+    /**
+     * Fonction qui permet de modifier une listModel
+     * @param listModel : La nouvelle liste
+     */
     public void setListModel(DefaultListModel listModel) {
         this.listModel = listModel;
     }

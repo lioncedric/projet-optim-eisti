@@ -23,8 +23,8 @@ import javax.swing.SwingUtilities;
 import javax.swing.UIManager;
 
 /**
- * @author Administrator
- *
+ * Classe relative à un problème
+ * @author Razavet Maël, Lion Cédric, Klelifa Sarah, Gallet Mériadec
  */
 public class Fenetre extends JFrame {
 

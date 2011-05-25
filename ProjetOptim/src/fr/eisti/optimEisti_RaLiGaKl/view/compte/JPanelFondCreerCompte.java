@@ -85,6 +85,9 @@ public class JPanelFondCreerCompte extends JPanel {
         g.drawImage(image, 0, 0, this);
     }
 
+    /**
+     * FOnction qui permet de re-initialiser les champs
+     */
     public void raz() {
         this.jtfNomUtilisateur.setText("");
         this.jtfMdp.setText("");

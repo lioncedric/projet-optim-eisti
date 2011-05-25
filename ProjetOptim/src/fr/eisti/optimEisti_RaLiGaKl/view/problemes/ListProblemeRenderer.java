@@ -8,13 +8,20 @@ import javax.swing.JLabel;
 import javax.swing.JList;
 import javax.swing.ListCellRenderer;
 
+/**
+ * Classe qui gère le rendu d'un jlabel
+ * @author Razavet Maël, Lion Cédric, Klelifa Sarah, Gallet Mériadec
+ */
 public class ListProblemeRenderer extends JLabel implements ListCellRenderer {
 
     private Color couleurTexte;
     private final Color couleurFond;//valeur inchangeable
     private Color couleurFondSelection;
     private Color couleurTexteSelection;
-    
+
+    /**
+     * Constructeur d'un renderer d'une liste de probleme
+     */
     public ListProblemeRenderer() {
         setOpaque(true);
         this.couleurFond=new Color(255,255,255,0);

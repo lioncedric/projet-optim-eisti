@@ -10,7 +10,7 @@ import javax.swing.JTextField;
 
 /**
  * JPanel qui permet de mettre une image en fond
- * @author Gallet Meriadec
+ * @author Razavet Maël, Lion Cédric, Klelifa Sarah, Gallet Mériadec
  * @version 1.0
  */
 public class JPanelFondIdentification extends JPanel {

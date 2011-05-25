@@ -10,7 +10,6 @@ import javax.swing.JDialog;
 /**
  * Classe permettant de gérer le profil de l'utilisateur et de le modifier si besoin
  * @author Razavet Maël, Lion Cédric, Klelifa Sarah, Gallet Mériadec
-
  */
 public class GestionProfil extends JDialog {
     

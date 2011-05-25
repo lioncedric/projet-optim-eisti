@@ -30,6 +30,7 @@ import javax.swing.JTable;
                    * Fonction qui enleve une ligne d'un tableau
                    * @param event
                    */
+                  @Override
 		  public void actionPerformed(ActionEvent event) {
                         //si le nombre de ligne est bien supérieur a zéro
 			if(table.getRowCount() > 0){

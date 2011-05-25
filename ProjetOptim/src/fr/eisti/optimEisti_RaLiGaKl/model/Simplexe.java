@@ -1,6 +1,4 @@
-/*
- * Classe qui permet de generer la solution du simplexe
- */
+
 package fr.eisti.optimEisti_RaLiGaKl.model;
 
 import fr.eisti.optimEisti_RaLiGaKl.view.problemes.PanelResultat;
@@ -217,10 +215,14 @@ public class Simplexe {
 
     }
 
+
     /**
      * Procedure qui permet d'exporter la solution sous forme de tableau
      * @param matrice : matrice representant le probleme
-     * @param tabSolutions : le tableau destine a contenir la solution
+     * @param numVarArti : nombre de variable artificielle
+     * @param nbvar : nombre de variable
+     * @param objectif : chaine qui permet de savoir si on minimise ou on maximise
+     * @return le resultat du calcule
      */
     public static ArrayList<Double> calculerSolution(double[][] matrice, ArrayList<Integer> numVarArti, int nbvar, String objectif) {
         //declaration d'un booleen
@@ -289,7 +291,6 @@ public class Simplexe {
 
     public static ArrayList<Double> calculerSolution2(double[][] matrice, ArrayList<Integer> numVarArti, int nbvar, String objectif) {
         ArrayList<Double> resultat = new ArrayList<Double>();
-        boolean problemeSansSolution = false;
 
         if (objectif.equalsIgnoreCase("maximiser")) {
             //le maximum est l'inverse de la valeur contenue dans la case [derniere ligne][derniere colonne] de la matrice

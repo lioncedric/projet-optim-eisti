@@ -48,7 +48,7 @@ public class PanelRechercheProbleme extends JPanel {
         }
     }
 
-        /**
+    /**
      * Procédure permettant de faire tous les traitements nécessaires
      */
     public void traitement() {
@@ -60,9 +60,7 @@ public class PanelRechercheProbleme extends JPanel {
         this.jtfRecherche.addMouseListener(new PanelRechercheProblemeListener());
     }
 
-    /**
-     * Redefinition de la methode paintComponent
-     */
+    
     @Override
     public void paintComponent(Graphics g) {
         this.jtfRecherche.setBounds(32, 0, Main.fenetrePrincipale.getGauche().getWidth()-33, 25);
@@ -70,6 +68,10 @@ public class PanelRechercheProbleme extends JPanel {
         g.drawImage(loupe,5, 0, this);
     }
 
+    /**
+     * Fonction qui retourne le champs de texte qui permet la recherche
+     * @return le champ de texte
+     */
     public JTextField getJtfRecherche() {
         return jtfRecherche;
     }

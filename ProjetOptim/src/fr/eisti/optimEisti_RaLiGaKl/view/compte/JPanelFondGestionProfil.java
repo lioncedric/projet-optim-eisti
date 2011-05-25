@@ -16,8 +16,8 @@ import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 
 /**
- *
- * @author Administrator
+ * Classe qui permet de gérer le fond du panel de la gestion de profil
+ * @author Razavet Maël, Lion Cédric, Klelifa Sarah, Gallet Mériadec
  */
 public class JPanelFondGestionProfil extends JPanel{
     //Declaration des variables
@@ -87,6 +87,9 @@ public class JPanelFondGestionProfil extends JPanel{
         g.drawImage(image, 0, 0, this);
     }
 
+    /**
+     * fonction qui re-initialise les champ de texte
+     */
     public void raz() {
         this.jtfNomUtilisateur.setText("");
         this.jtfMdp.setText("");

@@ -33,6 +33,7 @@ public class FiltreSimple extends   FileFilter{
     * @param file le fichier
     * @return si le fichier est valide
     */
+    @Override
    public boolean accept(File file){
       if(file.isDirectory()) {
          return true;
@@ -45,6 +46,7 @@ public class FiltreSimple extends   FileFilter{
     * Description du filtre
     * @return le description
     */
+    @Override
       public String getDescription(){
       return description;
    }

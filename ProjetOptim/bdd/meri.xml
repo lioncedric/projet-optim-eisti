@@ -52,33 +52,7 @@
             <constante valeur="-4.0"/>
         </contrainte>
     </probleme>
-    <probleme>
-        <titre>Testmumu3</titre>
-        <description>Un deuxieme ...</description>
-        <objectif type="Maximiser">
-            <variable coeff="10.0"/>
-            <variable coeff="20.0"/>
-        </objectif>
-        <contrainte type="Infériorité">
-            <variable coeff="2.0"/>
-            <variable coeff="1.0"/>
-            <constante valeur="30.0"/>
-        </contrainte>
-        <contrainte type="Infériorité">
-            <variable coeff="1.0"/>
-            <variable coeff="4.0"/>
-            <constante valeur="64.0"/>
-        </contrainte>
-        <contrainte type="Infériorité">
-            <variable coeff="5.0"/>
-            <variable coeff="6.0"/>
-            <constante valeur="110.0"/>
-        </contrainte>
-        <resultat valeur="340.0">
-            <variable coeff="4.0"/>
-            <variable coeff="15.0"/>
-        </resultat>
-    </probleme>
+    
     <probleme>
         <titre>Testmumu</titre>
         <description>Probleme a deux variables</description>
@@ -213,6 +187,37 @@
 <resultat valeur="12000.0">
 <variable coeff="40.0"/>
 <variable coeff="20.0"/>
+</resultat>
+</probleme>
+<probleme>
+<titre>Testmumu3</titre>
+<description>Un deuxieme ...</description>
+<objectif type="Maximiser">
+<variable coeff="10.0"/>
+<variable coeff="20.0"/>
+<variable coeff="4.0"/>
+</objectif>
+<contrainte type="Infériorité">
+<variable coeff="2.0"/>
+<variable coeff="1.0"/>
+<variable coeff="0.0"/>
+<constante valeur="30.0"/>
+</contrainte>
+<contrainte type="Infériorité">
+<variable coeff="1.0"/>
+<variable coeff="4.0"/>
+<variable coeff="0.0"/>
+<constante valeur="64.0"/>
+</contrainte>
+<contrainte type="Infériorité">
+<variable coeff="5.0"/>
+<variable coeff="6.0"/>
+<variable coeff="0.0"/>
+<constante valeur="110.0"/>
+</contrainte>
+<resultat valeur="340.0">
+<variable coeff="4.0"/>
+<variable coeff="15.0"/>
 </resultat>
 </probleme>
 </listeProblemes>

@@ -5,17 +5,20 @@
 package fr.eisti.optimEisti_RaLiGaKl.view.problemes;
 
 import fr.eisti.optimEisti_RaLiGaKl.Main;
-import fr.eisti.optimEisti_RaLiGaKl.view.problemes.PanelProbleme;
 import java.awt.Component;
 
 /**
- *
- * @author Administrator
+ * Classe qui permet de basculer entre l'affichage des solution et du problème
+ * @author Razavet Maël, Lion Cédric, Klelifa Sarah, Gallet Mériadec
  */
 public class Basculer implements Runnable {
 
     private boolean devoilerSolution;
 
+    /**
+     * Constructeur d'un element permettant de basculer l'affichage
+     * @param devoilerSolution : boolean qui permet de savoir sur qu'elle affichage on se trouve
+     */
     public Basculer(boolean devoilerSolution) {
         this.devoilerSolution = devoilerSolution;
     }

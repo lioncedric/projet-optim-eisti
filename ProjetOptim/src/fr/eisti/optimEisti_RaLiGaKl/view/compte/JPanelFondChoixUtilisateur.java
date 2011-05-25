@@ -9,8 +9,8 @@ import java.awt.Image;
 import javax.swing.JPanel;
 
 /**
- * @author Administrator
- *
+ * Classe qui permet de gérer le fond d'un panel selon le choix de l'utilisateur
+ * @author Razavet Maël, Lion Cédric, Klelifa Sarah, Gallet Mériadec
  */
 public class JPanelFondChoixUtilisateur extends JPanel{
 
@@ -27,10 +27,7 @@ public class JPanelFondChoixUtilisateur extends JPanel{
 		
 		this.image=image;
 	}
-	
-	/**
-	 * Redefinition de la methode paintComponent
-	 */
+
         @Override
 	public void paintComponent(Graphics g){
 		g.drawImage(image, 0, 0, this);

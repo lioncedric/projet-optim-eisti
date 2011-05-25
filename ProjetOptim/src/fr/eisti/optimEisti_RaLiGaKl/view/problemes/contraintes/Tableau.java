@@ -6,9 +6,13 @@ import java.awt.BorderLayout;
 import javax.swing.*;
 import javax.swing.table.TableColumn;
 import fr.eisti.optimEisti_RaLiGaKl.model.Contrainte;
-import java.awt.Color;
 import java.util.ArrayList;
 
+/**
+ * Classe qui creer un tableau de contraintes dans un jpanel
+ * @author Razavet Maël, Lion Cédric, Klelifa Sarah, Gallet Mériadec
+ * @version 1.0
+ */
 public class Tableau extends JPanel{
 
 	private JTable table;
@@ -74,9 +78,9 @@ public class Tableau extends JPanel{
 
                 /**
                  * Fonction d'initialisation du tableau et du panel
-                 * @param data les donnees du tableau
-                 * @param title titre du tableau
-                 * @param nbVariable nombre de colonnes
+                 * @param data : les donnees du tableau
+                 * @param title : titre du tableau
+                 * @param nbVariable : nombre de colonnes
                  */
                 public void init(Object[][] data, String[] title, int nbVariable){
                     this.setLayout(new BorderLayout(2,1));
@@ -117,21 +121,38 @@ public class Tableau extends JPanel{
                     this.add(js,BorderLayout.CENTER);
                 }
 
+
+        /**
+         * Fonction qui retourne le tableau de contraintes
+         * @return le tableau de contrainte
+         */
         public JTable getTable(){
             return this.table;
         }
 
+        /**
+         * Fonction qui permet de modifier le tableau de contraintes
+         * @param newTable : le nouveau tableau
+         */
         public void setTable(JTable newTable){
             this.table = newTable;
         }
 
+        /**
+         * Fonction qui permet d'enregistrer toutes les contraintes du tableau
+         * @return une liste de contraintes
+         */
         public ArrayList<Contrainte> enregistrerContraintes() {
+            //on creer une nouvelle liste de contraintes
             ArrayList<Contrainte> ListeContraintes = new ArrayList<Contrainte>();
+            //on recupere le model du tableau afin d'en extraire les données
             data = ((ModelTab)this.table.getModel()).getData();
+            //on enregistre chaque composante du tableau
             for (int i = 0; i < this.table.getRowCount(); i++) {
+                //si la ligne est correctement remplie
                 if(this.table.getValueAt(i, this.table.getColumnCount() - 3) != null) {
-
                     Contrainte contrainte1 = new Contrainte();
+                      //on enregistre le signe de la contrainte
                       if (this.data[i][this.table.getColumnCount() - 3].toString().equals("<=")) {
                         contrainte1.setInegalite("Infériorité");
                       }else if (data[i][this.table.getColumnCount() - 3].toString().equals(">=")) {
@@ -139,7 +160,10 @@ public class Tableau extends JPanel{
                       }else{
                         contrainte1.setInegalite("Egalité");
                       }
+                      //puis on enregistre sa constante
                       contrainte1.setConstante(Double.parseDouble(data[i][this.table.getColumnCount() - 2].toString()));
+                      //et pour finir on enregistre tous les coeffs des variables de la fonctions on différenci les cas selon si on a enlever ou ajouter des variables
+                      //a la fonction
                       if (this.table.getColumnCount() - 3 < this.nbVariable) {
                         for (int j = 0; j < this.nbVariable - 1; j++) {
                             contrainte1.getCoeffVariables().add(Double.parseDouble(data[i][j].toString()));
@@ -149,14 +173,20 @@ public class Tableau extends JPanel{
                             contrainte1.getCoeffVariables().add(Double.parseDouble(data[i][j].toString()));
                         }
                       }
+                      //on ajoute notre contrainte à la liste de contrainte
                      ListeContraintes.add(contrainte1);
                 }
             }
             return ListeContraintes;
         }
 
+        /**
+         * Fonction qui permet de re-remplir le tableau avec une liste de contraintes mise en paramètre
+         * @param contraintes : la liste de contraintes
+         */
         public void rempliTableau(ArrayList<Contrainte> contraintes){
 
+            //on parcours notre listre de contrainte et on ajoute chaque composante à une cellule du tableau
             for (int i = 0; i < contraintes.size(); i++) {
                     for (int j = 0; j < contraintes.get(i).getCoeffVariables().size(); j++) {
                         try{
@@ -165,6 +195,7 @@ public class Tableau extends JPanel{
                         catch(ArrayIndexOutOfBoundsException e){//vitesse slider excessive
                         }
                     }
+                    //on reconverti la chaine du signe en signe pour une meilleur visibilité pour l'utilisateur
                     if (contraintes.get(i).getInegalite().equals("Infériorité")) {
                         this.table.setValueAt("<=", i, this.table.getColumnCount() - 3);
                     } else if (contraintes.get(i).getInegalite().equals("Supériorité")) {
@@ -172,10 +203,15 @@ public class Tableau extends JPanel{
                     } else {
                         this.table.setValueAt("=", i, this.table.getColumnCount() - 3);
                     }
+                    //on remet aussi la constante associer
                     this.table.setValueAt(contraintes.get(i).getConstante(), i, this.table.getColumnCount() - 2);
             }
         }
 
+        /**
+         * Fonction qui vérifie si une ligne est bien rempli
+         * @return vrai si la ligne est bien rempli, faux sinon
+         */
         public Boolean ligneRempli(){
             //on initialise un booleen qui va nous permettre de savoir si la ligne et bien rempli avant d'en ajouter une autre
             Boolean ligneRempli;

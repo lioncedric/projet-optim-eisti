@@ -123,7 +123,6 @@ public final class PanelProblemesUtilisateur extends JPanel {
 
     /**
      * Procédure permetant de mettre le fond du panel en couleur
-     * @param couleur : la couleur que l'on veut mettre en fond
      */
     public void mettreCouleur() {
         this.panCentre.setOpaque(false);
