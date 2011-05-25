@@ -26,7 +26,7 @@ public class Probleme {
      */
     @Override
     public String toString() {
-        return "Probleme{" +  positif +"description=" + description + "titre=" + titre + "objectif=" + objectif + "coeffVariables=" + coeffVariables + "resultat=" + resultat + "contraintes=" + contraintes + '}';
+        return "Probleme{" + positif + "description=" + description + "titre=" + titre + "objectif=" + objectif + "coeffVariables=" + coeffVariables + "resultat=" + resultat + "contraintes=" + contraintes + '}';
     }
 
     /**
@@ -136,7 +136,11 @@ public class Probleme {
                 //chaque variable eest multiplié par -1
                 signe = -signe;
                 for (int j = 0; j < this.contraintes.get(i).getCoeffVariables().size(); j++) {
-                    listeContrainteNormalisés[i].add(-this.contraintes.get(i).getCoeffVariables().get(j));
+                    if (this.isPositif()) {
+                        listeContrainteNormalisés[i].add(-this.contraintes.get(i).getCoeffVariables().get(j));
+                    } else {
+                        listeContrainteNormalisés[i].add(this.contraintes.get(i).getCoeffVariables().get(j));
+                    }
                 }
                 //variable d'ecart du type e1 ou -e1 en fonction du signe
                 if (signe != 0) {
@@ -159,7 +163,11 @@ public class Probleme {
             else {
                 //on additionne les m pour les variables
                 for (int j = 0; j < this.contraintes.get(i).getCoeffVariables().size(); j++) {
-                    listeContrainteNormalisés[i].add(this.contraintes.get(i).getCoeffVariables().get(j));
+                    if (this.isPositif()) {
+                        listeContrainteNormalisés[i].add(this.contraintes.get(i).getCoeffVariables().get(j));
+                    } else {
+                        listeContrainteNormalisés[i].add(-this.contraintes.get(i).getCoeffVariables().get(j));
+                    }
                 }
                 //variable d'ecart du type e1 ou -e1 en fonction du signe
                 if (signe != 0) {
@@ -223,10 +231,18 @@ public class Probleme {
         //pour chaque colonne de la derniere ligne(fonction objectif)
         for (int j = 0; j < this.coeffVariables.size(); j++) {
             if (this.objectif.equals("Minimiser")) {
-                matrice[this.contraintes.size()][j] = -this.coeffVariables.get(j) + M * coefM[j];
+                if (this.isPositif()) {
+                    matrice[this.contraintes.size()][j] = -this.coeffVariables.get(j) + M * coefM[j];
+                } else {
+                    matrice[this.contraintes.size()][j] = -(-this.coeffVariables.get(j) + M * coefM[j]);
+                }
             } else {
                 //on ajoute les coefficients de la fonction a maximiser
-                matrice[this.contraintes.size()][j] = this.coeffVariables.get(j) + M * coefM[j];
+                if (this.isPositif()) {
+                    matrice[this.contraintes.size()][j] = this.coeffVariables.get(j) + M * coefM[j];
+                } else {
+                    matrice[this.contraintes.size()][j] = -(this.coeffVariables.get(j) + M * coefM[j]);
+                }
             }
         }
         //on place les M dans la foction obj
@@ -449,5 +465,4 @@ public class Probleme {
     public void setPositif(boolean positif) {
         this.positif = positif;
     }
-    
 }
