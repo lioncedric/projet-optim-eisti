@@ -174,7 +174,7 @@ public class PanelOngletProbleme extends JPanel {
         }
     }
     /**
-     * 
+     * ecouteur de souris pour la croix
      */
     private final static MouseListener buttonMouseListener = new MouseAdapter() {
 

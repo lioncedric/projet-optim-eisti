@@ -4,8 +4,6 @@
  */
 package fr.eisti.optimEisti_RaLiGaKl.view.problemes;
 
-import fr.eisti.optimEisti_RaLiGaKl.model.BDDUtilisateur;
-import java.awt.Color;
 import java.awt.Cursor;
 import java.awt.Graphics;
 import java.awt.Image;
