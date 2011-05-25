@@ -488,7 +488,7 @@ public class BddProbleme {
 
     /**
      * Retourne le nom du fichier html et permet de sélectionner un répertoire ou on va stocker le fichier html crée
-     * @return nom
+     * @return nom chemin du fichier html
      * @throws Exception
      */
     public static void html() {
