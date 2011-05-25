@@ -101,9 +101,9 @@ public class Utilitaire {
 
     /**
      * Création d'un document HTML avec XSLT 
-     * @param xml
-     * @param xsl
-     * @param html
+     * @param xml nom du fichier xml
+     * @param xsl nom du fichier xsl
+     * @param html nom du fichier html
      * @throws Exception
      */
     public static void creerHTML(String xml, String xsl, String html) throws Exception {
