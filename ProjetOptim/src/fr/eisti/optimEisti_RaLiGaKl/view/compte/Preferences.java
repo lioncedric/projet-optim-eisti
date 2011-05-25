@@ -1,13 +1,8 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package fr.eisti.optimEisti_RaLiGaKl.view.compte;
 
 import fr.eisti.optimEisti_RaLiGaKl.Main;
 import fr.eisti.optimEisti_RaLiGaKl.controler.compte.PreferencesListener;
 import java.awt.BorderLayout;
-import java.awt.Color;
 import java.awt.GridLayout;
 import javax.swing.JDialog;
 import javax.swing.JLabel;
@@ -15,28 +10,28 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 
 /**
- *
- * @author Administrator
+ * Classe qui permet de gérer les couleurs d'a peu près tous les composants de la fenêtre, du moins, les plus essentiels
+ * @author Razavet Maël, Lion Cédric, Klelifa Sarah, Gallet Mériadec
  */
 public class Preferences extends JDialog {
 
-    private JPanel tout;
-    private JPanel gauche;
-    private JPanel droite;
-    private JLabel fondPanelProfil;
-    private JLabel couleurTextePanelProfil;
-    private JLabel fondPanelProblemes1;
-    private JLabel fondPanelProblemes2;
-    private JLabel couleurTextePanelProblemes;
-    private JLabel couleurFondSelectionPanelProblemes;
-    private JLabel couleurTexteSelectionPanelProblemes;
-    private JLabel fondPanelBoutons;
-    private JLabel fondFenetre1;
-    private JLabel fondFenetre2;
-    private JLabel couleurTexteFenetre;
-    private JLabel couleurComposantsTransparents;
+    private JPanel tout;                            //le panel global qui contient tout
+    private JPanel gauche;                          //le panel de gauche, qui contient les textes
+    private JPanel droite;                          //le panel de droite contient toutes les couleurs des composants
+    private JLabel fondPanelProfil;                 //le jlabel dans lequel on va stocker la couleur du panel profil
+    private JLabel couleurTextePanelProfil;         //le jlabel qui va contenir la couleur du texte
+    private JLabel fondPanelProblemes1;             //le jlabel qui contient la premiere couleur du degrade
+    private JLabel fondPanelProblemes2;             //le jlabel qui contient la deuxieme couleur du degrade
+    private JLabel couleurTextePanelProblemes;      //le jlabel qui contient la couleur de texte
+    private JLabel couleurFondSelectionPanelProblemes;//le jlabel qui contient la couleur de fond lors de la selection
+    private JLabel couleurTexteSelectionPanelProblemes;//le jlabel qui contient la couleur de texte lors de la selection
+    private JLabel fondPanelBoutons;                //le jlabel qui contient la couleur de fond du panl des boutons
+    private JLabel fondFenetre1;                    //le jlabel qui contient la couleur de degrade 1 de la fenetre principale
+    private JLabel fondFenetre2;                    //le jlabel qui contient la couleur de degrade 2 de la fenetre principale
+    private JLabel couleurTexteFenetre;             //le jlabel qui contient la couleur de texte de la fenetre
+    private JLabel couleurComposantsTransparents;   //le jlabel qui contient la couleur des composants transparents
     
-    private JTextField[] tab;
+    private JTextField[] tab;//un tableau de jtextfield qui va contenir tous
 
     /**
      * Constructeur permettant de créer le jdialog
@@ -44,7 +39,6 @@ public class Preferences extends JDialog {
     public Preferences() {
         init();
         initialiserVariables();
-        ajoutListeners();
         traitement();
         attribuerCouleurs();
     }
@@ -61,6 +55,10 @@ public class Preferences extends JDialog {
         this.setModal(true);                    //on desactive tout le reste
     }
 
+    
+    /**
+     * Procedure qui permet d'initialiser les variables
+     */
     public void initialiserVariables() {
         this.tout = new JPanel();
         this.gauche = new JPanel();
@@ -86,15 +84,19 @@ public class Preferences extends JDialog {
         this.couleurComposantsTransparents = new JLabel("Couleur des composants en transparent");
 
 
-        tab=new JTextField[13];
+        tab=new JTextField[13];//declaration du tableau destine a contenir les couleurs cliquables de notre application
         for(int i=0;i<13;i++){
             tab[i]=new JTextField(5);
             tab[i].addMouseListener(new PreferencesListener(this));
-            tab[i].setEditable(false);
+            tab[i].setEditable(false);//on fait en sorte que le textfield soit non modifiable
         }
        
     }
     
+    
+    /**
+     * Procedure qui permet d'atttribuer les couleurs de notre programme aux texfields de ce panel
+     */
     public void attribuerCouleurs(){
         tab[0].setBackground(Main.fenetrePrincipale.getPanProfil().getCouleurFond());
         tab[1].setBackground(Main.fenetrePrincipale.getPanProfil().getCouleurTexte());
@@ -110,10 +112,8 @@ public class Preferences extends JDialog {
         tab[11].setBackground(Main.fenetrePrincipale.getCouleurComposantsTransparents());
     }
 
-    public void ajoutListeners(){
-    }
     /**
-     * Ajoute le panel sur la fenêtre
+     * Procedure qui permet de faire le traitement nécessaire pour stcker dans nos panels de droite et de gauche
      */
     public void traitement() {
         this.gauche.add(fondPanelProfil);
@@ -157,6 +157,7 @@ public class Preferences extends JDialog {
         this.setContentPane(tout);
     }
 
+    
     public JTextField[] getTab() {
         return tab;
     }

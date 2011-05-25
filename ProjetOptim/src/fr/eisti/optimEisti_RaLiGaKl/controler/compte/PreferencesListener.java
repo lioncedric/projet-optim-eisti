@@ -1,7 +1,3 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package fr.eisti.optimEisti_RaLiGaKl.controler.compte;
 
 import fr.eisti.optimEisti_RaLiGaKl.Main;
@@ -12,14 +8,17 @@ import java.awt.event.MouseListener;
 import javax.swing.JColorChooser;
 
 /**
- * Classe qui permet de gérer le changement de couleur de l'interface
+ * Classe qui permet d'écouter les actions faites sur les couleurs de notre panel de préférences
  * @author Razavet Maël, Lion Cédric, Klelifa Sarah, Gallet Mériadec
- * @version 1.0
  */
 public class PreferencesListener implements MouseListener {
 
-    private Preferences preferences;
+    private Preferences preferences;        //declaration d'un attribut de type Preferences
 
+    /**
+     * Constructeur permettant d'initialiser les preferences
+     * @param p un attribut de type Préférences
+     */
     public PreferencesListener(Preferences p) {
         this.preferences = p;
     }
@@ -32,14 +31,19 @@ public class PreferencesListener implements MouseListener {
     public void mousePressed(MouseEvent e) {
     }
 
+    /**
+     * Procedure qui permet d'ouvrir un jcolorchooser et de modifier al couleur de l'attribut sur lequel on a cliqué
+     * @param e l'évènement généré par le clic souris
+     */
     @Override
     public void mouseReleased(MouseEvent e) {
-        //faire les colors chooser
-
+        //on genere un colorChooser
         Color newColor = JColorChooser.showDialog(
                 this.preferences,
                 "Choose Background Color",
                 Main.fenetrePrincipale.getPanProfil().getBackground());
+        
+        //si une couleur est selectionnée
         if (newColor != null) {
             if (e.getSource() == this.preferences.getTab()[0]) {
                 Main.fenetrePrincipale.getPanProfil().mettreCouleurFond(newColor);

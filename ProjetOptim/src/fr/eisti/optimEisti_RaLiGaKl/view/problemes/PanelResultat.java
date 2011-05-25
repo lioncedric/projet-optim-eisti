@@ -112,7 +112,7 @@ public class PanelResultat extends JPanel {
         effacer.setBounds(this.getWidth() * 5 / 100, this.getHeight() * 20 / 100, this.getWidth() * 60 / 100, this.getHeight() * 10 / 100);
         outpoutS.setPreferredSize(new Dimension(this.getWidth() * 60 / 100, this.getHeight() * 60 / 100));
         outpoutS.setBounds(this.getWidth() * 5 / 100, this.getHeight() * 30 / 100, this.getWidth() * 60 / 100, this.getHeight() * 60 / 100);
-        resS.setPreferredSize(new Dimension(this.getWidth() * 40 / 100, this.getHeight() * 60 / 100));
+        resS.setPreferredSize(new Dimension(this.getWidth() * 25 / 100, this.getHeight() * 60 / 100));
         resS.setBounds(this.getWidth() * 70 / 100, this.getHeight() * 30 / 100, this.getWidth() * 25 / 100, this.getHeight() * 60 / 100);
         calculer.setBounds(this.getWidth() * 70 / 100, this.getHeight() * 20 / 100, this.getWidth() * 25 / 100, this.getHeight() * 10 / 100);
         this.updateUI();
