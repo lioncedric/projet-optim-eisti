@@ -11,6 +11,7 @@ import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -124,7 +125,7 @@ public class PanelProblemesUtilisateurListener implements ActionListener, MouseL
                             }
                             //appel de la fonction qui permet d'exporter en excel
                             BddProbleme.exporterExcel(BddProbleme.getProbleme(numero), nom);
-                        //si c'est un fichier scilab
+                            //si c'est un fichier scilab
                         } else if (type.equals("Fichier Scilab")) {
                             //si ça finit par .sci
                             if (!nom.endsWith(".sci")) {
@@ -139,43 +140,7 @@ public class PanelProblemesUtilisateurListener implements ActionListener, MouseL
                 }
             }
         } else if (e.getSource() == this.ppu.getBoutonHtml()) {
-            try {
-                String chemin;
-                chemin = BddProbleme.html();
-                //Si la création du html a réussit
-                if (chemin != null && !chemin.equals("le fichier n'existe pas")) {
-                    //on ouvre un dialogue
-                    //on affiche la page html à l'utilisateur
-                    // On vérifie que la classe Desktop soit bien supportée :
-                    if (Desktop.isDesktopSupported()) {
-                        // On récupère l'instance du desktop :
-                        Desktop desktop = Desktop.getDesktop();
-
-                        // On vérifie que la fonction browse est bien supportée :
-                        if (desktop.isSupported(Desktop.Action.OPEN)) {
-                            try {
-                                // Et on lance l'application associé au protocole :
-                                desktop.open(new File(chemin));
-                            } catch (IOException efile) {
-                                System.out.println("Problème de lecture du fichier");
-                            }
-                        }
-                    }
-                    //sinon si le chemin n'existe pas
-                } else if (chemin.equals("le fichier n'existe pas")) {
-                    //on ouvre un dialogue
-                    JOptionPane.showMessageDialog(null, "Création annulée, votre fichier xml n'existe pas! ", "Erreur", JOptionPane.ERROR_MESSAGE);
-                } else {
-                    //on ouvre un dialogue
-                    JOptionPane.showMessageDialog(null, "Création annulée! ", "Erreur", JOptionPane.ERROR_MESSAGE);
-                }
-            } catch (Exception ex) {
-                Logger.getLogger(FenetreListener.class.getName()).log(Level.SEVERE, null, ex);
-                //on ouvre un dialogue
-                JOptionPane.showMessageDialog(null, "Création échouée! ", "Erreur", JOptionPane.ERROR_MESSAGE);
-
-
-            }
+             BddProbleme.html();
         } else if (e.getSource() == this.ppu.getBoutonNew()) {
             boolean nouveau = false;
             int i = 0;

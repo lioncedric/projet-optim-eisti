@@ -84,36 +84,7 @@ public class FenetreListener implements ActionListener, ComponentListener {
             System.exit(0);
         //si l'utilisateur clique sur générer html alors on ouvre une page html ac le navigateur par defaut avec tous les problèmes de celui ci
         } else if (e.getSource() == this.fenetre.getAffResHtml()) {
-            try {
-                //declaration de variable
-                String chemin;//stocke le chemin ou est stocké le fichier html
-                chemin = BddProbleme.html();
-                //Si la création du html a réussit
-                if (chemin != null) {
-                    //on ouvre un dialogue
-                    //on affiche la page html à l'utilisateur
-                    // On vérifie que la classe Desktop soit bien supportée :
-                    if (Desktop.isDesktopSupported()) {
-                        // On récupère l'instance du desktop :
-                        Desktop desktop = Desktop.getDesktop();
-                        // On vérifie que la fonction browse est bien supportée :
-                        if (desktop.isSupported(Desktop.Action.OPEN)) {
-                            try {
-                                // Et on lance l'application associé au protocole :
-                                desktop.open(new File(chemin));
-                            } catch (IOException efile) {//si on n'arrive pas a ouvrir la page on informe l'utilisateur
-                                System.out.println("Problème de lecture du fichier");
-                            }
-                        }
-                    }
-                } else {
-                    //on ouvre un dialogue
-                    JOptionPane.showMessageDialog(null, "Création annulée! ", "Erreur", JOptionPane.ERROR_MESSAGE);
-                }
-            } catch (Exception ex) {
-                //on ouvre un dialogue
-                JOptionPane.showMessageDialog(null, "Création échouée! ", "Erreur", JOptionPane.ERROR_MESSAGE);
-            }
+             BddProbleme.html();
         //si l'utilisateur clique sur recharger alors on recharge le fichier de la bdd
         } else if (e.getSource() == this.fenetre.getRecharger()) {
             try {

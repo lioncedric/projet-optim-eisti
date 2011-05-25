@@ -6,11 +6,13 @@ import javax.xml.parsers.ParserConfigurationException;
 import org.w3c.dom.*;
 import java.io.*;
 import fr.eisti.optimEisti_RaLiGaKl.Main;
+import java.awt.Desktop;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
 import javax.swing.JFileChooser;
+import javax.swing.JOptionPane;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.validation.Schema;
@@ -482,46 +484,69 @@ public class BddProbleme {
      * @return nom
      * @throws Exception
      */
-    public static String html() throws Exception {
-        //Nouveau jfilechooser
-        JFileChooser fc = new JFileChooser();
-        //ajout d'un filtre pour fichier html
-        fc.addChoosableFileFilter(new FiltreSimple("Fichier HTML", ".html"));
-        //tous les types de fichiers ne sont pas acceptés
-        fc.setAcceptAllFileFilterUsed(false);
-        //on stocke le numero du bouton cliquer (valider, annuler)
-        int returnVal = fc.showSaveDialog(null);
-        //si on valide
-        if (returnVal == JFileChooser.APPROVE_OPTION) {
-            //on récupère le chemin absolu (le nom du fichier y compris)
-            String nom = fc.getSelectedFile().getAbsolutePath();
-            //on récupère le chemin du répertoire ou se trouve le fichier
-            String nom2 = new File(nom).getParent();
-            //Si le nom saisit ne se finit pas par .html
-            if (!nom.endsWith(".html")) {
-                //on récupère le nom complet
-                nom = nom + ".html";
+    public static void html() {
+
+            //Nouveau jfilechooser
+            JFileChooser fc = new JFileChooser();
+            //ajout d'un filtre pour fichier html
+            fc.addChoosableFileFilter(new FiltreSimple("Fichier HTML", ".html"));
+            //tous les types de fichiers ne sont pas acceptés
+            fc.setAcceptAllFileFilterUsed(false);
+            //on stocke le numero du bouton cliquer (valider, annuler)
+            int returnVal = fc.showSaveDialog(null);
+            //si on valide
+
+            if (returnVal == JFileChooser.APPROVE_OPTION) {
+                //on récupère le chemin absolu (le nom du fichier y compris)
+                String nom = fc.getSelectedFile().getAbsolutePath();
+                //on récupère le chemin du répertoire ou se trouve le fichier
+                String nom2 = new File(nom).getParent();
+                //Si le nom saisit ne se finit pas par .html
+                if (!nom.endsWith(".html")) {
+                    //on récupère le nom complet
+                    nom = nom + ".html";
+                }
+                //si le fichier .xml associé à l'utilisateur existe
+                if (new File("bdd/" + BDDUtilisateur.getNomUtilisateur() + ".xml").exists()) {
+                    try {
+                        //on compile le xsl avec le xml pour créer le html
+                        Utilitaire.creerHTML("bdd/" + BDDUtilisateur.getNomUtilisateur() + ".xml", "HTML/resultats.xsl", nom);
+                        //on crée un répertoire du nom de html
+                        new File(nom2 + "/html").mkdir();
+                        //Copie tous les fichiers nécessaires au fonctionnement du HTML
+                        Utilitaire.copie("HTML/script.js", nom2 + "/html/script.js");
+                        Utilitaire.copie("HTML/design.css", nom2 + "/html/design.css");
+                        Utilitaire.copie("HTML/BaniereFinal.png", nom2 + "/html/BaniereFinal.png");
+                        Utilitaire.copie("HTML/pageBienvenue.png", nom2 + "/html/pageBienvenue.png");
+                        //on ouvre un dialogue
+                        //on affiche la page html à l'utilisateur
+                        // On vérifie que la classe Desktop soit bien supportée :
+                        if (Desktop.isDesktopSupported()) {
+                            // On récupère l'instance du desktop :
+                            Desktop desktop = Desktop.getDesktop();
+                            // On vérifie que la fonction browse est bien supportée :
+                            if (desktop.isSupported(Desktop.Action.OPEN)) {
+                                try {
+                                    // Et on lance l'application associé au protocole :
+                                    desktop.open(new File(nom));
+                                } catch (IOException efile) {
+                                    JOptionPane.showMessageDialog(null, "Problème de lecture du fichier! ", "Erreur", JOptionPane.ERROR_MESSAGE);
+                                }
+                            }
+                        }
+
+
+
+                    } catch (Exception ex) {
+                        JOptionPane.showMessageDialog(null, "Création échouée! ", "Erreur", JOptionPane.ERROR_MESSAGE);
+                    }
+
+
+
+                } else {
+                    JOptionPane.showMessageDialog(null, "Veuillez creer au moins au probleme! ", "Erreur", JOptionPane.ERROR_MESSAGE);
+                }
             }
-            //si le fichier .xml associé à l'utilisateur existe
-            if (new File("bdd/" + BDDUtilisateur.getNomUtilisateur() + ".xml").exists()) {
-                //on compile le xsl avec le xml pour créer le html
-                Utilitaire.creerHTML("bdd/" + BDDUtilisateur.getNomUtilisateur() + ".xml", "HTML/resultats.xsl", nom);
-                //on crée un répertoire du nom de html
-                new File(nom2 + "/html").mkdir();
-                //Copie tous les fichiers nécessaires au fonctionnement du HTML
-                Utilitaire.copie("HTML/script.js", nom2 + "/html/script.js");
-                Utilitaire.copie("HTML/design.css", nom2 + "/html/design.css");
-                Utilitaire.copie("HTML/BaniereFinal.png", nom2 + "/html/BaniereFinal.png");
-                Utilitaire.copie("HTML/pageBienvenue.png", nom2 + "/html/pageBienvenue.png");
-                return nom;
-            //sinon
-            } else {
-                return "le fichier n'existe pas";
-            }
-        //sinon
-        } else {
-            //on retourne null
-            return null;
-        }
+
     }
 }
