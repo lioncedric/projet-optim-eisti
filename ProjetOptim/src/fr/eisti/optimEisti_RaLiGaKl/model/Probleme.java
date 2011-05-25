@@ -335,6 +335,10 @@ public class Probleme {
     public void remplirMatriceScilab(double[][] matrice, int nb) {
         //pour autant qu'il y a de contraintes (on va remplir toutes les lignes de la matrice sauf la derniere
         int cpt = 0;
+        double signevar=1;
+        if (!this.isPositif()){
+            signevar=-1;
+        }
         for (int i = 0; i < this.contraintes.size(); i++) {
             //pour toutes les colonnes de la matrice
 
@@ -342,13 +346,13 @@ public class Probleme {
                 //on remplit la matrice avec les coefficients de chacune des contraintes du probleme
                 if (this.contraintes.get(i).getInegalite().equals("Infériorité")) {
 
-                    matrice[cpt][j] = this.contraintes.get(i).getCoeffVariables().get(j);
+                    matrice[cpt][j] =signevar* this.contraintes.get(i).getCoeffVariables().get(j);
                 } else if (this.contraintes.get(i).getInegalite().equals("Supériorité")) {
-                    matrice[cpt][j] = -this.contraintes.get(i).getCoeffVariables().get(j);
+                    matrice[cpt][j] =-signevar* this.contraintes.get(i).getCoeffVariables().get(j);
 
                 } else {
-                    matrice[cpt][j] = this.contraintes.get(i).getCoeffVariables().get(j);
-                    matrice[cpt + 1][j] = -this.contraintes.get(i).getCoeffVariables().get(j);
+                    matrice[cpt][j] =signevar* this.contraintes.get(i).getCoeffVariables().get(j);
+                    matrice[cpt + 1][j] = -signevar*this.contraintes.get(i).getCoeffVariables().get(j);
                 }
 
 
@@ -375,10 +379,10 @@ public class Probleme {
         //pour chaque colonne de la derniere ligne
         for (int j = 0; j < this.coeffVariables.size(); j++) {
             if (this.objectif.equals("Minimiser")) {
-                matrice[nb][j] = -this.coeffVariables.get(j);
+                matrice[nb][j] = -signevar*this.coeffVariables.get(j);
             } else {
                 //on ajoute les coefficients de la fonction a maximiser
-                matrice[nb][j] = this.coeffVariables.get(j);
+                matrice[nb][j] = signevar*this.coeffVariables.get(j);
             }
         }
 
