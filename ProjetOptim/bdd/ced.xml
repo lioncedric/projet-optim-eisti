@@ -1,51 +1,26 @@
 <?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
 <listeProblemes url="D:\My Documents\NetBeansProjects\ProjetOptim\images\mickey.png" utilisateur="ced">
-<probleme>
-<titre>Testmumu</titre>
-<description>Probleme a deux variables</description>
-<objectif type="Maximiser">
-<variable coeff="1.0"/>
-<variable coeff="2.0"/>
-</objectif>
-<contrainte type="Infériorité">
-<variable coeff="-3.0"/>
-<variable coeff="2.0"/>
-<constante valeur="2.0"/>
-</contrainte>
-<contrainte type="Infériorité">
-<variable coeff="-1.0"/>
-<variable coeff="2.0"/>
-<constante valeur="4.0"/>
-</contrainte>
-<contrainte type="Infériorité">
-<variable coeff="1.0"/>
-<variable coeff="1.0"/>
-<constante valeur="5.0"/>
-</contrainte>
-</probleme>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 <probleme>
-<titre>Sans probleme</titre>
-<description>Entrer votre description du problème</description>
-<objectif type="Maximiser">
-<variable coeff="1.0"/>
-<variable coeff="-2.0"/>
-</objectif>
-<contrainte type="Infériorité">
-<variable coeff="1.0"/>
-<variable coeff="1.0"/>
-<constante valeur="3.0"/>
-</contrainte>
-<contrainte type="Infériorité">
-<variable coeff="-1.0"/>
-<variable coeff="3.0"/>
-<constante valeur="-4.0"/>
-</contrainte>
-</probleme>
-<probleme>
 <titre>M1</titre>
-<description>Entrer votre description du problème</description>
-<objectif type="Minimiser">
+<description>Entrer votre description du problèm</description>
+<objectif isPositif="true" type="Minimiser">
 <variable coeff="1.0"/>
 <variable coeff="-2.0"/>
 <variable coeff="2.0"/>
@@ -65,8 +40,8 @@
 </probleme>
 <probleme>
 <titre>Testmumu3</titre>
-<description>Un deuxieme ...</description>
-<objectif type="Maximiser">
+<description>Un deuxieme ..</description>
+<objectif isPositif="true" type="Maximiser">
 <variable coeff="10.0"/>
 <variable coeff="20.0"/>
 </objectif>
@@ -88,8 +63,8 @@
 </probleme>
 <probleme>
 <titre>Testmumu2</titre>
-<description>Un autre ...</description>
-<objectif type="Maximiser">
+<description>Un autre ..</description>
+<objectif isPositif="true" type="Maximiser">
 <variable coeff="1.0"/>
 <variable coeff="0.5"/>
 </objectif>
@@ -109,13 +84,10 @@
 <constante valeur="1.0"/>
 </contrainte>
 </probleme>
-
-
-
 <probleme>
 <titre>Testmumu2</titre>
-<description>Un autre ...</description>
-<objectif type="Maximiser">
+<description>Un autre ..</description>
+<objectif isPositif="true" type="Maximiser">
 <variable coeff="1.0"/>
 <variable coeff="0.5"/>
 </objectif>
@@ -141,8 +113,8 @@
 </probleme>
 <probleme>
 <titre>Testmumu</titre>
-<description>Probleme a deux variables</description>
-<objectif type="Minimiser">
+<description>Probleme a deux variable</description>
+<objectif isPositif="true" type="Minimiser">
 <variable coeff="1.0"/>
 <variable coeff="2.0"/>
 </objectif>
@@ -152,12 +124,10 @@
 <constante valeur="0.0"/>
 </contrainte>
 </probleme>
-
-
 <probleme>
 <titre>-11</titre>
-<description>Entrer votre description du problème</description>
-<objectif type="Maximiser">
+<description>Entrer votre description du problèm</description>
+<objectif isPositif="true" type="Maximiser">
 <variable coeff="-7.0"/>
 <variable coeff="-12.0"/>
 <variable coeff="-10.0"/>
@@ -188,8 +158,8 @@
 </probleme>
 <probleme>
 <titre>Mon problemeActions</titre>
-<description>Entrer votre description du problème</description>
-<objectif type="Maximiser">
+<description>Entrer votre description du problèm</description>
+<objectif isPositif="true" type="Maximiser">
 <variable coeff="80.0"/>
 <variable coeff="20.0"/>
 </objectif>
@@ -215,8 +185,8 @@
 </probleme>
 <probleme>
 <titre>Testmumu</titre>
-<description>Un deuxieme</description>
-<objectif type="Maximiser">
+<description>Un deuxiem</description>
+<objectif isPositif="true" type="Maximiser">
 <variable coeff="10.0"/>
 <variable coeff="20.0"/>
 </objectif>
@@ -234,6 +204,47 @@
 <variable coeff="5.0"/>
 <variable coeff="6.0"/>
 <constante valeur="110.0"/>
+</contrainte>
+</probleme>
+<probleme>
+<titre>Testmumu</titre>
+<description>Probleme a deux variabl</description>
+<objectif isPositif="true" type="Maximiser">
+<variable coeff="1.0"/>
+<variable coeff="2.0"/>
+</objectif>
+<contrainte type="Infériorité">
+<variable coeff="-3.0"/>
+<variable coeff="2.0"/>
+<constante valeur="2.0"/>
+</contrainte>
+<contrainte type="Infériorité">
+<variable coeff="-1.0"/>
+<variable coeff="2.0"/>
+<constante valeur="4.0"/>
+</contrainte>
+<contrainte type="Infériorité">
+<variable coeff="1.0"/>
+<variable coeff="1.0"/>
+<constante valeur="5.0"/>
+</contrainte>
+</probleme>
+<probleme>
+<titre>Sans probleme</titre>
+<description>Entrer votre description du problèm</description>
+<objectif isPositif="false" type="Maximiser">
+<variable coeff="1.0"/>
+<variable coeff="-2.0"/>
+</objectif>
+<contrainte type="Infériorité">
+<variable coeff="1.0"/>
+<variable coeff="1.0"/>
+<constante valeur="3.0"/>
+</contrainte>
+<contrainte type="Infériorité">
+<variable coeff="-1.0"/>
+<variable coeff="3.0"/>
+<constante valeur="-4.0"/>
 </contrainte>
 </probleme>
 </listeProblemes>

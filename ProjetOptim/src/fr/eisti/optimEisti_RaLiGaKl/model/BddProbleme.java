@@ -147,6 +147,7 @@ public class BddProbleme {
         probleme.appendChild(decription);
         Element objectif = bdd.createElement("objectif");
         objectif.setAttribute("type", "" + p.getObjectif());
+        objectif.setAttribute("isPositif", "" + p.positif);
         for (int i = 0; i < p.getCoeffVariables().size(); i++) {
             Element variable = bdd.createElement("variable");
             variable.setAttribute("coeff", "" + p.getCoeffVariables().get(i));
@@ -202,6 +203,12 @@ public class BddProbleme {
         probleme.setTitre(NoeudProbleme.getElementsByTagName("*").item(0).getTextContent());
         probleme.setDescription(NoeudProbleme.getElementsByTagName("*").item(1).getTextContent());
         probleme.setObjectif(NoeudProbleme.getElementsByTagName("*").item(2).getAttributes().getNamedItem("type").getTextContent());
+        if (NoeudProbleme.getElementsByTagName("*").item(2).getAttributes().getNamedItem("isPositif").getTextContent().equals("true")) {
+           probleme.setPositif(true);
+        } else {
+            probleme.setPositif(false);
+        }
+
         int nbvariables1 = ((Element) (NoeudProbleme.getElementsByTagName("*").item(2))).getElementsByTagName("*").getLength();
         for (int i = 0; i < nbvariables1; i++) {
             probleme.getCoeffVariables().add(Double.parseDouble(((Element) (NoeudProbleme.getElementsByTagName("*").item(2))).getElementsByTagName("*").item(i).getAttributes().getNamedItem("coeff").getTextContent()));
@@ -372,7 +379,7 @@ public class BddProbleme {
             output.write(";");
             //Ecriture de 0 sous les variables
             while (j < nbVariablesDecision) {
-                 //incrémentation du compteur
+                //incrémentation du compteur
                 j++;
                 //on écrit 0
                 output.write("0;");
@@ -443,7 +450,7 @@ public class BddProbleme {
                     //caractère ascii correspondant
                     monChar = (char) (monAscii);
                 }
-                 //incrémentation du compteur
+                //incrémentation du compteur
                 j++;
                 //on écrit dans le fichier en sortie le temp
                 output.write(temp);
@@ -486,67 +493,67 @@ public class BddProbleme {
      */
     public static void html() {
 
-            //Nouveau jfilechooser
-            JFileChooser fc = new JFileChooser();
-            //ajout d'un filtre pour fichier html
-            fc.addChoosableFileFilter(new FiltreSimple("Fichier HTML", ".html"));
-            //tous les types de fichiers ne sont pas acceptés
-            fc.setAcceptAllFileFilterUsed(false);
-            //on stocke le numero du bouton cliquer (valider, annuler)
-            int returnVal = fc.showSaveDialog(null);
-            //si on valide
+        //Nouveau jfilechooser
+        JFileChooser fc = new JFileChooser();
+        //ajout d'un filtre pour fichier html
+        fc.addChoosableFileFilter(new FiltreSimple("Fichier HTML", ".html"));
+        //tous les types de fichiers ne sont pas acceptés
+        fc.setAcceptAllFileFilterUsed(false);
+        //on stocke le numero du bouton cliquer (valider, annuler)
+        int returnVal = fc.showSaveDialog(null);
+        //si on valide
 
-            if (returnVal == JFileChooser.APPROVE_OPTION) {
-                //on récupère le chemin absolu (le nom du fichier y compris)
-                String nom = fc.getSelectedFile().getAbsolutePath();
-                //on récupère le chemin du répertoire ou se trouve le fichier
-                String nom2 = new File(nom).getParent();
-                //Si le nom saisit ne se finit pas par .html
-                if (!nom.endsWith(".html")) {
-                    //on récupère le nom complet
-                    nom = nom + ".html";
-                }
-                //si le fichier .xml associé à l'utilisateur existe
-                if (new File("bdd/" + BDDUtilisateur.getNomUtilisateur() + ".xml").exists()) {
-                    try {
-                        //on compile le xsl avec le xml pour créer le html
-                        Utilitaire.creerHTML("bdd/" + BDDUtilisateur.getNomUtilisateur() + ".xml", "HTML/resultats.xsl", nom);
-                        //on crée un répertoire du nom de html
-                        new File(nom2 + "/html").mkdir();
-                        //Copie tous les fichiers nécessaires au fonctionnement du HTML
-                        Utilitaire.copie("HTML/script.js", nom2 + "/html/script.js");
-                        Utilitaire.copie("HTML/design.css", nom2 + "/html/design.css");
-                        Utilitaire.copie("HTML/BaniereFinal.png", nom2 + "/html/BaniereFinal.png");
-                        Utilitaire.copie("HTML/pageBienvenue.png", nom2 + "/html/pageBienvenue.png");
-                        //on ouvre un dialogue
-                        //on affiche la page html à l'utilisateur
-                        // On vérifie que la classe Desktop soit bien supportée :
-                        if (Desktop.isDesktopSupported()) {
-                            // On récupère l'instance du desktop :
-                            Desktop desktop = Desktop.getDesktop();
-                            // On vérifie que la fonction browse est bien supportée :
-                            if (desktop.isSupported(Desktop.Action.OPEN)) {
-                                try {
-                                    // Et on lance l'application associé au protocole :
-                                    desktop.open(new File(nom));
-                                } catch (IOException efile) {
-                                    JOptionPane.showMessageDialog(null, "Problème de lecture du fichier! ", "Erreur", JOptionPane.ERROR_MESSAGE);
-                                }
+        if (returnVal == JFileChooser.APPROVE_OPTION) {
+            //on récupère le chemin absolu (le nom du fichier y compris)
+            String nom = fc.getSelectedFile().getAbsolutePath();
+            //on récupère le chemin du répertoire ou se trouve le fichier
+            String nom2 = new File(nom).getParent();
+            //Si le nom saisit ne se finit pas par .html
+            if (!nom.endsWith(".html")) {
+                //on récupère le nom complet
+                nom = nom + ".html";
+            }
+            //si le fichier .xml associé à l'utilisateur existe
+            if (new File("bdd/" + BDDUtilisateur.getNomUtilisateur() + ".xml").exists()) {
+                try {
+                    //on compile le xsl avec le xml pour créer le html
+                    Utilitaire.creerHTML("bdd/" + BDDUtilisateur.getNomUtilisateur() + ".xml", "HTML/resultats.xsl", nom);
+                    //on crée un répertoire du nom de html
+                    new File(nom2 + "/html").mkdir();
+                    //Copie tous les fichiers nécessaires au fonctionnement du HTML
+                    Utilitaire.copie("HTML/script.js", nom2 + "/html/script.js");
+                    Utilitaire.copie("HTML/design.css", nom2 + "/html/design.css");
+                    Utilitaire.copie("HTML/BaniereFinal.png", nom2 + "/html/BaniereFinal.png");
+                    Utilitaire.copie("HTML/pageBienvenue.png", nom2 + "/html/pageBienvenue.png");
+                    //on ouvre un dialogue
+                    //on affiche la page html à l'utilisateur
+                    // On vérifie que la classe Desktop soit bien supportée :
+                    if (Desktop.isDesktopSupported()) {
+                        // On récupère l'instance du desktop :
+                        Desktop desktop = Desktop.getDesktop();
+                        // On vérifie que la fonction browse est bien supportée :
+                        if (desktop.isSupported(Desktop.Action.OPEN)) {
+                            try {
+                                // Et on lance l'application associé au protocole :
+                                desktop.open(new File(nom));
+                            } catch (IOException efile) {
+                                JOptionPane.showMessageDialog(null, "Problème de lecture du fichier! ", "Erreur", JOptionPane.ERROR_MESSAGE);
                             }
                         }
-
-
-
-                    } catch (Exception ex) {
-                        JOptionPane.showMessageDialog(null, "Création échouée! ", "Erreur", JOptionPane.ERROR_MESSAGE);
                     }
 
 
 
-                } else {
-                    JOptionPane.showMessageDialog(null, "Veuillez creer au moins au probleme! ", "Erreur", JOptionPane.ERROR_MESSAGE);
+                } catch (Exception ex) {
+                    JOptionPane.showMessageDialog(null, "Création échouée! ", "Erreur", JOptionPane.ERROR_MESSAGE);
                 }
+
+
+
+            } else {
+                JOptionPane.showMessageDialog(null, "Veuillez creer au moins au probleme! ", "Erreur", JOptionPane.ERROR_MESSAGE);
             }
+        }
 
     }
 }

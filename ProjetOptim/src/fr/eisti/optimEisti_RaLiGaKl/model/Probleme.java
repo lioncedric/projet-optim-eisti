@@ -26,7 +26,7 @@ public class Probleme {
      */
     @Override
     public String toString() {
-        return "Probleme{" + "description=" + description + "titre=" + titre + "objectif=" + objectif + "coeffVariables=" + coeffVariables + "resultat=" + resultat + "contraintes=" + contraintes + '}';
+        return "Probleme{" +  positif +"description=" + description + "titre=" + titre + "objectif=" + objectif + "coeffVariables=" + coeffVariables + "resultat=" + resultat + "contraintes=" + contraintes + '}';
     }
 
     /**
