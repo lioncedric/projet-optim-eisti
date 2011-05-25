@@ -36,7 +36,10 @@ public class PanelProblemesUtilisateurListener implements ActionListener, MouseL
     public PanelProblemesUtilisateurListener(PanelProblemesUtilisateur pPpu) {
         this.ppu = pPpu;
     }
-
+    /**
+     * Supprimer un Probleme
+     * @param numero numero du probleme
+     */
     public static void SupprimerProbleme(int numero) {
         BddProbleme.supprimerProbleme(numero);
         int i = 0;

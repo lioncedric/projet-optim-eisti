@@ -112,8 +112,8 @@ public class PanelProbleme extends JPanel {
         maximiser.addMouseListener(new SaveListener());
         minimiser.addMouseListener(new SaveListener());
         boutonsSigne = new ButtonGroup();
-        positif = new JRadioButton("Varibles de décision positives");
-        negatif = new JRadioButton("Varibles de décision négatives");
+        positif = new JRadioButton("Variables de décision positives");
+        negatif = new JRadioButton("Variables de décision négatives");
         positif.addMouseListener(new SaveListener());
         negatif.addMouseListener(new SaveListener());
 
