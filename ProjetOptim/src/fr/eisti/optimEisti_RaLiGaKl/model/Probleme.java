@@ -17,27 +17,31 @@ public class Probleme {
     protected String titre = "";
     protected String objectif = "";
     protected ArrayList<Double> coeffVariables = new ArrayList<Double>();
+    protected boolean positif;
     protected ArrayList<Double> resultat = new ArrayList<Double>();
     protected ArrayList<Contrainte> contraintes = new ArrayList<Contrainte>();
-/**
- * decription de l'objet
- * @return l'objet sous forme de chaine
- */
+
+    /**
+     * decription de l'objet
+     * @return l'objet sous forme de chaine
+     */
     @Override
     public String toString() {
         return "Probleme{" + "description=" + description + "titre=" + titre + "objectif=" + objectif + "coeffVariables=" + coeffVariables + "resultat=" + resultat + "contraintes=" + contraintes + '}';
     }
-/**
- * verifier l'ealité entre deux objets
- * @param obj l'objet a comparer
- * @return si les deux objets sont egaux
- */
+
+    /**
+     * verifier l'ealité entre deux objets
+     * @param obj l'objet a comparer
+     * @return si les deux objets sont egaux
+     */
     @Override
     public boolean equals(Object obj) {
         return obj.toString().equals(this.toString());
     }
 
     public Probleme() {
+        positif = true;
     }
 
     /**
@@ -45,6 +49,7 @@ public class Probleme {
      * @param pFenetre
      */
     public Probleme(PanelProbleme pFenetre) {
+        positif = true;
         renseignerProbleme(pFenetre);
     }
 
@@ -64,6 +69,11 @@ public class Probleme {
         } else if (fenetre.getMinimiser().isSelected()) {
             this.objectif = "Minimiser";
         } else {
+        }
+        if (fenetre.getPositif().isSelected()) {
+            this.positif = true;
+        } else {
+            this.positif = false;
         }
         //récupération des valeurs des variables du problème
         for (int i = 0; i < fenetre.getSlide().getValue(); i++) {
@@ -122,7 +132,7 @@ public class Probleme {
             //cas ou la constante est negative, il faut tout multiplier par -1
             if (this.contraintes.get(i).getConstante() < 0) {
                 //chaque variable eest multiplié par -1
-                signe=-signe;
+                signe = -signe;
                 for (int j = 0; j < this.contraintes.get(i).getCoeffVariables().size(); j++) {
                     listeContrainteNormalisés[i].add(-this.contraintes.get(i).getCoeffVariables().get(j));
                 }
@@ -163,11 +173,11 @@ public class Probleme {
                     //on additionne les m pour la constante
                     coefM[this.contraintes.get(i).getCoeffVariables().size()] += this.contraintes.get(i).getConstante();
                 }
-                  //on ajoute la constante
+                //on ajoute la constante
                 listeContrainteNormalisés[i].add(this.contraintes.get(i).getConstante());
             }
             //pour une verif
-           System.out.println(listeContrainteNormalisés[i].toString());
+            System.out.println(listeContrainteNormalisés[i].toString());
         }//normalisation terminée
         //calcul du nomre de variables artificielles et d'ecart
         int colonnes = 0;
@@ -188,7 +198,7 @@ public class Probleme {
                 //on commence a remplir la matrice avec les variables reeles
                 if (j < this.getCoeffVariables().size()) {
                     matrice[i][j] = listeContrainteNormalisés[i].get(j);
-                //on rempli les varibles d'ecart et artificielles
+                    //on rempli les varibles d'ecart et artificielles
                 } else {
                     matrice[i][j + temp] = listeContrainteNormalisés[i].get(j);
                     //on decale 1 fois
@@ -431,4 +441,13 @@ public class Probleme {
     public void setResultat(ArrayList<Double> resultat) {
         this.resultat = resultat;
     }
+
+    public boolean isPositif() {
+        return positif;
+    }
+
+    public void setPositif(boolean positif) {
+        this.positif = positif;
+    }
+    
 }

@@ -1,4 +1,3 @@
-
 package fr.eisti.optimEisti_RaLiGaKl.view.problemes;
 
 import fr.eisti.optimEisti_RaLiGaKl.view.problemes.contraintes.Tableau;
@@ -25,6 +24,7 @@ import java.awt.GradientPaint;
 import java.awt.Graphics2D;
 import java.util.ArrayList;
 import javax.swing.BorderFactory;
+import javax.swing.JComboBox;
 import javax.swing.JOptionPane;
 import javax.swing.JTextArea;
 import javax.swing.border.BevelBorder;
@@ -63,6 +63,9 @@ public class PanelProbleme extends JPanel {
     private PanelProblemesUtilisateur liste;
     // private ArrayList<Contrainte> contraintes;
     private PanelProblemeListener fsl;
+    private ButtonGroup boutonsSigne;
+    private JRadioButton positif;
+    private JRadioButton negatif;
 
     public PanelProbleme() {
         super();
@@ -103,11 +106,15 @@ public class PanelProbleme extends JPanel {
 
         boutonHautBAs = new PanelHautBas(this);
         boutonsObjectif = new ButtonGroup();
-
         maximiser = new JRadioButton("Maximiser");
         minimiser = new JRadioButton("Minimiser");
         maximiser.addMouseListener(new SaveListener());
         minimiser.addMouseListener(new SaveListener());
+        boutonsSigne = new ButtonGroup();
+        positif = new JRadioButton("Varibles de décision positives");
+        negatif = new JRadioButton("Varibles de décision négatives");
+        positif.addMouseListener(new SaveListener());
+        negatif.addMouseListener(new SaveListener());
 
         jtfTitre = new JTextField("Mon probleme", 30);
         jtfTitre.addKeyListener(new SaveListener());
@@ -121,7 +128,7 @@ public class PanelProbleme extends JPanel {
         slide.setPaintTicks(true);
         slide.setPaintLabels(true);
         //--------------------------fin du slide-----------------------//
-this.description.setPreferredSize(new Dimension(this.getWidth() * 15 / 100, this.getHeight() * 18 / 100));
+        this.description.setPreferredSize(new Dimension(this.getWidth() * 15 / 100, this.getHeight() * 18 / 100));
     }
 
     public void mettreCouleurTexte(Color couleur) {
@@ -134,6 +141,8 @@ this.description.setPreferredSize(new Dimension(this.getWidth() * 15 / 100, this
         contraintes.setForeground(Main.fenetrePrincipale.getCouleurTexte());
         maximiser.setForeground(Main.fenetrePrincipale.getCouleurTexte());
         minimiser.setForeground(Main.fenetrePrincipale.getCouleurTexte());
+        negatif.setForeground(Main.fenetrePrincipale.getCouleurTexte());
+        positif.setForeground(Main.fenetrePrincipale.getCouleurTexte());
     }
 
     public void mettreFondComposants(Color couleurFond) {
@@ -142,10 +151,12 @@ this.description.setPreferredSize(new Dimension(this.getWidth() * 15 / 100, this
         slide.setBackground(new Color(couleurFond.getRed(), couleurFond.getGreen(), couleurFond.getBlue(), 0));
         maximiser.setBackground(new Color(couleurFond.getRed(), couleurFond.getGreen(), couleurFond.getBlue(), 0));
         minimiser.setBackground(new Color(couleurFond.getRed(), couleurFond.getGreen(), couleurFond.getBlue(), 0));
+        negatif.setBackground(new Color(couleurFond.getRed(), couleurFond.getGreen(), couleurFond.getBlue(), 0));
+        positif.setBackground(new Color(couleurFond.getRed(), couleurFond.getGreen(), couleurFond.getBlue(), 0));
         panDonnees.setBackground(new Color(couleurFond.getRed(), couleurFond.getGreen(), couleurFond.getBlue(), 0));
-        
+
         //par defaut
-        this.jtfTitre.setBackground(new Color(couleurFond.getRed(),couleurFond.getGreen(),couleurFond.getBlue()));
+        this.jtfTitre.setBackground(new Color(couleurFond.getRed(), couleurFond.getGreen(), couleurFond.getBlue()));
         jtfTitre.setBackground(new Color(couleurFond.getRed(), couleurFond.getGreen(), couleurFond.getBlue(), Main.fenetrePrincipale.getCoeffTransparence()));
         textfield.setBackground(new Color(couleurFond.getRed(), couleurFond.getGreen(), couleurFond.getBlue(), Main.fenetrePrincipale.getCoeffTransparence()));
         ajouter.setBackground(new Color(couleurFond.getRed(), couleurFond.getGreen(), couleurFond.getBlue(), Main.fenetrePrincipale.getCoeffTransparence()));
@@ -164,6 +175,10 @@ this.description.setPreferredSize(new Dimension(this.getWidth() * 15 / 100, this
         boutonsObjectif.add(maximiser);
         boutonsObjectif.add(minimiser);
         maximiser.setSelected(true);
+        boutonsSigne.add(positif);
+        boutonsSigne.add(negatif);
+
+        positif.setSelected(true);
 
         panDonnees.setLayout(new FlowLayout(FlowLayout.CENTER));
         panDonnees.add(new JLabel("y="));
@@ -184,6 +199,9 @@ this.description.setPreferredSize(new Dimension(this.getWidth() * 15 / 100, this
         this.add(objectif);
         this.add(maximiser);
         this.add(minimiser);
+
+        this.add(negatif);
+        this.add(positif);
         this.add(donnees);
         this.add(panDonnees);
         this.add(contraintes);
@@ -198,7 +216,7 @@ this.description.setPreferredSize(new Dimension(this.getWidth() * 15 / 100, this
     public void paintComponent(Graphics g) {
         super.paintComponent(g);
         Graphics2D g2d = (Graphics2D) g;
-        g2d.setPaint(new GradientPaint(0, 0,  Main.fenetrePrincipale.getCouleur1(), 0, this.getHeight(),  Main.fenetrePrincipale.getCouleur2(), true));
+        g2d.setPaint(new GradientPaint(0, 0, Main.fenetrePrincipale.getCouleur1(), 0, this.getHeight(), Main.fenetrePrincipale.getCouleur2(), true));
         g2d.fillRect(0, 0, this.getWidth(), this.getHeight());
         titre.setBounds(this.getWidth() * 10 / 100, hauteur * this.getHeight() / 700 + this.getHeight() * 4 / 100, this.getWidth() * 30 / 100, this.getHeight() * 6 / 100);
         jtfTitre.setBounds(this.getWidth() * 42 / 100, hauteur * this.getHeight() / 700 + this.getHeight() * 4 / 100, this.getWidth() * 30 / 100, this.getHeight() * 6 / 100);
@@ -211,7 +229,10 @@ this.description.setPreferredSize(new Dimension(this.getWidth() * 15 / 100, this
         variables.setBounds(this.getWidth() * 10 / 100, hauteur * this.getHeight() / 700 + this.getHeight() * 38 / 100, this.getWidth() * 40 / 100, this.getHeight() * 15 / 100);
         panDonnees.setBounds(this.getWidth() * 25 / 100, hauteur * this.getHeight() / 700 + this.getHeight() * 50 / 100, this.getWidth() * 75 / 100, this.getHeight() * 10 / 100);
         objectif.setBounds(this.getWidth() * 10 / 100, hauteur * this.getHeight() / 700 + this.getHeight() * 48 / 100, this.getWidth() * 20 / 100, this.getHeight() * 15 / 100);
+        positif.setBounds(this.getWidth() * 20 / 100, hauteur * this.getHeight() / 700 + this.getHeight() * 68 / 100, this.getWidth() * 40 / 100, this.getHeight() * 10 / 100);
+        negatif.setBounds(this.getWidth() * 55 / 100, hauteur * this.getHeight() / 700 + this.getHeight() * 68 / 100, this.getWidth() * 40 / 100, this.getHeight() * 10 / 100);
         contraintes.setBounds(this.getWidth() * 10 / 100, hauteur * this.getHeight() / 700 + this.getHeight() * 60 / 100, this.getWidth() * 30 / 100, this.getHeight() * 10 / 100);
+
         panTableau.setBounds(this.getWidth() * 5 / 100, hauteur * this.getHeight() / 700 + this.getHeight() * 78 / 100, this.getWidth() * 90 / 100, this.getHeight() * 20 / 100);
         ajouter.setBounds(this.getWidth() * 42 / 100, hauteur * this.getHeight() / 700 + this.getHeight() * 62 / 100, this.getWidth() * 40 / 100, this.getHeight() * 5 / 100);
         panelResultat.setBounds(0, hauteur * this.getHeight() / 700 + this.getHeight(), this.getWidth(), this.getHeight() * 40 / 100);
@@ -229,6 +250,11 @@ this.description.setPreferredSize(new Dimension(this.getWidth() * 15 / 100, this
         } else if (this.probleme.getObjectif().equals("Minimiser")) {
             this.minimiser.setSelected(true);
         } else {
+        }
+        if (this.probleme.isPositif()) {
+            this.positif.setSelected(true);
+        } else {
+            this.negatif.setSelected(true);
         }
         this.panDonnees.removeAll();
         this.panDonnees.add(new JLabel("y="));
@@ -441,5 +467,20 @@ this.description.setPreferredSize(new Dimension(this.getWidth() * 15 / 100, this
         this.hauteur = hauteur;
     }
 
+    public JRadioButton getNegatif() {
+        return negatif;
+    }
 
+    public void setNegatif(JRadioButton negatif) {
+        this.negatif = negatif;
+    }
+
+    public JRadioButton getPositif() {
+        return positif;
+    }
+
+    public void setPositif(JRadioButton positif) {
+        this.positif = positif;
+    }
+    
 }
