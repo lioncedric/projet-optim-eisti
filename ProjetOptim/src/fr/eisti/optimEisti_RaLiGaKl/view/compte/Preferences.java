@@ -47,7 +47,7 @@ public class Preferences extends JDialog {
      * Initialise la fenêtre
      */
     public void init() {
-        this.setTitle("Gestion de votre profil");
+        this.setTitle("Préférences");
         this.setSize(450, 300);                 //on redimenssione la fenetre en cours
         this.setLocationRelativeTo(null);       //on centre la fenetre a l'ecran
         this.setResizable(false);               //on demande a ce que la fenetre ne puisse pas etre redimentionnee

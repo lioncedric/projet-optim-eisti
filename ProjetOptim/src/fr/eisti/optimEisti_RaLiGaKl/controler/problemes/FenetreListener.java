@@ -106,6 +106,21 @@ public class FenetreListener implements ActionListener, ComponentListener {
         } else if (e.getSource() == this.fenetre.getPreferences()) {
             Preferences p = new Preferences();
             p.setVisible(true);
+        }else if(e.getSource() == this.fenetre.getAideItem()){
+            System.out.println("Rentrer dans aide");
+            if (Desktop.isDesktopSupported()) {
+                        // On récupère l'instance du desktop :
+                        Desktop desktop = Desktop.getDesktop();
+                        // On vérifie que la fonction browse est bien supportée :
+                        if (desktop.isSupported(Desktop.Action.OPEN)) {
+                            try {
+                                // Et on lance l'application associé au protocole :
+                                desktop.open(new File("aide\\aide.pdf"));
+                            } catch (IOException efile) {
+                                JOptionPane.showMessageDialog(null, "Problème de lecture du fichier! ", "Erreur", JOptionPane.ERROR_MESSAGE);
+                            }
+                        }
+                    }
         }
     }
 

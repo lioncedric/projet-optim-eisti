@@ -5,16 +5,11 @@ import fr.eisti.optimEisti_RaLiGaKl.Main;
 import fr.eisti.optimEisti_RaLiGaKl.model.*;
 import fr.eisti.optimEisti_RaLiGaKl.view.problemes.PanelOngletProbleme;
 import fr.eisti.optimEisti_RaLiGaKl.view.problemes.PanelProbleme;
-import java.awt.Desktop;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.IOException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+
 
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;

@@ -179,6 +179,7 @@ public class Fenetre extends JFrame {
         petitEcran.addActionListener(new FenetreListener(this));
         affResHtml.addActionListener(new FenetreListener(this));
         preferences.addActionListener(new FenetreListener(this));
+        aideItem.addActionListener(new FenetreListener(this));
     }
 
     public JMenuItem getSupprimerCompte() {
