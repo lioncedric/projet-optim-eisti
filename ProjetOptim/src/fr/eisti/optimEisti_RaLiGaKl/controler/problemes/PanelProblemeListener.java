@@ -130,6 +130,7 @@ public class PanelProblemeListener implements ChangeListener, ActionListener {
     public void actionPerformed(ActionEvent e) {
         //Si l'utilisateur clique sur le bouton pour calculer les solutions du probleme alors on lance l'algorithme du simplexe
         if (e.getSource() == this.panelProbleme.getPanelResultat().getCalculer()) {
+            PanelResultat.effacer();
             //on creer un nouveau problème avec les valeur du probleme en cours
             Probleme p = new  Probleme();
             p.renseignerProbleme((PanelProbleme) Main.fenetrePrincipale.getDroite().getSelectedComponent());

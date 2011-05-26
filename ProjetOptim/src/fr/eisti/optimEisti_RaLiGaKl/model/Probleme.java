@@ -1,6 +1,7 @@
 package fr.eisti.optimEisti_RaLiGaKl.model;
 
 import fr.eisti.optimEisti_RaLiGaKl.view.problemes.PanelProbleme;
+import fr.eisti.optimEisti_RaLiGaKl.view.problemes.PanelResultat;
 import java.util.ArrayList;
 import javax.swing.JTextField;
 
@@ -335,9 +336,9 @@ public class Probleme {
     public void remplirMatriceScilab(double[][] matrice, int nb) {
         //pour autant qu'il y a de contraintes (on va remplir toutes les lignes de la matrice sauf la derniere
         int cpt = 0;
-        double signevar=1;
-        if (!this.isPositif()){
-            signevar=-1;
+        double signevar = 1;
+        if (!this.isPositif()) {
+            signevar = -1;
         }
         for (int i = 0; i < this.contraintes.size(); i++) {
             //pour toutes les colonnes de la matrice
@@ -346,13 +347,13 @@ public class Probleme {
                 //on remplit la matrice avec les coefficients de chacune des contraintes du probleme
                 if (this.contraintes.get(i).getInegalite().equals("Infériorité")) {
 
-                    matrice[cpt][j] =signevar* this.contraintes.get(i).getCoeffVariables().get(j);
+                    matrice[cpt][j] = signevar * this.contraintes.get(i).getCoeffVariables().get(j);
                 } else if (this.contraintes.get(i).getInegalite().equals("Supériorité")) {
-                    matrice[cpt][j] =-signevar* this.contraintes.get(i).getCoeffVariables().get(j);
+                    matrice[cpt][j] = -signevar * this.contraintes.get(i).getCoeffVariables().get(j);
 
                 } else {
-                    matrice[cpt][j] =signevar* this.contraintes.get(i).getCoeffVariables().get(j);
-                    matrice[cpt + 1][j] = -signevar*this.contraintes.get(i).getCoeffVariables().get(j);
+                    matrice[cpt][j] = signevar * this.contraintes.get(i).getCoeffVariables().get(j);
+                    matrice[cpt + 1][j] = -signevar * this.contraintes.get(i).getCoeffVariables().get(j);
                 }
 
 
@@ -379,10 +380,10 @@ public class Probleme {
         //pour chaque colonne de la derniere ligne
         for (int j = 0; j < this.coeffVariables.size(); j++) {
             if (this.objectif.equals("Minimiser")) {
-                matrice[nb][j] = -signevar*this.coeffVariables.get(j);
+                matrice[nb][j] = -signevar * this.coeffVariables.get(j);
             } else {
                 //on ajoute les coefficients de la fonction a maximiser
-                matrice[nb][j] = signevar*this.coeffVariables.get(j);
+                matrice[nb][j] = signevar * this.coeffVariables.get(j);
             }
         }
 
@@ -394,16 +395,26 @@ public class Probleme {
      */
     public void afficherMatrice(double[][] matrice) {
         System.out.println("DEBUT remplissage");
+        PanelResultat.ecrire("DEBUT remplissage");
+        System.out.print("\n");
+        PanelResultat.ecrire("\n");
+
         //pour autant qu'il y a de contraintes (on va remplir toutes les lignes de la matrice sauf la derniere
         for (int i = 0; i < matrice.length; i++) {
             //pour toutes les colonnes de la matrice
             for (int j = 0; j < matrice[0].length; j++) {
                 System.out.print(" | " + matrice[i][j]);
+                PanelResultat.ecrire(" | " + matrice[i][j]);
             }
             System.out.print("\n");
+            PanelResultat.ecrire("\n");
         }
         System.out.println("FIN remplissage");
-        System.out.println("\n");
+        PanelResultat.ecrire("FIN remplissage");
+        System.out.print("\n");
+        PanelResultat.ecrire("\n");
+        System.out.print("\n");
+        PanelResultat.ecrire("\n");
     }
 
     public ArrayList<Double> getCoeffVariables() {

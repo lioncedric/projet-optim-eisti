@@ -41,9 +41,11 @@ public class PanelResultat extends JPanel {
     public void miseajour(ArrayList<Double> lst) {
         listModel.removeAllElements();
         res.removeAll();
+        //si le resultat est de taille nulle, c'est qu'il n'y avait aps de solutions.
         if (lst == null || lst.isEmpty()) {
             listModel.addElement("Pas de solutions !");
-        } else {
+        } //sinon, c'est qu'il y a une solution et dans ce cas, on l'affiche
+        else {
             for (int i = 0; i < lst.size(); i++) {
                 listModel.addElement(lst.get(i).toString());
             }

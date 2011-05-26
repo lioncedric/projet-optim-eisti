@@ -43,7 +43,7 @@ public class PreferencesListener implements MouseListener {
                 "Choose Background Color",
                 Main.fenetrePrincipale.getPanProfil().getBackground());
         
-        //si une couleur est selectionnée
+        //si une couleur est selectionnée, on met a jour la couleur de l'objet ou du panel concerné
         if (newColor != null) {
             if (e.getSource() == this.preferences.getTab()[0]) {
                 Main.fenetrePrincipale.getPanProfil().mettreCouleurFond(newColor);

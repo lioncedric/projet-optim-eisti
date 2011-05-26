@@ -116,7 +116,7 @@ public class Preferences extends JDialog {
     }
 
     /**
-     * Procedure qui permet de faire le traitement nécessaire pour stcker dans nos panels de droite et de gauche
+     * Procedure qui permet de faire le traitement nécessaire pour stocker dans nos panels de droite et de gauche
      */
     public void traitement() {
         this.gauche.add(fondPanelProfil);
@@ -160,7 +160,10 @@ public class Preferences extends JDialog {
         this.setContentPane(tout);
     }
 
-    
+    /**
+     * Getter qui permet de d'avoir acces aux différentes couleurs depuis le listener
+     * @return 
+     */
     public JTextField[] getTab() {
         return tab;
     }

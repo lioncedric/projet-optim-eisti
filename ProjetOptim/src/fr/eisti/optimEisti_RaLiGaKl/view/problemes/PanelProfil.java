@@ -128,7 +128,7 @@ public class PanelProfil extends JPanel {
 
     public void mettreCouleurTexte(Color couleur){
         this.couleurTexte=couleur;
-        this.nomUtilisateur.setForeground(this.couleurTexte);
+        nomUtilisateur.setForeground(this.couleurTexte);
         this.nbProblemes.setForeground(this.couleurTexte);
     }
     /**

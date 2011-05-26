@@ -14,8 +14,6 @@ import java.awt.event.MouseListener;
  */
 public class PanelRechercheProblemeListener implements KeyListener, MouseListener {
 
-  
-
     /**
      * Constructeur permettant d'initialise notre variable
      */

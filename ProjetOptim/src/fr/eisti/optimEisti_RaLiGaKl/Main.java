@@ -1,7 +1,3 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package fr.eisti.optimEisti_RaLiGaKl;
 
 import fr.eisti.optimEisti_RaLiGaKl.view.compte.Accueil;
@@ -17,7 +13,8 @@ public class Main {
     public static Accueil accueil;
 
     /**
-     * @param args
+     * Procedure qui lance toute l'application
+     * @param args Le tableau des arguments
      */
     public static void main(String[] args) {
         //on initialise la page d'accueil...

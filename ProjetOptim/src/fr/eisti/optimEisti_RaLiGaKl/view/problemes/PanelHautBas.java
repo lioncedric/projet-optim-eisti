@@ -1,7 +1,3 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package fr.eisti.optimEisti_RaLiGaKl.view.problemes;
 
 import java.awt.Cursor;
@@ -57,15 +53,23 @@ public class PanelHautBas extends JPanel implements MouseListener {
         }
     }
 
+    /**
+     * Procédure qui permet de peindre les composants
+     * @param g 
+     */
     @Override
     public void paintComponent(Graphics g) {
+        //si la solution est devoilee
         if (this.devoilerSolution) {
+            //quel que soit le cas, on affiche l'image correspondante
             if (this.hover && panelProbleme.getHauteur() == -270) {
                 g.drawImage(imageOFFsel, 0, 0, this.getWidth(), this.getHeight(), this);
             } else {
                 g.drawImage(imageOFF, 0, 0, this.getWidth(), this.getHeight(), this);
             }
-        } else {
+        } 
+        //si la solution n'a pas été dévoilée (c'est donc que le panel est en haut)
+        else {
             if (this.hover && panelProbleme.getHauteur() == 0 && panelProbleme.verifier()) {
                 g.drawImage(imageONsel, 0, 0, this.getWidth(), this.getHeight(), this);
             } else {
@@ -83,21 +87,31 @@ public class PanelHautBas extends JPanel implements MouseListener {
     public void mouseReleased(MouseEvent e) {
     }
 
+    /**
+     * Procedure qui s'enclenche lorsque la souris entre au dessus du composant qui écoute cette action
+     * @param e L'evenement de la souris
+     */
     @Override
     public void mouseEntered(MouseEvent e) {
         this.hover = true;
+        //si on passe la souris sur l'image, un texte va s'afficher selon si 
+        //la solution est devoilee à l'utilisateur ou si il demande à la voir
         if (this.devoilerSolution) {
-
             this.setToolTipText("Masquer la solution du problème");
         } else {
             this.setToolTipText("Afficher la solution du problème");
         }
+        //on change le curseur et on le met en mode "main"
         Cursor main = new Cursor(Cursor.HAND_CURSOR);
         setCursor(main);
         repaint();
 
     }
 
+    /**
+     * Procedure qui est appelée lorsque la souris sort du composant qui écoute cette action
+     * @param e 
+     */
     @Override
     public void mouseExited(MouseEvent e) {
         this.hover = false;
