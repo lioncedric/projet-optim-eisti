@@ -107,7 +107,6 @@ public class FenetreListener implements ActionListener, ComponentListener {
             Preferences p = new Preferences();
             p.setVisible(true);
         }else if(e.getSource() == this.fenetre.getAideItem()){
-            System.out.println("Rentrer dans aide");
             if (Desktop.isDesktopSupported()) {
                         // On récupère l'instance du desktop :
                         Desktop desktop = Desktop.getDesktop();

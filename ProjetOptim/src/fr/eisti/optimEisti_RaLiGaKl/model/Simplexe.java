@@ -196,7 +196,6 @@ public class Simplexe {
 
         System.out.println("Nouveau tableau");
         PanelResultat.ecrire("Nouveau tableau");
-        System.out.println("\n");
         PanelResultat.ecrire("\n");
         //pour autant qu'il y a de contraintes (on va remplir toutes les lignes de la matrice sauf la derniere
         for (int i = 0; i < matrice.length; i++) {
@@ -212,7 +211,6 @@ public class Simplexe {
             System.out.println("\n");
             PanelResultat.ecrire("\n");
         }
-        System.out.print("\n");
         PanelResultat.ecrire("\n");
 
     }
@@ -241,11 +239,12 @@ public class Simplexe {
 
         //pour toutes les colonnes sauf la derniere
         boolean sansSolution = false;
-        int k = 0;
+        /*int k = 0;
         while (k < listeNumeroColonnesId.size() && !sansSolution) {
             sansSolution = sansSolution || numVarArti.contains(listeNumeroColonnesId.get(k));
             k++;
-        }
+            System.err.println("valeur du booleen: "+sansSolution);
+        }*/
 
         //si le probleme admet une solution
         if (!sansSolution) {
@@ -271,7 +270,8 @@ public class Simplexe {
 
     public static ArrayList<Integer> trouverNumeroColonnesId(double[][] matrice) {
         ArrayList<Integer> liste = new ArrayList<Integer>();
-
+                System.out.println("taille de la matrice (nbColonnes): "+(matrice[0].length - 1));
+                
         //ici, tout est inverse puisque les i sont les colonnes et les j les lignes, d'ou les matrice[j][i]
         for (int i = 0; i < matrice[0].length - 1; i++) {
             int nombreZero = 0;
@@ -285,6 +285,7 @@ public class Simplexe {
             }
             if (nombreUn == 1 && nombreZero == matrice.length - 1) {
                 liste.add(i);
+                System.out.println("numéro de la colonne des 1: "+i);
             }
         }
         return liste;

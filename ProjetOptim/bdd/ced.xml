@@ -310,6 +310,40 @@
 <constante valeur="110.0"/>
 </contrainte>
 </probleme>
+
+<probleme>
+<titre>Mon probleme1</titre>
+<description>Entrer votre description du problème</description>
+<objectif isPositif="true" type="Maximiser">
+<variable coeff="1.0"/>
+</objectif>
+<contrainte type="Infériorité">
+<variable coeff="1.0"/>
+<constante valeur="1.0"/>
+</contrainte>
+</probleme>
+<probleme>
+<titre>Mon probleme2</titre>
+<description>Entrer votre description du problème</description>
+<objectif isPositif="true" type="Maximiser">
+<variable coeff="2.0"/>
+</objectif>
+<contrainte type="Infériorité">
+<variable coeff="2.0"/>
+<constante valeur="2.0"/>
+</contrainte>
+</probleme>
+<probleme>
+<titre>Mon probleme4</titre>
+<description>Entrer votre description du problème</description>
+<objectif isPositif="true" type="Maximiser">
+<variable coeff="3.0"/>
+</objectif>
+<contrainte type="Infériorité">
+<variable coeff="3.0"/>
+<constante valeur="3.0"/>
+</contrainte>
+</probleme>
 <probleme>
 <titre>esterle</titre>
 <description>Entrer votre description du problème</description>
@@ -366,5 +400,13 @@
 <variable coeff="1.0"/>
 <constante valeur="1400.0"/>
 </contrainte>
+<resultat valeur="349200.0">
+<variable coeff="1000.0"/>
+<variable coeff="0.0"/>
+<variable coeff="1300.0"/>
+<variable coeff="200.0"/>
+<variable coeff="0.0"/>
+<variable coeff="1200.0"/>
+</resultat>
 </probleme>
 </listeProblemes>
