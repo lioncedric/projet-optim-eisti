@@ -5,6 +5,7 @@ import fr.eisti.optimEisti_RaLiGaKl.Main;
 import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Image;
+import java.awt.Toolkit;
 import java.io.File;
 import java.io.IOException;
 import javax.imageio.ImageIO;
@@ -41,11 +42,9 @@ public class PanelRechercheProbleme extends JPanel {
      * Procédure permettant d'initialiser notre variables de type Image
      */
     public void recupererImage() {
-        try {
-            this.loupe = ImageIO.read(new File("images/loupe.png"));
-        } catch (IOException e) {
-            System.out.println("Erreur lors du chargement de l'image");
-        }
+        
+            this.loupe =  Toolkit.getDefaultToolkit().getImage(getClass().getResource("/images/loupe.png"));
+       
     }
 
     /**

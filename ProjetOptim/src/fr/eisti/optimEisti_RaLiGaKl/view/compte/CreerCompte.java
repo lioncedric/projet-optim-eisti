@@ -2,10 +2,8 @@ package fr.eisti.optimEisti_RaLiGaKl.view.compte;
 
 import fr.eisti.optimEisti_RaLiGaKl.controler.compte.CreerCompteListener;
 import java.awt.Image;
-import java.io.File;
-import java.io.IOException;
+import java.awt.Toolkit;
 
-import javax.imageio.ImageIO;
 import javax.swing.JDialog;
 
 /**
@@ -50,12 +48,11 @@ public class CreerCompte extends JDialog {
      * Permet d'ajouter une image de fond sur le jdialog
      */
     private void ajoutImageFond() {
-        try {
+      
             //lecture de l'image
-            fond = ImageIO.read(new File("images/creerCompte.png"));
-        } catch (IOException e) {
-
-        }
+                
+   fond =   Toolkit.getDefaultToolkit().getImage(getClass().getResource("/images/creerCompte.png"));
+       
         //instanciation d'un panel
         panFond = new JPanelFondCreerCompte(fond);
         //ajout d'un écouteur de souris

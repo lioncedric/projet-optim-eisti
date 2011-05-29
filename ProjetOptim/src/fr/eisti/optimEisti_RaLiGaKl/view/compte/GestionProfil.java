@@ -2,6 +2,7 @@ package fr.eisti.optimEisti_RaLiGaKl.view.compte;
 
 import fr.eisti.optimEisti_RaLiGaKl.controler.compte.GestionProfilListener;
 import java.awt.Image;
+import java.awt.Toolkit;
 import java.io.File;
 import java.io.IOException;
 import javax.imageio.ImageIO;
@@ -49,12 +50,10 @@ public class GestionProfil extends JDialog {
      * Permet d'ajouter une image de fond sur le jdialog
      */
     public void ajoutImageFond() {
-        try {
+     
             //lecture de l'image
-            fond = ImageIO.read(new File("images/creerCompte.png"));
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+            fond =   Toolkit.getDefaultToolkit().getImage(getClass().getResource("/images/creerCompte.png"));
+       
         //instanciation d'un panel
         panFond = new JPanelFondGestionProfil(fond);
         //ajout d'un écouteur de souris

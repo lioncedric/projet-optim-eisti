@@ -2,6 +2,7 @@ package fr.eisti.optimEisti_RaLiGaKl.view.compte;
 
 import fr.eisti.optimEisti_RaLiGaKl.controler.compte.AccueilListener;
 import java.awt.Image;
+import java.awt.Toolkit;
 import java.io.File;
 import java.io.IOException;
 
@@ -49,12 +50,9 @@ public class Accueil extends JFrame {
      * Fonction qui permet d'ajouter une image de fond à un panel
      */
     public void ajoutImageFond() {
-        try {
-            fond = ImageIO.read(new File("images/fond-optim3.png"));
-        } catch (IOException e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
-        }
+       
+       fond =   Toolkit.getDefaultToolkit().getImage(getClass().getResource("/images/fond-optim3.png"));
+    
         //on ajoute l'image au panel panFond
         panFond = new JPanelFondNormal(fond);
     }

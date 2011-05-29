@@ -1,5 +1,6 @@
 package fr.eisti.optimEisti_RaLiGaKl.view.problemes;
 
+import fr.eisti.optimEisti_RaLiGaKl.Main;
 import fr.eisti.optimEisti_RaLiGaKl.controler.compte.PanelProfilListener;
 import fr.eisti.optimEisti_RaLiGaKl.model.BDDUtilisateur;
 import fr.eisti.optimEisti_RaLiGaKl.model.BddProbleme;
@@ -10,8 +11,11 @@ import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.GridLayout;
 import java.awt.Image;
+import java.awt.Toolkit;
 import java.io.File;
 import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.imageio.ImageIO;
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
@@ -57,8 +61,8 @@ public class PanelProfil extends JPanel {
         this.nbProblemes = new JLabel(String.valueOf(BddProbleme.nombreProblemes()) + " probleme(s)", JLabel.CENTER);
         this.panBouton = new JPanel();
         this.boutonProfil = new JButton("Gérer mon profil");
-        this.couleurFond=Color.WHITE;
-        this.couleurTexte=Color.BLACK;
+        this.couleurFond = Color.WHITE;
+        this.couleurTexte = Color.BLACK;
     }
 
     /**
@@ -67,11 +71,22 @@ public class PanelProfil extends JPanel {
     public void ajoutImageFond() {
         try {
             avatar = ImageIO.read(new File(BDDUtilisateur.getImage()));
-        } catch (IOException e) {
-            System.out.println("Erreur lors du chargement de l'image");
+          
+            //on ajoute l'image au panel panImage
+
+        } catch (IOException ex) {
+            
+            avatar = Toolkit.getDefaultToolkit().getImage(getClass().getResource("/images/tete.jpg"));
+
         }
-        //on ajoute l'image au panel panImage
         panImage = new JPanelFondNormal(avatar);
+
+        //on met à jour tous les composants qui ont besoin d'être mis à jour et on réaffiche le tout
+        this.modification();
+        this.revalidate();
+        this.repaint();
+           panImage = new JPanelFondNormal(avatar);
+        //on ferme la fenetre d'identification
     }
 
     /**
@@ -119,18 +134,19 @@ public class PanelProfil extends JPanel {
      * @param couleur : la couleur que l'on veut mettre en fond
      */
     public void mettreCouleurFond(Color couleur) {
-        this.couleurFond=couleur;
+        this.couleurFond = couleur;
         this.panBouton.setOpaque(false);
         this.panDroite.setOpaque(false);
         this.panHaut.setOpaque(false);
         this.setBackground(this.couleurFond);
     }
 
-    public void mettreCouleurTexte(Color couleur){
-        this.couleurTexte=couleur;
+    public void mettreCouleurTexte(Color couleur) {
+        this.couleurTexte = couleur;
         nomUtilisateur.setForeground(this.couleurTexte);
         this.nbProblemes.setForeground(this.couleurTexte);
     }
+
     /**
      * Procédure qui met à jour le nombre de problèmes d'un utilisateur
      */
@@ -173,5 +189,4 @@ public class PanelProfil extends JPanel {
     public Color getCouleurTexte() {
         return couleurTexte;
     }
-    
 }

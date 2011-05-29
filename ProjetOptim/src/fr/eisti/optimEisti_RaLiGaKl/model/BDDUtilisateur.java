@@ -26,7 +26,7 @@ public class BDDUtilisateur {
      * @param imageSrc le chemin de l'image le représentant
      */
     public static void ajouterUtilisateur(String NomUtilisateur, String mdp, String imageSrc) {
-        try {
+       
             // Parse an XML document into a DOM tree.
             Document document;
             document = Utilitaire.parseXmlDom(new File(chFichierIdentification));
@@ -38,21 +38,19 @@ public class BDDUtilisateur {
             personne.setAttribute("login", NomUtilisateur);
             personne.setAttribute("password", mdp);
             //On copie l'image dans le répertoire images de la racine du projet si elle n'y est pas déjà
-            if(!imageSrc.endsWith("images\\" + new File(imageSrc).getName())){
+
+            //faux
+          //  if(!imageSrc.endsWith("images\\" + new File(imageSrc).getName())){
                 //on copie l'image dans un répertoire du projet pour la réutiliser en html
-                Utilitaire.copie(imageSrc, "images/" + new File(imageSrc).getName());
-            }
+         //       Utilitaire.copie(imageSrc, "images/" + new File(imageSrc).getName());
+         //   }
             //on ajoute un attribut avec le src de son avatar
             personne.setAttribute("imagesrc", imageSrc);
             //on ajoute le noeuf fils à la racine
             racine.appendChild(personne);
             //permet de transformer le dom en xml
             Utilitaire.transformerXml(document, chFichierIdentification);
-        } catch (FileNotFoundException ex) {
-            Logger.getLogger(BDDUtilisateur.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (IOException ex) {
-            Logger.getLogger(BDDUtilisateur.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        
     }
 
 
@@ -138,6 +136,7 @@ public class BDDUtilisateur {
                 //on met à jour les variables de mot de passe et d'image avec les bonnes valeurs
                 motDePasse = mdp;
                 image = liste.item(i).getAttributes().getNamedItem("imagesrc").getNodeValue();
+              
             }
             //incrémentation du i
             i++;

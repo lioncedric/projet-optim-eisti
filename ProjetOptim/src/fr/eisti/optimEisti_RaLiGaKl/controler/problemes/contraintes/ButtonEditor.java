@@ -1,5 +1,7 @@
 package fr.eisti.optimEisti_RaLiGaKl.controler.problemes.contraintes;
 import java.awt.Component;
+import java.awt.Image;
+import java.awt.Toolkit;
 import javax.swing.DefaultCellEditor;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -27,7 +29,9 @@ public class ButtonEditor extends DefaultCellEditor {
 	    button.setOpaque(true);
 	    //On lui attribue un listener
 	    button.addActionListener(bListener);
-            button.setIcon(new ImageIcon("images/fermer.gif"));
+               Image img= Toolkit.getDefaultToolkit().getImage(getClass().getResource("/images/fermer.gif"));
+            button.setIcon(new ImageIcon(img));
+          
 	}
 
         @Override

@@ -5,7 +5,6 @@ import javax.swing.plaf.basic.BasicButtonUI;
 import java.awt.*;
 import java.awt.event.*;
 
-
 /**
  * Classe permettant de créer l'onglet assosié a chaque probleme
  * @author Razavet Maël, Lion Cédric, Klelifa Sarah, Gallet Mériadec
@@ -56,15 +55,21 @@ public class PanelOngletProbleme extends JPanel {
         //add more space to the top of the component
         setBorder(BorderFactory.createEmptyBorder(2, 0, 0, 0));
     }
+
     /**
      * classe qui met en place une disquette pour sauvegarder
      */
     public class SaveButton extends JButton implements ActionListener, MouseListener {
+
         /**
          * le constructeur
          */
         public SaveButton() {
-            super(new ImageIcon("images/icone_sauvegardeR.png"));
+            super();
+            Image img = Toolkit.getDefaultToolkit().getImage(getClass().getResource("/images/icone_sauvegardeR.png"));
+            this.setIcon(new ImageIcon(img));
+
+
             setBorderPainted(false);
 
             //int size = 17;
@@ -81,7 +86,7 @@ public class PanelOngletProbleme extends JPanel {
             addMouseListener(this);
             addActionListener(this);
         }
-    
+
         @Override
         public void actionPerformed(ActionEvent e) {
             int i = pane.indexOfTabComponent(PanelOngletProbleme.this);
@@ -104,18 +109,23 @@ public class PanelOngletProbleme extends JPanel {
 
         @Override
         public void mouseEntered(MouseEvent e) {
-            setIcon(new ImageIcon("images/icone_sauvegarde.png"));
+            Image img = Toolkit.getDefaultToolkit().getImage(getClass().getResource("/images/icone_sauvegarde.png"));
+            setIcon(new ImageIcon(img));
+
         }
 
         @Override
         public void mouseExited(MouseEvent e) {
-            setIcon(new ImageIcon("images/icone_sauvegardeR.png"));
+            Image img = Toolkit.getDefaultToolkit().getImage(getClass().getResource("/images/icone_sauvegardeR.png"));
+            setIcon(new ImageIcon(img));
         }
     }
+
     /**
      * classe permetant d'ajouter une croix pour fermer l'onglet
      */
     private class TabButton extends JButton implements ActionListener {
+
         /**
          * Le constructeur
          */
@@ -139,7 +149,6 @@ public class PanelOngletProbleme extends JPanel {
             addActionListener(this);
         }
 
-       
         @Override
         public void actionPerformed(ActionEvent e) {
             int i = pane.indexOfTabComponent(PanelOngletProbleme.this);

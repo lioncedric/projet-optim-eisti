@@ -251,8 +251,11 @@ public class BddProbleme {
      * @param nom fichier de sortie
      */
     public static void exporterScilab(Probleme p, String nom) {
+
         //on normalise le probleme sous forme de tableau
+          System.out.println("ppfff\fgxdf");
         double[][] probleme = p.formaliserProblemeScilab();
+          System.out.println("ppfff\fgxdf");
         //nombre de lignes du tableau
         int lignes = probleme.length;
         //nombres de colonnes du tableau
@@ -273,6 +276,7 @@ public class BddProbleme {
                 c = c + ";";
                 Z1 = Z1 + ";";
             }
+             System.out.println("ppfff\fgxdf");
         }
         //remplisage de b
         for (int i = 0; i < lignes - 1; i++) {
@@ -282,6 +286,7 @@ public class BddProbleme {
             } else {
                 b = b + ";";
             }
+             System.out.println("ppfff\fgxdf");
         }
         //remplissage deA
         for (int i = 0; i < lignes - 1; i++) {
@@ -294,12 +299,17 @@ public class BddProbleme {
                         A = A + ",";
                     }
                 }
+                   System.out.println("ppfff\fgxdf");
             }
+          
         }
         A = A + "]";
         //on cree le fichier resultat
-        FileWriter fw = null;
+        System.out.println("ppfff\fgxdf");
+       
         try {
+             FileWriter fw = null;
+              System.out.println("gdffffffffffff\fgxdf");
             //on valide le nouveau vichier et on ecrase s'il existe deja
             fw = new FileWriter(nom, false);
             BufferedWriter sortie = new BufferedWriter(fw);
@@ -321,6 +331,7 @@ public class BddProbleme {
             //on ferme le buffer
             sortie.close();
         } catch (IOException ex) {
+            System.out.println("gdffffffffffff");
         }
 
     }

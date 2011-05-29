@@ -6,6 +6,7 @@ import fr.eisti.optimEisti_RaLiGaKl.view.compte.GestionProfil;
 import fr.eisti.optimEisti_RaLiGaKl.view.compte.JPanelFondNormal;
 import fr.eisti.optimEisti_RaLiGaKl.view.problemes.PanelProfil;
 import java.awt.Image;
+import java.awt.Toolkit;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.io.File;
@@ -42,7 +43,7 @@ public class GestionProfilListener implements MouseListener {
         if (bonFormatImage() && bonneTailleImage() && nomEtMdpCorrects()) {
             //opération sur le dom
             BDDUtilisateur.modifierUtilisateur(this.maFenetre.getPanFond().getJtfNomUtilisateur().getText(),
-            this.maFenetre.getPanFond().getJtfMdp().getText(), this.maFenetre.getPanFond().getJtfAvatar().getText());
+                    this.maFenetre.getPanFond().getJtfMdp().getText(), this.maFenetre.getPanFond().getJtfAvatar().getText());
 
             //on modifie le nom d'utilisateur dans la base de données
             BDDUtilisateur.setNomUtilisateur(this.maFenetre.getPanFond().getJtfNomUtilisateur().getText());
@@ -50,16 +51,25 @@ public class GestionProfilListener implements MouseListener {
             PanelProfil.setNomUtilisateur(new JLabel(BDDUtilisateur.getNomUtilisateur(), JLabel.CENTER));
 
             //on fait de même pour son image personnelle en gérant le risque d'erreur
+
+            //on récupère l'adresse de l'image à importer
+            Image newAvatar;
+
+
             try {
-                //on récupère l'adresse de l'image à importer
-                Image newAvatar = ImageIO.read(new File(this.maFenetre.getPanFond().getJtfAvatar().getText()));
-                //on remplace l'ancienne image image par la nouvelle
-                Main.fenetrePrincipale.getPanProfil().setAvatar(newAvatar);
-                //on modifie dès à présent l'image afin que les chagements soient visibles par l'utilisateur dans son panel profil
-                PanelProfil.setPanImage(new JPanelFondNormal(newAvatar));
-            } catch (IOException e) {
-                e.printStackTrace();
+                newAvatar = ImageIO.read(new File("/" + this.maFenetre.getPanFond().getJtfAvatar().getText()));
+
+                //on ajoute l'image au panel panImage
+
+            } catch (IOException ex) {
+                newAvatar = Toolkit.getDefaultToolkit().getImage(getClass().getResource("/images/tete.jpg"));
+
             }
+            //on remplace l'ancienne image image par la nouvelle
+            Main.fenetrePrincipale.getPanProfil().setAvatar(newAvatar);
+            //on modifie dès à présent l'image afin que les chagements soient visibles par l'utilisateur dans son panel profil
+            PanelProfil.setPanImage(new JPanelFondNormal(newAvatar));
+
             //on met à jour tous les composants qui ont besoin d'être mis à jour et on réaffiche le tout
             Main.fenetrePrincipale.getPanProfil().modification();
             Main.fenetrePrincipale.getPanProfil().revalidate();
@@ -157,18 +167,15 @@ public class GestionProfilListener implements MouseListener {
         //on recupere l'adresse de l'image
         String nameFile = this.maFenetre.getPanFond().getJtfAvatar().getText();
 
-        try {
-            //on lit l'image afin d'accéder a ses propriétés
-            Image avatar = ImageIO.read(new File(nameFile));
-            //on recupere sa hauteur et sa largeur
-            int hauteur = avatar.getHeight(maFenetre);
-            int largeur = avatar.getWidth(maFenetre);
-            //on retourne le booleen correspondant
-            return hauteur <= 80 && largeur <= 80;
-        } catch (IOException ex) {
-            Logger.getLogger(CreerCompteListener.class.getName()).log(Level.SEVERE, null, ex);
-            return false;
-        }
+
+        //on lit l'image afin d'accéder a ses propriétés
+        Image avatar = Toolkit.getDefaultToolkit().getImage("/" + nameFile);
+        //on recupere sa hauteur et sa largeur
+        int hauteur = avatar.getHeight(maFenetre);
+        int largeur = avatar.getWidth(maFenetre);
+        //on retourne le booleen correspondant
+        return hauteur <= 80 && largeur <= 80;
+
     }
 
     /**

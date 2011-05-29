@@ -8,6 +8,7 @@ import javax.imageio.ImageIO;
 import javax.swing.JDialog;
 
 import fr.eisti.optimEisti_RaLiGaKl.controler.compte.ConnexionControler;
+import java.awt.Toolkit;
 
 /**
  * Classe permettant de gérer l'identification d'un utilisateur
@@ -53,12 +54,11 @@ public class Identification extends JDialog {
      * ajoute l'image sur le panel de la fenêtre
      */
     public void ajoutImageFond() {
-        try {
+
+      
             //lecture de l'image
-            fond = ImageIO.read(new File("images/identification.png"));
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+          fond=  Toolkit.getDefaultToolkit().getImage(getClass().getResource("/images/identification.png"));
+      
         //on la met sur le panel
         this.panFond = new JPanelFondIdentification(fond);
         //ajout d'un écouteur d'évènement sur la souris

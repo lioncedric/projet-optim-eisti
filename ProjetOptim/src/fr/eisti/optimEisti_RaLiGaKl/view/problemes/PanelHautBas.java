@@ -3,6 +3,7 @@ package fr.eisti.optimEisti_RaLiGaKl.view.problemes;
 import java.awt.Cursor;
 import java.awt.Graphics;
 import java.awt.Image;
+import java.awt.Toolkit;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.io.File;
@@ -34,14 +35,12 @@ public class PanelHautBas extends JPanel implements MouseListener {
         this.addMouseListener(this);
         this.panelProbleme = panelProbleme;
         this.setOpaque(false);
-        try {
-            imageON = ImageIO.read(new File("images/bas.png"));
-            imageOFF = ImageIO.read(new File("images/haut.png"));
-            imageONsel = ImageIO.read(new File("images/basSelec.png"));
-            imageOFFsel = ImageIO.read(new File("images/hautSelec.png"));
-        } catch (IOException e) {
-            System.out.println("Erreur lors du chargement de l'image");
-        }
+   
+            imageON =   Toolkit.getDefaultToolkit().getImage(getClass().getResource("/images/bas.png"));
+            imageOFF =  Toolkit.getDefaultToolkit().getImage(getClass().getResource("/images/haut.png"));
+            imageONsel =   Toolkit.getDefaultToolkit().getImage(getClass().getResource("/images/basSelec.png"));
+            imageOFFsel =   Toolkit.getDefaultToolkit().getImage(getClass().getResource("/images/hautSelec.png"));
+       
     }
 
     @Override

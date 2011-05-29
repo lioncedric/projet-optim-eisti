@@ -1,7 +1,5 @@
 package fr.eisti.optimEisti_RaLiGaKl.controler.compte;
 
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.*;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
@@ -9,9 +7,8 @@ import java.awt.event.MouseListener;
 import fr.eisti.optimEisti_RaLiGaKl.model.BDDUtilisateur;
 import fr.eisti.optimEisti_RaLiGaKl.view.compte.CreerCompte;
 import java.awt.Image;
+import java.awt.Toolkit;
 import java.io.File;
-import java.io.IOException;
-import javax.imageio.ImageIO;
 
 /**
  * Classe qui écoute le bouton ok de la classe CreerCompte.java
@@ -55,7 +52,7 @@ public class CreerCompteListener implements MouseListener {
         } //si on n'a pas sélectionné d'image
         else if(this.maFenetre.getPanFond().getJtfAvatar().getText().equals("")){
             //opération sur le dom
-            BDDUtilisateur.ajouterUtilisateur(this.maFenetre.getPanFond().getJtfNomUtilisateur().getText(), this.maFenetre.getPanFond().getJtfMdp().getText(), new File("images\\mickey.png").getAbsolutePath());
+            BDDUtilisateur.ajouterUtilisateur(this.maFenetre.getPanFond().getJtfNomUtilisateur().getText(), this.maFenetre.getPanFond().getJtfMdp().getText(), "");
             //on ouvre un dialogue
             JOptionPane.showMessageDialog(null, "Création réussie!", "Information", JOptionPane.INFORMATION_MESSAGE);
             //on ferme cette fenetre
@@ -134,18 +131,15 @@ public class CreerCompteListener implements MouseListener {
         //on recupere l'adresse de l'image
         String nameFile = this.maFenetre.getPanFond().getJtfAvatar().getText();
 
-        try {
+      
             //on lit l'image afin d'accéder a ses propriétés
-            Image avatar = ImageIO.read(new File(nameFile));
+            Image avatar =   Toolkit.getDefaultToolkit().getImage("/"+nameFile);
             //on recupere sa hauteur et sa largeur
             int hauteur = avatar.getHeight(maFenetre);
             int largeur = avatar.getWidth(maFenetre);
             //on retourne le booleen correspondant
             return hauteur <= 80 && largeur <= 80;
-        } catch (IOException ex) {
-            Logger.getLogger(CreerCompteListener.class.getName()).log(Level.SEVERE, null, ex);
-            return false;
-        }
+      
     }
 
     /**

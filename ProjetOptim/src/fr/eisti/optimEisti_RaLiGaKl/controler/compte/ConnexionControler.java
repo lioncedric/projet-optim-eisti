@@ -108,7 +108,7 @@ public class ConnexionControler implements MouseListener, KeyListener {
                 //Appel de la fonction seConnecter
                 seConnecter(this.tLogin, this.tPassword, this.maFenetre);
             } catch (IOException ex) {
-                Logger.getLogger(ConnexionControler.class.getName()).log(Level.SEVERE, null, ex);
+               
             }
         }
     }
