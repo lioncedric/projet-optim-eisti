@@ -22,22 +22,26 @@ public class Basculer implements Runnable {
     public Basculer(boolean devoilerSolution) {
         this.devoilerSolution = devoilerSolution;
     }
-
+    /**
+     * methode executee au lancement d'un thread
+     */
     @Override
     public void run() {
+        //si la solution est doit etre affichée
+        //on l'affiche
         if (devoilerSolution) {
             PanelProbleme p = ((PanelProbleme) Main.fenetrePrincipale.getDroite().getSelectedComponent());
+            //on desactive tout
             p.getSlide().setEnabled(false);
-
             p.getMaximiser().setEnabled(false);
             p.getMinimiser().setEnabled(false);
             p.getPanTableau().getTable().setEnabled(false);
             p.getAjouter().setEnabled(false);
-
             for (Component c : p.getPanDonnees().getComponents()) {
                 c.setEnabled(false);
             }
             try {
+                //on fait glisser progressivement tous les composants vers le haut en diminuant le parametre hauteur
                 while (p.getHauteur() > -270) {
                     p.setHauteur(p.getHauteur() - 1);
                     Main.fenetrePrincipale.repaint();
@@ -47,9 +51,10 @@ public class Basculer implements Runnable {
             }
             
         } else {
+            //si on doit cacher la solution
             PanelProbleme p = ((PanelProbleme) Main.fenetrePrincipale.getDroite().getSelectedComponent());
+            //on réactive tous les composants
             p.getSlide().setEnabled(true);
-
             p.getMaximiser().setEnabled(true);
             p.getMinimiser().setEnabled(true);
             p.getPanTableau().getTable().setEnabled(true);
@@ -58,6 +63,7 @@ public class Basculer implements Runnable {
             for (Component c : p.getPanDonnees().getComponents()) {
                 c.setEnabled(true);
             }
+             //on fait glisser progressivement tous les composants vers le bas en augmentant le parametre hauteur
             try {
                 while (p.getHauteur() < 0) {
                     p.setHauteur(p.getHauteur() + 1);

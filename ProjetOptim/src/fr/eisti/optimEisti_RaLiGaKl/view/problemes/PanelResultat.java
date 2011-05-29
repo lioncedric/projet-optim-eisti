@@ -57,12 +57,13 @@ public class PanelResultat extends JPanel {
      * @param panelProbleme : le panel du probleme
      */
     public PanelResultat(PanelProbleme panelProbleme) {
+        //initialistion des composants
         effacer = new JButton("Effacer");
         calculer = new JButton("Calculer");
         calculer.addActionListener(new PanelProblemeListener(panelProbleme));
         effacer.addActionListener(new PanelProblemeListener(panelProbleme));
+        //initialisation de la liste des resultat
         this.listModel = new DefaultListModel();
-
         this.res = new JList(listModel);
         res.setCellRenderer(new ListResRenderer());
         outpout = new JTextArea();
