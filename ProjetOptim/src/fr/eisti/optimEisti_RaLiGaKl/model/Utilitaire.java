@@ -159,7 +159,11 @@ public class Utilitaire {
     }
 
 
-
+/**
+ * sauvegarde du fichier de sauvegarde des preferences de couleur
+ * @param nom emplacement du ficher
+ * @throws IOException exeception potentielle
+ */
      public static void Save(String nom) throws IOException {
         Color[] tab = new Color[12];
         tab[0] = (Main.fenetrePrincipale.getPanProfil().getCouleurFond());
@@ -185,9 +189,13 @@ public class Utilitaire {
 
     }
 
-    /**
-     * Lecture du fichier de sauvegarde
-     */
+
+     /**
+       * ecriture du fichier de sauvegarde des preferences de couleur
+      * @param nom emplacement du ficher
+      * @throws IOException exeception potentielle
+      * @throws ClassNotFoundException exeception potentielle
+      */
     public static void Load(String nom) throws IOException, ClassNotFoundException {
         Color[] tab = new Color[12];
         ObjectInputStream ois;//cretion  d'un flux d'entree
