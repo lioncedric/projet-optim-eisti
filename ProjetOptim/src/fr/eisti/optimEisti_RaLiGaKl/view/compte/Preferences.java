@@ -162,7 +162,7 @@ public class Preferences extends JDialog {
 
     /**
      * Getter qui permet de d'avoir acces aux différentes couleurs depuis le listener
-     * @return 
+     * @return le tableau definissant les couleurs
      */
     public JTextField[] getTab() {
         return tab;
