@@ -5,6 +5,9 @@ package fr.eisti.optimEisti_RaLiGaKl.view.problemes;
 
 import fr.eisti.optimEisti_RaLiGaKl.controler.compte.PanelProfilListener;
 import java.awt.event.KeyEvent;
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JFrame;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
@@ -13,6 +16,8 @@ import javax.swing.JTabbedPane;
 import javax.swing.KeyStroke;
 
 import fr.eisti.optimEisti_RaLiGaKl.controler.problemes.FenetreListener;
+import fr.eisti.optimEisti_RaLiGaKl.model.BDDUtilisateur;
+import fr.eisti.optimEisti_RaLiGaKl.model.Utilitaire;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
@@ -109,6 +114,7 @@ public class Fenetre extends JFrame {
         this.couleurComposantsTransparents = Color.GRAY;
         this.coeffTransparence = 50;
         this.couleurTexte = Color.BLACK;
+       
     }
 
     public void appliquerChangementSplitPane() {

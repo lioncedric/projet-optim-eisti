@@ -14,6 +14,7 @@ import javax.swing.JTextField;
 
 import fr.eisti.optimEisti_RaLiGaKl.view.compte.Identification;
 import fr.eisti.optimEisti_RaLiGaKl.model.BDDUtilisateur;
+import fr.eisti.optimEisti_RaLiGaKl.model.Utilitaire;
 import fr.eisti.optimEisti_RaLiGaKl.view.problemes.Fenetre;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
@@ -64,6 +65,13 @@ public class ConnexionControler implements MouseListener, KeyListener {
             //Instanciation de la fenetre principale
             Main.fenetrePrincipale = new Fenetre();
             Main.fenetrePrincipale.setVisible(true);
+             try {
+            Utilitaire.Load("config/" + BDDUtilisateur.getNomUtilisateur());
+        } catch (IOException ex) {
+
+        } catch (ClassNotFoundException ex) {
+
+        }
             this.maFenetre.dispose();
             Main.accueil.dispose();
 

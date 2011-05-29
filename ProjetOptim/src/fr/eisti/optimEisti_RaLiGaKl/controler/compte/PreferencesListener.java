@@ -1,10 +1,15 @@
 package fr.eisti.optimEisti_RaLiGaKl.controler.compte;
 
 import fr.eisti.optimEisti_RaLiGaKl.Main;
+import fr.eisti.optimEisti_RaLiGaKl.model.BDDUtilisateur;
+import fr.eisti.optimEisti_RaLiGaKl.model.Utilitaire;
 import fr.eisti.optimEisti_RaLiGaKl.view.compte.Preferences;
 import java.awt.Color;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JColorChooser;
 
 /**
@@ -42,6 +47,7 @@ public class PreferencesListener implements MouseListener {
                 this.preferences,
                 "Choose Background Color",
                 Main.fenetrePrincipale.getPanProfil().getBackground());
+
         
         //si une couleur est selectionnée, on met a jour la couleur de l'objet ou du panel concerné
         if (newColor != null) {
@@ -83,6 +89,14 @@ public class PreferencesListener implements MouseListener {
                 this.preferences.attribuerCouleurs();
             }
         }
+        try {
+            Utilitaire.Save("config/" + BDDUtilisateur.getNomUtilisateur());
+        } catch (IOException ex) {
+           
+        }
+
+
+
     }
 
     @Override

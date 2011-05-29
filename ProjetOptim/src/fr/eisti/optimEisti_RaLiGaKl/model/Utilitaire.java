@@ -1,5 +1,7 @@
 package fr.eisti.optimEisti_RaLiGaKl.model;
 
+import fr.eisti.optimEisti_RaLiGaKl.Main;
+import java.awt.Color;
 import org.w3c.dom.*;
 import java.io.*;
 import javax.xml.XMLConstants;
@@ -153,6 +155,63 @@ public class Utilitaire {
         //femeture des flux
         in.close();
         out.close();
+
+    }
+
+
+
+     public static void Save(String nom) throws IOException {
+        Color[] tab = new Color[12];
+        tab[0] = (Main.fenetrePrincipale.getPanProfil().getCouleurFond());
+        tab[1] = (Main.fenetrePrincipale.getPanProfil().getCouleurTexte());
+        tab[2] = (Main.fenetrePrincipale.getGauche().getCouleur1());
+        tab[3] = (Main.fenetrePrincipale.getGauche().getCouleur2());
+        tab[4] = (Main.fenetrePrincipale.getGauche().getListePR().getCouleurTexte());
+        tab[5] = (Main.fenetrePrincipale.getGauche().getListePR().getCouleurFondSelection());
+        tab[6] = (Main.fenetrePrincipale.getGauche().getListePR().getCouleurTexteSelection());
+        tab[7] = (Main.fenetrePrincipale.getGauche().getCouleurFondPanelBoutons());
+        tab[8] = (Main.fenetrePrincipale.getCouleur1());
+        tab[9] = (Main.fenetrePrincipale.getCouleur2());
+        tab[10] = (Main.fenetrePrincipale.getCouleurTexte());
+        tab[11] = (Main.fenetrePrincipale.getCouleurComposantsTransparents());
+        ObjectOutputStream oos;//creation d'un flux de sortie
+
+        oos = new ObjectOutputStream(new FileOutputStream(nom));//connexion
+        //ecriture de l'arbre dans le fichier
+        oos.writeObject(tab);
+        //fermeture du flux
+        oos.close();
+
+
+    }
+
+    /**
+     * Lecture du fichier de sauvegarde
+     */
+    public static void Load(String nom) throws IOException, ClassNotFoundException {
+        Color[] tab = new Color[12];
+        ObjectInputStream ois;//cretion  d'un flux d'entree
+
+
+
+        ois = new ObjectInputStream(new FileInputStream(nom));
+        tab = (Color[]) ois.readObject();
+        ois.close();//fermeture du flux
+
+
+        Main.fenetrePrincipale.getPanProfil().mettreCouleurFond(tab[0]);
+        Main.fenetrePrincipale.getPanProfil().mettreCouleurTexte(tab[1]);
+        Main.fenetrePrincipale.getGauche().changerCouleurDegrade1(tab[2]);
+        Main.fenetrePrincipale.getGauche().changerCouleurDegrade2(tab[3]);
+        Main.fenetrePrincipale.getGauche().getListePR().changerCouleurTexte(tab[4]);
+        Main.fenetrePrincipale.getGauche().getListePR().changerCouleurFondSelection(tab[5]);
+        Main.fenetrePrincipale.getGauche().getListePR().changerCouleurTexteSelection(tab[6]);
+        Main.fenetrePrincipale.getGauche().changerCouleurFondPanelBoutons(tab[7]);
+        Main.fenetrePrincipale.setCouleur1(tab[8]);
+        Main.fenetrePrincipale.setCouleur2(tab[9]);
+        Main.fenetrePrincipale.setCouleurTexte(tab[10]);
+        Main.fenetrePrincipale.setCouleurComposantsTransparents(tab[11]);
+          Main.fenetrePrincipale.repaint();
 
     }
 }
