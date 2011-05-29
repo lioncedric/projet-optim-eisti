@@ -158,14 +158,14 @@ public class Utilitaire {
 
     }
 
-
-/**
- * sauvegarde du fichier de sauvegarde des preferences de couleur
- * @param nom emplacement du ficher
- * @throws IOException exeception potentielle
- */
-     public static void Save(String nom) throws IOException {
+    /**
+     * sauvegarde du fichier de sauvegarde des preferences de couleur
+     * @param nom emplacement du ficher
+     * @throws IOException exeception potentielle
+     */
+    public static void Save(String nom) throws IOException {
         Color[] tab = new Color[12];
+        //on recuper les couleurs
         tab[0] = (Main.fenetrePrincipale.getPanProfil().getCouleurFond());
         tab[1] = (Main.fenetrePrincipale.getPanProfil().getCouleurTexte());
         tab[2] = (Main.fenetrePrincipale.getGauche().getCouleur1());
@@ -178,8 +178,8 @@ public class Utilitaire {
         tab[9] = (Main.fenetrePrincipale.getCouleur2());
         tab[10] = (Main.fenetrePrincipale.getCouleurTexte());
         tab[11] = (Main.fenetrePrincipale.getCouleurComposantsTransparents());
+        //save
         ObjectOutputStream oos;//creation d'un flux de sortie
-
         oos = new ObjectOutputStream(new FileOutputStream(nom));//connexion
         //ecriture de l'arbre dans le fichier
         oos.writeObject(tab);
@@ -189,13 +189,12 @@ public class Utilitaire {
 
     }
 
-
-     /**
-       * ecriture du fichier de sauvegarde des preferences de couleur
-      * @param nom emplacement du ficher
-      * @throws IOException exeception potentielle
-      * @throws ClassNotFoundException exeception potentielle
-      */
+    /**
+     * ecriture du fichier de sauvegarde des preferences de couleur
+     * @param nom emplacement du ficher
+     * @throws IOException exeception potentielle
+     * @throws ClassNotFoundException exeception potentielle
+     */
     public static void Load(String nom) throws IOException, ClassNotFoundException {
         Color[] tab = new Color[12];
         ObjectInputStream ois;//cretion  d'un flux d'entree
@@ -206,7 +205,7 @@ public class Utilitaire {
         tab = (Color[]) ois.readObject();
         ois.close();//fermeture du flux
 
-
+        //mise a jour des couleurs
         Main.fenetrePrincipale.getPanProfil().mettreCouleurFond(tab[0]);
         Main.fenetrePrincipale.getPanProfil().mettreCouleurTexte(tab[1]);
         Main.fenetrePrincipale.getGauche().changerCouleurDegrade1(tab[2]);
@@ -219,7 +218,7 @@ public class Utilitaire {
         Main.fenetrePrincipale.setCouleur2(tab[9]);
         Main.fenetrePrincipale.setCouleurTexte(tab[10]);
         Main.fenetrePrincipale.setCouleurComposantsTransparents(tab[11]);
-          Main.fenetrePrincipale.repaint();
+        Main.fenetrePrincipale.repaint();
 
     }
 }
