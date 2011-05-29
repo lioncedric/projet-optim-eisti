@@ -9,6 +9,8 @@ import java.awt.GradientPaint;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.GridLayout;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.LinkedList;
 import java.util.List;
 import javax.swing.BorderFactory;
@@ -168,6 +170,7 @@ public final class PanelProblemesUtilisateur extends JPanel {
      */
     public void miseajour() {
         List liste = BddProbleme.rechercheProbleme(this.panRecherche.getJtfRecherche().getText());
+        Collections.sort(liste,Collections.reverseOrder());
         //on commence par supprimer tous les éléments
         this.listModel.removeAllElements();
         //puis on ajoute un à un tous les problèmes

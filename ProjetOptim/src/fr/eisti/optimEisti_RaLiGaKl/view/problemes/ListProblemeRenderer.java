@@ -1,6 +1,7 @@
 
 package fr.eisti.optimEisti_RaLiGaKl.view.problemes;
 
+import fr.eisti.optimEisti_RaLiGaKl.model.BddProbleme;
 import fr.eisti.optimEisti_RaLiGaKl.model.Probleme;
 import java.awt.Color;
 import java.awt.Component;
@@ -33,7 +34,7 @@ public class ListProblemeRenderer extends JLabel implements ListCellRenderer {
     @Override
     public Component getListCellRendererComponent(JList list, Object value, int index, boolean isSelected, boolean cellHasFocus) {
         Probleme p = (Probleme) value;
-        setText(p.getNumero() + ") " + p.getTitre());
+        setText((BddProbleme.nombreProblemes()-p.getNumero()) + ") " + p.getTitre());
         Color background;
         Color foreground;
         // check if this cell represents the current DnD drop location
