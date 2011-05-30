@@ -8,7 +8,6 @@ import fr.eisti.optimEisti_RaLiGaKl.model.BDDUtilisateur;
 import fr.eisti.optimEisti_RaLiGaKl.view.compte.CreerCompte;
 import java.awt.Image;
 import java.awt.Toolkit;
-import java.io.File;
 
 /**
  * Classe qui écoute le bouton ok de la classe CreerCompte.java

@@ -75,6 +75,11 @@ public class BDDUtilisateur {
             //on modifie ces attributs login et password
             personne.setAttribute("login", NomUtilisateur);
             personne.setAttribute("password", mdp);
+            //si l'utilisateur ne choisit pas d'image
+            if(imageSrc.equals("")){
+                //on en mets une par défaut
+                imageSrc="./images/tete.jpg";
+            }
             //On copie l'image dans le répertoire images de la racine du projet si elle n'y est pas déjà
 
             //faux
