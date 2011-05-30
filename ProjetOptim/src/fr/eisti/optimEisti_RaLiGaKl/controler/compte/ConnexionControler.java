@@ -18,6 +18,7 @@ import fr.eisti.optimEisti_RaLiGaKl.model.Utilitaire;
 import fr.eisti.optimEisti_RaLiGaKl.view.problemes.Fenetre;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+import java.io.File;
 
 /**
  * Listener qui écoute le bouton connexion de la fenetre identification
@@ -56,8 +57,19 @@ public class ConnexionControler implements MouseListener, KeyListener {
         //On recupere dans les textfields le text
         login = tLogin.getText();
         mdp = tPassword.getText();
+        //si le fichier bdd/identifiation.xml n'existe pas
+        if(!new File("bdd").exists() || !new File("./bdd/identification.xml").exists()){
+            //on créé le répertoire et le fichier identification.xml
+            BDDUtilisateur.creerFichierIdentification();
+            //on ouvre un dialogue
+            JOptionPane.showMessageDialog(null, "Connexion échouée! Vous devez d'abord créer votre compte car le fichier d'identification n'existait plus", "Erreur", JOptionPane.ERROR_MESSAGE);
+            //on remet la fenetre au premier plan
+            maFenetre.setAlwaysOnTop(true);
+            //on ferme la fenetre d'identification
+            maFenetre.dispose();
+        }
         //Si le login et le mot de passe sont corrects : alors cela veut dire que la connexion est reussie !!!!!
-        if (BDDUtilisateur.existeCompte(login, mdp)) {
+        else if(BDDUtilisateur.existeCompte(login, mdp)) {
             //on ferme la fenetre d'identification
             maFenetre.dispose();
             //ChoixUtilisateur fenChoix;

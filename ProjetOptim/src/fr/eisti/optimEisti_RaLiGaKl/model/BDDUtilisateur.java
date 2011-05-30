@@ -3,6 +3,9 @@ package fr.eisti.optimEisti_RaLiGaKl.model;
 import java.io.*;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.xml.parsers.DocumentBuilder;
+import javax.xml.parsers.DocumentBuilderFactory;
+import javax.xml.parsers.ParserConfigurationException;
 
 
 import org.w3c.dom.*;
@@ -20,13 +23,48 @@ public class BDDUtilisateur {
     private static String chFichierIdentification = "./bdd/identification.xml";
 
     /**
+     * permet de créer le répertoire bdd/identification.xml si celui-ci n'existe pas
+     */
+    public static void creerFichierIdentification(){
+        try {            
+            //création du répertoire bdd à la racine du projet
+            File rep = new File("bdd");
+            rep.mkdir();
+            boolean createNewFile = new File(chFichierIdentification).createNewFile();
+            
+            if(createNewFile){
+                // Création d'un nouveau DOM
+                DocumentBuilderFactory fabrique = DocumentBuilderFactory.newInstance();
+                DocumentBuilder constructeur;
+                constructeur = fabrique.newDocumentBuilder();
+                Document document = constructeur.newDocument();
+
+                // Propriétés du DOM
+                document.setXmlVersion("1.0");
+                document.setXmlStandalone(true);
+
+                // Création de l'arborescence du DOM
+                Element racine = document.createElement("annuaire");
+                //on ajoute la racine au xml
+                document.appendChild(racine);
+                //permet de transformer le dom en xml
+                Utilitaire.transformerXml(document, chFichierIdentification);
+            }
+        } catch (ParserConfigurationException ex) {
+            Logger.getLogger(BDDUtilisateur.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (IOException ex) {
+            Logger.getLogger(BDDUtilisateur.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
+    /**
      * permet de créer un nouvel utilisateur
      * @param NomUtilisateur nom de l'utilisateur
      * @param mdp mot de passe de l'utilisateur
      * @param imageSrc le chemin de l'image le représentant
      */
     public static void ajouterUtilisateur(String NomUtilisateur, String mdp, String imageSrc) {
-       
+
             // Parse an XML document into a DOM tree.
             Document document;
             document = Utilitaire.parseXmlDom(new File(chFichierIdentification));
