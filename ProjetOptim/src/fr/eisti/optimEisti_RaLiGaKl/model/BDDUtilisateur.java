@@ -76,10 +76,10 @@ public class BDDUtilisateur {
             personne.setAttribute("login", NomUtilisateur);
             personne.setAttribute("password", mdp);
             //si l'utilisateur ne choisit pas d'image
-            if(imageSrc.equals("")){
+           // if(imageSrc.equals("")){
                 //on en mets une par défaut
-                imageSrc="images/tete.jpg";
-            }
+             //   imageSrc="/images/tete.jpg";
+            //}
             //on ajoute un attribut avec le src de son avatar
             personne.setAttribute("imagesrc", imageSrc);
             //on ajoute le noeuf fils à la racine

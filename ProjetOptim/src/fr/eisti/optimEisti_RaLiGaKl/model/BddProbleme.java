@@ -88,7 +88,7 @@ public class BddProbleme {
      * @param nom : le fichier a importer
      */
     public static void importerProbleme(File nom) {
-        Schema schema = Utilitaire.loadSchema("bdd/schema.xsd");
+        Schema schema = Utilitaire.loadSchema("/schema/schema.xsd");
         Document document = Utilitaire.parseXmlDom(nom);
         if (document != null & Utilitaire.validateXml(schema, document)) {
             NodeList liste = document.getDocumentElement().getElementsByTagName("probleme");

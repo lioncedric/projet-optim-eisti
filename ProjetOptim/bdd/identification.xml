@@ -6,4 +6,5 @@
 <personne imagesrc="D:\My Documents\ProjetOptim\images\loupe.png" login="d" password="d"/>
 <personne imagesrc="null/tete.jpg" login="e" password="e"/>
 <personne imagesrc="null/tete.jpg" login="z" password="z"/>
+<personne imagesrc="images/tete.jpg" login="1" password="1"/>
 </identification>

@@ -23,6 +23,9 @@
         <copy todir="${classes.dir}/images">
             <fileset dir="./images" />
         </copy>
+         <copy todir="${classes.dir}/schema">
+            <fileset dir="./schema" />
+        </copy>
          <copy todir="${classes.dir}/aide">
             <fileset dir="./aide" />
         </copy>

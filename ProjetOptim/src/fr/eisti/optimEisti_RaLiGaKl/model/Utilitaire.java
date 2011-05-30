@@ -47,15 +47,17 @@ public class Utilitaire {
      * @return le Schema
      */
     public static Schema loadSchema(String name) {
-        Schema schema = null;
+        Schema schemaFile = null;
         try {
             String language = XMLConstants.W3C_XML_SCHEMA_NS_URI;
             SchemaFactory factory = SchemaFactory.newInstance(language);
-            schema = factory.newSchema(new File(name));
+
+             schemaFile = factory.newSchema(new StreamSource(Utilitaire.class.getResourceAsStream(name)));
+           
         } catch (Exception e) {
             System.out.println(e.toString());
         }
-        return schema;
+        return schemaFile;
     }
 
     /**
