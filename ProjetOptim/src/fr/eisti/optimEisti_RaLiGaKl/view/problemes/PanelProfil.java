@@ -81,12 +81,6 @@ public class PanelProfil extends JPanel {
         }
         panImage = new JPanelFondNormal(avatar);
 
-        //on met à jour tous les composants qui ont besoin d'être mis à jour et on réaffiche le tout
-        this.modification();
-        this.revalidate();
-        this.repaint();
-           panImage = new JPanelFondNormal(avatar);
-        //on ferme la fenetre d'identification
     }
 
     /**
