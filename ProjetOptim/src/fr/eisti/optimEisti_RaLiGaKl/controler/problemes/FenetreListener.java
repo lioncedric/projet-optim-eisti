@@ -13,6 +13,8 @@ import fr.eisti.optimEisti_RaLiGaKl.Main;
 import fr.eisti.optimEisti_RaLiGaKl.view.compte.Preferences;
 import java.awt.Desktop;
 import java.awt.event.ComponentListener;
+import java.io.BufferedInputStream;
+import java.io.BufferedOutputStream;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.InputStream;
@@ -112,25 +114,7 @@ public class FenetreListener implements ActionListener, ComponentListener {
         } else if (e.getSource() == this.fenetre.getPreferences()) {
             Preferences p = new Preferences();
             p.setVisible(true);
-        } else if (e.getSource() == this.fenetre.getAideItem()) {
-            if (Desktop.isDesktopSupported()) {
-                // On récupère l'instance du desktop :
-                Desktop desktop = Desktop.getDesktop();
-                // On vérifie que la fonction browse est bien supportée :
-                if (desktop.isSupported(Desktop.Action.OPEN)) {
-                    try {
-                        // Et on lance l'application associé au protocole :
-                        URL url = this.getClass().getResource("aide/aide.pdf");
-                        desktop.open(new File(url.getPath()));
-                    } catch (IOException efile) {
-                        efile.printStackTrace();
-                        JOptionPane.showMessageDialog(null, "Problème de lecture du fichier! ", "Erreur", JOptionPane.ERROR_MESSAGE);
-
-                    }
-                }
-            }
-
-
+        } else if (e.getSource() == this.fenetre.getAideItem()) {   
             if (Desktop.isDesktopSupported()) {
                 Desktop desktop = Desktop.getDesktop();
                 InputStream resource = this.getClass().getResourceAsStream("/aide/aide.pdf");
@@ -139,20 +123,76 @@ public class FenetreListener implements ActionListener, ComponentListener {
                     file.deleteOnExit();
                     OutputStream out = new FileOutputStream(file);
                     try {
-                     //  out.
+                        copyStreamToStream(resource, out);
                     } finally {
                         out.close();
                     }
                     desktop.open(file);
                 } catch (IOException ex) {
-                    Logger.getLogger(FenetreListener.class.getName()).log(Level.SEVERE, null, ex);
-
 
                 }
             }
+        }
+    }
 
+    /**
+     * Copy any input stream to output stream. Once the data will be copied
+     * both streams will be closed.
+     *
+     * @param input  - InputStream to copy from
+     * @param output - OutputStream to copy to
+     * @throws IOException - io error in function
+     * @throws OSSMultiException - double error in function
+     */
+    public static void copyStreamToStream(InputStream input, OutputStream output) throws IOException {InputStream is = null;
+        OutputStream os = null;
+        int ch;
 
+        try {
+            if (input instanceof BufferedInputStream) {
+                is = input;
+            } else {
+                is = new BufferedInputStream(input);
+            }
+            if (output instanceof BufferedOutputStream) {
+                os = output;
+            } else {
+                os = new BufferedOutputStream(output);
+            }
 
+            while ((ch = is.read()) != -1) {
+                os.write(ch);
+            }
+            os.flush();
+        } finally {
+            IOException exec1 = null;
+            IOException exec2 = null;
+            try {
+                // because this close can throw exception we do next close in
+                // finally statement
+                if (os != null) {
+                    try {
+                        os.close();
+                    } catch (IOException exec) {
+                        exec1 = exec;
+                    }
+                }
+            } finally {
+                if (is != null) {
+                    try {
+                        is.close();
+                    } catch (IOException exec) {
+                        exec2 = exec;
+                    }
+                }
+            }
+            if ((exec1 != null) && (exec2 != null)) {
+                throw exec1;
+            } else if (exec1 != null) {
+                throw exec1;
+            } else if (exec2 != null) {
+                throw exec2;
+            }
         }
     }
 
