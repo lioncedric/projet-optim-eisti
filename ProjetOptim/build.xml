@@ -8,8 +8,7 @@
     <property name="jar.dir"     value="${build.dir}/jar"/>
     <property name="lib.dir"     value="lib"/>
     <property name="main-class"  value="fr.eisti.optimEisti_RaLiGaKl.Main"/>
-  <property name="images.dir" value="${classes.dir}/images" />
-  <property name="srcImages.dir" value="./images" />
+
 
     <target name="clean">
         <delete dir="${javadoc.dir}"/>
@@ -18,8 +17,14 @@
     </target>
     <target name="compile">
         <mkdir dir="${classes.dir}"/>
-        <copy todir="${images.dir}">
-            <fileset dir="${srcImages.dir}" />
+        <copy todir="${classes.dir}/HTML">
+            <fileset dir="./HTML" />
+        </copy>
+        <copy todir="${classes.dir}/images">
+            <fileset dir="./images" />
+        </copy>
+         <copy todir="${classes.dir}/aide">
+            <fileset dir="./aide" />
         </copy>
         <javac includeantruntime="false" srcdir="${src.dir}" encoding="UTF-8" destdir="${classes.dir}"/>
     </target>

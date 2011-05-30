@@ -526,14 +526,14 @@ public class BddProbleme {
             if (new File("bdd/" + BDDUtilisateur.getNomUtilisateur() + ".xml").exists()) {
                 try {
                     //on compile le xsl avec le xml pour créer le html
-                    Utilitaire.creerHTML("bdd/" + BDDUtilisateur.getNomUtilisateur() + ".xml", "HTML/resultats.xsl", nom);
+                    Utilitaire.creerHTML("bdd/" + BDDUtilisateur.getNomUtilisateur() + ".xml", "/HTML/resultats.xsl", nom);
                     //on crée un répertoire du nom de html
                     new File(nom2 + "/html").mkdir();
                     //Copie tous les fichiers nécessaires au fonctionnement du HTML
-                    Utilitaire.copie("HTML/script.js", nom2 + "/html/script.js");
-                    Utilitaire.copie("HTML/design.css", nom2 + "/html/design.css");
-                    Utilitaire.copie("HTML/BaniereFinal.png", nom2 + "/html/BaniereFinal.png");
-                    Utilitaire.copie("HTML/pageBienvenue.png", nom2 + "/html/pageBienvenue.png");
+                    Utilitaire.copieFichierJar("/HTML/script.js", nom2 + "/html/script.js");
+                    Utilitaire.copieFichierJar("/HTML/design.css", nom2 + "/html/design.css");
+                    Utilitaire.copieFichierJar("/HTML/BaniereFinal.png", nom2 + "/html/BaniereFinal.png");
+                    Utilitaire.copieFichierJar("/HTML/pageBienvenue.png", nom2 + "/html/pageBienvenue.png");
                     //on ouvre un dialogue
                     //on affiche la page html à l'utilisateur
                     // On vérifie que la classe Desktop soit bien supportée :
@@ -554,6 +554,7 @@ public class BddProbleme {
 
 
                 } catch (Exception ex) {
+                    ex.printStackTrace();
                     JOptionPane.showMessageDialog(null, "Création échouée! ", "Erreur", JOptionPane.ERROR_MESSAGE);
                 }
 

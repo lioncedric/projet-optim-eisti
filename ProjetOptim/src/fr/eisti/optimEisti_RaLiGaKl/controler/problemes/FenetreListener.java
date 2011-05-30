@@ -14,6 +14,13 @@ import fr.eisti.optimEisti_RaLiGaKl.view.compte.Preferences;
 import java.awt.Desktop;
 import java.awt.event.ComponentListener;
 import java.io.File;
+import java.io.FileOutputStream;
+import java.io.InputStream;
+import java.io.OutputStream;
+import java.net.URISyntaxException;
+import java.net.URL;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 
@@ -50,11 +57,11 @@ public class FenetreListener implements ActionListener, ComponentListener {
                 }
             } catch (Exception ex) {
             }
-        //si l'utilisateur clique sur deconnexion alors on le renvoit à la fenetre d'accueil du logiciel
+            //si l'utilisateur clique sur deconnexion alors on le renvoit à la fenetre d'accueil du logiciel
         } else if (e.getSource() == this.fenetre.getDeconnexion()) {
             Main.accueil.setVisible(true);
             this.fenetre.dispose();
-        //sinon si on a cliqué sur "supprimer compte"
+            //sinon si on a cliqué sur "supprimer compte"
         } else if (e.getSource() == this.fenetre.getSupprimerCompte()) {
             //nouvelle joptionPane qui demande confirmation de la suppression du compte
             int option = JOptionPane.showConfirmDialog(null, "Voulez-vous vraiment supprimer votre compte ?", "Suppression de compte", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
@@ -72,18 +79,17 @@ public class FenetreListener implements ActionListener, ComponentListener {
                     //on ouvre un dialogue
                     JOptionPane.showMessageDialog(null, "Suppression échouée! ", "Erreur", JOptionPane.ERROR_MESSAGE);
                 }
+            } else {
+                //on ouvre un dialogue
+                JOptionPane.showMessageDialog(null, "Création annulée! ", "Erreur", JOptionPane.ERROR_MESSAGE);
             }
-            else {
-                    //on ouvre un dialogue
-                    JOptionPane.showMessageDialog(null, "Création annulée! ", "Erreur", JOptionPane.ERROR_MESSAGE);
-            }
-        //si l'utilisateur clique sur quitter alors on ferme le programme
+            //si l'utilisateur clique sur quitter alors on ferme le programme
         } else if (e.getSource() == this.fenetre.getQuitter()) {
             System.exit(0);
-        //si l'utilisateur clique sur générer html alors on ouvre une page html ac le navigateur par defaut avec tous les problèmes de celui ci
+            //si l'utilisateur clique sur générer html alors on ouvre une page html ac le navigateur par defaut avec tous les problèmes de celui ci
         } else if (e.getSource() == this.fenetre.getAffResHtml()) {
-             BddProbleme.html();
-        //si l'utilisateur clique sur recharger alors on recharge le fichier de la bdd
+            BddProbleme.html();
+            //si l'utilisateur clique sur recharger alors on recharge le fichier de la bdd
         } else if (e.getSource() == this.fenetre.getRecharger()) {
             try {
                 BddProbleme.load(BDDUtilisateur.getNomUtilisateur(), BDDUtilisateur.getImage());
@@ -106,20 +112,47 @@ public class FenetreListener implements ActionListener, ComponentListener {
         } else if (e.getSource() == this.fenetre.getPreferences()) {
             Preferences p = new Preferences();
             p.setVisible(true);
-        }else if(e.getSource() == this.fenetre.getAideItem()){
+        } else if (e.getSource() == this.fenetre.getAideItem()) {
             if (Desktop.isDesktopSupported()) {
-                        // On récupère l'instance du desktop :
-                        Desktop desktop = Desktop.getDesktop();
-                        // On vérifie que la fonction browse est bien supportée :
-                        if (desktop.isSupported(Desktop.Action.OPEN)) {
-                            try {
-                                // Et on lance l'application associé au protocole :
-                                desktop.open(new File("aide\\aide.pdf"));
-                            } catch (IOException efile) {
-                                JOptionPane.showMessageDialog(null, "Problème de lecture du fichier! ", "Erreur", JOptionPane.ERROR_MESSAGE);
-                            }
-                        }
+                // On récupère l'instance du desktop :
+                Desktop desktop = Desktop.getDesktop();
+                // On vérifie que la fonction browse est bien supportée :
+                if (desktop.isSupported(Desktop.Action.OPEN)) {
+                    try {
+                        // Et on lance l'application associé au protocole :
+                        URL url = this.getClass().getResource("aide/aide.pdf");
+                        desktop.open(new File(url.getPath()));
+                    } catch (IOException efile) {
+                        efile.printStackTrace();
+                        JOptionPane.showMessageDialog(null, "Problème de lecture du fichier! ", "Erreur", JOptionPane.ERROR_MESSAGE);
+
                     }
+                }
+            }
+
+
+            if (Desktop.isDesktopSupported()) {
+                Desktop desktop = Desktop.getDesktop();
+                InputStream resource = this.getClass().getResourceAsStream("/aide/aide.pdf");
+                try {
+                    File file = File.createTempFile("User_Guide", ".pdf");
+                    file.deleteOnExit();
+                    OutputStream out = new FileOutputStream(file);
+                    try {
+                     //  out.
+                    } finally {
+                        out.close();
+                    }
+                    desktop.open(file);
+                } catch (IOException ex) {
+                    Logger.getLogger(FenetreListener.class.getName()).log(Level.SEVERE, null, ex);
+
+
+                }
+            }
+
+
+
         }
     }
 

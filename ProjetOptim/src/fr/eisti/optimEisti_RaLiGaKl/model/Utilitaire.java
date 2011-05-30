@@ -4,6 +4,7 @@ import fr.eisti.optimEisti_RaLiGaKl.Main;
 import java.awt.Color;
 import org.w3c.dom.*;
 import java.io.*;
+import java.net.URL;
 import javax.xml.XMLConstants;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
@@ -124,7 +125,8 @@ public class Utilitaire {
 
             // Configuration du transformer
             TransformerFactory fabriqueT = TransformerFactory.newInstance();
-            StreamSource stylesource = new StreamSource(xsl);
+            InputStream in = Utilitaire.class.getResourceAsStream(xsl);
+            StreamSource stylesource = new StreamSource(in);
             Transformer transformer = fabriqueT.newTransformer(stylesource);
             transformer.setOutputProperty(OutputKeys.METHOD, "html");
 
@@ -136,15 +138,15 @@ public class Utilitaire {
 
     /**
      * copie un fichier
-     * @param fichierIn : fichier d'entree
-     * @param fichierout : fichier dde sortie
+     * @param fichierIn fichier d'entree contenu dans le jar
+     * @param fichierout fichier dde sortie
      */
-    public static void copie(String fichierIn, String fichierout) throws FileNotFoundException, IOException {
+    public static void copieFichierJar(String fichierIn, String fichierout) throws FileNotFoundException, IOException {
         //Déclaration et initialisation de variables
         InputStream in;//flux d'entrée contenant le fichier à copier
         OutputStream out;//flux de sortie contenant également le chemin où va être copié le fichier d'entrée
         //instanciation des flux
-        in = new FileInputStream(fichierIn);
+        in = Utilitaire.class.getResourceAsStream(fichierIn);
         out = new FileOutputStream(fichierout);
         int c = 0;//compteur pour connaître la fin du fichier
         //tant qu'on n'est pas à la fin du fichier
