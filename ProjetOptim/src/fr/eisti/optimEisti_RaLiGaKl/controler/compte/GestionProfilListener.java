@@ -29,7 +29,7 @@ public class GestionProfilListener implements MouseListener {
 
     /**
      * Constructeur permettant d'initialiser notre fenêtre 
-     * @param maFenetre 
+     * @param maFenetre : la fenetre de gestion de profil
      */
     public GestionProfilListener(GestionProfil maFenetre) {
         this.maFenetre = maFenetre;
@@ -180,7 +180,7 @@ public class GestionProfilListener implements MouseListener {
 
     /**
      * Redéfinition de la méthode mouseClicked de l'interface MouseListener
-     * @param e 
+     * @param e : l'evenement
      */
     @Override
     public void mouseClicked(MouseEvent e) {

@@ -13,13 +13,16 @@ import javax.swing.ListCellRenderer;
  */
 public class ListResRenderer extends JLabel implements ListCellRenderer {
 
+    /***
+     * Constructeur
+     */
     public ListResRenderer() {
         setOpaque(true);
     }
 
     @Override
     public Component getListCellRendererComponent(JList list, Object value, int index, boolean isSelected, boolean cellHasFocus) {
-    
+        //on definit la couleur du texte et du composant
         Color background;
         Color foreground;
 

@@ -35,7 +35,7 @@ public class BddProbleme {
 
     /**
      * permet charger le fichier xml correspondant a l'utilisateur
-     * @param nomUtilisateur le nom de l'utilisateur
+     * @param nomUtilisateur : le nom de l'utilisateur
      */
     public static void load(String nomUtilisateur, String url) throws IOException {
         File fichier = new File("bdd/" + nomUtilisateur + ".xml");
@@ -65,7 +65,7 @@ public class BddProbleme {
 
     /**
      * sauvegarde les modifications dans le fichier xml correspondant a l'utilisateur
-     * @param nomUtilisateur le nom de l'utilisateur
+     * @param nomUtilisateur : le nom de l'utilisateur
      */
     public static void save(String nomUtilisateur) {
         Utilitaire.transformerXml(bdd, "bdd/" + nomUtilisateur + ".xml");
@@ -73,7 +73,7 @@ public class BddProbleme {
 
     /**
      * supprime un  probleme
-     * @param num le numero de probleme a supprimer
+     * @param num : le numero de probleme a supprimer
      */
     public static void supprimerProbleme(int num) {
         //on recupere tous les coefficients de la fonction objectif
@@ -85,7 +85,7 @@ public class BddProbleme {
 
     /**
      * ajouter des problemes directement a partir d'un fichier xml de problemes
-     * @param nom le fichier a importer
+     * @param nom : le fichier a importer
      */
     public static void importerProbleme(File nom) {
         Schema schema = Utilitaire.loadSchema("bdd/schema.xsd");
@@ -107,7 +107,7 @@ public class BddProbleme {
 
     /**
      * Fonction qui renvoie le numero du problème ayant pour titre la chaine passée en paramètre
-     * @param nomProbleme
+     * @param nomProbleme : le nom du problème recherché
      * @return Renvoi une liste contenant tous les numéros des problemes qui vérifient l'expression tapée
      */
     public static List<Integer> rechercheProbleme(String nomProbleme) {
@@ -131,7 +131,7 @@ public class BddProbleme {
 
     /**
      * ajouter un probleme
-     * @param p le probleme a ajouter
+     * @param p : le probleme a ajouter
      */
     public static void addProbleme(Probleme p) {
 
@@ -183,7 +183,7 @@ public class BddProbleme {
 
     /**
      *  Recuperer le nieme probleme
-     * @param nb numero de probleme
+     * @param nb : numero de probleme
      * @return le probleme
      */
     public static Probleme getProbleme(int nb) {
@@ -195,7 +195,7 @@ public class BddProbleme {
 
     /**
      * Recupere un probleme a partir d'un noeud dom
-     * @param NoeudProbleme le noeud a parser
+     * @param NoeudProbleme : le noeud a parser
      * @return le probleme
      */
     public static Probleme getProblemeImport(Element NoeudProbleme) {
@@ -247,8 +247,8 @@ public class BddProbleme {
 
     /**
      * fonction qui permet d'exporter un probleme sur Scilab
-     * @param p probleme d'entrée
-     * @param nom fichier de sortie
+     * @param p : probleme d'entrée
+     * @param nom : fichier de sortie
      */
     public static void exporterScilab(Probleme p, String nom) {
 
@@ -338,8 +338,8 @@ public class BddProbleme {
 
     /**
      * fonction qui permet d'exporter un probleme sur excel
-     * @param p probleme d'entrée
-     * @param nom fichier de sortie
+     * @param p : probleme d'entrée
+     * @param nom : fichier de sortie
      */
     public static void exporterExcel(Probleme p, String nom) {
         // Déclaration et initialisation de variables

@@ -24,7 +24,7 @@ public class FileChooserListener implements ActionListener {
 
     /**
      * Constructeur du listener
-     * @param p
+     * @param p : JPanel
      */
     public FileChooserListener(JPanel p) {
         this.pan = p;
@@ -32,7 +32,7 @@ public class FileChooserListener implements ActionListener {
 
     /**
      * Redéfinition de la méthode actionPerformed de l'interface ActionListener
-     * @param e 
+     * @param e : l'evenement
      */
     @Override
     public void actionPerformed(ActionEvent e) {

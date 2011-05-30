@@ -31,7 +31,7 @@ public class PanelProblemeListener implements ChangeListener, ActionListener {
 
     /**
      * Constructeur d'un listener du panel où se trouve le problème
-     * @param panelProbleme
+     * @param panelProbleme : le JPanel où se trouve le probleme
      */
     public PanelProblemeListener(PanelProbleme panelProbleme) {
         //on initialise la liste des valeurs des textFields

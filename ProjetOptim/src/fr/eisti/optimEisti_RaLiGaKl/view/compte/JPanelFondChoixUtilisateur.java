@@ -20,7 +20,7 @@ public class JPanelFondChoixUtilisateur extends JPanel{
 	
 	
 	/**
-	 * Constructeur
+	 * Constructeur du panel de fond
 	 * @param image l'image de fond
 	 */
 	public JPanelFondChoixUtilisateur(Image image){

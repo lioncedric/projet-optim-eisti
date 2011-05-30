@@ -27,7 +27,7 @@ public class PanelRechercheProblemeListener implements KeyListener, MouseListene
 
     /**
      * Redéfinition de la méthode keyPressed de l'interface KeyListener
-     * @param e 
+     * @param e : evenement du clavier
      */
     @Override
     public void keyPressed(KeyEvent e) {

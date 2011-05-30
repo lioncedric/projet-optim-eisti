@@ -93,10 +93,7 @@ public class Preferences extends JDialog {
        
     }
 
-    /**
-     * Fonction qui permet d'attribuer une couleur à chaque panel
-     */
-    
+       
     /**
      * Procedure qui permet d'atttribuer les couleurs de notre programme aux texfields de ce panel
      */

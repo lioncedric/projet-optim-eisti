@@ -18,8 +18,8 @@ public class FiltreSimple extends   FileFilter{
    private String extension;
    /**
     * Constructeur à partir de la description et de l'extension acceptée
-    * @param description
-    * @param extension
+    * @param description : description du fichier
+    * @param extension : extension du fichier
     */
    public FiltreSimple(String description, String extension){
       if(description == null || extension ==null){
@@ -30,7 +30,7 @@ public class FiltreSimple extends   FileFilter{
    }
    /**
     * regarde si un fichier valide un filtre
-    * @param file le fichier
+    * @param file : le fichier
     * @return si le fichier est valide
     */
     @Override

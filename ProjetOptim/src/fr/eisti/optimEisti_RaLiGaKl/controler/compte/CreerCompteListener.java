@@ -144,7 +144,7 @@ public class CreerCompteListener implements MouseListener {
 
     /**
      * Redéfinition de la méthode mouseClicked de l'interface MouseListener
-     * @param e 
+     * @param e : l'evenement
      */
     @Override
     public void mouseClicked(MouseEvent e) {

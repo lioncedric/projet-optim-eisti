@@ -13,7 +13,7 @@ public class PanelProfilListener implements ActionListener {
 
     /**
      * Redéfinition de la méthode actionPerformed de l'interface ActionListener
-     * @param e 
+     * @param e : l'evenement
      */
     @Override
     public void actionPerformed(ActionEvent e) {

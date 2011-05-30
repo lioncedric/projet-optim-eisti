@@ -20,7 +20,7 @@ public class PanelOngletProbleme extends JPanel {
 
     /**
      * Le constructeur
-     * @param pane le gestionnaire d'onglet
+     * @param pane : le gestionnaire d'onglet
      */
     public PanelOngletProbleme(final JTabbedPane pane) {
         //unset default FlowLayout' gaps
@@ -167,7 +167,7 @@ public class PanelOngletProbleme extends JPanel {
 
         /**
          * dessin de la croix
-         * @param g le graphique
+         * @param g : le graphique
          */
         @Override
         protected void paintComponent(Graphics g) {

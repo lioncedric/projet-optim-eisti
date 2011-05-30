@@ -32,7 +32,7 @@ public class Probleme {
 
     /**
      * verifier l'ealité entre deux objets
-     * @param obj l'objet a comparer
+     * @param obj : l'objet a comparer
      * @return si les deux objets sont egaux
      */
     @Override
@@ -49,7 +49,7 @@ public class Probleme {
 
     /**
      * Constructeur permettant de créer un problème à l'aide des informations contenues dans la fenêtre passée en paramètre
-     * @param pFenetre
+     * @param pFenetre : la fenetre contenant le probleme
      */
     public Probleme(PanelProbleme pFenetre) {
         positif = true;
@@ -58,7 +58,7 @@ public class Probleme {
 
     /**
      * initialise le problème aux valeurs rentrées par l'utilisateur
-     * @param fenetre le fenetre contenant les informations du probleme
+     * @param fenetre : le fenetre contenant les informations du probleme
      */
     public final void renseignerProbleme(PanelProbleme fenetre) {
         //récupération du titre du problème

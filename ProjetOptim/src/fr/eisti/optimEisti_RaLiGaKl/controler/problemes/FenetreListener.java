@@ -125,11 +125,10 @@ public class FenetreListener implements ActionListener, ComponentListener {
 
     /**
      * Redéfinition de la méthode componentResized de l'interface ComponentListener
-     * @param e
+     * @param e : l'evenement sur le composant
      */
     @Override
-    public void componentResized(
-            ComponentEvent e) {
+    public void componentResized(ComponentEvent e) {
         //on redefinit la taille du slitPane pour ne pas qu'il soit ni trop petit ni trop grand
         this.fenetre.appliquerChangementSplitPane();
     }

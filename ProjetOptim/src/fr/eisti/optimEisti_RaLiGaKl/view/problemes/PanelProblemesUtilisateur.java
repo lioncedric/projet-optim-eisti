@@ -10,7 +10,6 @@ import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.GridLayout;
 import java.util.Collections;
-import java.util.Comparator;
 import java.util.LinkedList;
 import java.util.List;
 import javax.swing.BorderFactory;
@@ -158,7 +157,7 @@ public final class PanelProblemesUtilisateur extends JPanel {
 
     /**
      * Fonction qui renvoie un booleen pour dire si le nom du problème passé en paramètre existe déjà dans la liste ou pas
-     * @param name
+     * @param name : le nom du problème
      * @return le booleen correspondant
      */
     protected boolean alreadyInList(String name) {

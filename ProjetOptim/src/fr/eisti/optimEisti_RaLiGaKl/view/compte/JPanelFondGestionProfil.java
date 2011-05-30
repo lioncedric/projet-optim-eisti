@@ -35,7 +35,7 @@ public class JPanelFondGestionProfil extends JPanel{
 
     /**
      * Constructeur
-     * @param image l'image de fond
+     * @param image : l'image de fond
      */
     public JPanelFondGestionProfil(Image image) {
         //initialisation de l'image
@@ -96,6 +96,8 @@ public class JPanelFondGestionProfil extends JPanel{
         this.jtfMdp2.setText("");
         this.jtfAvatar.setText("");
     }
+
+    //Accesseurs
     
     public JButton getBoutonAvatar() {
         return boutonAvatar;

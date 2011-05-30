@@ -3,10 +3,6 @@ package fr.eisti.optimEisti_RaLiGaKl.view.compte;
 import fr.eisti.optimEisti_RaLiGaKl.controler.compte.AccueilListener;
 import java.awt.Image;
 import java.awt.Toolkit;
-import java.io.File;
-import java.io.IOException;
-
-import javax.imageio.ImageIO;
 import javax.swing.JFrame;
 
 /**
@@ -41,6 +37,9 @@ public class Accueil extends JFrame {
         this.addMouseListener(new AccueilListener());                    //on permet la gestion des clis sur la fenetre
     }
 
+    /**
+     * Fonction qui redéfinit le panel de fond de la frame
+     */
     private void traitement() {
         //on redefinit le panel de fond de la frame
         setContentPane(panFond);

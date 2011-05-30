@@ -3,9 +3,6 @@ package fr.eisti.optimEisti_RaLiGaKl.view.compte;
 import fr.eisti.optimEisti_RaLiGaKl.controler.compte.GestionProfilListener;
 import java.awt.Image;
 import java.awt.Toolkit;
-import java.io.File;
-import java.io.IOException;
-import javax.imageio.ImageIO;
 import javax.swing.JDialog;
 
 /**

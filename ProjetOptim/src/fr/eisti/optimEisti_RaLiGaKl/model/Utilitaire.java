@@ -22,8 +22,8 @@ public class Utilitaire {
 
     /**
      * Valide un document(xml) a partir d'un xsd
-     * @param schema le schema
-     * @param document le document relatif au fichier xml
+     * @param schema : le schema
+     * @param document : le document relatif au fichier xml
      * @return valide ou pas le document
      */
     public static boolean validateXml(Schema schema, Document document) {
@@ -42,7 +42,7 @@ public class Utilitaire {
 
     /**
      * charge un schema
-     * @param name le nom du schema
+     * @param name : le nom du schema
      * @return le Schema
      */
     public static Schema loadSchema(String name) {
@@ -59,7 +59,7 @@ public class Utilitaire {
 
     /**
      * Charge un fichier xml en memoire dans un document
-     * @param name nom du fichier xml
+     * @param name : nom du fichier xml
      * @return le ducument chargé
      */
     public static Document parseXmlDom(File name) {
@@ -77,8 +77,8 @@ public class Utilitaire {
 
     /**
      * sauvegarde un document dans un fichier xml
-     * @param document le document
-     * @param fichier le nom du fichier xml 
+     * @param document : le document
+     * @param fichier : le nom du fichier xml
      */
     public static void transformerXml(Document document, String fichier) {
         try {
@@ -103,9 +103,9 @@ public class Utilitaire {
 
     /**
      * Création d'un document HTML avec XSLT 
-     * @param xml nom du fichier xml
-     * @param xsl nom du fichier xsl
-     * @param html nom du fichier html
+     * @param xml : nom du fichier xml
+     * @param xsl : nom du fichier xsl
+     * @param html : nom du fichier html
      * @throws Exception
      */
     public static void creerHTML(String xml, String xsl, String html) throws Exception {
@@ -136,8 +136,8 @@ public class Utilitaire {
 
     /**
      * copie un fichier
-     * @param fichierIn fichier d'entree
-     * @param fichierout fichier dde sortie
+     * @param fichierIn : fichier d'entree
+     * @param fichierout : fichier dde sortie
      */
     public static void copie(String fichierIn, String fichierout) throws FileNotFoundException, IOException {
         //Déclaration et initialisation de variables
@@ -160,7 +160,7 @@ public class Utilitaire {
 
     /**
      * sauvegarde du fichier de sauvegarde des preferences de couleur
-     * @param nom emplacement du ficher
+     * @param nom : emplacement du ficher
      * @throws IOException exeception potentielle
      */
     public static void Save(String nom) throws IOException {
@@ -191,7 +191,7 @@ public class Utilitaire {
 
     /**
      * ecriture du fichier de sauvegarde des preferences de couleur
-     * @param nom emplacement du ficher
+     * @param nom : emplacement du ficher
      * @throws IOException exeception potentielle
      * @throws ClassNotFoundException exeception potentielle
      */

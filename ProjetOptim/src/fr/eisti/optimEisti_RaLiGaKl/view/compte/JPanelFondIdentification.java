@@ -25,7 +25,7 @@ public class JPanelFondIdentification extends JPanel {
 
     /**
      * Constructeur
-     * @param image l'image de fond
+     * @param image : l'image de fond
      */
     public JPanelFondIdentification(Image image) {
 
@@ -56,6 +56,8 @@ public class JPanelFondIdentification extends JPanel {
         g.drawImage(image, 0, 0, this);
     }
 
+    //Accesseur
+    
     /**
      * @return the jtfNomUtilisateur
      */
@@ -64,7 +66,7 @@ public class JPanelFondIdentification extends JPanel {
     }
 
     /**
-     * @param jtfNomUtilisateur the jtfNomUtilisateur to set
+     * @param jtfNomUtilisateur : the jtfNomUtilisateur to set
      */
     public void setJtfNomUtilisateur(JTextField jtfNomUtilisateur) {
         this.jtfNomUtilisateur = jtfNomUtilisateur;
@@ -78,7 +80,7 @@ public class JPanelFondIdentification extends JPanel {
     }
 
     /**
-     * @param jtfMdp the jtfMdp to set
+     * @param jtfMdp : the jtfMdp to set
      */
     public void setJtfMdp(JPasswordField jtfMdp) {
         this.jtfMdp = jtfMdp;
@@ -92,7 +94,7 @@ public class JPanelFondIdentification extends JPanel {
     }
 
     /**
-     * @param lLogin the lLogin to set
+     * @param lLogin : the lLogin to set
      */
     public void setlLogin(JLabel lLogin) {
         this.lLogin = lLogin;
@@ -106,7 +108,7 @@ public class JPanelFondIdentification extends JPanel {
     }
 
     /**
-     * @param lPassword the lPassword to set
+     * @param lPassword : the lPassword to set
      */
     public void setlPassword(JLabel lPassword) {
         this.lPassword = lPassword;

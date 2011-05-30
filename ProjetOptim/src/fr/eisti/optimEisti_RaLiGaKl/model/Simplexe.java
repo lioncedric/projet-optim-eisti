@@ -13,7 +13,7 @@ public class Simplexe {
     public static ArrayList<Double> start(double[][] matrice, ArrayList<Integer> numVarArti, int nbvar, String objectif) {
         /**
          * Constructeur qui permet de creer la soluton d'un problème
-         * @param matrice probleme normalisé sous forme de tableau
+         * @param matrice : probleme normalisé sous forme de tableau
          * @param nbVariables : nombre de variables imaginaires
          */
         //declaration du tableau destine a contenir la solution
@@ -22,7 +22,7 @@ public class Simplexe {
 
     /**
      * Procedure qui s'occupe du traitement a faire pour generer la solution au probleme en appelant les autres fonctions
-     * @param matrice 
+     * @param matrice : probleme normalisé sous forme de tableau
      */
     public static ArrayList<Double> init(double[][] matrice, ArrayList<Integer> numVarArti, int nbvar, String objectif) {
 

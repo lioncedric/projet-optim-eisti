@@ -5,9 +5,6 @@ package fr.eisti.optimEisti_RaLiGaKl.view.problemes;
 
 import fr.eisti.optimEisti_RaLiGaKl.controler.compte.PanelProfilListener;
 import java.awt.event.KeyEvent;
-import java.io.IOException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.JFrame;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
@@ -16,8 +13,6 @@ import javax.swing.JTabbedPane;
 import javax.swing.KeyStroke;
 
 import fr.eisti.optimEisti_RaLiGaKl.controler.problemes.FenetreListener;
-import fr.eisti.optimEisti_RaLiGaKl.model.BDDUtilisateur;
-import fr.eisti.optimEisti_RaLiGaKl.model.Utilitaire;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
@@ -74,31 +69,33 @@ public class Fenetre extends JFrame {
      */
     public Fenetre() {
         initFenetre();
-
         traitementMenuItem();
 
     }
 
+    /**
+     * Fonction qui permet d'initialiser la fenêtre
+     */
     private void initFenetre() {
         this.setTitle("Fenêtre de saisie du problème");
-        this.setSize(960, 620);          //on redimenssione la fenetre en cours
+        this.setSize(960, 620);    //on redimenssione la fenetre en cours
         this.setMinimumSize(new Dimension(900, 600));
         this.setLocationRelativeTo(null);//on centre la fenetre a l'ecran
-        //this.setResizable(false);        //on demande a ce que la fenetre ne puisse pas etre redimentionnee
         this.setDefaultCloseOperation(DISPOSE_ON_CLOSE); //permet de fermer correctement la fenetre
-        this.addComponentListener(new FenetreListener(this));
+        this.addComponentListener(new FenetreListener(this));//on ajoute un ecouteur à la fenetre
         this.panGauche = new JPanel();
         this.panGauche.setLayout(new BorderLayout());
-        this.panProfil = new PanelProfil();
-        gauche = new PanelProblemesUtilisateur();
+        this.panProfil = new PanelProfil();//on creer un panel qui gere le profil de l'utilisateur dans la fenetre
+        gauche = new PanelProblemesUtilisateur();//on creer un panel qui gere tous les problèmes de l'utilisateur logger
         this.panGauche.add(this.panProfil, BorderLayout.NORTH);
         this.panGauche.add(this.gauche, BorderLayout.CENTER);
         droite = new JTabbedPane();
 
-
         droite.setBackground(Color.WHITE);
+        //on change la couleur du tabbedPane
         UIManager.put("TabbedPane.selected", new Color(209, 238, 238));
         SwingUtilities.updateComponentTreeUI(droite);
+        //on divise la fenetre en deux parties, la gestion du problème et celle de l'utilisateur (profil+probleme precedemment cree)
         splitPane = new JSplitPane(JSplitPane.HORIZONTAL_SPLIT, panGauche, droite);
         gauche.setMinimumSize(new Dimension(180, this.getHeight()));
         droite.setMinimumSize(new Dimension(700, this.getHeight()));
@@ -108,7 +105,7 @@ public class Fenetre extends JFrame {
         splitPane.setBackground(Color.lightGray);
         setContentPane(splitPane);
 
-
+        //on définie quelques couleur pour la fenêtre
         this.couleur1 = Color.WHITE;
         this.couleur2 = new Color(209, 238, 238);
         this.couleurComposantsTransparents = Color.GRAY;
@@ -117,6 +114,9 @@ public class Fenetre extends JFrame {
        
     }
 
+    /**
+     * Fonction qui gère la division de la fenêtreen fonction de la taille de celle-ci
+     */
     public void appliquerChangementSplitPane() {
         if (this.getWidth() < 960) {
             droite.setMinimumSize(new Dimension(this.getWidth() * 7 / 10, this.getHeight()));
@@ -132,12 +132,12 @@ public class Fenetre extends JFrame {
      */
     private void traitementMenuItem() {
         //les raccourcis clavier deja pris : ctrl+s, ctrl+d, ctrl+q, ctrl+f, ctrl+l, ctrl+r, ctrl+h
+
         //on initialise nos menus
         fichier.setMnemonic('F');//faire alt+f pour voir le menu derouler
         edition.setMnemonic('E');
         affichage.setMnemonic('A');
         aide.setMnemonic('H');
-
 
         this.fichier.add(recharger);
 
@@ -175,6 +175,7 @@ public class Fenetre extends JFrame {
         this.menuBar.add(aide);
 
         this.setJMenuBar(menuBar);
+        //on creer tous les listeners nécessaire pour nos menus
         profil.addActionListener(new PanelProfilListener());
         importXml.addActionListener(new FenetreListener(this));
         recharger.addActionListener(new FenetreListener(this));
@@ -188,6 +189,7 @@ public class Fenetre extends JFrame {
         aideItem.addActionListener(new FenetreListener(this));
     }
 
+    //accesseurs
     public JMenuItem getSupprimerCompte() {
         return supprimerCompte;
     }

@@ -18,7 +18,7 @@ public class JPanelFondNormal extends JPanel{
 
 	/**
 	 * Constructeur
-	 * @param image l'image de fond
+	 * @param image : l'image de fond
 	 */
 	public JPanelFondNormal(Image image){
 		this.image=image;

@@ -24,7 +24,6 @@ import java.awt.GradientPaint;
 import java.awt.Graphics2D;
 import java.util.ArrayList;
 import javax.swing.BorderFactory;
-import javax.swing.JComboBox;
 import javax.swing.JOptionPane;
 import javax.swing.JTextArea;
 import javax.swing.border.BevelBorder;
@@ -61,26 +60,34 @@ public class PanelProbleme extends JPanel {
     private PanelHautBas boutonHautBAs;
     //declaration des varables pour le panel de droite
     private PanelProblemesUtilisateur liste;
-    // private ArrayList<Contrainte> contraintes;
     private PanelProblemeListener fsl;
     private ButtonGroup boutonsSigne;
     private JRadioButton positif;
     private JRadioButton negatif;
 
-    
+    /**
+     * Constructeur d'un panel gérant l'affichage du problème
+     */
     public PanelProbleme() {
         super();
+        //on creer un listener sur ce panel
         fsl = new PanelProblemeListener(this);
+        //on creer un nouveau problème qui sera rempli par la suite par l'utilisateur
         this.probleme = new Probleme();
         probleme.setNumero(-100);
         initialiserVariables();
         traitementPanel();
         mettreCouleurTexte(Color.BLACK);
         mettreFondComposants(Color.GRAY);
+        //on s'occuper de mettre un écouteur sur le slide permettant de choisir le nombre de variable
         slide.addChangeListener(fsl);
         slide.addChangeListener(new SaveListener());
     }
 
+    /**
+     * Constructeur d'un panel gérant l'affichage du problème
+     * @param probleme : probleme à afficher
+     */
     public PanelProbleme(Probleme probleme) {
         super();
         fsl = new PanelProblemeListener(this);
@@ -94,6 +101,9 @@ public class PanelProbleme extends JPanel {
         slide.addChangeListener(new SaveListener());
     }
 
+    /**
+     * Fonction qui permet d'initialiser les variables
+     */
     private void initialiserVariables() {
         panelResultat = new PanelResultat(this);
         panDonnees = new JPanel();
@@ -132,6 +142,10 @@ public class PanelProbleme extends JPanel {
         this.description.setPreferredSize(new Dimension(this.getWidth() * 15 / 100, this.getHeight() * 18 / 100));
     }
 
+    /**
+     * Fonction qui permet de mettre tous les textes du panel en couleur
+     * @param couleur : la couleur souhaitée
+     */
     public void mettreCouleurTexte(Color couleur) {
         //cela modifie automatiquement toutes les coleur du panel
         titre.setForeground(Main.fenetrePrincipale.getCouleurTexte());
@@ -146,6 +160,10 @@ public class PanelProbleme extends JPanel {
         positif.setForeground(Main.fenetrePrincipale.getCouleurTexte());
     }
 
+    /**
+     * Fonction qui permet de définir la couleur de fond des composants du panel
+     * @param couleurFond : la couleur de fond souhaitée
+     */
     public void mettreFondComposants(Color couleurFond) {
         Main.fenetrePrincipale.setCouleurFondComposants(couleurFond);
         //ces composants doivent toujpours rester avec un fond transparent
@@ -163,6 +181,10 @@ public class PanelProbleme extends JPanel {
         ajouter.setBackground(new Color(couleurFond.getRed(), couleurFond.getGreen(), couleurFond.getBlue(), Main.fenetrePrincipale.getCoeffTransparence()));
     }
 
+    /**
+     * Fonction qui permet de changer la couleur de fonds des composants de la fenêtre
+     * @param couleurFond : la couleur de fond souhaitée
+     */
     public void changerFondComposants(Color couleurFond) {
         Main.fenetrePrincipale.setCouleurFondComposants(couleurFond);
         jtfTitre.setBackground(new Color(couleurFond.getRed(), couleurFond.getGreen(), couleurFond.getBlue(), Main.fenetrePrincipale.getCoeffTransparence()));
@@ -170,6 +192,9 @@ public class PanelProbleme extends JPanel {
         ajouter.setBackground(new Color(couleurFond.getRed(), couleurFond.getGreen(), couleurFond.getBlue(), Main.fenetrePrincipale.getCoeffTransparence()));
     }
 
+    /**
+     * Fonction qui permet de mettre en place tous les composants de la fenêtre
+     */
     private void traitementPanel() {
         this.setLayout(null);
 
@@ -207,7 +232,6 @@ public class PanelProbleme extends JPanel {
         this.add(panDonnees);
         this.add(contraintes);
         this.add(panelResultat);
-        //pan3.setPreferredSize(new Dimension(200,200));
         this.raffraichitTabContrainte(fsl.getContraintes());
 
         this.validate();
@@ -219,6 +243,7 @@ public class PanelProbleme extends JPanel {
         Graphics2D g2d = (Graphics2D) g;
         g2d.setPaint(new GradientPaint(0, 0, Main.fenetrePrincipale.getCouleur1(), 0, this.getHeight(), Main.fenetrePrincipale.getCouleur2(), true));
         g2d.fillRect(0, 0, this.getWidth(), this.getHeight());
+        //on définie l'emplacement de chaque composants
         titre.setBounds(this.getWidth() * 10 / 100, hauteur * this.getHeight() / 700 + this.getHeight() * 4 / 100, this.getWidth() * 30 / 100, this.getHeight() * 6 / 100);
         jtfTitre.setBounds(this.getWidth() * 42 / 100, hauteur * this.getHeight() / 700 + this.getHeight() * 4 / 100, this.getWidth() * 30 / 100, this.getHeight() * 6 / 100);
         description.setBounds(this.getWidth() * 10 / 100, hauteur * this.getHeight() / 700 + this.getHeight() * 12 / 100, this.getWidth() * 15 / 100, this.getHeight() * 15 / 100);
@@ -241,7 +266,11 @@ public class PanelProbleme extends JPanel {
         this.updateUI();
     }
 
+    /**
+     * Fonction qui permet de remplir le panel avec un problème existant
+     */
     private void remplissage() {
+        //on met chaque propriété du problème dans l'emplacement prévu à cet effet
         this.jtfTitre.setText(this.probleme.getTitre());
         this.textfield.setText(this.probleme.getDescription());
         this.slide.setValue(this.probleme.getCoeffVariables().size());
@@ -261,6 +290,7 @@ public class PanelProbleme extends JPanel {
         this.panDonnees.add(new JLabel("y="));
         this.panDonnees.add(new JTextField(3));
         this.panDonnees.add(new JLabel("x0"));
+
 
         for (int i = 1; i < this.probleme.getCoeffVariables().size(); i++) {
             this.ajouterVariable(i);
@@ -286,6 +316,10 @@ public class PanelProbleme extends JPanel {
         }
     }
 
+    /**
+     * Fonction qui gère l'ajout d'une variable
+     * @param i
+     */
     public void ajouterVariable(int i) {
         JTextField jtf;
         jtf = new JTextField(3);
@@ -298,18 +332,26 @@ public class PanelProbleme extends JPanel {
         nbVariable = i;
     }
 
+    /**
+     * Fonction qui permet de raffraichir le tableau de contrainte en cas d'ajout ou de suppression de variable de la fonction
+     * @param contraintes
+     */
     public void raffraichitTabContrainte(ArrayList<Contrainte> contraintes) {
+        //si le panel ou se trouve le tableau existe on enleve ce qu'il y a dedans
         if (panTableau != null) {
             this.remove(ajouter);
             this.remove(panTableau);
         }
+        //on recupère la valeur du slide, c'est a dire le nombre de variable choisit
         nbVariable = this.slide.getValue();
+        //si il le problème n'avais pas de contraintes on recreer un tableau vide, sinon on creer un tableau de taille des contraintes
         if (contraintes.isEmpty()) {
             panTableau = new Tableau(nbVariable);
         } else {
             panTableau = new Tableau(contraintes.size(), nbVariable);
         }
 
+        //on recreer tous les composants et leurs ecouteur associer au panel du tableau
         ajouter = new JButton("Ajouter une ligne");
         ajouter.addActionListener(new MoreListener(panTableau, nbVariable));
 
@@ -348,7 +390,7 @@ public class PanelProbleme extends JPanel {
 
     /**
      * enregisrer le contenu de la fenetre dans un probleme
-     * @param indexTab le fenetre contenant les informations du probleme
+     * @param indexTab : le fenetre contenant les informations du probleme
      */
     public void enregisrer(int indexTab) {
         if (verifier()) {

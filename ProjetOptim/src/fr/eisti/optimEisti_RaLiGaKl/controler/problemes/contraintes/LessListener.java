@@ -28,7 +28,7 @@ import javax.swing.JTable;
 
                   /**
                    * Fonction qui enleve une ligne d'un tableau
-                   * @param event
+                   * @param event : evenement sur le tableau
                    */
                   @Override
 		  public void actionPerformed(ActionEvent event) {

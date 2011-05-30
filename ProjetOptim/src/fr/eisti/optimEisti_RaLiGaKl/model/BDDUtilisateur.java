@@ -59,9 +59,9 @@ public class BDDUtilisateur {
 
     /**
      * permet de créer un nouvel utilisateur
-     * @param NomUtilisateur nom de l'utilisateur
-     * @param mdp mot de passe de l'utilisateur
-     * @param imageSrc le chemin de l'image le représentant
+     * @param NomUtilisateur : nom de l'utilisateur
+     * @param mdp : mot de passe de l'utilisateur
+     * @param imageSrc : le chemin de l'image le représentant
      */
     public static void ajouterUtilisateur(String NomUtilisateur, String mdp, String imageSrc) {
 
@@ -94,9 +94,9 @@ public class BDDUtilisateur {
 
     /**
      * permet de modifier nom, mot de passe et image d'un utilisateur ainsi que de reattribuer le fichier xml de ses problemes
-     * @param login nom de l'utilisateur
-     * @param mdp mot de passe de l'utilisateur
-     *  @param imageSrc le chemin de l'image le représentant
+     * @param login : nom de l'utilisateur
+     * @param mdp : mot de passe de l'utilisateur
+     *  @param imageSrc : le chemin de l'image le représentant
      */
     public static void modifierUtilisateur(String login, String mdp, String imageSrc) {
         //Déclaration et initialisation des variables
@@ -185,8 +185,8 @@ public class BDDUtilisateur {
 
     /**
      * classe qui permet de lire dans le fichier et de retourner si on peut creer ou non le nouveau compte
-     * @param login nom d'utilisateur
-     * @return existe existence du nom d'utilisateur
+     * @param login : nom d'utilisateur
+     * @return existe : existence du nom d'utilisateur
      */
     public static boolean existeUtilisateur(String login) {
         //Déclaration des variables
@@ -219,8 +219,8 @@ public class BDDUtilisateur {
 
     /**
      * fonction qui supprime un compte
-     * @param login nom d'utilisateur
-     * @return trouve si le compte a été supprimé
+     * @param login : nom d'utilisateur
+     * @return trouve : si le compte a été supprimé
      */
     public static boolean supprimerCompte(String login) {
         //Déclaration et initialisation des variables
@@ -274,7 +274,7 @@ public class BDDUtilisateur {
 
     /**
      * modifie le nom d'utilisateur
-     * @param NomUtilisateur
+     * @param NomUtilisateur : le nom de l'utilisateur
      */
     public static void setNomUtilisateur(String NomUtilisateur) {
         BDDUtilisateur.NomUtilisateur = NomUtilisateur;

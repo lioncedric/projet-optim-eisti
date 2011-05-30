@@ -19,9 +19,9 @@ public class Contrainte {
     
    /**
     * constructeur
-    * @param coeffVariables les coeficients des variables
-    * @param inegalite le type de contrainte
-    * @param constante la valeur de la constante
+    * @param coeffVariables : les coeficients des variables
+    * @param inegalite : le type de contrainte
+    * @param constante : la valeur de la constante
     */
     public Contrainte(ArrayList<Double> coeffVariables, String inegalite, double constante){
         this.coeffVariables = coeffVariables;
@@ -42,7 +42,7 @@ public class Contrainte {
     }
 
     /**
-     * @param coeffVariables the coeffVariables to set
+     * @param coeffVariables : the coeffVariables to set
      */
     public void setCoeffVariables(ArrayList<Double> coeffVariables) {
         this.coeffVariables = coeffVariables;
@@ -56,7 +56,7 @@ public class Contrainte {
     }
 
     /**
-     * @param inegalite the inegalite to set
+     * @param inegalite : the inegalite to set
      */
     public void setInegalite(String inegalite) {
         this.inegalite = inegalite;
@@ -70,7 +70,7 @@ public class Contrainte {
     }
 
     /**
-     * @param constante the constante to set
+     * @param constante : the constante to set
      */
     public void setConstante(double constante) {
         this.constante = constante;

@@ -26,14 +26,14 @@ public class PanelProblemesUtilisateurListener implements ActionListener, MouseL
 
     /**
      * Constructeur permettant d'initialiser notre variable
-     * @param pPpu 
+     * @param pPpu : Panel gérant les problèmes de l'utilisateur
      */
     public PanelProblemesUtilisateurListener(PanelProblemesUtilisateur pPpu) {
         this.ppu = pPpu;
     }
     /**
      * Supprimer un Probleme
-     * @param numero numero du probleme
+     * @param numero : numero du probleme
      */
     public static void SupprimerProbleme(int numero) {
         BddProbleme.supprimerProbleme(numero);
@@ -60,7 +60,7 @@ public class PanelProblemesUtilisateurListener implements ActionListener, MouseL
 
     /**
      * Redéfinition de la méthode actionPerformed de l'interface ActionListener
-     * @param e 
+     * @param e : l'evenement
      */
     @Override
     public void actionPerformed(ActionEvent e) {
@@ -192,7 +192,7 @@ public class PanelProblemesUtilisateurListener implements ActionListener, MouseL
 
     /**
      * Redéfinition de la fonction mouseClicked de l'interface MouseListener
-     * @param e 
+     * @param e  : l'evenement généré par le clique de la souris
      */
     @Override
     public void mouseClicked(MouseEvent e) {

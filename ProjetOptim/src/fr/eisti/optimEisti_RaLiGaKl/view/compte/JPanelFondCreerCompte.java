@@ -33,8 +33,8 @@ public class JPanelFondCreerCompte extends JPanel {
     private JTextField jtfAvatar;
 
     /**
-     * Constructeur
-     * @param image l'image de fond
+     * Constructeur d'un panel qui gère la création du compte utilisateur
+     * @param image : l'image de fond
      */
     public JPanelFondCreerCompte(Image image) {
         //initialisation de l'image
@@ -94,6 +94,8 @@ public class JPanelFondCreerCompte extends JPanel {
         this.jtfMdp2.setText("");
         this.jtfAvatar.setText("");
     }
+
+    //accesseurs
 
     public JButton getBoutonAvatar() {
         return boutonAvatar;

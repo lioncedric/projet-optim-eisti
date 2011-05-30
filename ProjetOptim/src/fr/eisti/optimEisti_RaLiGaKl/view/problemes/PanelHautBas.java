@@ -6,9 +6,6 @@ import java.awt.Image;
 import java.awt.Toolkit;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
-import java.io.File;
-import java.io.IOException;
-import javax.imageio.ImageIO;
 import javax.swing.JPanel;
 
 /**
@@ -27,7 +24,7 @@ public class PanelHautBas extends JPanel implements MouseListener {
 
     /**
      * Constructeur d'un panelHautBas
-     * @param panelProbleme
+     * @param panelProbleme : panel gérant le problème
      */
     public PanelHautBas(PanelProbleme panelProbleme) {
         this.devoilerSolution = false;
@@ -52,10 +49,6 @@ public class PanelHautBas extends JPanel implements MouseListener {
         }
     }
 
-    /**
-     * Procédure qui permet de peindre les composants
-     * @param g 
-     */
     @Override
     public void paintComponent(Graphics g) {
         //si la solution est devoilee
@@ -88,7 +81,7 @@ public class PanelHautBas extends JPanel implements MouseListener {
 
     /**
      * Procedure qui s'enclenche lorsque la souris entre au dessus du composant qui écoute cette action
-     * @param e L'evenement de la souris
+     * @param e : L'evenement de la souris
      */
     @Override
     public void mouseEntered(MouseEvent e) {
@@ -109,7 +102,7 @@ public class PanelHautBas extends JPanel implements MouseListener {
 
     /**
      * Procedure qui est appelée lorsque la souris sort du composant qui écoute cette action
-     * @param e 
+     * @param e : evenement généré par la souris
      */
     @Override
     public void mouseExited(MouseEvent e) {

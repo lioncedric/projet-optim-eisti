@@ -63,6 +63,8 @@ public class ListProblemeRenderer extends JLabel implements ListCellRenderer {
         return this;
     }
     
+    //Accesseurs
+
     public void changerCouleurTexte(Color c){
         this.couleurTexte=c;
     }
