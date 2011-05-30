@@ -71,15 +71,16 @@ public class PanelProfil extends JPanel {
     public void ajoutImageFond() {
         try {
             avatar = ImageIO.read(new File(BDDUtilisateur.getImage()));
-          
+            panImage = new JPanelFondNormal(avatar);
             //on ajoute l'image au panel panImage
 
         } catch (IOException ex) {
-            
-            avatar = Toolkit.getDefaultToolkit().getImage(getClass().getResource("/images/tete.jpg"));
+
+            Image newAvatar = Toolkit.getDefaultToolkit().getImage(getClass().getResource("/images/tete.jpg"));
+            panImage = new JPanelFondNormal(newAvatar);
 
         }
-        panImage = new JPanelFondNormal(avatar);
+
 
     }
 
@@ -95,6 +96,8 @@ public class PanelProfil extends JPanel {
         //on adapte la hauteur du panel à la hauteur de l'image
         if (avatar != null) {
             PanelProfil.panImage.setPreferredSize(new Dimension(avatar.getHeight(this), avatar.getHeight(this)));
+        } else {
+            PanelProfil.panImage.setPreferredSize(new Dimension(50,76));
         }
         this.panDroite.setLayout(new GridLayout(2, 1));
         this.panBouton.add(this.boutonProfil);

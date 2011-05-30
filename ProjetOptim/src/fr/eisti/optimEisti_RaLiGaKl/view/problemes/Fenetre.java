@@ -3,6 +3,7 @@
  */
 package fr.eisti.optimEisti_RaLiGaKl.view.problemes;
 
+import fr.eisti.optimEisti_RaLiGaKl.Main;
 import fr.eisti.optimEisti_RaLiGaKl.controler.compte.PanelProfilListener;
 import java.awt.event.KeyEvent;
 import javax.swing.JFrame;
@@ -13,9 +14,12 @@ import javax.swing.JTabbedPane;
 import javax.swing.KeyStroke;
 
 import fr.eisti.optimEisti_RaLiGaKl.controler.problemes.FenetreListener;
+import fr.eisti.optimEisti_RaLiGaKl.view.compte.JPanelFondNormal;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
+import java.awt.Image;
+import java.awt.Toolkit;
 import javax.swing.JPanel;
 
 import javax.swing.JSplitPane;
@@ -86,6 +90,8 @@ public class Fenetre extends JFrame {
         this.panGauche = new JPanel();
         this.panGauche.setLayout(new BorderLayout());
         this.panProfil = new PanelProfil();//on creer un panel qui gere le profil de l'utilisateur dans la fenetre
+
+
         gauche = new PanelProblemesUtilisateur();//on creer un panel qui gere tous les problèmes de l'utilisateur logger
         this.panGauche.add(this.panProfil, BorderLayout.NORTH);
         this.panGauche.add(this.gauche, BorderLayout.CENTER);
