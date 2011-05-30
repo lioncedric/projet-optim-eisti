@@ -78,7 +78,7 @@ public class BDDUtilisateur {
             //si l'utilisateur ne choisit pas d'image
             if(imageSrc.equals("")){
                 //on en mets une par défaut
-                imageSrc=new File("images").getParent()+"/tete.jpg";
+                imageSrc="images/tete.jpg";
             }
             //on ajoute un attribut avec le src de son avatar
             personne.setAttribute("imagesrc", imageSrc);

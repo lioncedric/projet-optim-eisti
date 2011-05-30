@@ -3,10 +3,7 @@
 <personne imagesrc="D:\My Documents\ProjetOptim\images\tete.jpg" login="meri" password="meri"/>
 <personne imagesrc="D:\My Documents\ProjetOptim\images\tete.jpg" login="ced" password="ced"/>
 <personne imagesrc="D:\My Documents\ProjetOptim\images\tete.jpg" login="mael" password="mael"/>
-<personne imagesrc="" login="m" password="m"/>
-<personne imagesrc="./images/tete.jpg" login="c" password="c"/>
-<personne imagesrc="./images/tete.jpg" login="f" password="f"/>
 <personne imagesrc="D:\My Documents\ProjetOptim\images\loupe.png" login="d" password="d"/>
-<personne imagesrc="null/tete.jpg" login="w" password="w"/>
+<personne imagesrc="null/tete.jpg" login="e" password="e"/>
 <personne imagesrc="null/tete.jpg" login="z" password="z"/>
 </identification>
