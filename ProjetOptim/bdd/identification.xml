@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
 <identification>
 <personne imagesrc="D:\My Documents\ProjetOptim\images\tete.jpg" login="meri" password="meri"/>
-<personne imagesrc="D:\My Documents\ProjetOptim\images\tete.jpg" login="ced" password="ced"/>
+<personne imagesrc="D:\My Documents\NetBeansProjects\ProjetOptim\images\tete.jpg" login="ced" password="ced"/>
 <personne imagesrc="D:\My Documents\ProjetOptim\images\tete.jpg" login="mael" password="mael"/>
 <personne imagesrc="D:\My Documents\ProjetOptim\images\loupe.png" login="d" password="d"/>
 <personne imagesrc="null/tete.jpg" login="e" password="e"/>

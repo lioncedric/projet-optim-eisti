@@ -37,13 +37,11 @@ public class Simplexe {
             int[] tabCoordPivot;
             //on recupere ces coordonnees en appelant la fonction adequate
             tabCoordPivot = chercherPivot(matrice);
-            System.out.println("La valeur pivot est en ligne " + (tabCoordPivot[0] + 1) + " et en colonne" + (tabCoordPivot[1] + 1));
-            PanelResultat.ecrire("La valeur pivot est en ligne " + (tabCoordPivot[0] + 1) + " et en colonne" + (tabCoordPivot[1] + 1));
-            System.out.println("\n");
-            PanelResultat.ecrire("\n");
 
             //si le probleme n'a pas tous les coefficients de la colonne pivot negatifs
             if (tabCoordPivot[0] != -50000 || tabCoordPivot[1] != -50000) {
+            PanelResultat.ecrire("La valeur pivot est en ligne " + (tabCoordPivot[0] + 1) + " et en colonne" + (tabCoordPivot[1] + 1));
+            PanelResultat.ecrire("\n");
                 //on appelle la focntion qui permet de faire la reduction pivot
                 reductionPivot(matrice, tabCoordPivot);
                 resolu = problemeResolu(matrice);
@@ -55,14 +53,11 @@ public class Simplexe {
 
         //si le probleme n'admet pas de solution
         if (noSolution) {
-            System.out.println("Votre probleme n'admet pas de solution !");
             PanelResultat.ecrire("Votre probleme n'admet pas de solution !");
-            System.out.println("\n");
             PanelResultat.ecrire("\n");
         } else {
             //on stocke les valeurs de la solution dans la variable adéquate
             resultat = calculerSolution(matrice, numVarArti, nbvar, objectif);
-            System.out.println("Le probleme est à présent terminé.\nOn ne peut pas itérer davantage.");
             PanelResultat.ecrire("Le probleme est à présent terminé.\nOn ne peut pas itérer davantage.");
             if (resultat.size() == 1) {
                 resultat = null;
@@ -108,7 +103,6 @@ public class Simplexe {
 
         //pour chaque ligne sauf la derniere (autrement dit, pour toutes les lignes de contraintes)
         for (i = 0; i < matrice.length - 1; i++) {
-            System.out.println(matrice[i][colonneDuMaxDerniereLigne]);
             //si la colonne pivot ne contient que des elements negatifs
             if (matrice[i][colonneDuMaxDerniereLigne] > 0) {
                 //si la valeur du calcul est inferieure au min, on definit la nouvelle ligne contenant le pivot
@@ -167,9 +161,7 @@ public class Simplexe {
         //si la valeur du pivot est differente de 1
         if (matrice[ligneDuMinPourPivot][colonneDuMaxDerniereLigne] != 1) {
             double pivot = matrice[ligneDuMinPourPivot][colonneDuMaxDerniereLigne];
-            System.out.println("On divise les coeff de la ligne " + (ligneDuMinPourPivot + 1) + " par: " + pivot);
             PanelResultat.ecrire("On divise les coeff de la ligne " + (ligneDuMinPourPivot + 1) + " par: " + pivot);
-            System.out.println("\n");
             PanelResultat.ecrire("\n");
             //pour chaque colonne de la matrice
             for (int j = 0; j < matrice[0].length; j++) {
@@ -194,7 +186,6 @@ public class Simplexe {
         }
 
 
-        System.out.println("Nouveau tableau");
         PanelResultat.ecrire("Nouveau tableau");
         PanelResultat.ecrire("\n");
         //pour autant qu'il y a de contraintes (on va remplir toutes les lignes de la matrice sauf la derniere
@@ -204,11 +195,9 @@ public class Simplexe {
                 NumberFormat Myformat = NumberFormat.getInstance();
                 Myformat.setMinimumFractionDigits(2);       //Nb de Digit mini
                 Myformat.setMaximumFractionDigits(2);       //Nb de Digit Maxi
-                String str = Myformat.format(matrice[i][j]);                      //Formatage str="12.45"
-                System.out.print(" | " + str);
+                String str = Myformat.format(matrice[i][j]);
                 PanelResultat.ecrire(" | " + str);
             }
-            System.out.println("\n");
             PanelResultat.ecrire("\n");
         }
         PanelResultat.ecrire("\n");
@@ -239,12 +228,21 @@ public class Simplexe {
 
         //pour toutes les colonnes sauf la derniere
         boolean sansSolution = false;
-        /*int k = 0;
+        int k = 0;
         while (k < listeNumeroColonnesId.size() && !sansSolution) {
-            sansSolution = sansSolution || numVarArti.contains(listeNumeroColonnesId.get(k));
+            if (numVarArti.contains(listeNumeroColonnesId.get(k))) {
+                boolean aTrouveValeur1 = false;
+                int i = 0;
+                while (i < matrice.length && !aTrouveValeur1) {
+                    if (matrice[i][listeNumeroColonnesId.get(k)] == 1) {
+                        aTrouveValeur1 = true;
+                        sansSolution = sansSolution || matrice[i][matrice[0].length - 1] != 0.0;
+                    }
+                    i++;
+                }
+            }
             k++;
-            System.err.println("valeur du booleen: "+sansSolution);
-        }*/
+        }
 
         //si le probleme admet une solution
         if (!sansSolution) {
@@ -270,8 +268,7 @@ public class Simplexe {
 
     public static ArrayList<Integer> trouverNumeroColonnesId(double[][] matrice) {
         ArrayList<Integer> liste = new ArrayList<Integer>();
-                System.out.println("taille de la matrice (nbColonnes): "+(matrice[0].length - 1));
-                
+
         //ici, tout est inverse puisque les i sont les colonnes et les j les lignes, d'ou les matrice[j][i]
         for (int i = 0; i < matrice[0].length - 1; i++) {
             int nombreZero = 0;
@@ -285,7 +282,6 @@ public class Simplexe {
             }
             if (nombreUn == 1 && nombreZero == matrice.length - 1) {
                 liste.add(i);
-                System.out.println("numéro de la colonne des 1: "+i);
             }
         }
         return liste;
