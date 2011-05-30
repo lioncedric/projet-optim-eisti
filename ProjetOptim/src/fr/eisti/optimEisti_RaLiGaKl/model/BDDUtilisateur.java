@@ -44,7 +44,7 @@ public class BDDUtilisateur {
                 document.setXmlStandalone(true);
 
                 // Création de l'arborescence du DOM
-                Element racine = document.createElement("annuaire");
+                Element racine = document.createElement("identification");
                 //on ajoute la racine au xml
                 document.appendChild(racine);
                 //permet de transformer le dom en xml
