@@ -10,6 +10,7 @@ import java.io.IOException;
 
 import fr.eisti.optimEisti_RaLiGaKl.view.problemes.Fenetre;
 import fr.eisti.optimEisti_RaLiGaKl.Main;
+import fr.eisti.optimEisti_RaLiGaKl.model.Utilitaire;
 import fr.eisti.optimEisti_RaLiGaKl.view.compte.Preferences;
 import java.awt.Desktop;
 import java.awt.event.ComponentListener;
@@ -123,7 +124,7 @@ public class FenetreListener implements ActionListener, ComponentListener {
                     file.deleteOnExit();
                     OutputStream out = new FileOutputStream(file);
                     try {
-                        copyStreamToStream(resource, out);
+                        Utilitaire.copyStreamToStream(resource, out);
                     } finally {
                         out.close();
                     }
@@ -135,67 +136,7 @@ public class FenetreListener implements ActionListener, ComponentListener {
         }
     }
 
-    /**
-     * Copy any input stream to output stream. Once the data will be copied
-     * both streams will be closed.
-     *
-     * @param input  - InputStream to copy from
-     * @param output - OutputStream to copy to
-     * @throws IOException - io error in function
-     * @throws OSSMultiException - double error in function
-     */
-    public static void copyStreamToStream(InputStream input, OutputStream output) throws IOException {InputStream is = null;
-        OutputStream os = null;
-        int ch;
-
-        try {
-            if (input instanceof BufferedInputStream) {
-                is = input;
-            } else {
-                is = new BufferedInputStream(input);
-            }
-            if (output instanceof BufferedOutputStream) {
-                os = output;
-            } else {
-                os = new BufferedOutputStream(output);
-            }
-
-            while ((ch = is.read()) != -1) {
-                os.write(ch);
-            }
-            os.flush();
-        } finally {
-            IOException exec1 = null;
-            IOException exec2 = null;
-            try {
-                // because this close can throw exception we do next close in
-                // finally statement
-                if (os != null) {
-                    try {
-                        os.close();
-                    } catch (IOException exec) {
-                        exec1 = exec;
-                    }
-                }
-            } finally {
-                if (is != null) {
-                    try {
-                        is.close();
-                    } catch (IOException exec) {
-                        exec2 = exec;
-                    }
-                }
-            }
-            if ((exec1 != null) && (exec2 != null)) {
-                throw exec1;
-            } else if (exec1 != null) {
-                throw exec1;
-            } else if (exec2 != null) {
-                throw exec2;
-            }
-        }
-    }
-
+  
     /**
      * Redéfinition de la méthode componentResized de l'interface ComponentListener
      * @param e : l'evenement sur le composant
