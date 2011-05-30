@@ -32,19 +32,11 @@ public class CreerCompteListener implements MouseListener {
      * permet de rajouter une personne dans le identification.xml
      */
     public void creerCompte() {
-        //si le fichier bdd/identifiation.xml n'existe pas
-        if(!new File("bdd").exists() || !new File("./bdd/identification.xml").exists()){
-            //on créé le répertoire et le fichier identification.xml
-            BDDUtilisateur.creerFichierIdentification();
-            //on ouvre un dialogue
-            JOptionPane.showMessageDialog(null, "Connexion échouée! Vous devez d'abord créer votre compte car le fichier d'identification n'existait plus", "Erreur", JOptionPane.ERROR_MESSAGE);
-            //on remet la fenetre au premier plan
-            maFenetre.setAlwaysOnTop(true);
-            //on ferme la fenetre d'identification
-            maFenetre.dispose();
-        }
+        //création du répertoire bdd à la racine du projet
+        File rep = new File("bdd");
+        rep.mkdir();
         //si le nom d'utilisateur existe déjà dans la BDD
-        else if(BDDUtilisateur.existeUtilisateur(this.maFenetre.getPanFond().getJtfNomUtilisateur().getText())) {
+        if(BDDUtilisateur.existeUtilisateur(this.maFenetre.getPanFond().getJtfNomUtilisateur().getText())) {
             //la fenetre n'est pas au premier plan
             maFenetre.setAlwaysOnTop(false);
             //on ouvre un dialogue
