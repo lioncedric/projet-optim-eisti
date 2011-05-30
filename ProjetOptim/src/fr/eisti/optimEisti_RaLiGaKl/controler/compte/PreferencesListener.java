@@ -7,6 +7,7 @@ import fr.eisti.optimEisti_RaLiGaKl.view.compte.Preferences;
 import java.awt.Color;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.io.File;
 import java.io.IOException;
 import javax.swing.JColorChooser;
 
@@ -88,6 +89,7 @@ public class PreferencesListener implements MouseListener {
             }
         }
         try {
+             new File("config/").mkdir();
             Utilitaire.Save("config/" + BDDUtilisateur.getNomUtilisateur());
         } catch (IOException ex) {
            
