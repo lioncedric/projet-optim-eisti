@@ -78,15 +78,8 @@ public class BDDUtilisateur {
             //si l'utilisateur ne choisit pas d'image
             if(imageSrc.equals("")){
                 //on en mets une par défaut
-                imageSrc="./images/tete.jpg";
+                imageSrc=new File("images").getParent()+"/tete.jpg";
             }
-            //On copie l'image dans le répertoire images de la racine du projet si elle n'y est pas déjà
-
-            //faux
-          //  if(!imageSrc.endsWith("images\\" + new File(imageSrc).getName())){
-                //on copie l'image dans un répertoire du projet pour la réutiliser en html
-         //       Utilitaire.copie(imageSrc, "images/" + new File(imageSrc).getName());
-         //   }
             //on ajoute un attribut avec le src de son avatar
             personne.setAttribute("imagesrc", imageSrc);
             //on ajoute le noeuf fils à la racine
