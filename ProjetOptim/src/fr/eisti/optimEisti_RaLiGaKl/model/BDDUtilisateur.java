@@ -104,11 +104,12 @@ public class BDDUtilisateur {
         boolean trouve = false;
         String NomUtilisateurTmp = "";
         String pass = "";
+        // Parse an XML document into a DOM tree.
         Document document = Utilitaire.parseXmlDom(new File(chFichierIdentification));
-
+        
         //on recupere le noeud racine
         Element racine = document.getDocumentElement();
-        //on recupere tous les coefficients de la fonction objectif
+        //on recupere tous noeuds personne
         NodeList liste = racine.getElementsByTagName("personne");
         //Tant qu'on a pas parcouru toute la liste de noeud
         while (i < liste.getLength() && !trouve) {
@@ -120,15 +121,26 @@ public class BDDUtilisateur {
             if (NomUtilisateurTmp.equals(NomUtilisateur) && pass.equals(motDePasse)) {
                 trouve = true;
                 liste.item(i).getAttributes().getNamedItem("imagesrc").setNodeValue(imageSrc);
-
+                
                 liste.item(i).getAttributes().getNamedItem("password").setNodeValue(mdp);
 
                 liste.item(i).getAttributes().getNamedItem("login").setNodeValue(login);
                 //permet de transformer le dom en xml
                 Utilitaire.transformerXml(document, chFichierIdentification);
+                //on modifie l'image de l'utilisateur
+                BDDUtilisateur.setImage(imageSrc);
+                //on modifie le nom d'utilisateur
+                BDDUtilisateur.setNomUtilisateur(login);
+                //on modifie le mot de passe de l'utilisateur
+                BDDUtilisateur.setMotDePasse(mdp);
+                //instanciation du fichier xml de lancien nom d'utilisateur
                 File fichier = new File("bdd/" + NomUtilisateur + ".xml");
+                //si il existe
                 if (fichier.exists()) {
+                    //on le renomme au nouveau nom d'utilisateur
                     fichier.renameTo(new File("bdd/" + login + ".xml"));
+                    //et on appelle la fonction qui va modifier son image
+                    modifierFichierXmlUtilisateur("bdd/" + login + ".xml", imageSrc);
                 }
             }
             //incrémentation du i
@@ -137,6 +149,24 @@ public class BDDUtilisateur {
 
 
 
+    }
+
+    /**
+     * permet de modifier l'url de la nouvelle image dans le fichier xml
+     * @param nomFichier nom du nouveau fichier xml de l'utilisateur
+     * @param imageSrc chemin de la nouvelle image (si elle est nouvelle sinon le chemin de l'ancienne image)
+     */
+    public static void modifierFichierXmlUtilisateur(String nomFichier, String imageSrc){
+        // Parse an XML document into a DOM tree.
+        Document document = Utilitaire.parseXmlDom(new File(nomFichier));
+
+        //on recupere le noeud racine, le noeud listeProbleme
+        Element racine = document.getDocumentElement();
+        //on modifie l'url de la nouvelle image
+        racine.setAttribute("url", imageSrc);
+
+        //permet de transformer le dom en xml
+        Utilitaire.transformerXml(document, nomFichier);
     }
 
     /**
@@ -153,6 +183,7 @@ public class BDDUtilisateur {
         String NomUtilisateurTmp = "";
         String pass = "";
         int i = 0;
+        // Parse an XML document into a DOM tree.
         Document document = Utilitaire.parseXmlDom(new File(chFichierIdentification));
 
         //on recupere le noeud racine
@@ -195,6 +226,7 @@ public class BDDUtilisateur {
         existe = false;
         String nom = "";
         int i = 0;
+        // Parse an XML document into a DOM tree.
         Document document = Utilitaire.parseXmlDom(new File(chFichierIdentification));
 
         //on recupere le noeud racine
