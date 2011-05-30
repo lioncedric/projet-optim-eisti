@@ -290,8 +290,6 @@ public class Probleme {
         initMatrice(matrice);
         //on rempli la matrice avec les différentes données du problème à résoudre (variables, contraintes)
         remplirMatriceScilab(matrice, nbVariablesImg);
-        afficherMatrice(matrice);
-
         //on retourne la matrice
         return matrice;
     }
