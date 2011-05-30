@@ -78,7 +78,7 @@ public class ConnexionControler implements MouseListener, KeyListener {
             Main.fenetrePrincipale = new Fenetre();
             Main.fenetrePrincipale.setVisible(true);
              try {
-            Utilitaire.Load("config/" + BDDUtilisateur.getNomUtilisateur());
+            Utilitaire.Load("bdd/" + BDDUtilisateur.getNomUtilisateur());
         } catch (IOException ex) {
 
         } catch (ClassNotFoundException ex) {

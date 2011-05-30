@@ -47,7 +47,7 @@ public class PreferencesListener implements MouseListener {
                 "Choose Background Color",
                 Main.fenetrePrincipale.getPanProfil().getBackground());
 
-        
+
         //si une couleur est selectionnée, on met a jour la couleur de l'objet ou du panel concerné
         if (newColor != null) {
             if (e.getSource() == this.preferences.getTab()[0]) {
@@ -89,10 +89,9 @@ public class PreferencesListener implements MouseListener {
             }
         }
         try {
-             new File("config/").mkdir();
-            Utilitaire.Save("config/" + BDDUtilisateur.getNomUtilisateur());
+            new File("bdd/").mkdir();
+            Utilitaire.Save("bdd/" + BDDUtilisateur.getNomUtilisateur());
         } catch (IOException ex) {
-           
         }
 
 
