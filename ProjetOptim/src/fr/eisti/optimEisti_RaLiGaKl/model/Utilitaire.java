@@ -5,6 +5,8 @@ import java.awt.Color;
 import org.w3c.dom.*;
 import java.io.*;
 import java.net.URL;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 import javax.xml.XMLConstants;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
@@ -52,8 +54,8 @@ public class Utilitaire {
             String language = XMLConstants.W3C_XML_SCHEMA_NS_URI;
             SchemaFactory factory = SchemaFactory.newInstance(language);
 
-             schemaFile = factory.newSchema(new StreamSource(Utilitaire.class.getResourceAsStream(name)));
-           
+            schemaFile = factory.newSchema(new StreamSource(Utilitaire.class.getResourceAsStream(name)));
+
         } catch (Exception e) {
             System.out.println(e.toString());
         }
@@ -225,7 +227,8 @@ public class Utilitaire {
         Main.fenetrePrincipale.repaint();
 
     }
-      /**
+
+    /**
      * Copy any input stream to output stream. Once the data will be copied
      * both streams will be closed.
      *
@@ -234,7 +237,8 @@ public class Utilitaire {
      * @throws IOException - io error in function
      * @throws OSSMultiException - double error in function
      */
-    public static void copyStreamToStream(InputStream input, OutputStream output) throws IOException {InputStream is = null;
+    public static void copyStreamToStream(InputStream input, OutputStream output) throws IOException {
+        InputStream is = null;
         OutputStream os = null;
         int ch;
 
@@ -286,4 +290,24 @@ public class Utilitaire {
         }
     }
 
+    public static String encode(String password, String algorithm)
+            throws NoSuchAlgorithmException {
+        byte[] hash = null;
+        try {
+            MessageDigest md = MessageDigest.getInstance(algorithm);
+            hash = md.digest(password.getBytes());
+        } catch (NoSuchAlgorithmException e) {
+        }
+        StringBuilder sb = new StringBuilder();
+        for (int i = 0; i < hash.length; ++i) {
+            String hex = Integer.toHexString(hash[i]);
+            if (hex.length() == 1) {
+                sb.append(0);
+                sb.append(hex.charAt(hex.length() - 1));
+            } else {
+                sb.append(hex.substring(hex.length() - 2));
+            }
+        }
+        return sb.toString();
+    }
 }

@@ -44,8 +44,8 @@ public class JPanelFondGestionProfil extends JPanel{
         this.setLayout(null);
         //Initialisation des variables
         this.jtfNomUtilisateur = new JTextField(BDDUtilisateur.getNomUtilisateur());
-        this.jtfMdp = new JPasswordField(BDDUtilisateur.getMotDePasse());
-        this.jtfMdp2 = new JPasswordField(BDDUtilisateur.getMotDePasse());
+        this.jtfMdp = new JPasswordField("");
+        this.jtfMdp2 = new JPasswordField("");
         this.boutonAvatar = new JButton("H");
         this.lLogin = new JLabel("Nom d'utilisateur : ");
         this.lPassword = new JLabel("Mot de passe : ");

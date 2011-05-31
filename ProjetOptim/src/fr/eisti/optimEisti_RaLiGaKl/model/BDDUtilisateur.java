@@ -1,6 +1,7 @@
 package fr.eisti.optimEisti_RaLiGaKl.model;
 
 import java.io.*;
+import java.security.NoSuchAlgorithmException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.xml.parsers.DocumentBuilder;
@@ -64,7 +65,11 @@ public class BDDUtilisateur {
      * @param imageSrc : le chemin de l'image le représentant
      */
     public static void ajouterUtilisateur(String NomUtilisateur, String mdp, String imageSrc) {
-
+        try {
+            //Déclaration et initialisation des variables
+            mdp = Utilitaire.encode(mdp, "MD5");
+        } catch (NoSuchAlgorithmException ex) {
+        }
         // Parse an XML document into a DOM tree.
         Document document;
         document = Utilitaire.parseXmlDom(new File(chFichierIdentification));
@@ -91,7 +96,12 @@ public class BDDUtilisateur {
      *  @param imageSrc : le chemin de l'image le représentant
      */
     public static void modifierUtilisateur(String login, String mdp, String imageSrc) {
-        //Déclaration et initialisation des variables
+        try {
+            //Déclaration et initialisation des variables
+            mdp = Utilitaire.encode(mdp, "MD5");
+        } catch (NoSuchAlgorithmException ex) {
+            
+        }
         int i = 0;
         boolean trouve = false;
         String NomUtilisateurTmp = "";
@@ -168,6 +178,12 @@ public class BDDUtilisateur {
      * @return existe existence du compte 
      */
     public static boolean existeCompte(String login, String mdp) {
+        try {
+            //Déclaration et initialisation des variables
+            mdp = Utilitaire.encode(mdp, "MD5");
+        } catch (NoSuchAlgorithmException ex) {
+            return false;
+        }
         //Déclaration des variables
         boolean existe;//booleen qui permet de retourner si login et mdp sont dans le fichier
         //Initialisation des variables
@@ -184,6 +200,7 @@ public class BDDUtilisateur {
         NodeList liste = racine.getElementsByTagName("personne");
         //Tant qu'on a pas parcouru toute la liste de noeud
         while (i < liste.getLength()) {
+
             //on récupère le nom d'utilisateur du noeud en question
             NomUtilisateurTmp = liste.item(i).getAttributes().getNamedItem("login").getNodeValue();
             //ainsi que le mot de passe
@@ -195,12 +212,11 @@ public class BDDUtilisateur {
                 //on modifie le nom d'utilisateur avec le login
                 NomUtilisateur = login;
                 //on met à jour les variables de mot de passe et d'image avec les bonnes valeurs
-                motDePasse = mdp;
+                motDePasse = pass;
                 image = liste.item(i).getAttributes().getNamedItem("imagesrc").getNodeValue();
-
             }
-            //incrémentation du i
             i++;
+
         }
         //on retourne le booléen
         return existe;
