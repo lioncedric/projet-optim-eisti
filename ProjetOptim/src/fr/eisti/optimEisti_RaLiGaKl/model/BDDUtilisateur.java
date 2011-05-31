@@ -25,14 +25,14 @@ public class BDDUtilisateur {
     /**
      * permet de créer le répertoire bdd/identification.xml si celui-ci n'existe pas
      */
-    public static void creerFichierIdentification(){
-        try {            
+    public static void creerFichierIdentification() {
+        try {
             //création du répertoire bdd à la racine du projet
             File rep = new File("bdd");
             rep.mkdir();
             boolean createNewFile = new File(chFichierIdentification).createNewFile();
-            
-            if(createNewFile){
+
+            if (createNewFile) {
                 // Création d'un nouveau DOM
                 DocumentBuilderFactory fabrique = DocumentBuilderFactory.newInstance();
                 DocumentBuilder constructeur;
@@ -65,25 +65,24 @@ public class BDDUtilisateur {
      */
     public static void ajouterUtilisateur(String NomUtilisateur, String mdp, String imageSrc) {
 
-            // Parse an XML document into a DOM tree.
-            Document document;
-            document = Utilitaire.parseXmlDom(new File(chFichierIdentification));
-            //on recupere le noeud racine
-            Element racine = document.getDocumentElement();
-            //On créé un nouveau noeud Personne
-            Element personne = document.createElement("personne");
-            //on modifie ces attributs login et password
-            personne.setAttribute("login", NomUtilisateur);
-            personne.setAttribute("password", mdp);
-            //on ajoute un attribut avec le src de son avatar
-            personne.setAttribute("imagesrc", imageSrc);
-            //on ajoute le noeuf fils à la racine
-            racine.appendChild(personne);
-            //permet de transformer le dom en xml
-            Utilitaire.transformerXml(document, chFichierIdentification);
-        
-    }
+        // Parse an XML document into a DOM tree.
+        Document document;
+        document = Utilitaire.parseXmlDom(new File(chFichierIdentification));
+        //on recupere le noeud racine
+        Element racine = document.getDocumentElement();
+        //On créé un nouveau noeud Personne
+        Element personne = document.createElement("personne");
+        //on modifie ces attributs login et password
+        personne.setAttribute("login", NomUtilisateur);
+        personne.setAttribute("password", mdp);
+        //on ajoute un attribut avec le src de son avatar
+        personne.setAttribute("imagesrc", imageSrc);
+        //on ajoute le noeuf fils à la racine
+        racine.appendChild(personne);
+        //permet de transformer le dom en xml
+        Utilitaire.transformerXml(document, chFichierIdentification);
 
+    }
 
     /**
      * permet de modifier nom, mot de passe et image d'un utilisateur ainsi que de reattribuer le fichier xml de ses problemes
@@ -99,7 +98,7 @@ public class BDDUtilisateur {
         String pass = "";
         // Parse an XML document into a DOM tree.
         Document document = Utilitaire.parseXmlDom(new File(chFichierIdentification));
-        
+
         //on recupere le noeud racine
         Element racine = document.getDocumentElement();
         //on recupere tous noeuds personne
@@ -114,7 +113,7 @@ public class BDDUtilisateur {
             if (NomUtilisateurTmp.equals(NomUtilisateur) && pass.equals(motDePasse)) {
                 trouve = true;
                 liste.item(i).getAttributes().getNamedItem("imagesrc").setNodeValue(imageSrc);
-                
+
                 liste.item(i).getAttributes().getNamedItem("password").setNodeValue(mdp);
 
                 liste.item(i).getAttributes().getNamedItem("login").setNodeValue(login);
@@ -149,7 +148,7 @@ public class BDDUtilisateur {
      * @param nomFichier nom du nouveau fichier xml de l'utilisateur
      * @param imageSrc chemin de la nouvelle image (si elle est nouvelle sinon le chemin de l'ancienne image)
      */
-    public static void modifierFichierXmlUtilisateur(String nomFichier, String imageSrc){
+    public static void modifierFichierXmlUtilisateur(String nomFichier, String imageSrc) {
         // Parse an XML document into a DOM tree.
         Document document = Utilitaire.parseXmlDom(new File(nomFichier));
 
@@ -198,7 +197,7 @@ public class BDDUtilisateur {
                 //on met à jour les variables de mot de passe et d'image avec les bonnes valeurs
                 motDePasse = mdp;
                 image = liste.item(i).getAttributes().getNamedItem("imagesrc").getNodeValue();
-              
+
             }
             //incrémentation du i
             i++;
@@ -274,10 +273,12 @@ public class BDDUtilisateur {
                     //on supprime le noeud
                     racine.removeChild(liste.item(i));
                     //Si le fichier xml propre à l'utilisateur existe bien
-                    if(new File("./bdd/"+BDDUtilisateur.getNomUtilisateur()+".xml").exists()){
+                    if (new File("./bdd/" + BDDUtilisateur.getNomUtilisateur() + ".xml").exists()) {
                         //on supprime le fichier
-                        new File("./bdd/"+BDDUtilisateur.getNomUtilisateur()+".xml").delete();
+                        new File("./bdd/" + BDDUtilisateur.getNomUtilisateur() + ".xml").delete();
+                        new File("./bdd/" + BDDUtilisateur.getNomUtilisateur()).delete();
                     }
+
                     //permet de transformer le dom en xml
                     Utilitaire.transformerXml(document, chFichierIdentification);
                 }
