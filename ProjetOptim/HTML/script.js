@@ -4,7 +4,6 @@ function init(){
     titreBlocProbleme=document.getElementsByClassName("titreBlocResultats");
     //on le cache
     titreBlocProbleme[0].style.display="none";
-    titreBlocProbleme[1].style.display="none";
     //on récupère tous les elements de classname=lien
     elementsHref=document.getElementsByClassName('lien');
     //on recup tous les elements bloc de probleme res
@@ -20,7 +19,7 @@ function init(){
 }
 
 //fonction qui affiche le bloc dont le lien correspond
-function afficheProbleme(obj){
+function afficheProbleme(obj){    
     //On récupère le div de l'image d'accueil
     element=document.getElementById("image");
     //on enlève l'image
@@ -29,7 +28,6 @@ function afficheProbleme(obj){
     titreBlocProbleme=document.getElementsByClassName("titreBlocResultats");
     //on l'affiche
     titreBlocProbleme[0].style.display="block";
-    titreBlocProbleme[1].style.display="block";
     //on recupere l'id
     numero=obj.getAttribute("id");
     //on recupere tous les blocs res

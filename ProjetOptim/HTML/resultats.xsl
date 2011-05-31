@@ -63,7 +63,7 @@
                                 <div class="titreBlocResultats">
                                     <xsl:value-of select="titre"/>
                                 </div>
-                <!-- affichage de la description-->
+                    <!-- affichage de la description-->
                                 <div>
                                     <fieldset>
                                         <legend>Description:</legend>
