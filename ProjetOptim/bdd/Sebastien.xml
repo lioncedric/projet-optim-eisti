@@ -1,0 +1,237 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<listeProblemes url="" utilisateur="Sebastien">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<probleme>
+<titre>SansSolution</titre>
+<description>Problème sans solution.</description>
+<objectif isPositif="false" type="Maximiser">
+<variable coeff="1.0"/>
+<variable coeff="-2.0"/>
+</objectif>
+<contrainte type="Infériorité">
+<variable coeff="1.0"/>
+<variable coeff="1.0"/>
+<constante valeur="3.0"/>
+</contrainte>
+<contrainte type="Infériorité">
+<variable coeff="-1.0"/>
+<variable coeff="3.0"/>
+<constante valeur="-4.0"/>
+</contrainte>
+</probleme>
+<probleme>
+<titre>LePlusGrosProbleme</titre>
+<description>Ce problème est le plus gros problème que nous connaissons
+admettons en solution.</description>
+<objectif isPositif="true" type="Minimiser">
+<variable coeff="80.0"/>
+<variable coeff="90.0"/>
+<variable coeff="120.0"/>
+<variable coeff="98.0"/>
+<variable coeff="102.0"/>
+<variable coeff="78.0"/>
+</objectif>
+<contrainte type="Infériorité">
+<variable coeff="1.0"/>
+<variable coeff="1.0"/>
+<variable coeff="0.0"/>
+<variable coeff="0.0"/>
+<variable coeff="0.0"/>
+<variable coeff="0.0"/>
+<constante valeur="1000.0"/>
+</contrainte>
+<contrainte type="Infériorité">
+<variable coeff="0.0"/>
+<variable coeff="0.0"/>
+<variable coeff="1.0"/>
+<variable coeff="1.0"/>
+<variable coeff="0.0"/>
+<variable coeff="0.0"/>
+<constante valeur="1500.0"/>
+</contrainte>
+<contrainte type="Infériorité">
+<variable coeff="0.0"/>
+<variable coeff="0.0"/>
+<variable coeff="0.0"/>
+<variable coeff="0.0"/>
+<variable coeff="1.0"/>
+<variable coeff="1.0"/>
+<constante valeur="1200.0"/>
+</contrainte>
+<contrainte type="Supériorité">
+<variable coeff="1.0"/>
+<variable coeff="0.0"/>
+<variable coeff="1.0"/>
+<variable coeff="0.0"/>
+<variable coeff="1.0"/>
+<variable coeff="0.0"/>
+<constante valeur="2300.0"/>
+</contrainte>
+<contrainte type="Supériorité">
+<variable coeff="0.0"/>
+<variable coeff="1.0"/>
+<variable coeff="0.0"/>
+<variable coeff="1.0"/>
+<variable coeff="0.0"/>
+<variable coeff="1.0"/>
+<constante valeur="1400.0"/>
+</contrainte>
+</probleme>
+<probleme>
+<titre>ProblemeM1</titre>
+<description>Sans description</description>
+<objectif isPositif="true" type="Minimiser">
+<variable coeff="1.0"/>
+<variable coeff="-2.0"/>
+<variable coeff="2.0"/>
+</objectif>
+<contrainte type="Egalité">
+<variable coeff="1.0"/>
+<variable coeff="1.0"/>
+<variable coeff="-1.0"/>
+<constante valeur="3.0"/>
+</contrainte>
+<contrainte type="Egalité">
+<variable coeff="-1.0"/>
+<variable coeff="3.0"/>
+<variable coeff="0.0"/>
+<constante valeur="-4.0"/>
+</contrainte>
+</probleme>
+
+<probleme>
+<titre>Premier</titre>
+<description>Rien</description>
+<objectif isPositif="true" type="Maximiser">
+<variable coeff="1.0"/>
+<variable coeff="2.0"/>
+</objectif>
+<contrainte type="Infériorité">
+<variable coeff="-3.0"/>
+<variable coeff="2.0"/>
+<constante valeur="2.0"/>
+</contrainte>
+<contrainte type="Infériorité">
+<variable coeff="-1.0"/>
+<variable coeff="2.0"/>
+<constante valeur="4.0"/>
+</contrainte>
+<contrainte type="Infériorité">
+<variable coeff="1.0"/>
+<variable coeff="1.0"/>
+<constante valeur="5.0"/>
+</contrainte>
+</probleme>
+<probleme>
+<titre>Testmumu3</titre>
+<description>Le troisième problème que nous avons étudié.</description>
+<objectif isPositif="true" type="Maximiser">
+<variable coeff="10.0"/>
+<variable coeff="20.0"/>
+</objectif>
+<contrainte type="Infériorité">
+<variable coeff="2.0"/>
+<variable coeff="1.0"/>
+<constante valeur="30.0"/>
+</contrainte>
+<contrainte type="Infériorité">
+<variable coeff="1.0"/>
+<variable coeff="4.0"/>
+<constante valeur="64.0"/>
+</contrainte>
+<contrainte type="Infériorité">
+<variable coeff="5.0"/>
+<variable coeff="6.0"/>
+<constante valeur="110.0"/>
+</contrainte>
+</probleme>
+<probleme>
+<titre>Testmumu2</titre>
+<description>Le deuxieme probleme que nous avons vu !</description>
+<objectif isPositif="true" type="Maximiser">
+<variable coeff="1.0"/>
+<variable coeff="0.5"/>
+</objectif>
+<contrainte type="Infériorité">
+<variable coeff="1.0"/>
+<variable coeff="1.0"/>
+<constante valeur="4.0"/>
+</contrainte>
+<contrainte type="Infériorité">
+<variable coeff="-3.0"/>
+<variable coeff="1.0"/>
+<constante valeur="3.0"/>
+</contrainte>
+<contrainte type="Infériorité">
+<variable coeff="1.0"/>
+<variable coeff="1.0"/>
+<constante valeur="1.0"/>
+</contrainte>
+</probleme>
+<probleme>
+<titre>GererMesActions</titre>
+<description>Ce problème permet de gérer mes deux types d'actions
+BNP et Ilog.</description>
+<objectif isPositif="true" type="Maximiser">
+<variable coeff="80.0"/>
+<variable coeff="20.0"/>
+</objectif>
+<contrainte type="Infériorité">
+<variable coeff="1.0"/>
+<variable coeff="1.0"/>
+<constante valeur="100.0"/>
+</contrainte>
+<contrainte type="Infériorité">
+<variable coeff="5.0"/>
+<variable coeff="10.0"/>
+<constante valeur="800.0"/>
+</contrainte>
+<contrainte type="Infériorité">
+<variable coeff="2.0"/>
+<variable coeff="1.0"/>
+<constante valeur="150.0"/>
+</contrainte>
+</probleme>
+<probleme>
+<titre>ValeurNegatives</titre>
+<description>Un probleme dont les variables de décisions sont négatives.</description>
+<objectif isPositif="false" type="Maximiser">
+<variable coeff="7.0"/>
+<variable coeff="12.0"/>
+<variable coeff="10.0"/>
+</objectif>
+<contrainte type="Infériorité">
+<variable coeff="3.0"/>
+<variable coeff="-2.0"/>
+<variable coeff="-4.0"/>
+<constante valeur="1.0"/>
+</contrainte>
+<contrainte type="Infériorité">
+<variable coeff="-1.0"/>
+<variable coeff="4.0"/>
+<variable coeff="3.0"/>
+<constante valeur="-3.0"/>
+</contrainte>
+<contrainte type="Infériorité">
+<variable coeff="2.0"/>
+<variable coeff="0.0"/>
+<variable coeff="-8.0"/>
+<constante valeur="2.0"/>
+</contrainte>
+</probleme>
+</listeProblemes>

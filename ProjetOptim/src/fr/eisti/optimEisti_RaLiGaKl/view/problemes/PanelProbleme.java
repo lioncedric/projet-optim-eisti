@@ -25,6 +25,7 @@ import java.awt.Graphics2D;
 import java.util.ArrayList;
 import javax.swing.BorderFactory;
 import javax.swing.JOptionPane;
+import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 import javax.swing.border.BevelBorder;
 
@@ -131,6 +132,7 @@ public class PanelProbleme extends JPanel {
         jtfTitre.addKeyListener(new SaveListener());
         textfield = new JTextArea("Entrer votre description du problème");
         textfield.addKeyListener(new SaveListener());
+        textfield.setAutoscrolls(true);
         //---------------------------le slide--------------------------//
         slide = new JSlider(min, max, init);
 
@@ -248,6 +250,7 @@ public class PanelProbleme extends JPanel {
         jtfTitre.setBounds(this.getWidth() * 42 / 100, hauteur * this.getHeight() / 700 + this.getHeight() * 4 / 100, this.getWidth() * 30 / 100, this.getHeight() * 6 / 100);
         description.setBounds(this.getWidth() * 10 / 100, hauteur * this.getHeight() / 700 + this.getHeight() * 12 / 100, this.getWidth() * 15 / 100, this.getHeight() * 15 / 100);
         textfield.setBounds(this.getWidth() * 42 / 100, hauteur * this.getHeight() / 700 + this.getHeight() * 12 / 100, this.getWidth() * 50 / 100, this.getHeight() * 18 / 100);
+        textfield.setPreferredSize(new Dimension(this.getWidth() * 50 / 100, this.getHeight() * 18 / 100));
         donnees.setBounds(this.getWidth() * 10 / 100, hauteur * this.getHeight() / 700 + this.getHeight() * 30 / 100, this.getWidth() * 20 / 100, this.getHeight() * 15 / 100);
         maximiser.setBounds(this.getWidth() * 42 / 100, hauteur * this.getHeight() / 700 + this.getHeight() * 30 / 100, this.getWidth() * 20 / 100, this.getHeight() * 10 / 100);
         minimiser.setBounds(this.getWidth() * 65 / 100, hauteur * this.getHeight() / 700 + this.getHeight() * 30 / 100, this.getWidth() * 20 / 100, this.getHeight() * 10 / 100);
@@ -525,5 +528,4 @@ public class PanelProbleme extends JPanel {
     public void setPositif(JRadioButton positif) {
         this.positif = positif;
     }
-    
 }

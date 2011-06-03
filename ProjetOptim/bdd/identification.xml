@@ -1,10 +1,4 @@
 <?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
 <identification>
-<personne imagesrc="D:\My Documents\ProjetOptim\images\tete.jpg" login="meri" password="meri"/>
-<personne imagesrc="D:\My Documents\NetBeansProjects\ProjetOptim\images\tete.jpg" login="ced" password="ced"/>
-<personne imagesrc="D:\My Documents\ProjetOptim\images\tete.jpg" login="mael" password="mael"/>
-<personne imagesrc="D:\My Documents\ProjetOptim\images\loupe.png" login="d" password="d"/>
-<personne imagesrc="null/tete.jpg" login="e" password="e"/>
-<personne imagesrc="null/tete.jpg" login="z" password="z"/>
-<personne imagesrc="images/tete.jpg" login="1" password="1"/>
+<personne imagesrc="" login="Sebastien" password="f15389363cf66828af65a1d8881e5821"/>
 </identification>

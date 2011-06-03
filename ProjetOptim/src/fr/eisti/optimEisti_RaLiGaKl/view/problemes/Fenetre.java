@@ -45,10 +45,8 @@ public class Fenetre extends JFrame {
     private JMenuItem deconnexion = new JMenuItem("Se déconnecter");
     private JMenuItem supprimerCompte = new JMenuItem("Supprimer mon compte");
     private JMenuItem aideItem = new JMenuItem("Aide");
-    private JMenuItem aPropos = new JMenuItem("a Propos");
     private JMenuItem importXml = new JMenuItem("Importer des problèmes XML");
     private JMenuItem preferences = new JMenuItem("Preferences");
-    private JMenuItem rechercher = new JMenuItem("Rechercher");
     private JMenuItem pleinEcran = new JMenuItem("Plein écran");
     private JMenuItem petitEcran = new JMenuItem("Mettre en petite taille");
     private JMenuItem profil = new JMenuItem("Gérer votre profil");
@@ -117,7 +115,7 @@ public class Fenetre extends JFrame {
         this.couleurComposantsTransparents = Color.GRAY;
         this.coeffTransparence = 50;
         this.couleurTexte = Color.BLACK;
-       
+
     }
 
     /**
@@ -157,8 +155,7 @@ public class Fenetre extends JFrame {
         this.fichier.add(quitter);
         this.quitter.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_Q, KeyEvent.CTRL_MASK));//ctrl + q
 
-        this.edition.add(rechercher);
-        this.rechercher.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_F, KeyEvent.CTRL_MASK));//ctrl + f
+
         this.edition.add(profil);
         this.edition.add(preferences);
 
@@ -171,7 +168,7 @@ public class Fenetre extends JFrame {
 
         this.aide.add(aideItem);
         this.aide.addSeparator();
-        this.aide.add(aPropos);
+
         this.importT.add(importXml);
 
 
@@ -218,14 +215,6 @@ public class Fenetre extends JFrame {
 
     public void setGauche(PanelProblemesUtilisateur gauche) {
         this.gauche = gauche;
-    }
-
-    public JMenuItem getaPropos() {
-        return aPropos;
-    }
-
-    public void setaPropos(JMenuItem aPropos) {
-        this.aPropos = aPropos;
     }
 
     public JMenu getAide() {
