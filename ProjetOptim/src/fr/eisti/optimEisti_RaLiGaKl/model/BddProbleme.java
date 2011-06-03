@@ -483,10 +483,14 @@ public class BddProbleme {
                     //Affichage de l'inégalité
                     output.write(";=");
                 }
+                String str = String.valueOf(t.getConstante());
+                //on remplace tous les . par des virgules pour que les formaules excel marchent
+                str = str.replace(".", ",");
                 //Ecriture de la constante liée à cette contrainte
-                output.write(";" + t.getConstante());
+                output.write(";" + str);
                 //saut de ligne
                 output.newLine();
+                output.write(";");
 
             }
             //on ferme le flux
