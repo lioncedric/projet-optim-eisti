@@ -23,7 +23,6 @@ public class Personne {
         this.sej = sej;
         this.visite = false;
     }
-
     public Personne() {
         this.id = 0;
         this.nom = "";
@@ -33,30 +32,29 @@ public class Personne {
         this.visite = false;
     }
 
-    public void ajouterAmisEnAttente(Personne p) {
+     public void ajouterAmisEnAttente(Personne p) {
         amisEnAttent.add(p);
+    }
+
+    public boolean refuserAmis(Personne p){
+        return amisEnAttent.remove(p);
     }
 
     public int getId() {
         return id;
     }
-
     public String getNom() {
         return nom;
     }
-
     public String getPrenom() {
         return prenom;
     }
-
     public String getSexe() {
         return sexe;
     }
-
     public Set<CentreInteret> getInterets() {
         return interets;
     }
-
     public Set<Sejour> getSej() {
         return sej;
     }
@@ -64,7 +62,6 @@ public class Personne {
     public boolean isVisite() {
         return visite;
     }
-
     public void setVisite(boolean visite) {
         this.visite = visite;
     }
