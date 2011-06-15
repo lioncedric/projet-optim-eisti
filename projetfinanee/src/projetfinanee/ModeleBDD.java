@@ -14,6 +14,7 @@ public class ModeleBDD {
     public static void load(GrapheValue gr) throws SQLException, ClassNotFoundException {
         List<Personne> pers = new ArrayList<Personne>();
          Set<AreteValuee> ar = new HashSet<AreteValuee>();
+          Set<Sejour> sej = new HashSet<Sejour>();
         Connection conn = null;
         try {
             // create new connection and statement
@@ -43,6 +44,17 @@ public class ModeleBDD {
             }
            //creation des etablissements
             st = conn.createStatement();
+            query = "SELECT id_etablissement,id_lieu,libelle,description  FROM etablissement  ";
+            rs = st.executeQuery(query);
+            while (rs.next()) {
+                System.out.print(rs.getInt(1) + rs.getString("libelle")+ rs.getString("description") + "\n");
+                 Etablissement e = new Etablissement(rs.getInt(1),rs.getString("libelle"), rs.getString("description"));
+                 for(Sejour s:sej){
+                  
+                }
+            }
+            // //creation des sejour
+            st = conn.createStatement();
             query = "SELECT id_personne,c.id_centreInteret,c.libelle,categorie  FROM Aimer a,CentreInteret c where a.id_centreInteret = c.id_centreInteret  ";
             rs = st.executeQuery(query);
             while (rs.next()) {
@@ -54,7 +66,6 @@ public class ModeleBDD {
                     }
                 }
             }
-            System.out.println(pers);
         } finally {
             // close result, statement and connection
             if (conn != null) {
