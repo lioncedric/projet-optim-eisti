@@ -1,35 +1,27 @@
 package projetfinanee;
 
 import java.sql.Connection;
-import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import oracle.jdbc.*;
 
 public class ModeleBDD {
 
-    public static void loadDriver() throws ClassNotFoundException {
-        Class.forName("com.mysql.jdbc.Driver");
-    }
+    public static void load(GrapheValue gr) throws SQLException, ClassNotFoundException {
 
-    public static Connection newConnection() throws SQLException {
-        final String url = "jdbc:mysql://localhost/dbessai";
-        Connection conn = DriverManager.getConnection(url, "bduser", "SECRET");
-        return conn;
-    }
-
-    public static void load(GrapheValue gr) throws SQLException {
         Connection conn = null;
         try {
             // create new connection and statement
-            conn = newConnection();
+            MyConnector.setParametersOracleLocal("projet", "projet");
+            conn = MyConnector.getConnection();
             Statement st = conn.createStatement();
 
-            String query = "SELECT nom,prenom,age FROM personne ORDER BY age";
+            String query = "SELECT * FROM personne";
             ResultSet rs = st.executeQuery(query);
-
+            
             while (rs.next()) {
-                System.out.printf("%-20s | %-20s | %3d\n", rs.getString(1), rs.getString("prenom"), rs.getInt(3));
+                System.out.print(rs.getString(1) + rs.getString("prenom")+"\n");
             }
         } finally {
             // close result, statement and connection
