@@ -16,6 +16,11 @@ public class GrapheValue {
         this.aretes = aretes;
     }
 
+    @Override
+    public String toString() {
+        return "GrapheValue{" + "sommets=" + sommets + '}';
+    }
+
     public List<Personne> recupererAmis(Personne p) {
         Iterator<AreteValuee> it = aretes.iterator();
         List<Personne> res = new LinkedList<Personne>();

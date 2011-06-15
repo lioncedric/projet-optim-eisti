@@ -23,6 +23,7 @@ public class Personne {
         this.sej = sej;
         this.visite = false;
     }
+
     public Personne() {
         this.id = 0;
         this.nom = "";
@@ -32,36 +33,43 @@ public class Personne {
         this.visite = false;
     }
 
-     public void ajouterAmisEnAttente(Personne p) {
+    @Override
+    public String toString() {
+        return "Personne{" + "id=" + id + "nom=" + nom + "prenom=" + prenom + "sexe=" + sexe + "interets=" + interets + "sej=" + sej + "visite=" + visite + "amisEnAttent=" + amisEnAttent + '}';
+    }
+
+    public void ajouterAmisEnAttente(Personne p) {
         amisEnAttent.add(p);
     }
 
-    public boolean refuserAmis(Personne p){
+    public boolean refuserAmis(Personne p) {
         return amisEnAttent.remove(p);
     }
 
     public int getId() {
         return id;
     }
+
     public String getNom() {
         return nom;
     }
+
     public String getPrenom() {
         return prenom;
     }
+
     public String getSexe() {
         return sexe;
     }
-    public Set<CentreInteret> getInterets() {
-        return interets;
-    }
-    public Set<Sejour> getSej() {
-        return sej;
+
+    public void addCentreInteret(CentreInteret c) {
+        interets.add(c);
     }
 
     public boolean isVisite() {
         return visite;
     }
+
     public void setVisite(boolean visite) {
         this.visite = visite;
     }
