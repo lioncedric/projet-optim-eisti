@@ -14,6 +14,7 @@ public class Personne {
     private Set<CentreInteret> interets;
     private Set<Sejour> sej;
     private boolean visite;
+    private Set<Personne> amisEnAttent;
 
     public Personne(int id, String nom, String prenom, String sexe, Set<CentreInteret> interets, Set<Sejour> sej) {
         this.id = id;
@@ -33,7 +34,9 @@ public class Personne {
         this.interets=new HashSet<CentreInteret>();
         this.visite=false;
     }
+  public void proposerAmis () {
 
+    }
     public int getId() {
         return id;
     }
