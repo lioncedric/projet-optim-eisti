@@ -11,6 +11,11 @@ public class GrapheValue {
     private ArrayList<Personne> sommets;
     private Set<AreteValuee> aretes;
 
+    public GrapheValue(ArrayList<Personne> sommets, Set<AreteValuee> aretes) {
+        this.sommets = sommets;
+        this.aretes = aretes;
+    }
+
     public List<Personne> recupererAmis(Personne p) {
         Iterator<AreteValuee> it = aretes.iterator();
         List<Personne> res = new LinkedList<Personne>();

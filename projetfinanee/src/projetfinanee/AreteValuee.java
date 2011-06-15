@@ -2,7 +2,7 @@
 package projetfinanee;
 
 
-class AreteValuee {
+public class AreteValuee {
     private Personne p1;
     private Personne p2;
     private int evaluation;
