@@ -13,7 +13,7 @@ public class ModeleBDD {
 
     public static void load(GrapheValue gr) throws SQLException, ClassNotFoundException {
         List<Personne> pers = new ArrayList<Personne>();
-        Set<AreteValuee> ar = new HashSet<AreteValuee>();
+        
 
         Connection conn = null;
         try {
@@ -68,8 +68,8 @@ public class ModeleBDD {
                     }
                 }
             }
-            st = conn.createStatement();
-            query = "SELECT id_personne,id_etablissement,dateDebut,dateFin,p.libelle, p.libelle  FROM AvoirFaitPP a,Poste p where p.id_poste=a.id_poste ";
+ st = conn.createStatement();
+            query = "SELECT id_personne,id_etablissement,dateDebut,dateFin,p.libelle  FROM AvoirFaitPP a,Poste p where p.id_poste=a.id_poste ";
             rs = st.executeQuery(query);
             while (rs.next()) {
                 for (Etablissement e : etbs) {
@@ -84,7 +84,25 @@ public class ModeleBDD {
                     }
                 }
             }
-          
+
+            //creation des liens d'amitie
+            Set<AreteValuee> ar = new HashSet<AreteValuee>();
+            st = conn.createStatement();
+            query = "SELECT id_personne1,id_personne2,evaluation FROM EtreAmi";
+            rs = st.executeQuery(query);
+            while (rs.next()){
+                for (Personne p1: pers){
+                    if(rs.getInt(1)==p1.getId()){
+                        for (Personne p2: pers){
+                            if(rs.getInt(2)==p2.getId()){
+                                ar.add(new AreteValuee(p1,p2,rs.getInt(3)));
+                            }
+                        }
+                        
+                    }
+                }
+            }
+  
         } finally {
             // close result, statement and connection
             if (conn != null) {
