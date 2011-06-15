@@ -25,5 +25,9 @@ public class AreteValuee {
         return p2;
     }
 
+    public void setEvaluation(int evaluation) {
+        this.evaluation = evaluation;
+    }
+
 
 }

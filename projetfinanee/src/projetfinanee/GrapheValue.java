@@ -33,7 +33,7 @@ public class GrapheValue {
         return res;
     }
 
-   public boolean supprimerUnAmi(Personne p1, Personne p2){
+    public boolean supprimerUnAmi(Personne p1, Personne p2){
       boolean res = false;
       Iterator<AreteValuee> it= aretes.iterator();
       while(it.hasNext()){
@@ -44,8 +44,8 @@ public class GrapheValue {
       }
       return res;
    }
-    public int evaluerAmis(Personne p1, Personne p2){
 
+    public int getEvaluation(Personne p1, Personne p2){
       Iterator<AreteValuee> it= aretes.iterator();
       while(it.hasNext()){
         AreteValuee ar= it.next();
@@ -55,7 +55,25 @@ public class GrapheValue {
       }
       return 0;
    }
-       public void ajouterAmis(Personne p1, Personne p2, int valeur) {
+
+    public boolean evaluerAmitie(Personne p1, Personne p2, int valeur){
+        Boolean res = false;
+        Iterator<AreteValuee> it= aretes.iterator();
+        while(it.hasNext()){
+        AreteValuee ar= it.next();
+            if(ar.getP1().equals(p1) && ar.getP2().equals(p2)){
+                ar.setEvaluation(valeur);
+                res = true;
+            }
+        }
+        if(!res){
+            aretes.add(new AreteValuee(p1, p2, valeur));
+            res = true;
+        }
+        return res;
+    }
+
+    public void ajouterAmis(Personne p1, Personne p2, int valeur) {
         aretes.add(new AreteValuee(p1, p2, valeur));
     }
 
