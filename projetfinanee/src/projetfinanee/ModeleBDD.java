@@ -29,12 +29,11 @@ public class ModeleBDD {
                 Personne p = new Personne(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4), new HashSet<CentreInteret>(), new HashSet<Sejour>());
                 pers.add(p);
             }
-            // //creation des liens
+             //creation des liens
             st = conn.createStatement();
             query = "SELECT id_personne,c.id_centreInteret,c.libelle,categorie  FROM Aimer a,CentreInteret c where a.id_centreInteret = c.id_centreInteret  ";
             rs = st.executeQuery(query);
             while (rs.next()) {
-                System.out.print(rs.getInt(1) + rs.getString(2) + rs.getString("libelle") + rs.getString("categorie") + "\n");
                 CentreInteret c = new CentreInteret(rs.getString("libelle"), rs.getString("categorie"));
                 for (Personne p : pers) {
                     if (p.getId() == rs.getInt("id_personne")) {
@@ -48,7 +47,6 @@ public class ModeleBDD {
             query = "SELECT id_etablissement,id_lieu,libelle,description  FROM etablissement  ";
             rs = st.executeQuery(query);
             while (rs.next()) {
-                System.out.print(rs.getInt(1) + rs.getString("libelle") + rs.getString("description") + "\n");
                 Etablissement e = new Etablissement(rs.getInt(1), rs.getString("libelle"), rs.getString("description"));
                 etbs.add(e);
             }
@@ -63,6 +61,22 @@ public class ModeleBDD {
                         for (Personne p : pers) {
                             if (p.getId() == rs.getInt("id_personne")) {
                                 Sejour s = new Sejour(e, rs.getDate(3), rs.getDate(4));
+                                p.addSejour(s);
+                            }
+                        }
+
+                    }
+                }
+            }
+            st = conn.createStatement();
+            query = "SELECT id_personne,id_etablissement,dateDebut,dateFin,p.libelle, p.libelle  FROM AvoirFaitPP a,Poste p where p.id_poste=a.id_poste ";
+            rs = st.executeQuery(query);
+            while (rs.next()) {
+                for (Etablissement e : etbs) {
+                    if (e.getId() == rs.getInt("id_etablissement")) {
+                        for (Personne p : pers) {
+                            if (p.getId() == rs.getInt("id_personne")) {
+                                SejourPro s = new SejourPro(e, rs.getDate(3), rs.getDate(4),rs.getString(5));
                                 p.addSejour(s);
                             }
                         }
