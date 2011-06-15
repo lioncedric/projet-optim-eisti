@@ -13,6 +13,7 @@ public class Personne {
     private String sexe;
     private Set<CentreInteret> interets;
     private Set<Sejour> sej;
+    private boolean visite;
 
     public Personne(int id, String nom, String prenom, String sexe, Set<CentreInteret> interets, Set<Sejour> sej) {
         this.id = id;
@@ -21,6 +22,7 @@ public class Personne {
         this.sexe = sexe;
         this.interets = interets;
         this.sej = sej;
+        this.visite=false;
     }
 
     public Personne() {
@@ -29,6 +31,7 @@ public class Personne {
         this.prenom="";
         this.sexe="";
         this.interets=new HashSet<CentreInteret>();
+        this.visite=false;
     }
 
     public int getId() {
@@ -53,6 +56,14 @@ public class Personne {
 
     public Set<Sejour> getSej() {
         return sej;
+    }
+
+    public boolean isVisite() {
+        return visite;
+    }
+
+    public void setVisite(boolean visite) {
+        this.visite = visite;
     }
 
 
