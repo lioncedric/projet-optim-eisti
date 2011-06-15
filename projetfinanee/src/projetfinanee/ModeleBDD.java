@@ -13,8 +13,8 @@ public class ModeleBDD {
 
     public static void load(GrapheValue gr) throws SQLException, ClassNotFoundException {
         List<Personne> pers = new ArrayList<Personne>();
-         Set<AreteValuee> ar = new HashSet<AreteValuee>();
-          Set<Sejour> sej = new HashSet<Sejour>();
+        Set<AreteValuee> ar = new HashSet<AreteValuee>();
+        Set<Sejour> sej = new HashSet<Sejour>();
         Connection conn = null;
         try {
             // create new connection and statement
@@ -26,7 +26,7 @@ public class ModeleBDD {
             ResultSet rs = st.executeQuery(query);
             while (rs.next()) {
                 System.out.print(rs.getInt(1) + rs.getString(2) + rs.getString(3) + rs.getString(4) + "\n");
-                Personne p = new Personne(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4), new HashSet<CentreInteret>(),new HashSet<Sejour>());
+                Personne p = new Personne(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4), new HashSet<CentreInteret>(), new HashSet<Sejour>());
                 pers.add(p);
             }
             // //creation des liens
@@ -34,35 +34,35 @@ public class ModeleBDD {
             query = "SELECT id_personne,c.id_centreInteret,c.libelle,categorie  FROM Aimer a,CentreInteret c where a.id_centreInteret = c.id_centreInteret  ";
             rs = st.executeQuery(query);
             while (rs.next()) {
-                System.out.print(rs.getInt(1) + rs.getString(2) + rs.getString("libelle")+ rs.getString("categorie") + "\n");
-                 CentreInteret c = new CentreInteret(rs.getString("libelle"), rs.getString("categorie"));
-                for(Personne p:pers){
-                    if (p.getId()==rs.getInt("id_personne")){
+                System.out.print(rs.getInt(1) + rs.getString(2) + rs.getString("libelle") + rs.getString("categorie") + "\n");
+                CentreInteret c = new CentreInteret(rs.getString("libelle"), rs.getString("categorie"));
+                for (Personne p : pers) {
+                    if (p.getId() == rs.getInt("id_personne")) {
                         p.addCentreInteret(c);
                     }
                 }
             }
-           //creation des etablissements
+            //creation des etablissements
+            List<Etablissement> etbs = new ArrayList<Etablissement>();
             st = conn.createStatement();
             query = "SELECT id_etablissement,id_lieu,libelle,description  FROM etablissement  ";
             rs = st.executeQuery(query);
             while (rs.next()) {
-                System.out.print(rs.getInt(1) + rs.getString("libelle")+ rs.getString("description") + "\n");
-                 Etablissement e = new Etablissement(rs.getInt(1),rs.getString("libelle"), rs.getString("description"));
-                 for(Sejour s:sej){
-                  
-                }
+                System.out.print(rs.getInt(1) + rs.getString("libelle") + rs.getString("description") + "\n");
+                Etablissement e = new Etablissement(rs.getInt(1), rs.getString("libelle"), rs.getString("description"));
+                etbs.add(e);
             }
+            System.out.println(etbs);
             // //creation des sejour
             st = conn.createStatement();
             query = "SELECT id_personne,c.id_centreInteret,c.libelle,categorie  FROM Aimer a,CentreInteret c where a.id_centreInteret = c.id_centreInteret  ";
             rs = st.executeQuery(query);
             while (rs.next()) {
-                System.out.print(rs.getInt(1) + rs.getString(2) + rs.getString("libelle")+ rs.getString("categorie") + "\n");
-                 CentreInteret c = new CentreInteret(rs.getString("libelle"), rs.getString("categorie"));
-                for(Personne p:pers){
-                    if (p.getId()==rs.getInt("id_personne")){
-                        p.addCentreInteret(c);
+                System.out.print(rs.getInt(1) + rs.getString(2) + rs.getString("libelle") + rs.getString("categorie") + "\n");
+               
+                for (Etablissement e : etbs) {
+                    if (e.getId() == rs.getInt("id_etablissement")) {
+                       Sejour s = new Sejour(e,rs.getDate("libelle"), rs.getDate("libelle"));
                     }
                 }
             }

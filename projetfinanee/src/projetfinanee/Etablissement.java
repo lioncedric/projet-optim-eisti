@@ -15,4 +15,10 @@ public class Etablissement {
     public int getId() {
         return id;
     }
+
+    @Override
+    public String toString() {
+        return "Etablissement{" + "id=" + id + "nom=" + nom + "description=" + description + '}';
+    }
+    
 }

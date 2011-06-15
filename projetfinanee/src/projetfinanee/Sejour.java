@@ -10,5 +10,11 @@ public class Sejour {
     private Date dateDebut;
     private Date dateFin;
 
+    public Sejour(Etablissement etab, Date dateDebut, Date dateFin) {
+        this.etab = etab;
+        this.dateDebut = dateDebut;
+        this.dateFin = dateFin;
+    }
+
 
 }
