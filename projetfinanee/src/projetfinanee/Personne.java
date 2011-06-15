@@ -65,6 +65,9 @@ public class Personne {
     public void addCentreInteret(CentreInteret c) {
         interets.add(c);
     }
+     public void addSejour(Sejour s) {
+        sej.add(s);
+    }
 
     public boolean isVisite() {
         return visite;

@@ -14,7 +14,7 @@ public class ModeleBDD {
     public static void load(GrapheValue gr) throws SQLException, ClassNotFoundException {
         List<Personne> pers = new ArrayList<Personne>();
         Set<AreteValuee> ar = new HashSet<AreteValuee>();
-        Set<Sejour> sej = new HashSet<Sejour>();
+
         Connection conn = null;
         try {
             // create new connection and statement
@@ -55,17 +55,22 @@ public class ModeleBDD {
             System.out.println(etbs);
             // //creation des sejour
             st = conn.createStatement();
-            query = "SELECT id_personne,id_etablissement,id_lieu,dateDebut,dateFin  FROM Aimer a,CentreInteret c where a.id_centreInteret = c.id_centreInteret  ";
+            query = "SELECT id_personne,id_etablissement,dateDebut,dateFin  FROM AvoirFaitPS a ";
             rs = st.executeQuery(query);
             while (rs.next()) {
-                System.out.print(rs.getInt(1) + rs.getString(2) + rs.getString("libelle") + rs.getString("categorie") + "\n");
-               
                 for (Etablissement e : etbs) {
                     if (e.getId() == rs.getInt("id_etablissement")) {
-                       Sejour s = new Sejour(e,rs.getDate("libelle"), rs.getDate("libelle"));
+                        for (Personne p : pers) {
+                            if (p.getId() == rs.getInt("id_personne")) {
+                                Sejour s = new Sejour(e, rs.getDate(3), rs.getDate(4));
+                                p.addSejour(s);
+                            }
+                        }
+
                     }
                 }
             }
+          
         } finally {
             // close result, statement and connection
             if (conn != null) {
