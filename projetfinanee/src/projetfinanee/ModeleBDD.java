@@ -55,7 +55,7 @@ public class ModeleBDD {
             System.out.println(etbs);
             // //creation des sejour
             st = conn.createStatement();
-            query = "SELECT id_personne,c.id_centreInteret,c.libelle,categorie  FROM Aimer a,CentreInteret c where a.id_centreInteret = c.id_centreInteret  ";
+            query = "SELECT id_personne,id_etablissement,id_lieu,dateDebut,dateFin  FROM Aimer a,CentreInteret c where a.id_centreInteret = c.id_centreInteret  ";
             rs = st.executeQuery(query);
             while (rs.next()) {
                 System.out.print(rs.getInt(1) + rs.getString(2) + rs.getString("libelle") + rs.getString("categorie") + "\n");
