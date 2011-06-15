@@ -13,7 +13,7 @@ public class ModeleBDD {
 
     public static void load(GrapheValue gr) throws SQLException, ClassNotFoundException {
         List<Personne> pers = new ArrayList<Personne>();
-        
+
 
         Connection conn = null;
         try {
@@ -29,7 +29,7 @@ public class ModeleBDD {
                 Personne p = new Personne(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4), new HashSet<CentreInteret>(), new HashSet<Sejour>());
                 pers.add(p);
             }
-             //creation des liens
+            //creation des liens
             st = conn.createStatement();
             query = "SELECT id_personne,c.id_centreInteret,c.libelle,categorie  FROM Aimer a,CentreInteret c where a.id_centreInteret = c.id_centreInteret  ";
             rs = st.executeQuery(query);
@@ -68,7 +68,7 @@ public class ModeleBDD {
                     }
                 }
             }
- st = conn.createStatement();
+            st = conn.createStatement();
             query = "SELECT id_personne,id_etablissement,dateDebut,dateFin,p.libelle  FROM AvoirFaitPP a,Poste p where p.id_poste=a.id_poste ";
             rs = st.executeQuery(query);
             while (rs.next()) {
@@ -76,7 +76,7 @@ public class ModeleBDD {
                     if (e.getId() == rs.getInt("id_etablissement")) {
                         for (Personne p : pers) {
                             if (p.getId() == rs.getInt("id_personne")) {
-                                SejourP s = new SejourP(e, rs.getDate(3), rs.getDate(4),rs.getString(5));
+                                SejourP s = new SejourP(e, rs.getDate(3), rs.getDate(4), rs.getString(5));
                                 p.addSejour(s);
                             }
                         }
@@ -90,19 +90,19 @@ public class ModeleBDD {
             st = conn.createStatement();
             query = "SELECT id_personne1,id_personne2,evaluation FROM EtreAmi";
             rs = st.executeQuery(query);
-            while (rs.next()){
-                for (Personne p1: pers){
-                    if(rs.getInt(1)==p1.getId()){
-                        for (Personne p2: pers){
-                            if(rs.getInt(2)==p2.getId()){
-                                ar.add(new AreteValuee(p1,p2,rs.getInt(3)));
+            while (rs.next()) {
+                for (Personne p1 : pers) {
+                    if (rs.getInt(1) == p1.getId()) {
+                        for (Personne p2 : pers) {
+                            if (rs.getInt(2) == p2.getId()) {
+                                ar.add(new AreteValuee(p1, p2, rs.getInt(3)));
                             }
                         }
-                        
+
                     }
                 }
             }
-  
+
         } finally {
             // close result, statement and connection
             if (conn != null) {
