@@ -49,6 +49,8 @@ public class GrapheValue {
         aretes.add(new AreteValuee(p1, p2, valeur));
     }
 
+
+
     public void proposerAmis(Personne p1, Personne p2) {
         p1.ajouterAmisEnAttente(p2);
     }
