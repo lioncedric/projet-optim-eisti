@@ -1,5 +1,3 @@
-
-
 package projetfinanee;
 
 import java.util.HashSet;
@@ -23,20 +21,22 @@ public class Personne {
         this.sexe = sexe;
         this.interets = interets;
         this.sej = sej;
-        this.visite=false;
+        this.visite = false;
     }
 
     public Personne() {
-        this.id=0;
-        this.nom="";
-        this.prenom="";
-        this.sexe="";
-        this.interets=new HashSet<CentreInteret>();
-        this.visite=false;
+        this.id = 0;
+        this.nom = "";
+        this.prenom = "";
+        this.sexe = "";
+        this.interets = new HashSet<CentreInteret>();
+        this.visite = false;
     }
-  public void proposerAmis () {
 
+    public void ajouterAmisEnAttente(Personne p) {
+        amisEnAttent.add(p);
     }
+
     public int getId() {
         return id;
     }
@@ -68,6 +68,4 @@ public class Personne {
     public void setVisite(boolean visite) {
         this.visite = visite;
     }
-
-
 }
