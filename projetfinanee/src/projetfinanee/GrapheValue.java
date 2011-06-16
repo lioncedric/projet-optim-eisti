@@ -17,7 +17,11 @@ public class GrapheValue {
 
     @Override
     public String toString() {
-        return "GrapheValue{" + "sommets=" + sommets + '}';
+        String str="";
+        for(Personne p: sommets){
+            str=str+p.toString()+"\n";
+        }
+        return str;
     }
 
     public List<Personne> recupererAmis(Personne p) {
