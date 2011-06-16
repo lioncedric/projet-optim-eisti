@@ -16,6 +16,7 @@ public class Main {
      * @param args the command line arguments
      */
     public static void main(String[] args) throws SQLException, ClassNotFoundException {
+
         GrapheValue gr = ModeleBDD.load();
         System.out.println(gr);
         gr.supprimerUnAmi(gr.getPersonne(0), gr.getPersonne(1));

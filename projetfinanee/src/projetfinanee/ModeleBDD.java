@@ -10,8 +10,11 @@ import java.util.List;
 import java.util.Set;
 
 public class ModeleBDD {
-   // public static arr
+
+    private static List<Etape> historique;
+
     public static GrapheValue load() throws SQLException, ClassNotFoundException {
+        historique = new ArrayList<Etape>();
         List<Personne> pers = new ArrayList<Personne>();
         List<Etablissement> etbs = new ArrayList<Etablissement>();
         Set<AreteValuee> ar = new HashSet<AreteValuee>();
@@ -108,15 +111,37 @@ public class ModeleBDD {
         }
     }
 
-    public static void sychronize(GrapheValue gr) {
+    public static void sychronize() throws SQLException {
+        Connection conn = MyConnector.getConnection();
+        for (Etape e : historique) {
+
+            //creation des personnes
+            Statement st = conn.createStatement();
+
+            if (e.getType() == 1) {
+                String query = "SELECT id_personne,nom,prenom,s.libelle  FROM personne p, sexe s where p.id_sexe=s.id_sexe";
+                st.executeQuery(query);
+            }
+            if (e.getType() == 2) {
+                String query = "SELECT id_personne,nom,prenom,s.libelle  FROM personne p, sexe s where p.id_sexe=s.id_sexe";
+                st.executeQuery(query);
+            }
+            if (e.getType() == 3) {
+                String query = "SELECT id_personne,nom,prenom,s.libelle  FROM personne p, sexe s where p.id_sexe=s.id_sexe";
+                st.executeQuery(query);
+            }
+        }
     }
 
-    public static void update(GrapheValue gr) {
+    public static void update(int p1, int p2, int valeur) {
+        historique.add(new Etape(3, p1, p2, valeur));
     }
 
-    public static void create(GrapheValue gr) {
+    public static void create(int p1, int p2, int valeur) {
+        historique.add(new Etape(1, p1, p2, valeur));
     }
 
-    public static void delete(GrapheValue gr) {
+    public static void delete(int p1, int p2) {
+        historique.add(new Etape(2, p1, p2, 0));
     }
 }
