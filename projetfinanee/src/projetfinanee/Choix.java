@@ -18,7 +18,7 @@ public class Choix implements Comparable<Choix>{
 
     @Override
     public int compareTo(Choix o) {
-      return (int)(interet-o.getInteret());
+      return (int)((interet-o.getInteret())*100);
     }
 
     @Override

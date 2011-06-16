@@ -57,8 +57,11 @@ public class Personne {
             sommetsVisites.add(i.next());
         }
         i = this.recupererAmis();
+        double note;
         while (i.hasNext()) {
-            parcoursProfondeur(this.gr, i.next(), sommetsVisites, choixRetenus, nbAmis, profondeur, 100);
+             Personne suivant = i.next();
+           note= (this.gr.getEvaluation(this, suivant)*1.0/100);
+            parcoursProfondeur(this.gr,suivant, sommetsVisites, choixRetenus, nbAmis, profondeur, note);
         }
 
         for (Choix c : choixRetenus) {
@@ -72,17 +75,25 @@ public class Personne {
             Set<Personne> sommetsVisites, List<Choix> sommetsRetenus, int nbAmis, int profondeur, double note) {
         sommetsVisites.add(origine);
         Iterator<Personne> i = origine.recupererAmis();
+        double eval;
+        int rang;
         while (i.hasNext()) {
             Personne suivant = i.next();
-            note = note * g.getEvaluation(origine, suivant);
+            eval = note * (g.getEvaluation(origine, suivant)*1.0/100);
             if (!sommetsVisites.contains(suivant)) {
                 if (sommetsRetenus.size() < nbAmis) {
-                    sommetsRetenus.add(new Choix(suivant, note));
+                    sommetsRetenus.add(new Choix(suivant, eval));
                 } else {
                     Collections.sort(sommetsRetenus);
-                    sommetsRetenus.set(4, new Choix(suivant, note));
+                    if (sommetsRetenus.get(0).getInteret() < eval) {
+                       
+                        sommetsRetenus.set(0, new Choix(suivant, eval));
+                    }
                 }
-                parcoursProfondeur(g, suivant, sommetsVisites, sommetsRetenus, nbAmis, profondeur, note);
+                rang=profondeur-1;
+                if (rang > 0) {
+                    parcoursProfondeur(g, suivant, sommetsVisites, sommetsRetenus, nbAmis, rang, eval);
+                }
             }
         }
 
