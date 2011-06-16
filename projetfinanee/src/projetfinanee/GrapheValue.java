@@ -178,7 +178,7 @@ public class GrapheValue {
         return trouves;
     }
 
-    public List<Personne> rechercheParCentreInteret(String libelle,String categorie){
+    public List<Personne> rechercheParCentreInteret(String categorie,String libelle){
         List<Personne> trouves;
         trouves = new LinkedList<Personne>();
         if (categorie!=null && libelle!=null) {
