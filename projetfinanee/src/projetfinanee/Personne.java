@@ -9,6 +9,7 @@ import java.util.Set;
 
 public class Personne {
 
+    //variables de la classe
     private int id;
     private String nom;
     private String prenom;
@@ -49,6 +50,7 @@ public class Personne {
         Set<Personne> sommetsVisites = new HashSet<Personne>();
         List<Choix> choixRetenus = new ArrayList<Choix>();
         Set<Personne> personnesRetenues = new HashSet<Personne>();
+
         sommetsVisites.add(this);
         Iterator<Personne> i = this.recupererAmis();
         while (i.hasNext()) {
