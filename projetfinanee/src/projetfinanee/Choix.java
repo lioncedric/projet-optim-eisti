@@ -23,6 +23,11 @@ private double interet;
       return (int)(interet-o.getInteret());
     }
 
+    @Override
+    public String toString() {
+        return "Choix{" + "p=" + p + "interet=" + interet + '}';
+    }
+
     public double getInteret() {
         return interet;
     }

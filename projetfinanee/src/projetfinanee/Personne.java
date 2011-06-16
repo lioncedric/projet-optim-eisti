@@ -50,7 +50,8 @@ public class Personne {
         List<Choix> choixRetenus = new ArrayList<Choix>();
         Set<Personne> personnesRetenues = new HashSet<Personne>();
         parcoursProfondeur(this, sommetsVisites, choixRetenus, 1);
-        for(Choix c:choixRetenus){
+        for (Choix c : choixRetenus) {
+
             personnesRetenues.add(c.getP());
         }
         return personnesRetenues;
@@ -60,18 +61,24 @@ public class Personne {
         sommetsVisites.add(origine);
 
         Iterator<Personne> i = origine.recupererAmis();
+
         while (i.hasNext()) {
+
+
             Personne suivant = i.next();
             if (!sommetsVisites.contains(suivant)) {
+
                 if (rang >= 2) {
+
                     if (sommetsRetenus.size() < 5) {
                         sommetsRetenus.add(new Choix(suivant, gr.getEvaluation(origine, suivant) / rang));
+                    } else {
+                        Collections.sort(sommetsRetenus);
+                        sommetsRetenus.set(4, new Choix(suivant, gr.getEvaluation(origine, suivant) / rang));
                     }
-                } else {
-                    Collections.sort(sommetsRetenus);
-                    sommetsRetenus.set(4, new Choix(suivant, gr.getEvaluation(origine, suivant) / rang));
                 }
-                parcoursProfondeur(suivant, sommetsVisites, sommetsRetenus, rang++);
+                rang++;
+                parcoursProfondeur(suivant, sommetsVisites, sommetsRetenus, rang);
             }
         }
         return sommetsRetenus;
