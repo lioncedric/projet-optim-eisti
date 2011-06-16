@@ -15,18 +15,6 @@ public class Personne {
     private Lieu lieuNaiss;
     private Lieu lieuRes;
 
-    public Personne(int id, String nom, String prenom, String sexe, Set<CentreInteret> interets, Set<Sejour> sej) {
-        this.id = id;
-        this.nom = nom;
-        this.prenom = prenom;
-        this.sexe = sexe;
-        this.interets = interets;
-        this.sej = sej;
-        this.amisEnAttente = new HashSet<Personne>();
-        this.lieuNaiss = new Lieu();
-        this.lieuRes = new Lieu();
-    }
-
     public Personne(int id, String nom, String prenom, String sexe) {
         this.id = id;
         this.nom = nom;

@@ -88,4 +88,35 @@ public class GrapheValue {
     public void proposerAmis(Personne p1, Personne p2) {
         p1.ajouterAmisEnAttente(p2);
     }
+
+    public List<Personne> rechercherParNomPrenom(String nom, String prenom){
+        List<Personne> trouves;
+        trouves = new LinkedList();
+        if(nom!=null && prenom!=null){
+            for(Personne p: sommets){
+                if(p.getNom().compareToIgnoreCase(nom)==0 && p.getPrenom().compareToIgnoreCase(prenom)==0){
+                    trouves.add(p);
+                }
+            }
+        }
+        else if(nom!=null){
+            for(Personne p: sommets){
+                if(p.getNom().compareToIgnoreCase(nom)==0){
+                    trouves.add(p);
+                }
+            }
+        }
+        else if(prenom!=null){
+            for(Personne p: sommets){
+                if(p.getPrenom().compareToIgnoreCase(nom)==0){
+                    trouves.add(p);
+                }
+            }
+        }
+        return trouves;
+    }
+
+    public List<Personne> rechercheParParcours(String nomEtablissement, String ville, int annee){
+
+    }
 }
