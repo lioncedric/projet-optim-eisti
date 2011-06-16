@@ -141,6 +141,7 @@ public class GrapheValue {
         trouves = new LinkedList<Personne>();
         if (nomE!=null) {
             for (Personne p : sommets) {
+               
                 for (Sejour parcours : p.getSej()) {
                     if (Integer.parseInt(parcours.getDateDebut().toString().substring(0,4)) <= annee && annee <=Integer.parseInt(parcours.getDateFin().toString().substring(0,4))  && parcours.getEtab().getNom().compareToIgnoreCase(nomE) == 0) {
                         if (ville != null) {
@@ -157,13 +158,17 @@ public class GrapheValue {
         return trouves;
     }
 
-    public List<Personne> rechercheParCentreInteret(String categorie, String libelle){
+    public List<Personne> rechercheParCentreInteret(String libelle,String categorie){
         List<Personne> trouves;
         trouves = new LinkedList<Personne>();
         if (categorie!=null && libelle!=null) {
+            
             for (Personne p : sommets) {
+                
                 for (CentreInteret ci : p.getInterets()){
+                      
                     if(ci.getCategorie().compareToIgnoreCase(categorie)==0 && ci.getLibelle().compareToIgnoreCase(libelle)==0){
+                     
                         trouves.add(p);
                     }
                 }
