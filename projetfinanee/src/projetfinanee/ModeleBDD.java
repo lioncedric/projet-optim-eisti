@@ -37,7 +37,7 @@ public class ModeleBDD {
         query = "SELECT id_personne,nom,prenom,s.libelle,p.id_lieuNaiss, p.id_lieuRes  FROM personne p, sexe s where p.id_sexe=s.id_sexe";
         rs = st.executeQuery(query);
         while (rs.next()) {
-            System.out.print(rs.getInt(1) + rs.getString(2) + rs.getString(3) + rs.getString(4) + "\n");
+
             Personne p = new Personne(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4), new HashSet<CentreInteret>(), new HashSet<Sejour>());
             for (Lieu ln : lieux) {
                 if (rs.getInt(5) == ln.getIdLieu()) {
@@ -130,7 +130,7 @@ public class ModeleBDD {
                 }
             }
         }
-         MyConnector.closeConnection();
+        MyConnector.closeConnection();
         return new GrapheValue(pers, ar);
 
     }
@@ -143,7 +143,7 @@ public class ModeleBDD {
         Statement st;
         for (Etape e : historique) {
 
-             System.out.print(e);
+
             String query = "";
             if (e.getType() == 1) {
                 query = "INSERT INTO EtreAmi (id_personne1,id_personne2,evaluation) VALUES ('" + e.getId_Personne1() + "','" + e.getId_Personne2() + "','" + e.getValeur() + "')";
@@ -156,15 +156,15 @@ public class ModeleBDD {
 
             }
 
-           
+
             st = conn.createStatement();
 
             st.executeQuery(query);
 
             st.close();
-           
+
         }
-         MyConnector.closeConnection();
+        MyConnector.closeConnection();
     }
 
     public static void update(int p1, int p2, int valeur) {
