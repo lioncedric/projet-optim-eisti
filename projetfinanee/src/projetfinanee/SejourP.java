@@ -6,11 +6,18 @@ import java.sql.Date;
 
 public class SejourP extends Sejour{
 
-    private String Poste;
+    private String poste;
 
-    public SejourP(Etablissement etab, Date dateDebut, Date dateFin, String Poste) {
+    public SejourP(Etablissement etab, Date dateDebut, Date dateFin, String poste) {
         super(etab, dateDebut, dateFin);
-        this.Poste = Poste;
+        this.poste = poste;
     }
+
+    @Override
+    public String toString() {
+        return super.toString()+" "+this.poste;
+    }
+
+
 
 }

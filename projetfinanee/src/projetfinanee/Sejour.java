@@ -18,7 +18,7 @@ public class Sejour {
 
     @Override
     public String toString() {
-        return "Sejour{" + "etab=" + etab + "dateDebut=" + dateDebut + "dateFin=" + dateFin + '}';
+        return "Sejour{etab=" + etab + ", dateDebut=" + dateDebut + ", dateFin=" + dateFin + '}';
     }
 
 

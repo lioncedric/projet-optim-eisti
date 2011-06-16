@@ -29,5 +29,10 @@ public class AreteValuee {
         this.evaluation = evaluation;
     }
 
+    @Override
+    public String toString() {
+        return "AreteValuee{p1="+this.p1+", p2="+this.p2+", valeur="+this.evaluation+"}";
+    }
+
 
 }

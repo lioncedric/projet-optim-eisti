@@ -5,11 +5,6 @@ public class CentreInteret {
 private String libelle;
 private String categorie;
 
-    @Override
-    public String toString() {
-        return "CentreInteret{" + "libelle=" + libelle + "categorie=" + categorie + '}';
-    }
-
     public CentreInteret(String libelle, String categorie) {
         this.libelle = libelle;
         this.categorie = categorie;
@@ -31,4 +26,8 @@ private String categorie;
         this.libelle = libelle;
     }
 
+    @Override
+    public String toString(){
+        return "CentreInteret{libelle="+this.libelle+", categorie="+this.categorie+"}";
+    }
 }

@@ -12,7 +12,9 @@ public class Personne {
     private Set<CentreInteret> interets;
     private Set<Sejour> sej;
     private boolean visite;
-    private Set<Personne> amisEnAttent;
+    private Set<Personne> amisEnAttente;
+    private Lieu lieuNaiss;
+    private Lieu lieuRes;
 
     public Personne(int id, String nom, String prenom, String sexe, Set<CentreInteret> interets, Set<Sejour> sej) {
         this.id = id;
@@ -22,7 +24,25 @@ public class Personne {
         this.interets = interets;
         this.sej = sej;
         this.visite = false;
+        this.amisEnAttente = new HashSet<Personne>();
+        this.lieuNaiss = new Lieu();
+        this.lieuRes = new Lieu();
     }
+
+    public Personne(int id, String nom, String prenom, String sexe) {
+        this.id = id;
+        this.nom = nom;
+        this.prenom = prenom;
+        this.sexe = sexe;
+        this.lieuNaiss = new Lieu();
+        this.lieuRes = new Lieu();
+        this.visite = false;
+        this.amisEnAttente = new HashSet<Personne>();
+        this.interets = new HashSet<CentreInteret>();
+        this.sej = new HashSet<Sejour>();
+    }
+
+ 
 
     public Personne() {
         this.id = 0;
@@ -31,19 +51,23 @@ public class Personne {
         this.sexe = "";
         this.interets = new HashSet<CentreInteret>();
         this.visite = false;
+        this.sej = new HashSet<Sejour>();
+        this.amisEnAttente = new HashSet<Personne>();
+        this.lieuNaiss = new Lieu();
+        this.lieuRes = new Lieu();
     }
 
     @Override
     public String toString() {
-        return "Personne{" + "id=" + id + "nom=" + nom + "prenom=" + prenom + "sexe=" + sexe + "interets=" + interets + "sej=" + sej + "visite=" + visite + "amisEnAttent=" + amisEnAttent + '}';
+        return "Personne{" + "id=" + id + ", nom=" + nom + ", prenom=" + prenom + ", sexe=" + sexe + ", interets=" + interets + ", sej=" + sej + ", visite=" + visite + ", amisEnAttente=" + amisEnAttente + ", lieuNaiss="+ lieuNaiss + ", lieuRes=" + lieuRes + "}";
     }
 
     public void ajouterAmisEnAttente(Personne p) {
-        amisEnAttent.add(p);
+        amisEnAttente.add(p);
     }
 
     public boolean refuserAmis(Personne p) {
-        return amisEnAttent.remove(p);
+        return amisEnAttente.remove(p);
     }
 
     public int getId() {
@@ -62,10 +86,40 @@ public class Personne {
         return sexe;
     }
 
+    public Lieu getLieuNaiss() {
+        return lieuNaiss;
+    }
+
+    public Lieu getLieuRes() {
+        return lieuRes;
+    }
+
+    public Set<Personne> getAmisEnAttente() {
+        return amisEnAttente;
+    }
+
+    public Set<CentreInteret> getInterets() {
+        return interets;
+    }
+
+    public Set<Sejour> getSej() {
+        return sej;
+    }
+
+    public void setLieuNaiss(Lieu lieuNaiss) {
+        this.lieuNaiss = lieuNaiss;
+    }
+
+    public void setLieuRes(Lieu lieuRes) {
+        this.lieuRes = lieuRes;
+    }
+
+
     public void addCentreInteret(CentreInteret c) {
         interets.add(c);
     }
-     public void addSejour(Sejour s) {
+
+    public void addSejour(Sejour s) {
         sej.add(s);
     }
 
