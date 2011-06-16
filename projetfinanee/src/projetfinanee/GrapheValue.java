@@ -163,6 +163,7 @@ public class GrapheValue {
             for (Personne p : sommets) {
                
                 for (Sejour parcours : p.getSej()) {
+                    
                     if (Integer.parseInt(parcours.getDateDebut().toString().substring(0,4)) <= annee && annee <=Integer.parseInt(parcours.getDateFin().toString().substring(0,4))  && parcours.getEtab().getNom().compareToIgnoreCase(nomE) == 0) {
                         if (ville != null) {
                             if (parcours.getEtab().getLieu().getVille().compareToIgnoreCase(ville) == 0) {

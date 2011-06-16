@@ -28,8 +28,11 @@ public class Main {
             System.out.println(p);
         }
          // System.out.println(gr.rechercherParNomPrenom(null, "lion"));
-            System.out.println(gr.rechercheParCentreInteret("basket", "sport"));
-      
+         //   System.out.println(gr.rechercheParCentreInteret("basket", "sport"));
+        // System.out.println(gr.rechercherParNomPrenom(null, "lion"));
+        //  System.out.println(gr.rechercheParCentreInteret(null,"basket"));
+      // System.out.println(gr.rechercheParParcours("essec", "pau",2010));
+
 
 
       // ModeleBDD.sychronize();
