@@ -8,10 +8,10 @@ import java.util.Set;
 
 public class GrapheValue {
 
-    private ArrayList<Personne> sommets;
+    private List<Personne> sommets;
     private Set<AreteValuee> aretes;
 
-    public GrapheValue(ArrayList<Personne> sommets, Set<AreteValuee> aretes) {
+    public GrapheValue(List<Personne> sommets, Set<AreteValuee> aretes) {
         this.sommets = sommets;
         this.aretes = aretes;
     }
@@ -36,13 +36,15 @@ public class GrapheValue {
     public boolean supprimerUnAmi(Personne p1, Personne p2){
       boolean res = false;
       Iterator<AreteValuee> it= aretes.iterator();
+       AreteValuee arARemove=null;
       while(it.hasNext()){
         AreteValuee ar= it.next();
         if(ar.getP1().equals(p1) && ar.getP2().equals(p2)){
-            res = aretes.remove(ar);
+              arARemove=ar;
+           
         }
       }
-      return res;
+      return  aretes.remove(arARemove);
    }
 
     public int getEvaluation(Personne p1, Personne p2){
@@ -75,6 +77,10 @@ public class GrapheValue {
 
     public void ajouterAmis(Personne p1, Personne p2, int valeur) {
         aretes.add(new AreteValuee(p1, p2, valeur));
+    }
+
+    public Personne getPersonne(int i) {
+        return sommets.get(i);
     }
 
 

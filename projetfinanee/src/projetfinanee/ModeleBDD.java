@@ -10,11 +10,11 @@ import java.util.List;
 import java.util.Set;
 
 public class ModeleBDD {
-
-    public static void load(GrapheValue gr) throws SQLException, ClassNotFoundException {
+   // public static arr
+    public static GrapheValue load() throws SQLException, ClassNotFoundException {
         List<Personne> pers = new ArrayList<Personne>();
-
-
+        List<Etablissement> etbs = new ArrayList<Etablissement>();
+        Set<AreteValuee> ar = new HashSet<AreteValuee>();
         Connection conn = null;
         try {
             // create new connection and statement
@@ -25,7 +25,6 @@ public class ModeleBDD {
             String query = "SELECT id_personne,nom,prenom,s.libelle  FROM personne p, sexe s where p.id_sexe=s.id_sexe";
             ResultSet rs = st.executeQuery(query);
             while (rs.next()) {
-                System.out.print(rs.getInt(1) + rs.getString(2) + rs.getString(3) + rs.getString(4) + "\n");
                 Personne p = new Personne(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4), new HashSet<CentreInteret>(), new HashSet<Sejour>());
                 pers.add(p);
             }
@@ -42,7 +41,7 @@ public class ModeleBDD {
                 }
             }
             //creation des etablissements
-            List<Etablissement> etbs = new ArrayList<Etablissement>();
+
             st = conn.createStatement();
             query = "SELECT id_etablissement,id_lieu,libelle,description  FROM etablissement  ";
             rs = st.executeQuery(query);
@@ -50,7 +49,6 @@ public class ModeleBDD {
                 Etablissement e = new Etablissement(rs.getInt(1), rs.getString("libelle"), rs.getString("description"));
                 etbs.add(e);
             }
-            System.out.println(etbs);
             // //creation des sejour
             st = conn.createStatement();
             query = "SELECT id_personne,id_etablissement,dateDebut,dateFin  FROM AvoirFaitPS a ";
@@ -84,9 +82,8 @@ public class ModeleBDD {
                     }
                 }
             }
-
             //creation des liens d'amitie
-            Set<AreteValuee> ar = new HashSet<AreteValuee>();
+
             st = conn.createStatement();
             query = "SELECT id_personne1,id_personne2,evaluation FROM EtreAmi";
             rs = st.executeQuery(query);
@@ -102,7 +99,7 @@ public class ModeleBDD {
                     }
                 }
             }
-
+            return new GrapheValue(pers, ar);
         } finally {
             // close result, statement and connection
             if (conn != null) {
@@ -111,6 +108,15 @@ public class ModeleBDD {
         }
     }
 
-    public static void save(GrapheValue gr) {
+    public static void sychronize(GrapheValue gr) {
+    }
+
+    public static void update(GrapheValue gr) {
+    }
+
+    public static void create(GrapheValue gr) {
+    }
+
+    public static void delete(GrapheValue gr) {
     }
 }
