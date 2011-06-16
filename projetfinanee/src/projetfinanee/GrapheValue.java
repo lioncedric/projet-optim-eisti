@@ -128,7 +128,7 @@ public class GrapheValue {
             }
         } else if (prenom != null) {
             for (Personne p : sommets) {
-                if (p.getPrenom().compareToIgnoreCase(nom) == 0) {
+                if (p.getPrenom().compareToIgnoreCase(prenom) == 0) {
                     trouves.add(p);
                 }
             }

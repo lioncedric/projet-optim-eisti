@@ -49,7 +49,16 @@ public class Personne {
         Set<Personne> sommetsVisites = new HashSet<Personne>();
         List<Choix> choixRetenus = new ArrayList<Choix>();
         Set<Personne> personnesRetenues = new HashSet<Personne>();
-        parcoursProfondeur(this.gr, this, sommetsVisites, choixRetenus, 1, nbAmis, profondeur, 100);
+        sommetsVisites.add(this);
+        Iterator<Personne> i = this.recupererAmis();
+        while (i.hasNext()) {
+            sommetsVisites.add(i.next());
+        }
+        i = this.recupererAmis();
+        while (i.hasNext()) {
+            parcoursProfondeur(this.gr, i.next(), sommetsVisites, choixRetenus, nbAmis, profondeur, 100);
+        }
+
         for (Choix c : choixRetenus) {
 
             personnesRetenues.add(c.getP());
@@ -58,26 +67,23 @@ public class Personne {
     }
 
     public static void parcoursProfondeur(GrapheValue g, Personne origine,
-        Set<Personne> sommetsVisites, List<Choix> sommetsRetenus, int rang, int nbAmis, int profondeur, double note) {
+            Set<Personne> sommetsVisites, List<Choix> sommetsRetenus, int nbAmis, int profondeur, double note) {
         sommetsVisites.add(origine);
         Iterator<Personne> i = origine.recupererAmis();
         while (i.hasNext()) {
             Personne suivant = i.next();
             note = note * g.getEvaluation(origine, suivant);
             if (!sommetsVisites.contains(suivant)) {
-                if (rang >= 2) {
-                    if (sommetsRetenus.size() < nbAmis) {
-                        sommetsRetenus.add(new Choix(suivant, note));
-                    } else {
-                        Collections.sort(sommetsRetenus);
-                        sommetsRetenus.set(4, new Choix(suivant, note));
-                    }
+                if (sommetsRetenus.size() < nbAmis) {
+                    sommetsRetenus.add(new Choix(suivant, note));
+                } else {
+                    Collections.sort(sommetsRetenus);
+                    sommetsRetenus.set(4, new Choix(suivant, note));
                 }
-                rang++;
-                parcoursProfondeur(g, suivant, sommetsVisites, sommetsRetenus, rang, nbAmis, profondeur, note);
+                parcoursProfondeur(g, suivant, sommetsVisites, sommetsRetenus, nbAmis, profondeur, note);
             }
         }
-       
+
     }
 
     public Iterator<Personne> recupererAmis() {
