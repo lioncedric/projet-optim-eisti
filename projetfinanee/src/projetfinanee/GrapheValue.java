@@ -62,7 +62,7 @@ public class GrapheValue {
         return 0;
     }
 
-    public boolean evaluerAmitie(Personne p1, Personne p2, int valeur) {
+    public boolean evaluerAmitie(Personne p1, Personne p2, int valeur)  throws  Exception{
         Boolean res = false;
         Iterator<AreteValuee> it = aretes.iterator();
         while (it.hasNext()) {
@@ -80,7 +80,7 @@ public class GrapheValue {
         return res;
     }
 
-    private void ajouterAmis(Personne p1, Personne p2, int valeur) {
+    private void ajouterAmis(Personne p1, Personne p2, int valeur) throws Exception{
         aretes.add(new AreteValuee(p1, p2, valeur));
         ModeleBDD.create(p1.getId(), p2.getId(), valeur);
     }

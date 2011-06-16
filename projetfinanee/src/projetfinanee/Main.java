@@ -15,7 +15,7 @@ public class Main {
     /**
      * @param args the command line arguments
      */
-    public static void main(String[] args) throws SQLException, ClassNotFoundException {
+    public static void main(String[] args) throws Exception  {
 
         GrapheValue gr = ModeleBDD.load();
 
@@ -26,12 +26,11 @@ public class Main {
         gr.evaluerAmitie(gr.getPersonne(3), gr.getPersonne(4), 12);
         gr.evaluerAmitie(gr.getPersonne(4), gr.getPersonne(0), 12);
         gr.evaluerAmitie(gr.getPersonne(0), gr.getPersonne(1), 13);
-        for (Personne p : gr.getPersonne(0).rechercheAmis()) {
+        for (Personne p : gr.getPersonne(0).rechercheAmis(5,10)) {
 
             System.out.println(p);
         }
 
-        //System.out.println(gr.recupererAmis(gr.getPersonne(0)));
         ModeleBDD.sychronize();
 
     }

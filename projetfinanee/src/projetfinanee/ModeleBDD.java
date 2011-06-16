@@ -13,7 +13,7 @@ public class ModeleBDD {
 
     private static List<Etape> historique;
 
-    public static GrapheValue load() throws SQLException {
+    public static GrapheValue load() throws  Exception {
         historique = new ArrayList<Etape>();
         List<Personne> pers = new ArrayList<Personne>();
         List<Etablissement> etbs = new ArrayList<Etablissement>();
@@ -122,6 +122,7 @@ public class ModeleBDD {
                 if (rs.getInt(1) == p1.getId()) {
                     for (Personne p2 : pers) {
                         if (rs.getInt(2) == p2.getId()) {
+                           
                             ar.add(new AreteValuee(p1, p2, rs.getInt(3)));
                         }
                     }
