@@ -40,10 +40,10 @@ public class GrapheValue {
             AreteValuee ar = it.next();
             if (ar.getP1().equals(p1) && ar.getP2().equals(p2)) {
                 arARemove = ar;
-                 ModeleBDD.delete(p1.getId(), p2.getId());
+                ModeleBDD.delete(p1.getId(), p2.getId());
             }
         }
-       
+
         return aretes.remove(arARemove);
     }
 
@@ -81,6 +81,8 @@ public class GrapheValue {
         ModeleBDD.create(p1.getId(), p2.getId(), valeur);
     }
 
+   
+
     public Personne getPersonne(int i) {
         return sommets.get(i);
     }
@@ -89,26 +91,24 @@ public class GrapheValue {
         p1.ajouterAmisEnAttente(p2);
     }
 
-    public List<Personne> rechercherParNomPrenom(String nom, String prenom){
+    public List<Personne> rechercherParNomPrenom(String nom, String prenom) {
         List<Personne> trouves;
         trouves = new LinkedList();
-        if(nom!=null && prenom!=null){
-            for(Personne p: sommets){
-                if(p.getNom().compareToIgnoreCase(nom)==0 && p.getPrenom().compareToIgnoreCase(prenom)==0){
+        if (nom != null && prenom != null) {
+            for (Personne p : sommets) {
+                if (p.getNom().compareToIgnoreCase(nom) == 0 && p.getPrenom().compareToIgnoreCase(prenom) == 0) {
                     trouves.add(p);
                 }
             }
-        }
-        else if(nom!=null){
-            for(Personne p: sommets){
-                if(p.getNom().compareToIgnoreCase(nom)==0){
+        } else if (nom != null) {
+            for (Personne p : sommets) {
+                if (p.getNom().compareToIgnoreCase(nom) == 0) {
                     trouves.add(p);
                 }
             }
-        }
-        else if(prenom!=null){
-            for(Personne p: sommets){
-                if(p.getPrenom().compareToIgnoreCase(nom)==0){
+        } else if (prenom != null) {
+            for (Personne p : sommets) {
+                if (p.getPrenom().compareToIgnoreCase(nom) == 0) {
                     trouves.add(p);
                 }
             }
@@ -116,7 +116,6 @@ public class GrapheValue {
         return trouves;
     }
 
-    public List<Personne> rechercheParParcours(String nomEtablissement, String ville, int annee){
-
+    public List<Personne> rechercheParParcours(String nomEtablissement, String ville, int annee) {
     }
 }

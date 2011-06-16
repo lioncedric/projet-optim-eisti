@@ -130,7 +130,11 @@ public class ModeleBDD {
             }
         }
         MyConnector.closeConnection();
-        return new GrapheValue(pers, ar);
+        GrapheValue gr = new GrapheValue(pers, ar);
+        for (Personne p : pers) {
+            p.setGr(gr);
+        }
+        return gr;
 
     }
 

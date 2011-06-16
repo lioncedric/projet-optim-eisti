@@ -1,6 +1,9 @@
 package projetfinanee;
 
 import java.util.HashSet;
+import java.util.Iterator;
+import java.util.LinkedList;
+import java.util.List;
 import java.util.Set;
 
 public class Personne {
@@ -14,6 +17,7 @@ public class Personne {
     private Set<Personne> amisEnAttente;
     private Lieu lieuNaiss;
     private Lieu lieuRes;
+    private GrapheValue gr;
 
     public Personne(int id, String nom, String prenom, String sexe) {
         this.id = id;
@@ -25,9 +29,8 @@ public class Personne {
         this.amisEnAttente = new HashSet<Personne>();
         this.interets = new HashSet<CentreInteret>();
         this.sej = new HashSet<Sejour>();
-    }
 
- 
+    }
 
     public Personne() {
         this.id = 0;
@@ -41,9 +44,17 @@ public class Personne {
         this.lieuRes = new Lieu();
     }
 
+    public List<Personne> rechercheAmis() {
+        
+    }
+
+    public List<Personne> recupererAmis() {
+     return gr.recupererAmis(this);
+    }
+
     @Override
     public String toString() {
-        return "Personne{" + "id=" + id + ", nom=" + nom + ", prenom=" + prenom + ", sexe=" + sexe + ", interets=" + interets + ", sej=" + sej +  ", amisEnAttente=" + amisEnAttente + ", lieuNaiss="+ lieuNaiss + ", lieuRes=" + lieuRes + "}";
+        return "Personne{" + "id=" + id + ", nom=" + nom + ", prenom=" + prenom + ", sexe=" + sexe + ", interets=" + interets + ", sej=" + sej + ", amisEnAttente=" + amisEnAttente + ", lieuNaiss=" + lieuNaiss + ", lieuRes=" + lieuRes + "}";
     }
 
     public void ajouterAmisEnAttente(Personne p) {
@@ -98,7 +109,6 @@ public class Personne {
         this.lieuRes = lieuRes;
     }
 
-
     public void addCentreInteret(CentreInteret c) {
         interets.add(c);
     }
@@ -107,4 +117,7 @@ public class Personne {
         sej.add(s);
     }
 
+    public void setGr(GrapheValue gr) {
+        this.gr = gr;
+    }
 }
