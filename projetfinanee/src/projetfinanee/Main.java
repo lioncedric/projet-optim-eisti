@@ -15,7 +15,7 @@ public class Main {
      */
     public static void main(String[] args) throws Exception  {
 
-        GrapheValue gr = ModeleBDD.load();
+        GrapheValue gr = ModeleBDD.load("projet", "projet");
 
         System.out.println(gr);
 

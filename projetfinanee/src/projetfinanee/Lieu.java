@@ -3,6 +3,7 @@ package projetfinanee;
 
 public class Lieu {
 
+    //variables de la classe
     private int idLieu;
     private String pays;
     private String ville;

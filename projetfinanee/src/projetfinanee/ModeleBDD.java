@@ -11,18 +11,22 @@ import java.util.Set;
 
 public class ModeleBDD {
 
+    //variable de la classe
     private static List<Etape> historique;
 
-    public static GrapheValue load() throws  Exception {
+    public static GrapheValue load(String login, String mdp) throws  Exception {
+        //on initialise l'historique des actions effectuées sur les données extraites de la base de données via les objets Java
         historique = new ArrayList<Etape>();
+        //on crée de nouvelles listes de personnes, d'établissements et de liens d'amitié
         List<Personne> pers = new ArrayList<Personne>();
         List<Etablissement> etbs = new ArrayList<Etablissement>();
         Set<AreteValuee> ar = new HashSet<AreteValuee>();
         Connection conn = null;
-        // create new connection and statement
-        MyConnector.setParametersOracleLocal("projet", "projet");
+        // on définit le login et le mot de passe de la BDD en local
+        MyConnector.setParametersOracleLocal(login, mdp);
+        //on ouvre la connexion
         conn = MyConnector.getConnection();
-        //creation des lieux
+        //creation des lieux à partir des données de la BDD récupérées par une requête
         List<Lieu> lieux = new ArrayList<Lieu>();
         Statement st = conn.createStatement();
         String query = "SELECT id_lieu, pays, ville, adresse, numero  FROM lieu  ";
@@ -32,7 +36,7 @@ public class ModeleBDD {
             lieux.add(l);
         }
 
-        //creation des personnes
+        //creation des personnes à partir des données de la BDD récupérées par une requête
         st = conn.createStatement();
         query = "SELECT id_personne,nom,prenom,s.libelle,p.id_lieuNaiss, p.id_lieuRes  FROM personne p, sexe s where p.id_sexe=s.id_sexe";
         rs = st.executeQuery(query);
@@ -51,7 +55,7 @@ public class ModeleBDD {
             pers.add(p);
         }
 
-        //creation des centres d'interet
+        //creation des centres d'interet à partir des données de la BDD récupérées par une requête
         st = conn.createStatement();
         query = "SELECT id_personne,c.id_centreInteret,c.libelle,categorie  FROM Aimer a,CentreInteret c where a.id_centreInteret = c.id_centreInteret  ";
         rs = st.executeQuery(query);
@@ -64,7 +68,7 @@ public class ModeleBDD {
             }
         }
 
-        //creation des etablissements
+        //creation des etablissements à partir des données de la BDD récupérées par une requête
         st = conn.createStatement();
         query = "SELECT id_etablissement,id_lieu,libelle,description  FROM etablissement";
         rs = st.executeQuery(query);
@@ -78,7 +82,7 @@ public class ModeleBDD {
             etbs.add(e);
         }
 
-        //creation des parcours
+        //creation des parcours scolaire à partir des données de la BDD récupérées par une requête
         st = conn.createStatement();
         query = "SELECT id_personne,id_etablissement,dateDebut,dateFin  FROM AvoirFaitPS a ";
         rs = st.executeQuery(query);
@@ -95,7 +99,8 @@ public class ModeleBDD {
                 }
             }
         }
-        //creation des parcoursPro
+
+        //creation des parcours professionnels à partir des données de la BDD récupérées par une requête
         st = conn.createStatement();
         query = "SELECT id_personne,id_etablissement,dateDebut,dateFin,p.libelle  FROM AvoirFaitPP a,Poste p where p.id_poste=a.id_poste ";
         rs = st.executeQuery(query);
@@ -113,7 +118,7 @@ public class ModeleBDD {
             }
         }
 
-        //creation des liens d'amitie
+        //creation des liens d'amitié à partir des données de la BDD récupérées par une requête
         st = conn.createStatement();
         query = "SELECT id_personne1,id_personne2,evaluation FROM EtreAmi";
         rs = st.executeQuery(query);
@@ -130,44 +135,51 @@ public class ModeleBDD {
                 }
             }
         }
+        //on ferme la connexion
         MyConnector.closeConnection();
+        //on crée un nouveau graphe à partir des listes de personnes et de liens d'amitié elles-mêmes crées précédement
         GrapheValue gr = new GrapheValue(pers, ar);
         for (Personne p : pers) {
+            //on lie le graphe à chaque personne créée
             p.setGr(gr);
         }
+        //on retourne le graphe créé
         return gr;
 
     }
 
     public static void sychronize() throws SQLException {
         Connection conn = null;
-        // create new connection and statement
-        MyConnector.setParametersOracleLocal("projet", "projet");
+        //on ouvre la connexion
         conn = MyConnector.getConnection();
         Statement st;
+        String query;
+        //pour chaque étape de l'historique
         for (Etape e : historique) {
-
-
-            String query = "";
+            //si le type de l'étape est égal à 1
             if (e.getType() == 1) {
+                //la requête sera une création
                 query = "INSERT INTO EtreAmi (id_personne1,id_personne2,evaluation) VALUES ('" + e.getId_Personne1() + "','" + e.getId_Personne2() + "','" + e.getValeur() + "')";
 
-            } else if (e.getType() == 3) {
+            }
+            //si le type de l'étape est égal à 2
+            else if (e.getType() == 3) {
+                //la requête sera une modification
                 query = "UPDATE EtreAmi SET evaluation = '" + e.getValeur() + "' WHERE id_personne1=" + e.getId_Personne1() + " and id_personne2=" + e.getId_Personne2();
 
-            } else {
+            }
+            //si le type de l'étape est égal à 3
+            else {
+                //la requête sera une suppression
                 query = "delete from EtreAmi  WHERE id_personne1=" + e.getId_Personne1() + " and id_personne2=" + e.getId_Personne2();
 
             }
-
-
             st = conn.createStatement();
-
             st.executeQuery(query);
-
             st.close();
 
         }
+        //on ferme la connexion
         MyConnector.closeConnection();
     }
 

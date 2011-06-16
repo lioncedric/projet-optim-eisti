@@ -68,36 +68,55 @@ public class GrapheValue {
     }
 
     public int getEvaluation(Personne p1, Personne p2) {
+        //on déclare et on initialise un itérateur permettant de percourir l'ensemble des arêtes nommé aretes
         Iterator<AreteValuee> it = aretes.iterator();
+        //tant qu'il existe une arête dans la liste d'arêtes
         while (it.hasNext()) {
+            //tant qu'il existe une arête dans la liste d'arêtes
             AreteValuee ar = it.next();
+            //si un lien d'amitié existe entre p1 et p2
             if (ar.getP1().equals(p1) && ar.getP2().equals(p2)) {
+                //on retourne la valeur d'amitié considérée par p1
                 return ar.getEvaluation();
             }
         }
+        //on retourne une valeur de 0 si aucun lien d'amitié n'existe entre p1 et p2
         return 0;
     }
 
     public boolean evaluerAmitie(Personne p1, Personne p2, int valeur)  throws  Exception{
         Boolean res = false;
+        //on déclare et on initialise un itérateur permettant de percourir l'ensemble des arêtes nommé aretes
         Iterator<AreteValuee> it = aretes.iterator();
+        //tant qu'il existe une arête dans la liste d'arêtes
         while (it.hasNext()) {
+            //tant qu'il existe une arête dans la liste d'arêtes
             AreteValuee ar = it.next();
+            //si une arête ayant pour sommets p1 et p2 existe
             if (ar.getP1().equals(p1) && ar.getP2().equals(p2)) {
+                //on remplace sa valeur par celle placée en paramètre
                 ar.setEvaluation(valeur);
+                //l'action de modification est mémorisée pour la synchronisation avec la BDD
                 ModeleBDD.update(p1.getId(), p2.getId(), valeur);
+                //le booleen d'affectation de la valeur à une arête prend donc vrai
                 res = true;
             }
         }
+        //si, après avoir parcouru l'ensemble des arêtes exsitantes, aucune affectation n'a été réalisée
         if (!res) {
+            //on appelle la fonction d'ajout d'un lien d'amitié avec les valeurs placées en paramètres
             ajouterAmis(p1, p2, valeur);
+            //le booleen d'affectation de la valeur à une arête prend donc vrai
             res = true;
         }
+        //on retourne le booleen permettant de confirmer l'affectation de la valeur d'amitié
         return res;
     }
 
     private void ajouterAmis(Personne p1, Personne p2, int valeur) throws Exception{
+        //on ajoute une nouvelle arête, composée des éléments placés en paramètres, à l'ensemble des liens d'amitié
         aretes.add(new AreteValuee(p1, p2, valeur));
+        //l'action de création est mémorisée pour la synchronisation avec la BDD
         ModeleBDD.create(p1.getId(), p2.getId(), valeur);
     }
 
@@ -108,6 +127,7 @@ public class GrapheValue {
     }
 
     public void proposerAmis(Personne p1, Personne p2) {
+        //on ajoute p2 à l'ensemble des personnes étant en attente d'une réponse de la part de p1
         p1.ajouterAmisEnAttente(p2);
     }
 
@@ -186,7 +206,7 @@ public class GrapheValue {
         else if(libelle!=null){
             for (Personne p : sommets) {
                 for (CentreInteret ci : p.getInterets()){
-                    if(ci.getLibelle().compareToIgnoreCase(categorie)==0){
+                    if(ci.getLibelle().compareToIgnoreCase(libelle)==0){
                         trouves.add(p);
                     }
                 }

@@ -5,6 +5,7 @@ import java.sql.Date;
 
 public class Sejour {
 
+    //variables de la classe
     private Etablissement etab;
     private Date dateDebut;
     private Date dateFin;
@@ -26,8 +27,6 @@ public class Sejour {
     public Etablissement getEtab() {
         return etab;
     }
-
-    
 
     @Override
     public String toString() {
