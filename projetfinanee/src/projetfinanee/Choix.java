@@ -10,8 +10,10 @@ package projetfinanee;
  * @author Administrator
  */
 public class Choix implements Comparable<Choix>{
-private Personne p;
-private double interet;
+
+    //variables de la classe
+    private Personne p;
+    private double interet;
 
     public Choix(Personne p, double interet) {
         this.p = p;

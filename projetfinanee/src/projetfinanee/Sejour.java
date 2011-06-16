@@ -3,7 +3,6 @@ package projetfinanee;
 
 import java.sql.Date;
 
-
 public class Sejour {
 
     private Etablissement etab;
@@ -15,6 +14,20 @@ public class Sejour {
         this.dateDebut = dateDebut;
         this.dateFin = dateFin;
     }
+
+    public Date getDateDebut() {
+        return dateDebut;
+    }
+
+    public Date getDateFin() {
+        return dateFin;
+    }
+
+    public Etablissement getEtab() {
+        return etab;
+    }
+
+    
 
     @Override
     public String toString() {

@@ -10,10 +10,12 @@ package projetfinanee;
  * @author Administrator
  */
 public class Etape {
-private int id_Personne1;
-private int id_Personne2;
-private int valeur;
-private int type;
+
+    //variables de la classe
+    private int id_Personne1;
+    private int id_Personne2;
+    private int valeur;
+    private int type;
 
     public Etape(int type,int id_Personne1, int id_Personne2, int valeur) {
         this.id_Personne1 = id_Personne1;

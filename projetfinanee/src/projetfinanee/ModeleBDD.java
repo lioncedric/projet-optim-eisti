@@ -87,7 +87,7 @@ public class ModeleBDD {
                 if (e.getId() == rs.getInt("id_etablissement")) {
                     for (Personne p : pers) {
                         if (p.getId() == rs.getInt("id_personne")) {
-                            Sejour s = new Sejour(e, rs.getDate(3), rs.getDate(4));
+                            Sejour s = new Sejour(e, rs.getDate(3),rs.getDate(4));
                             p.addSejour(s);
                         }
                     }

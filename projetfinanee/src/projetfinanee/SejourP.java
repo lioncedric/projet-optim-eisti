@@ -3,7 +3,6 @@ package projetfinanee;
 
 import java.sql.Date;
 
-
 public class SejourP extends Sejour{
 
     private String poste;

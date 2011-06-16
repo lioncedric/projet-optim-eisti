@@ -2,10 +2,13 @@
 package projetfinanee;
 
 public class CentreInteret {
-private String libelle;
-private String categorie;
+
+    //variables de la classe
+    private String libelle;
+    private String categorie;
 
     public CentreInteret(String libelle, String categorie) {
+        //on initialise les variables
         this.libelle = libelle;
         this.categorie = categorie;
     }

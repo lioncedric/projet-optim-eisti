@@ -2,6 +2,7 @@ package projetfinanee;
 
 public class Etablissement {
 
+    //variables de la classe
     private int id;
     private String nom;
     private String description;
