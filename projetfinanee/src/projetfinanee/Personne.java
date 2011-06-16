@@ -59,13 +59,11 @@ public class Personne {
         i = this.recupererAmis();
         double note;
         while (i.hasNext()) {
-             Personne suivant = i.next();
+           Personne suivant = i.next();
            note= (this.gr.getEvaluation(this, suivant)*1.0/100);
-            parcoursProfondeur(this.gr,suivant, sommetsVisites, choixRetenus, nbAmis, profondeur, note);
+           parcoursProfondeur(this.gr,suivant, sommetsVisites, choixRetenus, nbAmis, profondeur, note);
         }
-
         for (Choix c : choixRetenus) {
-
             personnesRetenues.add(c.getP());
         }
         return personnesRetenues;
@@ -73,7 +71,7 @@ public class Personne {
 
     public static void parcoursProfondeur(GrapheValue g, Personne origine,
             Set<Personne> sommetsVisites, List<Choix> sommetsRetenus, int nbAmis, int profondeur, double note) {
-        sommetsVisites.add(origine);
+       // sommetsVisites.add(origine);
         Iterator<Personne> i = origine.recupererAmis();
         double eval;
         int rang;
@@ -81,6 +79,7 @@ public class Personne {
             Personne suivant = i.next();
             eval = note * (g.getEvaluation(origine, suivant)*1.0/100);
             if (!sommetsVisites.contains(suivant)) {
+              
                 if (sommetsRetenus.size() < nbAmis) {
                     sommetsRetenus.add(new Choix(suivant, eval));
                 } else {

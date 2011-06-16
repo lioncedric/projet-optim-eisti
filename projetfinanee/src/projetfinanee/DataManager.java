@@ -9,7 +9,7 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
-public class ModeleBDD {
+public class DataManager {
 
     //variable de la classe
     private static List<Etape> historique;

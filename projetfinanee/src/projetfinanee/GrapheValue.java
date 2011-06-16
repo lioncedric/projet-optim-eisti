@@ -59,7 +59,7 @@ public class GrapheValue {
                 //on supprime le lien d'amitié entre p1 et p2
                 arARemove = ar;
                 //l'action de suppression est mémorisée pour la synchronisation avec la BDD
-                ModeleBDD.delete(p1.getId(), p2.getId());
+                DataManager.delete(p1.getId(), p2.getId());
             }
         }
         //on supprime le lien d'amitié entre p1 et p2
@@ -97,7 +97,7 @@ public class GrapheValue {
                 //on remplace sa valeur par celle placée en paramètre
                 ar.setEvaluation(valeur);
                 //l'action de modification est mémorisée pour la synchronisation avec la BDD
-                ModeleBDD.update(p1.getId(), p2.getId(), valeur);
+                DataManager.update(p1.getId(), p2.getId(), valeur);
                 //le booleen d'affectation de la valeur à une arête prend donc vrai
                 res = true;
             }
@@ -117,7 +117,7 @@ public class GrapheValue {
         //on ajoute une nouvelle arête, composée des éléments placés en paramètres, à l'ensemble des liens d'amitié
         aretes.add(new AreteValuee(p1, p2, valeur));
         //l'action de création est mémorisée pour la synchronisation avec la BDD
-        ModeleBDD.create(p1.getId(), p2.getId(), valeur);
+        DataManager.create(p1.getId(), p2.getId(), valeur);
     }
 
    
