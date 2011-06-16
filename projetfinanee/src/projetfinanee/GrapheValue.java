@@ -41,10 +41,10 @@ public class GrapheValue {
             AreteValuee ar = it.next();
             if (ar.getP1().equals(p1) && ar.getP2().equals(p2)) {
                 arARemove = ar;
-
+                 ModeleBDD.delete(p1.getId(), p2.getId());
             }
         }
-        ModeleBDD.delete(p1.getId(), p2.getId());
+       
         return aretes.remove(arARemove);
     }
 
@@ -77,7 +77,7 @@ public class GrapheValue {
         return res;
     }
 
-    public void ajouterAmis(Personne p1, Personne p2, int valeur) {
+    private void ajouterAmis(Personne p1, Personne p2, int valeur) {
         aretes.add(new AreteValuee(p1, p2, valeur));
         ModeleBDD.create(p1.getId(), p2.getId(), valeur);
     }

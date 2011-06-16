@@ -54,4 +54,9 @@ private int type;
         this.valeur = valeur;
     }
 
+    @Override
+    public String toString() {
+        return "Etape{" + "id_Personne1=" + id_Personne1 + "id_Personne2=" + id_Personne2 + "valeur=" + valeur + "type=" + type + '}';
+    }
+
 }

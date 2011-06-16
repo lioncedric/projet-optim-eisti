@@ -20,8 +20,9 @@ public class Main {
         GrapheValue gr = ModeleBDD.load();
         System.out.println(gr);
         gr.supprimerUnAmi(gr.getPersonne(0), gr.getPersonne(1));
-        System.out.println(gr.getEvaluation(gr.getPersonne(0), gr.getPersonne(1)));
-        gr.ajouterAmis(gr.getPersonne(0), gr.getPersonne(1), 12);
-        System.out.println(gr.getEvaluation(gr.getPersonne(0), gr.getPersonne(1)));
+        gr.evaluerAmitie(gr.getPersonne(0), gr.getPersonne(1), 12);
+        gr.evaluerAmitie(gr.getPersonne(0), gr.getPersonne(1), 13);
+        ModeleBDD.sychronize();
+
     }
 }
