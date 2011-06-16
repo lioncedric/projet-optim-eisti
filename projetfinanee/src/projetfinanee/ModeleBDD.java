@@ -137,22 +137,24 @@ public class ModeleBDD {
     public static void sychronize() throws SQLException {
         Connection conn = MyConnector.getConnection();
         for (Etape e : historique) {
-
-            //creation des personnes
-            Statement st = conn.createStatement();
-
+            String query = "";
             if (e.getType() == 1) {
-                String query = "SELECT id_personne,nom,prenom,s.libelle  FROM personne p, sexe s where p.id_sexe=s.id_sexe";
-                st.executeQuery(query);
+                query = "INSERT INTO EtreAmi (id_personne1,id_personne2,evaluation) VALUES ('" + e.getId_Personne1() + "','" + e.getId_Personne2() + "','" + e.getValeur() + "')";
+
             }
             if (e.getType() == 2) {
-                String query = "SELECT id_personne,nom,prenom,s.libelle  FROM personne p, sexe s where p.id_sexe=s.id_sexe";
-                st.executeQuery(query);
+                query = "UPDATE EtreAmi SET evaluation = ['" + e.getValeur() + "'] WHERE id_personne1=" + e.getId_Personne1() + " and id_personne2=" + e.getId_Personne2();
+
             }
             if (e.getType() == 3) {
-                String query = "SELECT id_personne,nom,prenom,s.libelle  FROM personne p, sexe s where p.id_sexe=s.id_sexe";
-                st.executeQuery(query);
+                query = "delete from EtreAmi  WHERE id_personne1=" + e.getId_Personne1() + " and id_personne2=" + e.getId_Personne2();
+
             }
+            Statement st = conn.createStatement();
+            st.executeQuery(query);
+            query = "commit;";
+            st = conn.createStatement();
+            st.executeQuery(query);
         }
     }
 

@@ -33,43 +33,45 @@ public class GrapheValue {
         return res;
     }
 
-    public boolean supprimerUnAmi(Personne p1, Personne p2){
-      boolean res = false;
-      Iterator<AreteValuee> it= aretes.iterator();
-       AreteValuee arARemove=null;
-      while(it.hasNext()){
-        AreteValuee ar= it.next();
-        if(ar.getP1().equals(p1) && ar.getP2().equals(p2)){
-              arARemove=ar;
-           
-        }
-      }
-      return  aretes.remove(arARemove);
-   }
+    public boolean supprimerUnAmi(Personne p1, Personne p2) {
+        boolean res = false;
+        Iterator<AreteValuee> it = aretes.iterator();
+        AreteValuee arARemove = null;
+        while (it.hasNext()) {
+            AreteValuee ar = it.next();
+            if (ar.getP1().equals(p1) && ar.getP2().equals(p2)) {
+                arARemove = ar;
 
-    public int getEvaluation(Personne p1, Personne p2){
-      Iterator<AreteValuee> it= aretes.iterator();
-      while(it.hasNext()){
-        AreteValuee ar= it.next();
-        if(ar.getP1().equals(p1) && ar.getP2().equals(p2)){
-           return ar.getEvaluation();
+            }
         }
-      }
-      return 0;
-   }
+        ModeleBDD.delete(p1.getId(), p2.getId());
+        return aretes.remove(arARemove);
+    }
 
-    public boolean evaluerAmitie(Personne p1, Personne p2, int valeur){
+    public int getEvaluation(Personne p1, Personne p2) {
+        Iterator<AreteValuee> it = aretes.iterator();
+        while (it.hasNext()) {
+            AreteValuee ar = it.next();
+            if (ar.getP1().equals(p1) && ar.getP2().equals(p2)) {
+                return ar.getEvaluation();
+            }
+        }
+        return 0;
+    }
+
+    public boolean evaluerAmitie(Personne p1, Personne p2, int valeur) {
         Boolean res = false;
-        Iterator<AreteValuee> it= aretes.iterator();
-        while(it.hasNext()){
-        AreteValuee ar= it.next();
-            if(ar.getP1().equals(p1) && ar.getP2().equals(p2)){
+        Iterator<AreteValuee> it = aretes.iterator();
+        while (it.hasNext()) {
+            AreteValuee ar = it.next();
+            if (ar.getP1().equals(p1) && ar.getP2().equals(p2)) {
                 ar.setEvaluation(valeur);
+                ModeleBDD.update(p1.getId(), p2.getId(), valeur);
                 res = true;
             }
         }
-        if(!res){
-            aretes.add(new AreteValuee(p1, p2, valeur));
+        if (!res) {
+            ajouterAmis(p1, p2, valeur);
             res = true;
         }
         return res;
@@ -77,13 +79,12 @@ public class GrapheValue {
 
     public void ajouterAmis(Personne p1, Personne p2, int valeur) {
         aretes.add(new AreteValuee(p1, p2, valeur));
+        ModeleBDD.create(p1.getId(), p2.getId(), valeur);
     }
 
     public Personne getPersonne(int i) {
         return sommets.get(i);
     }
-
-
 
     public void proposerAmis(Personne p1, Personne p2) {
         p1.ajouterAmisEnAttente(p2);
