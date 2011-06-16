@@ -11,7 +11,6 @@ public class Personne {
     private String sexe;
     private Set<CentreInteret> interets;
     private Set<Sejour> sej;
-    private boolean visite;
     private Set<Personne> amisEnAttente;
     private Lieu lieuNaiss;
     private Lieu lieuRes;
@@ -23,7 +22,6 @@ public class Personne {
         this.sexe = sexe;
         this.interets = interets;
         this.sej = sej;
-        this.visite = false;
         this.amisEnAttente = new HashSet<Personne>();
         this.lieuNaiss = new Lieu();
         this.lieuRes = new Lieu();
@@ -36,7 +34,6 @@ public class Personne {
         this.sexe = sexe;
         this.lieuNaiss = new Lieu();
         this.lieuRes = new Lieu();
-        this.visite = false;
         this.amisEnAttente = new HashSet<Personne>();
         this.interets = new HashSet<CentreInteret>();
         this.sej = new HashSet<Sejour>();
@@ -50,7 +47,6 @@ public class Personne {
         this.prenom = "";
         this.sexe = "";
         this.interets = new HashSet<CentreInteret>();
-        this.visite = false;
         this.sej = new HashSet<Sejour>();
         this.amisEnAttente = new HashSet<Personne>();
         this.lieuNaiss = new Lieu();
@@ -59,7 +55,7 @@ public class Personne {
 
     @Override
     public String toString() {
-        return "Personne{" + "id=" + id + ", nom=" + nom + ", prenom=" + prenom + ", sexe=" + sexe + ", interets=" + interets + ", sej=" + sej + ", visite=" + visite + ", amisEnAttente=" + amisEnAttente + ", lieuNaiss="+ lieuNaiss + ", lieuRes=" + lieuRes + "}";
+        return "Personne{" + "id=" + id + ", nom=" + nom + ", prenom=" + prenom + ", sexe=" + sexe + ", interets=" + interets + ", sej=" + sej +  ", amisEnAttente=" + amisEnAttente + ", lieuNaiss="+ lieuNaiss + ", lieuRes=" + lieuRes + "}";
     }
 
     public void ajouterAmisEnAttente(Personne p) {
@@ -123,11 +119,4 @@ public class Personne {
         sej.add(s);
     }
 
-    public boolean isVisite() {
-        return visite;
-    }
-
-    public void setVisite(boolean visite) {
-        this.visite = visite;
-    }
 }
