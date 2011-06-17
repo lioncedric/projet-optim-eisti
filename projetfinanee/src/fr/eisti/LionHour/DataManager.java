@@ -57,6 +57,18 @@ public class DataManager {
             String pBddname, String pDriverClass, String pLogin, String pPasswd) {
         MyConnector.setParameters(pDriver, pServer, pPort, pBddname, pDriverClass, pLogin, pPasswd);
     }
+     /**
+     * Paramètre le connecteur Oracle avec un login et un mot de passe
+     * permettant d'accéder au serveur Oracle.
+     * A faire une fois dans l'application.
+     * @param pUrl url de la bdd
+     * @param pDriverClass la classe du driver
+     * @param pLogin login
+     * @param pPasswd mot de passe
+     */
+    public static void initOracle(String pUrl, String pDriverClass, String pLogin, String pPasswd) {
+        MyConnector.setParameters(pUrl, pDriverClass, pLogin, pPasswd);
+    }
 
     /************************************************************************************************************
      *Description: permet de créer tous les ojets Java à parir de la bBDD
