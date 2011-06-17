@@ -9,11 +9,22 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
+/******************************************************************************
+ *Description: classe qui permet la synchronnisation entre la BDD et les objets Java
+ * @author HOURCLATS Teddy, LION Cédric
+ * @version 1.0
+ ******************************************************************************/
 public class DataManager {
 
     //variable de la classe
     private static List<Etape> historique;
 
+    /************************************************************************************************************
+    *Description: permet de créer tous les ojets Java à parir de la bBDD
+    *@param login une chaîne
+    *@param mdp une chaîne
+    *@return retourne un graphe
+    *************************************************************************************************************/
     public static GrapheValue load(String login, String mdp) throws  Exception {
         //on initialise l'historique des actions effectuées sur les données extraites de la base de données via les objets Java
         historique = new ArrayList<Etape>();
@@ -148,6 +159,9 @@ public class DataManager {
 
     }
 
+    /************************************************************************************************************
+    *Description: permet de mettre à jour la BDD en fonction des modifications apportées et présente dans l'historique
+    *************************************************************************************************************/
     public static void sychronize() throws SQLException {
         Connection conn = null;
         //on ouvre la connexion
@@ -183,14 +197,32 @@ public class DataManager {
         MyConnector.closeConnection();
     }
 
+    /************************************************************************************************************
+    *Description: permet d'ajouter une ligne à l'historique afin de préciser qu'un lien à été modifié pour la BDD
+    *@param p1 un entier
+    *@param p2 un entier
+    *@param valeur un entier
+    *************************************************************************************************************/
     public static void update(int p1, int p2, int valeur) {
         historique.add(new Etape(3, p1, p2, valeur));
     }
 
+    /************************************************************************************************************
+    *Description: permet d'ajouter une ligne à l'historique afin de préciser qu'un lien à été créé pour la BDD
+    *@param p1 un entier
+    *@param p2 un entier
+    *@param valeur un entier
+    *************************************************************************************************************/
     public static void create(int p1, int p2, int valeur) {
         historique.add(new Etape(1, p1, p2, valeur));
     }
 
+    /************************************************************************************************************
+    *Description: permet d'ajouter une ligne à l'historique afin de préciser qu'un lien à été supprimé pour la BDD
+    *@param p1 un entier
+    *@param p2 un entier
+    *@param valeur un entier
+    *************************************************************************************************************/
     public static void delete(int p1, int p2) {
         historique.add(new Etape(2, p1, p2, 0));
     }
