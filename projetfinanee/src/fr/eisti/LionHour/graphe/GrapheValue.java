@@ -200,7 +200,20 @@ public class GrapheValue {
      *************************************************************************************************************/
     public Personne getPersonneByNom(String nom) {
         for (Personne p : this.sommets) {
-            if (p.getNom().equals(nom)) {
+            if (p.getNom().toLowerCase().equals(nom.toLowerCase())) {
+                return p;
+            }
+        }
+        return null;
+    }
+      /************************************************************************************************************
+     *Description: permet de récupérer la premiere personne dans la liste des sommets par l'intermédiaire de son prenom
+     *@param prenom un entier
+     *@return retourne une personne
+     *************************************************************************************************************/
+    public Personne getPersonneByPrenom(String prenom) {
+        for (Personne p : this.sommets) {
+            if (p.getPrenom().toLowerCase().equals(prenom.toLowerCase())) {
                 return p;
             }
         }

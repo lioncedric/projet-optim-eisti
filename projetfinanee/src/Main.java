@@ -31,7 +31,7 @@ public class Main {
      //   gr.evaluerAmitie(gr.getPersonneById(1), gr.getPersonneById(4), 60);
 
         //on affiche les personnes proposées comme amies avec chaque personne du graphe
-        for (Personne p : gr.getPersonneByNom("LION").rechercheAmis(2, 90)) {
+        for (Personne p : gr.getPersonneByNom("DARTHEZ").rechercheAmis(1, 5,false)) {
             System.out.println(p);
         }
         // System.out.println(gr.rechercherParNomPrenom(null, "lion"));
