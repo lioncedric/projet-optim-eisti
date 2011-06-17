@@ -56,5 +56,12 @@ public class Choix implements Comparable<Choix>{
     public Personne getP() {
         return p;
     }
+ /************************************************************************************************************
+    *Description: permet de definir l'interet du choix
+    *@param interet un réel evaluant la qualité du choix
+    *************************************************************************************************************/
+    public void setInteret(double interet) {
+        this.interet = interet;
+    }
 
 }

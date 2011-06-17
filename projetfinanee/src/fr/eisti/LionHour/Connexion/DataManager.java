@@ -277,7 +277,6 @@ public class DataManager {
      *Description: permet d'ajouter une ligne à l'historique afin de préciser qu'un lien à été supprimé pour la BDD
      *@param p1 un entier
      *@param p2 un entier
-     *@param valeur un entier
      *************************************************************************************************************/
     public static void delete(int p1, int p2) {
         historique.add(new Etape(2, p1, p2, 0));

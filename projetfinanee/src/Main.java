@@ -24,14 +24,14 @@ public class Main {
         //on affiche ce graphe
         System.out.println(gr);
         //on ajoute des liens d'amitié dans ce graphe
-        gr.evaluerAmitie(gr.getPersonne(0), gr.getPersonne(1), 100);
-        gr.evaluerAmitie(gr.getPersonne(1), gr.getPersonne(3), 70);
-        gr.evaluerAmitie(gr.getPersonne(1), gr.getPersonne(2), 100);
-        gr.evaluerAmitie(gr.getPersonne(2), gr.getPersonne(3), 66);
-        gr.evaluerAmitie(gr.getPersonne(1), gr.getPersonne(4), 60);
+     //   gr.evaluerAmitie(gr.getPersonneById(0), gr.getPersonneById(1), 100);
+     //   gr.evaluerAmitie(gr.getPersonneById(1), gr.getPersonneById(3), 70);
+     //   gr.evaluerAmitie(gr.getPersonneById(1), gr.getPersonneById(2), 100);
+     //   gr.evaluerAmitie(gr.getPersonneById(2), gr.getPersonneById(3), 66);
+     //   gr.evaluerAmitie(gr.getPersonneById(1), gr.getPersonneById(4), 60);
 
         //on affiche les personnes proposées comme amies avec chaque personne du graphe
-        for (Personne p : gr.getPersonne(0).rechercheAmis(2, 90)) {
+        for (Personne p : gr.getPersonneByNom("LION").rechercheAmis(2, 90)) {
             System.out.println(p);
         }
         // System.out.println(gr.rechercherParNomPrenom(null, "lion"));

@@ -114,10 +114,20 @@ public class Personne {
             if (!sommetsVisites.contains(suivant)) {
               
                 if (sommetsRetenus.size() < nbAmis) {
+                    System.out.println("8");
+                     
                     sommetsRetenus.add(new Choix(suivant, eval));
+                     System.out.println(sommetsRetenus);
                 } else {
                     Collections.sort(sommetsRetenus);
-                    if (sommetsRetenus.get(0).getInteret() < eval) {
+                    boolean existedeja =false;
+                     for(Choix c : sommetsRetenus){
+                         if (c.getP()==suivant){
+                             c.setInteret(Math.max(c.getInteret(), eval));
+                             existedeja=true;
+                         }
+                     }
+                    if (sommetsRetenus.get(0).getInteret() < eval && !existedeja) {
                        
                         sommetsRetenus.set(0, new Choix(suivant, eval));
                     }

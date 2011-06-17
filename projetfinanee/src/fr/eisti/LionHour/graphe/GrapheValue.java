@@ -22,33 +22,33 @@ public class GrapheValue {
     private Set<AreteValuee> aretes;
 
     /************************************************************************************************************
-    *Description: permet de créer un graphe à partir d'une liste de personnes et d'un ensemble d'AreteValuee
-    *@param sommets une liste de personnes qui représente les sommets du graphe
-    *@param aretes un ensemble d'AreteValuee qui représente les arêtes du graphe
-    *************************************************************************************************************/
+     *Description: permet de créer un graphe à partir d'une liste de personnes et d'un ensemble d'AreteValuee
+     *@param sommets une liste de personnes qui représente les sommets du graphe
+     *@param aretes un ensemble d'AreteValuee qui représente les arêtes du graphe
+     *************************************************************************************************************/
     public GrapheValue(List<Personne> sommets, Set<AreteValuee> aretes) {
         this.sommets = sommets;
         this.aretes = aretes;
     }
 
     /************************************************************************************************************
-    *Description: permet de récupérer l'ensemble des sommets d'un graphe sous forme de chaine
-    *@return retourne une chaîne
-    *************************************************************************************************************/
+     *Description: permet de récupérer l'ensemble des sommets d'un graphe sous forme de chaine
+     *@return retourne une chaîne
+     *************************************************************************************************************/
     @Override
     public String toString() {
-        String str="";
-        for(Personne p: sommets){
-            str=str+p.toString()+"\n";
+        String str = "";
+        for (Personne p : sommets) {
+            str = str + p.toString() + "\n";
         }
         return str;
     }
 
     /************************************************************************************************************
-    *Description: permet de récupérer la liste de toutes les personnes amies de celle placée en paramètre
-    *@param p une personne
-    *@return retourne une liste de personnes
-    *************************************************************************************************************/
+     *Description: permet de récupérer la liste de toutes les personnes amies de celle placée en paramètre
+     *@param p une personne
+     *@return retourne une liste de personnes
+     *************************************************************************************************************/
     public List<Personne> recupererAmis(Personne p) {
         //on déclare et on initialise un itérateur permettant de percourir l'ensemble des arêtes nommé aretes
         Iterator<AreteValuee> it = aretes.iterator();
@@ -69,11 +69,11 @@ public class GrapheValue {
     }
 
     /************************************************************************************************************
-    *Description: permet de supprimer un ami p2 d'une personne p1
-    *@param p1 une personne
-    *@param p2 une personne
-    *@return retourne un booleen qui est vrai si la suppression a pu être effectuée
-    *************************************************************************************************************/
+     *Description: permet de supprimer un ami p2 d'une personne p1
+     *@param p1 une personne
+     *@param p2 une personne
+     *@return retourne un booleen qui est vrai si la suppression a pu être effectuée
+     *************************************************************************************************************/
     public boolean supprimerUnAmi(Personne p1, Personne p2) {
         //on déclare et on initialise un itérateur permettant de percourir l'ensemble des arêtes nommé aretes
         Iterator<AreteValuee> it = aretes.iterator();
@@ -98,11 +98,11 @@ public class GrapheValue {
     }
 
     /************************************************************************************************************
-    *Description: permet de récupérer la valeur d'amitié entreune personne p1 et son ami p2
-    *@param p1 une personne
-    *@param p2 une personne
-    *@return retourne un entier (égal à 0 si aucun lien d'amitié n'existe)
-    *************************************************************************************************************/
+     *Description: permet de récupérer la valeur d'amitié entreune personne p1 et son ami p2
+     *@param p1 une personne
+     *@param p2 une personne
+     *@return retourne un entier (égal à 0 si aucun lien d'amitié n'existe)
+     *************************************************************************************************************/
     public int getEvaluation(Personne p1, Personne p2) {
         //on déclare et on initialise un itérateur permettant de percourir l'ensemble des arêtes nommé aretes
         Iterator<AreteValuee> it = aretes.iterator();
@@ -121,14 +121,14 @@ public class GrapheValue {
     }
 
     /************************************************************************************************************
-    *Description: permet d'ajouter une valeur d'amitié entre une personne p1 et son ami p2 si elle existe
-    *             ou de créer un lien d'amitié avec cette valeur s'il n'existe pas
-    *@param p1 une personne
-    *@param p2 une personne
-    *@param valeur en entier
-    *@return retourne un booleen qui est vrai si l'ajout ou la création a pu être effectué
-    *************************************************************************************************************/
-    public boolean evaluerAmitie(Personne p1, Personne p2, int valeur)  throws  Exception{
+     *Description: permet d'ajouter une valeur d'amitié entre une personne p1 et son ami p2 si elle existe
+     *             ou de créer un lien d'amitié avec cette valeur s'il n'existe pas
+     *@param p1 une personne
+     *@param p2 une personne
+     *@param valeur en entier
+     *@return retourne un booleen qui est vrai si l'ajout ou la création a pu être effectué
+     *************************************************************************************************************/
+    public boolean evaluerAmitie(Personne p1, Personne p2, int valeur) throws Exception {
         Boolean res = false;
         //on déclare et on initialise un itérateur permettant de percourir l'ensemble des arêtes nommé aretes
         Iterator<AreteValuee> it = aretes.iterator();
@@ -158,44 +158,71 @@ public class GrapheValue {
     }
 
     /************************************************************************************************************
-    *Description: permet d'ajouter un ami p2 à la liste d'amis de p1 sans oublier la valeur d'amitié
-    *@param p1 une personne
-    *@param p2 une personne
-    *@param valeur un entier
-    *************************************************************************************************************/
-    private void ajouterAmis(Personne p1, Personne p2, int valeur) throws Exception{
+     *Description: permet d'ajouter un ami p2 à la liste d'amis de p1 sans oublier la valeur d'amitié
+     *@param p1 une personne
+     *@param p2 une personne
+     *@param valeur un entier
+     *************************************************************************************************************/
+    private void ajouterAmis(Personne p1, Personne p2, int valeur) throws Exception {
         //on ajoute une nouvelle arête, composée des éléments placés en paramètres, à l'ensemble des liens d'amitié
         aretes.add(new AreteValuee(p1, p2, valeur));
         //l'action de création est mémorisée pour la synchronisation avec la BDD
         DataManager.create(p1.getId(), p2.getId(), valeur);
     }
 
-   
     /************************************************************************************************************
-    *Description: permet de récupérer une personne dans la liste des sommets par l'intermédiaire de son indice
-    *@param i un entier
-    *@return retourne une personne
-    *************************************************************************************************************/
-    public Personne getPersonne(int i) {
+     *Description: permet de récupérer une personne dans la liste des sommets par l'intermédiaire de sa position
+     *@param i un entier
+     *@return retourne une personne
+     *************************************************************************************************************/
+    public Personne getPersonneByPosition(int i) {
         return sommets.get(i);
     }
 
     /************************************************************************************************************
-    *Description: permet d'ajouter une personne p2 à la liste de proposition d'amis de p1
-    *@param p1 une personne
-    *@param p2 une personne
-    *************************************************************************************************************/
+     *Description: permet de récupérer une personne dans la liste des sommets par l'intermédiaire de son indice
+     *@param i un entier
+     *@return retourne une personne
+     *************************************************************************************************************/
+    public Personne getPersonneById(int i) {
+        for (Personne p : this.sommets) {
+            if (p.getId() == i) {
+                return p;
+            }
+        }
+        return null;
+    }
+
+    /************************************************************************************************************
+     *Description: permet de récupérer la premiere personne dans la liste des sommets par l'intermédiaire de son nom
+     *@param nom un entier
+     *@return retourne une personne
+     *************************************************************************************************************/
+    public Personne getPersonneByNom(String nom) {
+        for (Personne p : this.sommets) {
+            if (p.getNom().equals(nom)) {
+                return p;
+            }
+        }
+        return null;
+    }
+
+    /************************************************************************************************************
+     *Description: permet d'ajouter une personne p2 à la liste de proposition d'amis de p1
+     *@param p1 une personne
+     *@param p2 une personne
+     *************************************************************************************************************/
     public void proposerAmis(Personne p1, Personne p2) {
         //on ajoute p2 à l'ensemble des personnes étant en attente d'une réponse de la part de p1
         p1.ajouterAmisEnAttente(p2);
     }
 
     /************************************************************************************************************
-    *Description: permet de récupérer une liste de personnes dont le nom et/ou le prenom correspondent aux paramètres
-    *@param nom une chaine
-    *@param prenom une chaine
-    *@return retourne une liste de personnes
-    *************************************************************************************************************/
+     *Description: permet de récupérer une liste de personnes dont le nom et/ou le prenom correspondent aux paramètres
+     *@param nom une chaine
+     *@param prenom une chaine
+     *@return retourne une liste de personnes
+     *************************************************************************************************************/
     public List<Personne> rechercherParNomPrenom(String nom, String prenom) {
         //on crée et on initialise la liste à retourner
         List<Personne> trouves;
@@ -210,8 +237,7 @@ public class GrapheValue {
                     trouves.add(p);
                 }
             }
-        }
-        //si le nom placé en paramètre est non null
+        } //si le nom placé en paramètre est non null
         else if (nom != null) {
             //on parcourt l'ensemble des personnes du graphe
             for (Personne p : sommets) {
@@ -221,8 +247,7 @@ public class GrapheValue {
                     trouves.add(p);
                 }
             }
-        } 
-        //si le prenom placé en paramètre est non null 
+        } //si le prenom placé en paramètre est non null
         else if (prenom != null) {
             //on parcourt l'ensemble des personnes du graphe
             for (Personne p : sommets) {
@@ -238,27 +263,27 @@ public class GrapheValue {
     }
 
     /************************************************************************************************************
-    *Description: permet de récupérer une liste de personnes dont le nom d'un des
-    *             etablissements du parcours correspond au paramètre nomE,
-    *             dont l'annee placée en parametre est comprise dans ce parcours
-    *             et/ou la ville de l'etablissement est celle placée en paramètre
-    *@param nomE une chaine
-    *@param ville une chaine
-    *@param annee un entier
-    *@return retourne une liste de personnes
-    *************************************************************************************************************/
+     *Description: permet de récupérer une liste de personnes dont le nom d'un des
+     *             etablissements du parcours correspond au paramètre nomE,
+     *             dont l'annee placée en parametre est comprise dans ce parcours
+     *             et/ou la ville de l'etablissement est celle placée en paramètre
+     *@param nomE une chaine
+     *@param ville une chaine
+     *@param annee un entier
+     *@return retourne une liste de personnes
+     *************************************************************************************************************/
     public List<Personne> rechercheParParcours(String nomE, String ville, int annee) {
         //on crée et on initialise la liste à retourner
         List<Personne> trouves;
         trouves = new LinkedList<Personne>();
         //si le nom de l'établissement est non null
-        if (nomE!=null) {
+        if (nomE != null) {
             //on parcourt l'ensemble des personnes du graphe
             for (Personne p : sommets) {
-               //on parcours l'ensemble des parcours de la personne en cours d'évaluation
+                //on parcours l'ensemble des parcours de la personne en cours d'évaluation
                 for (Sejour parcours : p.getSej()) {
                     //si la date placée en paramètre est comprise entre la date de début et de fin du parcours
-                    if (Integer.parseInt(parcours.getDateDebut().toString().substring(0,4)) <= annee && annee <=Integer.parseInt(parcours.getDateFin().toString().substring(0,4))  && parcours.getEtab().getNom().compareToIgnoreCase(nomE) == 0) {
+                    if (Integer.parseInt(parcours.getDateDebut().toString().substring(0, 4)) <= annee && annee <= Integer.parseInt(parcours.getDateFin().toString().substring(0, 4)) && parcours.getEtab().getNom().compareToIgnoreCase(nomE) == 0) {
                         //si la ville placée en paramètre est non null
                         if (ville != null) {
                             //si la ville placée en paramètre correspond avec celle du lieu de l'établissement du parcours de la personne
@@ -266,8 +291,7 @@ public class GrapheValue {
                                 //on ajoute cette personne à la liste à retourner
                                 trouves.add(p);
                             }
-                        }
-                        //si la ville placée en paramètre vaut null
+                        } //si la ville placée en paramètre vaut null
                         else {
                             //on ajoute cette personne à la liste à retourner
                             trouves.add(p);
@@ -281,51 +305,49 @@ public class GrapheValue {
     }
 
     /************************************************************************************************************
-    *Description: permet de récupérer une liste de personnes dont un des centres d'intérêt correspond à celui définit par les paramètres
-    *@param categorie une chaine
-    *@param libelle une chaine
-    *@return retourne une liste de personnes
-    *************************************************************************************************************/
-    public List<Personne> rechercheParCentreInteret(String categorie,String libelle){
+     *Description: permet de récupérer une liste de personnes dont un des centres d'intérêt correspond à celui définit par les paramètres
+     *@param categorie une chaine
+     *@param libelle une chaine
+     *@return retourne une liste de personnes
+     *************************************************************************************************************/
+    public List<Personne> rechercheParCentreInteret(String categorie, String libelle) {
         //on crée et on initialise la liste à retourner
         List<Personne> trouves;
         trouves = new LinkedList<Personne>();
         //si les deux paramètres sont non null
-        if (categorie!=null && libelle!=null) {
+        if (categorie != null && libelle != null) {
             //on parcourt l'ensemble des personnes du graphe
             for (Personne p : sommets) {
                 //on parcourt tous les centres d'intérêt de la personne en cours d'évaluation
-                for (CentreInteret ci : p.getInterets()){
+                for (CentreInteret ci : p.getInterets()) {
                     //si les deux paramètres correspondent à un de ces centres d'intérêt
-                    if(ci.getCategorie().compareToIgnoreCase(categorie)==0 && ci.getLibelle().compareToIgnoreCase(libelle)==0){
+                    if (ci.getCategorie().compareToIgnoreCase(categorie) == 0 && ci.getLibelle().compareToIgnoreCase(libelle) == 0) {
                         //on ajoute cette personne à la liste à retourner
                         trouves.add(p);
                     }
                 }
             }
-        }
-        //si la categorie est non null
-        else if(categorie!=null){
+        } //si la categorie est non null
+        else if (categorie != null) {
             //on parcourt l'ensemble des personnes du graphe
             for (Personne p : sommets) {
                 //on parcourt tous les centres d'intérêt de la personne en cours d'évaluation
-                for (CentreInteret ci : p.getInterets()){
+                for (CentreInteret ci : p.getInterets()) {
                     //si la categorie correspond à celle du centre d'intérêt de la personne
-                    if(ci.getCategorie().compareToIgnoreCase(categorie)==0){
+                    if (ci.getCategorie().compareToIgnoreCase(categorie) == 0) {
                         //on ajoute cette personne à la liste à retourner
                         trouves.add(p);
                     }
                 }
             }
-        }
-        //si le libellé  est non null
-        else if(libelle!=null){
+        } //si le libellé  est non null
+        else if (libelle != null) {
             //on parcourt l'ensemble des personnes du graphe
             for (Personne p : sommets) {
                 //on parcourt tous les centres d'intérêt de la personne en cours d'évaluation
-                for (CentreInteret ci : p.getInterets()){
+                for (CentreInteret ci : p.getInterets()) {
                     //si le libelle correspond à celui du centre d'intérêt de la personne
-                    if(ci.getLibelle().compareToIgnoreCase(libelle)==0){
+                    if (ci.getLibelle().compareToIgnoreCase(libelle) == 0) {
                         //on ajoute cette personne à la liste à retourner
                         trouves.add(p);
                     }
