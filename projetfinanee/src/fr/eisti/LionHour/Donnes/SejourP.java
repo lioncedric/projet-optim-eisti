@@ -1,4 +1,4 @@
-package fr.eisti.LionHour;
+package fr.eisti.LionHour.Donnes;
 
 import java.sql.Date;
 

@@ -1,7 +1,7 @@
 
-import fr.eisti.LionHour.DataManager;
-import fr.eisti.LionHour.GrapheValue;
-import fr.eisti.LionHour.Personne;
+import fr.eisti.LionHour.Connexion.DataManager;
+import fr.eisti.LionHour.graphe.GrapheValue;
+import fr.eisti.LionHour.Donnes.Personne;
 
 
 

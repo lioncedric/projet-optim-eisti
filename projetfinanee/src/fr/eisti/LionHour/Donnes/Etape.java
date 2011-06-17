@@ -1,4 +1,4 @@
-package fr.eisti.LionHour;
+package fr.eisti.LionHour.Donnes;
 
 /******************************************************************************
  *Description: classe qui permet de définir une etape, c'est-à-dire une action (creation, modification ou suppression)

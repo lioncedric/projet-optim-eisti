@@ -1,4 +1,4 @@
-package fr.eisti.LionHour;
+package fr.eisti.LionHour.Donnes;
 /******************************************************************************
  *Description: classe qui permet de définir un etablissement
  * @author HOURCLATS Teddy, LION Cédric

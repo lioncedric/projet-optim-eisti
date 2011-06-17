@@ -1,5 +1,6 @@
-package fr.eisti.LionHour;
+package fr.eisti.LionHour.Donnes;
 
+import fr.eisti.LionHour.graphe.GrapheValue;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashSet;

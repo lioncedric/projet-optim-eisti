@@ -1,4 +1,6 @@
-package fr.eisti.LionHour;
+package fr.eisti.LionHour.graphe;
+
+import fr.eisti.LionHour.Donnes.Personne;
 
 /******************************************************************************
  *Description: classe qui permet de définir un lien d'amitié

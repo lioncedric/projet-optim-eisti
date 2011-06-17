@@ -1,5 +1,14 @@
-package fr.eisti.LionHour;
+package fr.eisti.LionHour.Connexion;
 
+import fr.eisti.LionHour.Donnes.CentreInteret;
+import fr.eisti.LionHour.Donnes.Etablissement;
+import fr.eisti.LionHour.Donnes.Etape;
+import fr.eisti.LionHour.Donnes.Lieu;
+import fr.eisti.LionHour.Donnes.Personne;
+import fr.eisti.LionHour.Donnes.Sejour;
+import fr.eisti.LionHour.Donnes.SejourP;
+import fr.eisti.LionHour.graphe.AreteValuee;
+import fr.eisti.LionHour.graphe.GrapheValue;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;

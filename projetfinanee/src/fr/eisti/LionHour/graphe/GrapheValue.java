@@ -1,5 +1,9 @@
-package fr.eisti.LionHour;
+package fr.eisti.LionHour.graphe;
 
+import fr.eisti.LionHour.Donnes.CentreInteret;
+import fr.eisti.LionHour.Connexion.DataManager;
+import fr.eisti.LionHour.Donnes.Personne;
+import fr.eisti.LionHour.Donnes.Sejour;
 import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
