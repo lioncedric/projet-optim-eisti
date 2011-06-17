@@ -3,8 +3,8 @@ import fr.eisti.LionHour.Connexion.DataManager;
 import fr.eisti.LionHour.graphe.GrapheValue;
 import fr.eisti.LionHour.Donnes.Personne;
 import java.util.Iterator;
-
-
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /******************************************************************************
  *Description: classe qui permet de tester l'ensemble des autres classes
@@ -24,32 +24,56 @@ public class Main {
         GrapheValue gr = DataManager.load();
         //on affiche ce graphe
         System.out.println(gr);
-        //on ajoute des liens d'amitié dans ce graphe
-     //   gr.evaluerAmitie(gr.getPersonneById(0), gr.getPersonneById(1), 100);
-     //   gr.evaluerAmitie(gr.getPersonneById(1), gr.getPersonneById(3), 70);
-     //   gr.evaluerAmitie(gr.getPersonneById(1), gr.getPersonneById(2), 100);
-     //   gr.evaluerAmitie(gr.getPersonneById(2), gr.getPersonneById(3), 66);
-     //   gr.evaluerAmitie(gr.getPersonneById(1), gr.getPersonneById(4), 60);
-           System.out.println("---------");
-        //on affiche les personnes proposées comme amies avec une personne du graphe
-        for (Personne p : gr.getPersonneByPrenom("myriam").rechercheAmis(2, 5,false)) {
+        System.out.println("---------");
+        //on affiche les personnes proposées comme amies à la personne Myriam
+        for (Personne p : gr.getPersonneByPrenom("myriam").rechercheAmis(2, 5, false)) {
             System.out.println(p);
         }
         System.out.println("---------");
-         //on affiche les personnes amies avec une personne du graphe
-         Iterator<Personne> it=gr.getPersonneByPrenom("myriam").recupererAmis();
-         while(it.hasNext()){
-              System.out.println(it.next());
+        //on affiche les personnes amies avec Myriam
+        Iterator<Personne> it = gr.getPersonneByPrenom("myriam").recupererAmis();
+        while (it.hasNext()) {
+            System.out.println(it.next());
         }
-         gr.getPersonneByPrenom("myriam").supprimerUnAmi(null);
-        // System.out.println(gr.rechercherParNomPrenom(null, "lion"));
-        //   System.out.println(gr.rechercheParCentreInteret("basket", "sport"));
-        // System.out.println(gr.rechercherParNomPrenom(null, "lion"));
-        //  System.out.println(gr.rechercheParCentreInteret(null,"basket"));
-        // System.out.println(gr.rechercheParParcours("essec", "pau",2010));
+        //on supprime Rémy de la liste d'amis de Myriam
+        gr.getPersonneByPrenom("myriam").supprimerUnAmi(gr.getPersonneByPrenom("rémy"));
+        System.out.println("---------");
+        //on affiche les personnes amies avec Myriam
+        it = gr.getPersonneByPrenom("myriam").recupererAmis();
+        while (it.hasNext()) {
+            System.out.println(it.next());
+        }
+        System.out.println("---------");
+        //on affiche les personnes proposées comme amies à la personne Myriam
+        for (Personne p : gr.getPersonneByPrenom("myriam").rechercheAmis(5, 5, false)) {
+            System.out.println(p);
+        }
+        try {
+            //on crée un lien d'amitié entre Myriam et Rémy
+            gr.getPersonneByPrenom("myriam").evaluerAmitie(gr.getPersonneByPrenom("rémy"), 20);
+        } catch (Exception ex) {
+         
+        }
+        System.out.println("---------");
+        //on affiche les personnes amies avec Myriam
+        it = gr.getPersonneByPrenom("myriam").recupererAmis();
+        while (it.hasNext()) {
+            System.out.println(it.next());
+        }
+        System.out.println("---------");
+        //on affiche les personnes proposées comme amies à Myriam
+        for (Personne p : gr.getPersonneByPrenom("myriam").rechercheAmis(5, 5, false)) {
+            System.out.println(p);
+        }
+        //on teste les différentes fonctionnalités de recherche de personnes dans un graphe
+        System.out.println("---------");
+        System.out.println(gr.rechercherParNomPrenom("lion", null));
+        System.out.println("---------");
+        System.out.println(gr.rechercheParCentreInteret("sport", "basket"));
+        System.out.println("---------");
+        System.out.println(gr.rechercheParParcours("eisti", "pau", 2010));
 
-
-
+        //Mise à jour de la BDD
         // ModeleBDD.sychronize();
 
     }

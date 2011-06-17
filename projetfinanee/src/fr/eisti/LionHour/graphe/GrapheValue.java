@@ -59,7 +59,6 @@ public class GrapheValue {
             //on initialise une arête par l'intermédiaire de l'itérateur
             AreteValuee ar = it.next();
             //si la personne dont on cherche les amis correspond à la personne p1 de l'arête
-          //  System.out.println(ar);
             if (ar.getP1()==p) {
                 //on ajoute la personne p2 de l'arête dans la liste d'amis
                 res.add(ar.getP2());
