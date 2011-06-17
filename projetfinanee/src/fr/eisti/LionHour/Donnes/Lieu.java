@@ -87,7 +87,7 @@ public class Lieu {
     *************************************************************************************************************/
     @Override
     public String toString() {
-        return "Lieu{n°"+this.numero+" rue "+this.adresse+" à "+this.ville+" en "+this.pays+"}";
+        return "au "+this.numero+" rue "+this.adresse+" à "+this.ville+" en "+this.pays;
     }
 
 

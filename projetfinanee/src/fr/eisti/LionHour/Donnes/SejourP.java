@@ -38,7 +38,7 @@ public class SejourP extends Sejour{
     *************************************************************************************************************/
     @Override
     public String toString() {
-        return super.toString()+" "+this.poste;
+        return super.toString()+" poste: "+this.poste;
     }
 
 

@@ -145,7 +145,7 @@ public class Personne {
     *************************************************************************************************************/
     @Override
     public String toString() {
-        return "Personne{" + "id=" + id + ", nom=" + nom + ", prenom=" + prenom + ", sexe=" + sexe + ", interets=" + interets + ", sej=" + sej + ", amisEnAttente=" + amisEnAttente + ", lieuNaiss=" + lieuNaiss + ", lieuRes=" + lieuRes + "}";
+        return "id: " + id + ", nom: " + nom + ", prenom : " + prenom + ", sexe: " + sexe + ", interets: " + interets + ", parcours : " + sej ;
     }
 
     /************************************************************************************************************

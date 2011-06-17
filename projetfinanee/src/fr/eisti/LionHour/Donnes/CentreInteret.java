@@ -60,6 +60,6 @@ public class CentreInteret {
     *************************************************************************************************************/
     @Override
     public String toString(){
-        return "CentreInteret{libelle="+this.libelle+", categorie="+this.categorie+"}";
+        return this.libelle;
     }
 }
