@@ -150,6 +150,26 @@ public class Personne {
     }
 
     /************************************************************************************************************
+     *Description: permet d'ajouter un ami p2 à ma liste d'amis  sans oublier la valeur d'amitié
+     *@param p2 une personne a lier d'amitier
+     *@param valeur un entier
+     *************************************************************************************************************/
+    public void evaluerAmitie(Personne p2, int valeur) throws Exception {
+        //on ajoute une nouvelle arête, composée des éléments placés en paramètres, à l'ensemble des liens d'amitié
+        gr.evaluerAmitie(this, p2, valeur);
+    }
+
+    /************************************************************************************************************
+     *Description: permet de supprimer un ami p2 
+     *@param p2 une personne
+     *@return retourne un booleen qui est vrai si la suppression a pu être effectuée
+     *************************************************************************************************************/
+    public boolean supprimerUnAmi(Personne p2) {
+        //on retourne l'état de la suppression de ce lien d'amitié
+        return gr.supprimerUnAmi(this, p2);
+    }
+
+    /************************************************************************************************************
      *Description: permet de récupérer une personne sous forme de chaîne
      *@return retourne une chaîne
      *************************************************************************************************************/
